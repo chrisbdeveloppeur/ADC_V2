@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AskUserController!{% endblock %}
+
+{% block body %}
+    <section class="hero is-light is-bold is-fullheight">
+        <div class="hero-body">
+
+            {{ include('includes/flash_message.html.twig') }}
+
+            {{ form_start(type_field_form, {'attr' : {'class' : 'block-form-field'} }) }}
+
+
+            <div class="field form-field is-one-third-desktop is-four-fifths-tablet column">
+                <label class="label" for="last_name">Type</label>
+                <div class="control">
+                    <div class="select is-primary is-fullwidth">
+                        {{ form_widget(type_field_form.type, {'attr' : {'class' : '', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}
+                    </div>
+                </div>
+            </div>
+
+{#            <div class="field form-field is-one-third is-full-touch column">#}
+{#                <label class="label" for="last_name">Type</label>#}
+{#                <div class="control">#}
+{#                    {{ form_widget(type_field_form.type, {'attr' : {'class' : 'input is-primary', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}#}
+{#                </div>#}
+{#            </div>#}
+
+            <div class="control" id="">
+                <button class="button is-success arrowNavForm">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            {{ form_end(type_field_form) }}
+
+        </div>
+
+    </section>
+
+{% endblock %}
+
+
