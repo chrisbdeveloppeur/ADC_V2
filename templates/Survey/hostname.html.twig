@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AskUserController!{% endblock %}
+
+{% block body %}
+    <section class="section is-fullheight is-flex is-justify-content-center is-align-items-center" style="height: 100vh">
+
+        <div class="column is-flex-desktop is-align-items-center" style="height: 100%">
+            <div class="column is-flex is-align-items-center is-justify-content-center" style="height: 50%">
+                <div class="box" style="height: 100%;width: 100%">
+                    Intervention : {{ type }}<br>
+                    Type d'asset : {{ asset_type }}<br>
+                </div>
+            </div>
+
+            {{ include('includes/flash_message.html.twig') }}
+
+            {{ form_start(hostname_field_form, {'attr' : {'class' : 'column is-flex is-align-items-center is-justify-content-center', 'style' : 'height:50%'} }) }}
+
+            <div class="field column">
+                <label class="label" for="last_name">Hostname</label>
+
+                <div class="is-flex">
+                    <div class="control" style="flex: 1;margin-right: 1rem;">
+                        <div class="select is-primary is-fullwidth">
+{#                            {{ form_widget(hostname_field_form.hostname, {'attr' : {'class' : '', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}#}
+                            {{ form_widget(hostname_field_form.newAsset) }}
+                        </div>
+                    </div>
+
+                    <button class="button is-success">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+
+            </div>
+
+
+            {{ form_end(hostname_field_form) }}
+        </div>
+
+    </section>
+
+{% endblock %}
+
+

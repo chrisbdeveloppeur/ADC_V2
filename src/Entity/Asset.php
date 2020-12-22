@@ -28,6 +28,11 @@ class Asset
      */
     private $identifiant;
 
+    public function __toString()
+    {
+        return $this->getHostname();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
