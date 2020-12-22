@@ -57,32 +57,44 @@ class HomeController extends AbstractController
         // Définir le chemin d'accès au fichier CSV
         $csv = '..\public\csv\postes.csv';
         $file = fopen($csv, 'r');
+        // Transformation de chaques ligne du CSV dans un tableau
         while (!feof($file) ) {
             $line[] = fgetcsv($file);
         }
+        $assetsFromBDD = $assetRepository->findAll();
+        //Décomponsition du tableau
         for($i=1; $i<count($line)-1; $i++){
             $array = $line[$i];
             $result = explode(";", $array[0]);
             $id = $result[0];
+            $ids[] = $id;
             $hostname = $result[1];
+            // Ajoute un asset en BDD via le fichier CSV
             if (!$assetRepository->findById($id)){
                 $asset = new Asset();
                 $asset->setHostname($hostname);
                 $asset->setIdentifiant($id);
                 $em->persist($asset);
                 $em->flush();
-            }else{
-                $asset = $assetRepository->findById($id);
-//                echo $hostname . "<br>";
-//                dd($asset);
-//                echo '<pre>';
-//                var_dump($thisAsset->getIdentifiant(), $hostname);
-//                echo '</pre>';
-//                dd($hostname, $hostnameFromBDD);
-//                if ($hostname != $hostnameFromBDD){
-//
-//                }
             }
+            $asset = $assetRepository->findById($id)[0];
+            $hostnameFromBDD = $asset->getHostname();
+            //Synchronise les modifications des Assets entre le CSV et la BDD
+            if ($hostname != $hostnameFromBDD){
+                $asset->setHostname($hostname);
+                $em->persist($asset);
+                $em->flush();
+            }
+        }
+
+        //Synchronise les suppression des Assets entre le CSB et la BDD
+        foreach ( $assetsFromBDD as $item){
+            if (!in_array($item->getIdentifiant(), $ids)){
+                $assetToRemove = $assetRepository->findById($item->getIdentifiant());
+                $em->remove($assetToRemove[0]);
+                $em->flush();
+            }
+
         }
         fclose($file);
 //////////////////////////////////////////////////////////////////////////////////////

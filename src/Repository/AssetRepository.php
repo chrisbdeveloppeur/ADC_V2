@@ -27,10 +27,19 @@ class AssetRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->andWhere('a.identifiant = :val')
             ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function findByHostname($value)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.hostname = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
 
