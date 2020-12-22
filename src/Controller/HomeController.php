@@ -65,12 +65,23 @@ class HomeController extends AbstractController
             $result = explode(";", $array[0]);
             $id = $result[0];
             $hostname = $result[1];
-            $asset = new Asset();
             if (!$assetRepository->findById($id)){
+                $asset = new Asset();
                 $asset->setHostname($hostname);
                 $asset->setIdentifiant($id);
                 $em->persist($asset);
                 $em->flush();
+            }else{
+                $asset = $assetRepository->findById($id);
+//                echo $hostname . "<br>";
+//                dd($asset);
+//                echo '<pre>';
+//                var_dump($thisAsset->getIdentifiant(), $hostname);
+//                echo '</pre>';
+//                dd($hostname, $hostnameFromBDD);
+//                if ($hostname != $hostnameFromBDD){
+//
+//                }
             }
         }
         fclose($file);
