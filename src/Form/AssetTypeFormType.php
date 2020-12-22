@@ -4,20 +4,27 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TypeFormType extends AbstractType
+class AssetTypeFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', ChoiceType::class,
+            ->add('assetType', ChoiceType::class,
                 array('label' => false,
                     'required' => true,
                     'choices' => [
-                        'Demande [TASKT]' => 'demande',
-                        'Incident [INCT]' => 'incident',
+                        'Poste fixe' => 'desktop',
+                        'Poste portable' => 'laptop',
+                        'Ecran' => 'screen',
+                        'Accessoires' => 'accessory',
+                        'Smartphone' => 'phone',
+                        'Infra / Prise réseau' => 'incident',
+                        'Baie de brassage' => 'patch_panel',
+                        'Autre' => 'other',
                     ]
                 )
             )

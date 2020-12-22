@@ -11,6 +11,11 @@
     {% endblock %}
 </head>
 <body>
+
+    <a href="{{ path('refresh_CMDB') }}" class="button">
+        Rafraichir la CMDB
+    </a>
+
     {% block body %}{% endblock %}
 
     {% block javascripts %}

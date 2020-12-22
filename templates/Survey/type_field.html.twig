@@ -3,41 +3,43 @@
 {% block title %}Hello AskUserController!{% endblock %}
 
 {% block body %}
-    <section class="hero is-light is-bold is-fullheight">
-        <div class="hero-body">
 
-            {{ include('includes/flash_message.html.twig') }}
+<section class="section is-fullheight is-flex is-justify-content-center is-align-items-center" style="height: 100vh">
+    {#        <div class="hero-body">#}
 
-            {{ form_start(type_field_form, {'attr' : {'class' : 'block-form-field'} }) }}
+    <div class="column is-flex-desktop is-align-items-center" style="height: 100%">
+        <div class="column is-flex is-align-items-center is-justify-content-center" style="height: 50%">
+            <div class="box" style="height: 100%;width: 100%">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet autem eaque excepturi id ipsum neque optio perspiciatis quaerat sequi. Blanditiis, doloribus eaque illo molestias odio porro quo recusandae velit.
+            </div>
+        </div>
 
+        {{ include('includes/flash_message.html.twig') }}
 
-            <div class="field form-field is-one-third-desktop is-four-fifths-tablet column">
-                <label class="label" for="last_name">Type</label>
-                <div class="control">
+        {{ form_start(type_field_form, {'attr' : {'class' : 'column is-flex is-align-items-center is-justify-content-center', 'style' : 'height:50%'} }) }}
+
+        <div class="field column">
+            <label class="label" for="last_name">Type</label>
+
+            <div class="is-flex">
+                <div class="control" style="flex: 1;margin-right: 1rem;">
                     <div class="select is-primary is-fullwidth">
                         {{ form_widget(type_field_form.type, {'attr' : {'class' : '', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}
                     </div>
                 </div>
-            </div>
 
-{#            <div class="field form-field is-one-third is-full-touch column">#}
-{#                <label class="label" for="last_name">Type</label>#}
-{#                <div class="control">#}
-{#                    {{ form_widget(type_field_form.type, {'attr' : {'class' : 'input is-primary', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}#}
-{#                </div>#}
-{#            </div>#}
-
-            <div class="control" id="">
-                <button class="button is-success arrowNavForm">
+                <button class="button is-success">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
 
-            {{ form_end(type_field_form) }}
 
         </div>
 
-    </section>
+        {{ form_end(type_field_form) }}
+    </div>
+
+</section>
 
 {% endblock %}
 
