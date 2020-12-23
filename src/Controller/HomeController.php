@@ -4,7 +4,9 @@ namespace App\Controller;
 
 
 use App\Entity\Asset;
+use App\Entity\Survey;
 use App\Form\AssetTypeFormType;
+use App\Form\FinalStringFormType;
 use App\Form\HostnameFormType;
 use App\Form\TypeFormType;
 use App\Repository\AssetRepository;
@@ -182,7 +184,7 @@ class HomeController extends AbstractController
             $hostname = $hostname->getHostname();
             $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $hostname);
 
-                return $this->redirectToRoute("type",[
+                return $this->redirectToRoute("final_string",[
                     'type' => $type,
                     'asset_type' => $asset_type,
                     'hostname' => $hostname,
@@ -201,40 +203,45 @@ class HomeController extends AbstractController
 
 
     /**
-     * @Route("validation/", name="final_string")
+     * @Route("{type}/{asset_type}/{hostname}/validation", name="final_string")
      */
-    public function stringGen(Request $request, $type): Response
+    public function stringGen($type, $asset_type, $hostname): Response
     {
-        $form = $this->createForm(AssetTypeFormType::class);
-        $form->handleRequest($request);
-        $assetType = '?';
+        $finalString = $type . " - " . $asset_type . " - " . $hostname;
+        $survey = new Survey();
+        $survey->setFinalString($finalString);
+        $form = $this->createForm(FinalStringFormType::class, $survey);
+//        $form->handleRequest($request);
+//        $assetType = '?';
 
-        if ($form->isSubmitted() && $form->isValid()){
-//            $user = $form->getData();
-//            $entityManager->persist($user);
-            $assetType = $form->get("assetType")->getData();
-
-            if ( ($assetType == "other") ){
-                $this->addFlash('success', 'Le type' . $assetType . ' à été selectionné !');
-//                dd($type, $assetType);
-                return $this->redirectToRoute("asset_type",[
-                    'type' => $type,
-                    'asset_type' => $assetType,
-                ]);
-            }else{
-                $this->addFlash('success', $assetType . ' selectionné !');
-//                dd($type, $assetType);
-                return $this->redirectToRoute("asset_type",[
-                    'type' => $type,
-                    'asset_type' => $assetType,
-                ]);
-            }
-
-        }
-        return $this->render('Survey/Taskt/asset_type_field.html.twig', [
-            'asset_type_field_form' => $form->createView(),
+//        if ($form->isSubmitted() && $form->isValid()){
+////            $user = $form->getData();
+////            $entityManager->persist($user);
+//            $assetType = $form->get("assetType")->getData();
+//
+//            if ( ($assetType == "other") ){
+//                $this->addFlash('success', 'Le type' . $assetType . ' à été selectionné !');
+////                dd($type, $assetType);
+//                return $this->redirectToRoute("asset_type",[
+//                    'type' => $type,
+//                    'asset_type' => $assetType,
+//                ]);
+//            }else{
+//                $this->addFlash('success', $assetType . ' selectionné !');
+////                dd($type, $assetType);
+//                return $this->redirectToRoute("asset_type",[
+//                    'type' => $type,
+//                    'asset_type' => $assetType,
+//                ]);
+//            }
+//
+//        }
+        return $this->render('Survey/final_string_form.html.twig', [
+            'final_string_form' => $form->createView(),
             'type' => $type,
-            'asset_type' => $assetType,
+            'asset_type' => $asset_type,
+            'hostname' => $hostname,
+            'final_string' => $finalString,
         ]);
     }
 }

@@ -11,4 +11,4 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
-
+const logo_SCC = require('../images/sitelogo_SCC.png');

@@ -12,25 +12,25 @@
 </head>
 <body>
 
-<nav class="navbar is-info" role="navigation" aria-label="main navigation">
+<nav class="navbar is-light has-text-black is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand is-justify-content-center">
         <a class="navbar-item" href="{{ path('type') }}">
-            <img src="../assets/images/sitelogo_SCC.png" alt="">
-            Arbre de clôture | v1.9
+            <img width="100" height="100" src="{{ asset('build/images/sitelogo_SCC.9f1fb72d.png') }}" alt="">
         </a>
     </div>
 
     <div class="navbar-end has-text-centered">
         <div class="navbar-item">
-            SCC pour SAFRAN
+            <b>Arbre de clôture | v1.9</b>
         </div>
     </div>
 </nav>
 
 {{ include('includes/flash_message.html.twig') }}
 
+<section class="is-fullheight is-flex is-justify-content-center is-align-items-center" style="height: 100vh">
     {% block body %}{% endblock %}
-
+</section>
     {% block javascripts %}
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     {% endblock %}

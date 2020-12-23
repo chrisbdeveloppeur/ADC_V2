@@ -67,6 +67,11 @@ class Survey
      */
     private $timestamp;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $final_string;
+
     public function __construct()
     {
         $this->quantity = 1;
@@ -196,6 +201,18 @@ class Survey
     public function setTimestamp(\DateTimeInterface $timestamp): self
     {
         $this->timestamp = $timestamp;
+
+        return $this;
+    }
+
+    public function getFinalString(): ?string
+    {
+        return $this->final_string;
+    }
+
+    public function setFinalString(?string $final_string): self
+    {
+        $this->final_string = $final_string;
 
         return $this;
     }
