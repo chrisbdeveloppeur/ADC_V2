@@ -4,19 +4,17 @@
 
 {% block body %}
 
-<section class="section is-fullheight is-flex is-justify-content-center is-align-items-center" style="height: 100vh">
-    {#        <div class="hero-body">#}
+<section class="is-fullheight is-flex is-justify-content-center is-align-items-center" style="height: 100vh">
 
     <div class="column is-flex-desktop is-align-items-center" style="height: 100%">
-        <div class="column is-flex is-align-items-center is-justify-content-center" style="height: 50%">
+
+        <div class="column is-flex is-align-items-center is-justify-content-center  is-two-fifths-desktop" style="height: 50%">
             <div class="box" style="height: 100%;width: 100%">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet autem eaque excepturi id ipsum neque optio perspiciatis quaerat sequi. Blanditiis, doloribus eaque illo molestias odio porro quo recusandae velit.
+                Bienvenue sur l'outil d'assistance ("Arbre de clôture") à la fermeture de TASKT/INCT
             </div>
         </div>
 
-        {{ include('includes/flash_message.html.twig') }}
-
-        {{ form_start(type_field_form, {'attr' : {'class' : 'column is-flex is-align-items-center is-justify-content-center', 'style' : 'height:50%'} }) }}
+        {{ form_start(type_field_form, {'attr' : {'class' : 'column is-flex-desktop is-align-items-center is-justify-content-center', 'style' : 'height:50%'} }) }}
 
         <div class="field column">
             <label class="label" for="last_name">Type</label>

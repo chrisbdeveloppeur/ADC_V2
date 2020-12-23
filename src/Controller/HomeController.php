@@ -111,7 +111,7 @@ class HomeController extends AbstractController
 //            $entityManager->persist($user);
             $type = $form->get("type")->getData();
 
-            $this->addFlash('success', $type . ' selectionné !');
+            $this->addFlash('info', $type . ' selectionné !');
 
             if ($type == "demande"){
                 return $this->redirectToRoute("asset_type",  [
@@ -142,13 +142,13 @@ class HomeController extends AbstractController
             $assetType = $form->get("assetType")->getData();
 
             if ( ($assetType == "other") ){
-                $this->addFlash('success', 'Le type' . $assetType . ' à été selectionné !');
+                $this->addFlash('info', 'Vous avez selectionner le type d\'asset : ' . $assetType);
                 return $this->redirectToRoute("asset_type",[
                     'type' => $type,
                     'asset_type' => $assetType,
                 ]);
             }else{
-                $this->addFlash('success', $assetType . ' selectionné !');
+                $this->addFlash('info', 'Vous avez selectionner le type d\'asset : ' . $assetType);
                 return $this->redirectToRoute("hostname",[
                     'type' => $type,
                     'asset_type' => $assetType,
@@ -180,7 +180,7 @@ class HomeController extends AbstractController
 
             $hostname = $form->get("newAsset")->getData();
             $hostname = $hostname->getHostname();
-                $this->addFlash('success', $hostname . ' selectionné !');
+            $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $hostname);
 
                 return $this->redirectToRoute("type",[
                     'type' => $type,

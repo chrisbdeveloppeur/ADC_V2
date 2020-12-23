@@ -1,5 +1,6 @@
 $message-radius: 0;
 $message-header-radius:0;
+$info: #009fe3;
 
 //div.form-field{
 //  display: none;
@@ -65,11 +66,12 @@ $message-header-radius:0;
 }
 
 .flash-msg{
-  position: absolute !important;
-  top: 0;
+  position: fixed !important;
+  bottom: 0;
   left: 0;
   width: 100%;
   z-index: 100;
+  margin-bottom: 0 !important;
 }
 
 

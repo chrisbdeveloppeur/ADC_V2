@@ -12,6 +12,23 @@
 </head>
 <body>
 
+<nav class="navbar is-info" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand is-justify-content-center">
+        <a class="navbar-item" href="{{ path('type') }}">
+            <img src="../assets/images/sitelogo_SCC.png" alt="">
+            Arbre de clôture | v1.9
+        </a>
+    </div>
+
+    <div class="navbar-end has-text-centered">
+        <div class="navbar-item">
+            SCC pour SAFRAN
+        </div>
+    </div>
+</nav>
+
+{{ include('includes/flash_message.html.twig') }}
+
     {% block body %}{% endblock %}
 
     {% block javascripts %}

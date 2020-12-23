@@ -58,6 +58,11 @@ Encore
     // enables Sass/SCSS support
     .enableSassLoader()
 
+
+    .addPlugin(new CopyWebpackPlugin([
+        { from: './assets/images', to: 'images' }
+    ]))
+
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 

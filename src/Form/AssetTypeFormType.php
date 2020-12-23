@@ -17,14 +17,14 @@ class AssetTypeFormType extends AbstractType
                 array('label' => false,
                     'required' => true,
                     'choices' => [
-                        'Poste fixe' => 'desktop',
-                        'Poste portable' => 'laptop',
-                        'Ecran' => 'screen',
-                        'Accessoires' => 'accessory',
-                        'Smartphone' => 'phone',
-                        'Infra / Prise réseau' => 'incident',
-                        'Baie de brassage' => 'patch_panel',
-                        'Autre' => 'other',
+                        'Poste fixe' => 'Desktop',
+                        'Poste portable' => 'Laptop',
+                        'Ecran' => 'Ecran',
+                        'Accessoires' => 'Accessoire',
+                        'Smartphone' => 'Smartphone',
+                        'Infra / Prise réseau' => 'Infra - Réseau',
+                        'Baie de brassage' => 'Baie de brassage',
+                        'Autre' => 'Autre',
                     ]
                 )
             )
