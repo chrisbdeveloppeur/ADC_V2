@@ -4,8 +4,6 @@
 
 {% block body %}
 
-    <div class="column is-flex-desktop is-align-items-center" style="height: 100%">
-
         <div class="column is-flex is-align-items-center is-justify-content-center  is-two-fifths-desktop" style="height: 50%">
             <div class="box" style="height: 100%;width: 100%">
                 Bienvenue sur l'outil d'assistance ("Arbre de clôture") à la fermeture de TASKT/INCT
@@ -19,12 +17,12 @@
 
             <div class="is-flex">
                 <div class="control" style="flex: 1;margin-right: 1rem;">
-                    <div class="select is-primary is-fullwidth">
+                    <div class="select is-info is-fullwidth">
                         {{ form_widget(type_field_form.type, {'attr' : {'class' : '', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}
                     </div>
                 </div>
 
-                <button class="button is-success">
+                <button class="button is-info">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -33,7 +31,6 @@
         </div>
 
         {{ form_end(type_field_form) }}
-    </div>
 
 {% endblock %}
 

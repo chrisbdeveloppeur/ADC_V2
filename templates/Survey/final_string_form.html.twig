@@ -4,8 +4,6 @@
 
 {% block body %}
 
-        <div class="column is-flex-desktop is-align-items-center" style="height: 100%">
-
             <div class="column is-flex is-align-items-center is-justify-content-center is-two-fifths-desktop" style="height: 50%">
                 <div class="box" style="height: 100%;width: 100%">
                     Intervention : {{ type }}<br>
@@ -20,24 +18,46 @@
                 <label class="label" for="last_name">Votre code final :</label>
 
                 <div class="is-flex">
-                    <div class="control" style="flex: 1;margin-right: 1rem;">
-                        <div class="is-primary is-fullwidth">
-                            {{ form_widget(final_string_form.final_string, {'attr' : {'data' : final_string }}) }}
+                    <div class="control" style="flex: 1">
+                        <div class="is-info is-fullwidth">
+                            {{ form_widget(final_string_form.final_string) }}
                         </div>
                     </div>
-
-                    <button class="button is-success">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
                 </div>
+
+                <div class="is-flex mt-3 is-justify-content-end">
+                    <a href="#" class="button is-info" id="copy-btn">
+                        <i class="fas fa-clone"></i>
+                    </a>
+                </div>
+
 
 
             </div>
 
 
             {{ form_end(final_string_form) }}
-        </div>
+
+
+
+    <script>
+
+        // console.log(textAreaContent);
+        let copyBtn = document.getElementById('copy-btn');
+
+        copyBtn.addEventListener('click', function () {
+            let textArea = document.getElementById('final_string_form_final_string');
+            // console.log(textArea);
+            // let textAreaContent = textArea.innerHTML;
+            // console.log(textAreaContent);
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); /* For mobile devices */
+            document.execCommand('copy');
+        })
+
+    </script>
 
 {% endblock %}
+
 
 

@@ -14,7 +14,7 @@ class FinalStringFormType extends AbstractType
     {
         $builder
             ->add('final_string', TextareaType::class,[
-                'attr' => ['class' => 'textarea', 'rows' => '10', 'style' => 'resize:none;'],
+                'attr' => ['class' => 'textarea', 'rows' => '7', 'style' => 'resize:none;'],
             ])
         ;
     }
