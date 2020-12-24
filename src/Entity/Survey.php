@@ -72,6 +72,11 @@ class Survey
      */
     private $final_string;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $hashed_string;
+
     public function __construct()
     {
         $this->quantity = 1;
@@ -213,6 +218,18 @@ class Survey
     public function setFinalString(?string $final_string): self
     {
         $this->final_string = $final_string;
+
+        return $this;
+    }
+
+    public function getHashedString(): ?string
+    {
+        return $this->hashed_string;
+    }
+
+    public function setHashedString(string $hashed_string): self
+    {
+        $this->hashed_string = hash('crc32', $hashed_string);
 
         return $this;
     }

@@ -185,7 +185,11 @@ class HomeController extends AbstractController
     {
         $finalString = $type . " - " . $asset_type . " - " . $hostname;
         $survey = new Survey();
+        $survey->setHashedString($finalString);
+        $finalString .= "\r\n[" . $survey->getHashedString() . "]";
+
         $survey->setFinalString($finalString);
+
         $form = $this->createForm(FinalStringFormType::class, $survey);
         return $this->render('Survey/final_string_form.html.twig', [
             'final_string_form' => $form->createView(),
