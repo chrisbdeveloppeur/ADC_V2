@@ -153,10 +153,11 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
 
-
             $hostname = $form->get("newAsset")->getData();
-            $hostname = $hostname->getHostname();
-            $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $hostname);
+            $customHostname = $form->get('customHostname')->getData();
+
+            if ($hostname && !$customHostname){
+                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $hostname);
 
                 return $this->redirectToRoute("final_string",[
                     'type' => $type,
@@ -164,6 +165,17 @@ class HomeController extends AbstractController
                     'asset_type' => $asset_type,
                     'hostname' => $hostname,
                 ]);
+            }else if ($customHostname){
+                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $customHostname);
+
+                return $this->redirectToRoute("final_string",[
+                    'type' => $type,
+                    'from_inct' => $from_inct,
+                    'asset_type' => $asset_type,
+                    'hostname' => $customHostname,
+                ]);
+            }
+
 
         }
         return $this->render('Survey/hostname.html.twig', [

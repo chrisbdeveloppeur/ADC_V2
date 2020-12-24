@@ -7,6 +7,7 @@ use App\Entity\Survey;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,8 +20,18 @@ class HostnameFormType extends AbstractType
             ->add('newAsset', EntityType::class,[
                 'class' => $hostname,
                 'choice_label' => 'hostname',
+                'placeholder' => "",
                 'label' => false,
-                'required' => true,
+                'required' => false,
+                ]
+            )
+            ->add('customHostname', TextType::class,[
+                    'label' => false,
+                    'required' => false,
+                    'attr' => [
+                        'class' => 'input is-info',
+                        'placeholder' => 'Exemple : SDS-1A2B'
+                    ]
                 ]
             )
         ;
@@ -29,7 +40,7 @@ class HostnameFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Survey::class,
+//            'data_class' => Survey::class,
         ]);
     }
 }

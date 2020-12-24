@@ -16,20 +16,26 @@
             {{ form_start(hostname_field_form, {'attr' : {'class' : 'column is-flex-desktop is-justify-content-center is-two-fifths-desktop', 'style' : 'height:50%'} }) }}
 
             <div class="field column">
-                <label class="label" for="last_name">Hostname</label>
+                <label class="label" for="last_name">Selectionnez le Hostname</label>
 
-                <div class="is-flex">
-                    <div class="control" style="flex: 1;margin-right: 1rem;">
+                    <div class="control" style="flex: 1">
                         <div class="select is-info is-fullwidth">
                             {{ form_widget(hostname_field_form.newAsset) }}
                         </div>
                     </div>
 
-                    <button class="button is-info">
+                <h2 class="subtitle is-3 has-text-centered">Ou</h2>
+
+                <label class="label" for="last_name">Je renseigne manuellement le hostname</label>
+                <div class="control" style="flex: 1">
+                    {{ form_widget(hostname_field_form.customHostname) }}
+                </div>
+
+                <div class="is-flex is-justify-content-end">
+                    <button class="button is-info mt-3">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
-
 
             </div>
 
