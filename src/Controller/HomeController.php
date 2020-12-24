@@ -19,35 +19,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-//    /**
-//     * @Route("/refresh-CMDB", name="refresh_CMDB")
-//     */
-//    public function read(EntityManagerInterface $em, AssetRepository $assetRepository){
-//        // Définir le chemin d'accès au fichier CSV
-//        $csv = '..\public\csv\postes.csv';
-//        $file = fopen($csv, 'r');
-//        while (!feof($file) ) {
-//            $line[] = fgetcsv($file);
-//        }
-//        for($i=1; $i<count($line)-1; $i++){
-//            $array = $line[$i];
-//            $result = explode(";", $array[0]);
-//            $id = $result[0];
-//            $hostname = $result[1];
-//            $asset = new Asset();
-//            if (!$assetRepository->findById($id)){
-//                $asset->setHostname($hostname);
-//                $asset->setIdentifiant($id);
-//                $em->persist($asset);
-//                $em->flush();
-//            }
-//        }
-//        fclose($file);
-//        $this->addFlash('success', 'Synchronisation avec la CMDB effectué');
-//        return $this->redirectToRoute('type');
-//    }
-
-
     /**
      * @Route("/", name="type")
      */
@@ -116,7 +87,7 @@ class HomeController extends AbstractController
             $this->addFlash('info', $type . ' selectionné !');
 
             if ($type == "demande"){
-                return $this->redirectToRoute("asset_type",  [
+                return $this->redirectToRoute("taskt_from_inct",  [
                     'type' => $type,
                 ]);
             }else{
@@ -132,9 +103,9 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("{type}/type-asset", name="asset_type")
+     * @Route("{type}/from-inct={from_inct}/type-asset", name="asset_type")
      */
-    public function setAssetType(Request $request, $type): Response
+    public function setAssetType(Request $request, $type, $from_inct): Response
     {
         $form = $this->createForm(AssetTypeFormType::class);
         $form->handleRequest($request);
@@ -148,12 +119,14 @@ class HomeController extends AbstractController
                 return $this->redirectToRoute("asset_type",[
                     'type' => $type,
                     'asset_type' => $assetType,
+                    'from_inct' => $from_inct,
                 ]);
             }else{
                 $this->addFlash('info', 'Vous avez selectionner le type d\'asset : ' . $assetType);
                 return $this->redirectToRoute("hostname",[
                     'type' => $type,
                     'asset_type' => $assetType,
+                    'from_inct' => $from_inct,
                 ]);
             }
 
@@ -161,6 +134,7 @@ class HomeController extends AbstractController
         return $this->render('Survey/Taskt/asset_type_field.html.twig', [
             'asset_type_field_form' => $form->createView(),
             'type' => $type,
+            'from_inct' => $from_inct,
             'asset_type' => $assetType,
         ]);
     }
@@ -168,9 +142,9 @@ class HomeController extends AbstractController
 
 
     /**
-     * @Route("{type}/{asset_type}/hostname", name="hostname")
+     * @Route("{type}/from-inct={from_inct}/{asset_type}/hostname", name="hostname")
      */
-    public function hostname(Request $request, $type, $asset_type, AssetRepository $assetRepository): Response
+    public function hostname(Request $request, $type, $from_inct, $asset_type, AssetRepository $assetRepository): Response
     {
         $form = $this->createForm(HostnameFormType::class);
         $form->handleRequest($request);
@@ -186,6 +160,7 @@ class HomeController extends AbstractController
 
                 return $this->redirectToRoute("final_string",[
                     'type' => $type,
+                    'from_inct' => $from_inct,
                     'asset_type' => $asset_type,
                     'hostname' => $hostname,
                 ]);
@@ -194,6 +169,7 @@ class HomeController extends AbstractController
         return $this->render('Survey/hostname.html.twig', [
             'hostname_field_form' => $form->createView(),
             'type' => $type,
+            'from_inct' => $from_inct,
             'asset_type' => $assetType,
             'assets' => $assets,
         ]);
@@ -211,31 +187,6 @@ class HomeController extends AbstractController
         $survey = new Survey();
         $survey->setFinalString($finalString);
         $form = $this->createForm(FinalStringFormType::class, $survey);
-//        $form->handleRequest($request);
-//        $assetType = '?';
-
-//        if ($form->isSubmitted() && $form->isValid()){
-////            $user = $form->getData();
-////            $entityManager->persist($user);
-//            $assetType = $form->get("assetType")->getData();
-//
-//            if ( ($assetType == "other") ){
-//                $this->addFlash('success', 'Le type' . $assetType . ' à été selectionné !');
-////                dd($type, $assetType);
-//                return $this->redirectToRoute("asset_type",[
-//                    'type' => $type,
-//                    'asset_type' => $assetType,
-//                ]);
-//            }else{
-//                $this->addFlash('success', $assetType . ' selectionné !');
-////                dd($type, $assetType);
-//                return $this->redirectToRoute("asset_type",[
-//                    'type' => $type,
-//                    'asset_type' => $assetType,
-//                ]);
-//            }
-//
-//        }
         return $this->render('Survey/final_string_form.html.twig', [
             'final_string_form' => $form->createView(),
             'type' => $type,
@@ -244,4 +195,39 @@ class HomeController extends AbstractController
             'final_string' => $finalString,
         ]);
     }
+
+
+
+
+
+
+
+    //    /**
+//     * @Route("/refresh-CMDB", name="refresh_CMDB")
+//     */
+//    public function read(EntityManagerInterface $em, AssetRepository $assetRepository){
+//        // Définir le chemin d'accès au fichier CSV
+//        $csv = '..\public\csv\postes.csv';
+//        $file = fopen($csv, 'r');
+//        while (!feof($file) ) {
+//            $line[] = fgetcsv($file);
+//        }
+//        for($i=1; $i<count($line)-1; $i++){
+//            $array = $line[$i];
+//            $result = explode(";", $array[0]);
+//            $id = $result[0];
+//            $hostname = $result[1];
+//            $asset = new Asset();
+//            if (!$assetRepository->findById($id)){
+//                $asset->setHostname($hostname);
+//                $asset->setIdentifiant($id);
+//                $em->persist($asset);
+//                $em->flush();
+//            }
+//        }
+//        fclose($file);
+//        $this->addFlash('success', 'Synchronisation avec la CMDB effectué');
+//        return $this->redirectToRoute('type');
+//    }
+
 }

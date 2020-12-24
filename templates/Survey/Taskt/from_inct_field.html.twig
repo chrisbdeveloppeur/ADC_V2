@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AskUserController!{% endblock %}
+
+{% block body %}
+
+                <div class="column is-flex is-align-items-center is-justify-content-center is-two-fifths-desktop" style="height: 50%">
+                    <div class="box" style="height: 100%;width: 100%">
+                        Intervention : {{ type }}<br>
+                        Suite à incident : ? <br>
+                    </div>
+                </div>
+
+{#                {{ form_start(form, {'attr' : {'class' : 'column is-flex-desktop is-align-items-center is-justify-content-center', 'style' : 'height:50%'} }) }}#}
+
+                <form name="from_inct_form" id="from_inct_form_from_inct" method="post" class="column is-flex-desktop is-align-items-center is-justify-content-center" style="height:50%">
+                    <div class="field column">
+                        <label class="label" for="last_name">La demande fait-elle suite à un incident ?</label>
+
+                        <div class="is-flex">
+                            <div class="control" style="flex: 1;margin-right: 1rem;">
+
+                                <div class="control">
+                                    <label class="radio">
+                                        <input type="radio" name="from_inct_form[from_inct]" value="oui">
+                                        Oui
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="from_inct_form[from_inct]" value="non" checked>
+                                        Non
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <button class="button is-info">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+
+
+                    </div>
+
+                </form>
+
+{#                {{ form_end(form) }}#}
+
+{% endblock %}
+
+
