@@ -165,7 +165,7 @@ class HomeController extends AbstractController
                     'asset_type' => $asset_type,
                     'hostname' => $hostname,
                 ]);
-            }else if ($customHostname){
+            }elseif($customHostname){
                 $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $customHostname);
 
                 return $this->redirectToRoute("final_string",[
@@ -174,6 +174,8 @@ class HomeController extends AbstractController
                     'asset_type' => $asset_type,
                     'hostname' => $customHostname,
                 ]);
+            }elseif (!$hostname && !$customHostname){
+                $this->addFlash('danger', 'Veuillez indiquer un hostname pour continuer');
             }
 
 
@@ -197,6 +199,7 @@ class HomeController extends AbstractController
     {
         $finalString = $type . " - " . $asset_type . " - " . $hostname;
         $survey = new Survey();
+        // Hashage (crc32) de la chaine final
         $survey->setHashedString($finalString);
         $finalString .= "\r\n[" . $survey->getHashedString() . "]";
 

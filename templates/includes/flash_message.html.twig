@@ -9,7 +9,9 @@
 
         <article class="message is-{{ type }} has-text-centered flash-msg">
             <div class="message-header">
-                <p>{{ type }}</p>
+                <span class="icon has-text-light">
+                    <i class="fas fa-lg fa-info-circle"></i>
+                </span>
                 <button class="delete" aria-label="delete" onclick="this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);" ></button>
             </div>
             <div class="message-body">
