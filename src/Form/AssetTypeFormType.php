@@ -22,8 +22,8 @@ class AssetTypeFormType extends AbstractType
                         'Ecran' => 'Ecran',
                         'Accessoires' => 'Accessoire',
                         'Smartphone' => 'Smartphone',
-                        'Infra / Prise réseau' => 'Infra - Réseau',
-                        'Baie de brassage' => 'Baie de brassage',
+                        'Infra / Prise réseau' => 'Infra-Réseau',
+                        'Baie de brassage' => 'Baie-de-brassage',
                         'Autre' => 'Autre',
                     ]
                 )

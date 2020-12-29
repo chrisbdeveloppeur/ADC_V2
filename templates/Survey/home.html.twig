@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AskUserController!{% endblock %}
+
+{% block body %}
+
+        <div class="column is-flex is-align-items-center is-justify-content-center  is-two-fifths-desktop" style="height: 50%">
+            <div class="box is-flex is-flex-direction-column" style="height: 100%;width: 100%">
+                <div class="column">
+                    Bienvenue sur l'outil d'assistance à la fermeture de demandes [TASKT]
+                </div>
+
+                <div class="is-flex is-justify-content-center is-align-items-end">
+                    <a href="{{ path('taskt_from_inct') }}" class="button is-info">
+                        <span>
+                            Commencer
+                        </span>
+                        <span class="icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+{#        {{ form_start(type_field_form, {'attr' : {'class' : 'column is-flex-desktop is-justify-content-center is-two-fifths-desktop', 'style' : 'height:50%'} }) }}#}
+
+{#        <div class="field column">#}
+{#            <label class="label" for="last_name">Veuillez selectionner le type du ticket</label>#}
+
+{#            <div class="is-flex">#}
+{#                <div class="control" style="flex: 1;margin-right: 1rem;">#}
+{#                    <div class="select is-info is-fullwidth">#}
+{#                        {{ form_widget(type_field_form.type, {'attr' : {'class' : '', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}#}
+{#                    </div>#}
+{#                </div>#}
+
+{#                <button class="button is-info">#}
+{#                    <i class="fas fa-chevron-right"></i>#}
+{#                </button>#}
+{#            </div>#}
+
+
+{#        </div>#}
+
+{#        {{ form_end(type_field_form) }}#}
+
+{% endblock %}
+
+

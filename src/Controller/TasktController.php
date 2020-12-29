@@ -11,14 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("{type}/", name="taskt_")
+ * @Route("/", name="taskt_")
  */
 class TasktController extends AbstractController
 {
     /**
      * @Route("from-inct", name="from_inct")
      */
-    public function fromInct(Request $request, $type): Response
+    public function fromInct(Request $request): Response
     {
         $form = $this->createForm(FromInctFormType::class);
         $form->handleRequest($request);
@@ -27,12 +27,12 @@ class TasktController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             if ($from_inct == 'non'){
                 return $this->redirectToRoute("asset_type",  [
-                    'type' => $type,
+//                    'type' => $type,
                     'from_inct' => $from_inct,
                 ]);
             }else{
                 return $this->redirectToRoute("asset_type",  [
-                    'type' => $type,
+//                    'type' => $type,
                     'from_inct' => $from_inct,
                 ]);
             }
@@ -40,7 +40,7 @@ class TasktController extends AbstractController
         }
         return $this->render('Survey/Taskt/from_inct_field.html.twig', [
             'form' => $form->createView(),
-            'type' => $type,
+//            'type' => $type,
         ]);
     }
 }
