@@ -34,7 +34,9 @@ class HomeController extends AbstractController
         $file = fopen($csv, 'r');
         // Transformation de chaques ligne du CSV dans un tableau
         while (!feof($file) ) {
-            $line[] = fgetcsv($file);
+            $line[] = fgetcsv($file, 1024);
+            ini_set('max_execution_time', 0);
+            ini_set('memory_limit', '-1');
         }
         $assetsFromBDD = $assetRepository->findAll();
         //Décomponsition du tableau
