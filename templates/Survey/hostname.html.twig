@@ -27,8 +27,21 @@
 
             </div>
 
-            <div class="is-flex is-justify-content-end">
-                <button class="button is-info">
+            <div class="is-flex is-justify-content-start">
+
+            </div>
+
+            <div class="is-flex is-justify-content-space-between">
+                <a href="{{ path('final_string',{from_inct : from_inct, asset_type : asset_type, intervention : intervention, new_user : new_user, hostname : hostname} ) }}" class="button is-warning is-small">
+                    <span>
+                        Je ne trouve pas le hostname
+                    </span>
+                    <span class="icon">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </a>
+
+                <button class="button is-info is-small">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>

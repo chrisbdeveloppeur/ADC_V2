@@ -167,6 +167,20 @@ class HomeController extends AbstractController
                     'asset_type' => $asset_type,
                     'intervention' => $intervention,
                 ]);
+            }elseif( ($intervention == "Restitution")){
+                return $this->redirectToRoute('hostname',[
+                    'from_inct' => $from_inct,
+                    'asset_type' => $asset_type,
+                    'intervention' => $intervention,
+                    'new_user' => ' ',
+                ]);
+            }elseif( ($intervention == "Renouvellement")){
+                return $this->redirectToRoute('hostname',[
+                    'from_inct' => $from_inct,
+                    'asset_type' => $asset_type,
+                    'intervention' => $intervention,
+                    'new_user' => ' ',
+                ]);
             }
         }
         return $this->render('Survey/Taskt/type_field.html.twig', [
@@ -221,7 +235,7 @@ class HomeController extends AbstractController
             $customHostname = $form->get('customHostname')->getData();
 
             if ($hostname && !$customHostname){
-                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $hostname);
+//                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $hostname);
 
                 return $this->redirectToRoute("final_string",[
                     'from_inct' => $from_inct,
@@ -231,7 +245,7 @@ class HomeController extends AbstractController
                     'new_user' => $new_user,
                 ]);
             }elseif($customHostname){
-                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $customHostname);
+//                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $customHostname);
 
                 return $this->redirectToRoute("final_string",[
                     'from_inct' => $from_inct,
@@ -243,8 +257,8 @@ class HomeController extends AbstractController
             }elseif (!$hostname && !$customHostname){
                 $this->addFlash('danger', 'Veuillez indiquer un hostname pour continuer');
             }
-
-
+        }else{
+            $hostname = 'Inconnue';
         }
         return $this->render('Survey/hostname.html.twig', [
             'hostname_field_form' => $form->createView(),
@@ -253,13 +267,14 @@ class HomeController extends AbstractController
             'assets' => $assets,
             'intervention' => $intervention,
             'new_user' => $new_user,
+            'hostname' => $hostname,
         ]);
     }
 
 
 
     public function miseEnForm($text, $info){
-        if ($text != " "){
+        if ($text != ' '){
             $text = $info . $text;
             return $text . "\r\n";
         }else{
