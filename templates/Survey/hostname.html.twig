@@ -4,30 +4,19 @@
 
 {% block body %}
 
-            <div class="column is-flex is-align-items-center is-justify-content-center is-two-fifths-desktop" style="height: 50%">
-                <div class="box" style="height: 100%;width: 100%">
-                    Suite à incident : {{ from_inct }} <br>
-                    Type d'asset : {{ asset_type }}<br>
-                    {% if intervention != " " %}
-                        Intervention : {{ intervention }}<br>
-                    {% endif %}
-                    {% if new_user != " " %}
-                        Nouvel arrivant : {{ new_user }}<br>
-                    {% endif %}
-                    Hostname : ? <br>
-                </div>
-            </div>
+    <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
+        <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
-            {{ form_start(hostname_field_form, {'attr' : {'class' : 'column is-flex-desktop is-justify-content-center is-two-fifths-desktop', 'style' : 'height:50%'} }) }}
+            {{ form_start(hostname_field_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
 
-            <div class="field column">
+            <div class="field">
                 <label class="label" for="last_name">Veuillez selectionner le Hostname</label>
 
-                    <div class="control" style="flex: 1">
-                        <div class="select is-info is-fullwidth">
-                            {{ form_widget(hostname_field_form.newAsset) }}
-                        </div>
+                <div class="control" style="flex: 1">
+                    <div class="select is-info is-fullwidth">
+                        {{ form_widget(hostname_field_form.newAsset) }}
                     </div>
+                </div>
 
                 <h2 class="subtitle is-3 has-text-centered">Ou</h2>
 
@@ -36,17 +25,19 @@
                     {{ form_widget(hostname_field_form.customHostname) }}
                 </div>
 
-                <div class="is-flex is-justify-content-end">
-                    <button class="button is-info mt-3">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-
             </div>
 
+            <div class="is-flex is-justify-content-end">
+                <button class="button is-info">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
 
             {{ form_end(hostname_field_form) }}
+
         </div>
+
+    </div>
 
 {% endblock %}
 

@@ -4,37 +4,36 @@
 
 {% block body %}
 
-        <div class="column is-flex is-align-items-center is-justify-content-center  is-two-fifths-desktop" style="height: 50%">
-            <div class="box is-flex is-flex-direction-column" style="height: 100%;width: 100%">
-                Suite à incident : {{ from_inct }}<br>
-                Type d'asset : {{ asset_type }}<br>
-                Intervention : ?<br>
-            </div>
+    <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
+        <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
-        </div>
+            {{ form_start(form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
 
+            <div class="field">
+                <label class="label" for="last_name">Veuillez selectionner le type du ticket</label>
 
-        {{ form_start(form, {'attr' : {'class' : 'column is-flex-desktop is-justify-content-center is-two-fifths-desktop', 'style' : 'height:50%'} }) }}
-
-        <div class="field column">
-            <label class="label" for="last_name">Veuillez selectionner le type du ticket</label>
-
-            <div class="is-flex">
-                <div class="control" style="flex: 1;margin-right: 1rem;">
-                    <div class="select is-info is-fullwidth">
-                        {{ form_widget(form.type, {'attr' : {'class' : '', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}
+                <div class="is-flex">
+                    <div class="control" style="flex: 1">
+                        <div class="select is-info is-fullwidth">
+                            {{ form_widget(form.type, {'attr' : {'class' : '', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}
+                        </div>
                     </div>
+
                 </div>
 
+            </div>
+
+            <div class="is-flex is-justify-content-end">
                 <button class="button is-info">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
 
+            {{ form_end(form) }}
 
         </div>
 
-        {{ form_end(form) }}
+    </div>
 
 {% endblock %}
 
