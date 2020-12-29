@@ -258,9 +258,10 @@ class HomeController extends AbstractController
 
 
 
-    public function miseEnForm($text){
+    public function miseEnForm($text, $info){
         if ($text != " "){
-            return $text;
+            $text = $info . $text;
+            return $text . "\r\n";
         }else{
             return $text = null;
         }
@@ -270,11 +271,11 @@ class HomeController extends AbstractController
      */
     public function stringGen($from_inct ,$asset_type, $new_user, $hostname, $intervention): Response
     {
-        $from_inct = $this->miseEnForm($from_inct);
-        $asset_type = $this->miseEnForm($asset_type);
-        $new_user = $this->miseEnForm($new_user);
-        $hostname = $this->miseEnForm($hostname);
-        $intervention = $this->miseEnForm($intervention);
+        $from_inct = $this->miseEnForm($from_inct, 'Suite à incident : ');
+        $asset_type = $this->miseEnForm($asset_type, 'Type de matériel : ');
+        $new_user = $this->miseEnForm($new_user,'Nouvel arrivant : ');
+        $hostname = $this->miseEnForm($hostname,'Hostname : ');
+        $intervention = $this->miseEnForm($intervention,'Type d\'intervention : ');
 
         $finalString = [$from_inct, $asset_type, $new_user, $hostname, $intervention] ;
         foreach ($finalString as $key => $value){
@@ -282,7 +283,7 @@ class HomeController extends AbstractController
                 unset($finalString[$key]);
             }
         }
-        $finalString = implode(';',$finalString);
+        $finalString = implode($finalString);
 
         $survey = new Survey();
 //         Hashage (crc32) de la chaine final
