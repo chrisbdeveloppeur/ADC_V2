@@ -258,19 +258,32 @@ class HomeController extends AbstractController
 
 
 
-
+    public function miseEnForm($text){
+        if ($text != " "){
+            return $text;
+        }else{
+            return $text = null;
+        }
+    }
     /**
      * @Route("{from_inct}/{asset_type}/{intervention}/{new_user}/{hostname}/validation", name="final_string")
      */
     public function stringGen($from_inct ,$asset_type, $new_user, $hostname, $intervention): Response
     {
+        $from_inct = $this->miseEnForm($from_inct);
+        $asset_type = $this->miseEnForm($asset_type);
+        $new_user = $this->miseEnForm($new_user);
+        $hostname = $this->miseEnForm($hostname);
+        $intervention = $this->miseEnForm($intervention);
 
-        $finalString =
-            "Suite à incident : ".$from_inct . "\n" .
-            "Type de matériel : " . $asset_type . "\n" .
-            "Type de l'intervention : " . $intervention . "\n" .
-            "Nouvel arrivant : " . $new_user . "\n" .
-            "Hostname : " . $hostname . "\n";
+        $finalString = [$from_inct, $asset_type, $new_user, $hostname, $intervention] ;
+        foreach ($finalString as $key => $value){
+            if ($value == null){
+                unset($finalString[$key]);
+            }
+        }
+        $finalString = implode(';',$finalString);
+
         $survey = new Survey();
 //         Hashage (crc32) de la chaine final
         $survey->setHashedString($finalString);
@@ -290,38 +303,5 @@ class HomeController extends AbstractController
         ]);
     }
 
-
-
-
-
-
-
-    //    /**
-//     * @Route("/refresh-CMDB", name="refresh_CMDB")
-//     */
-//    public function read(EntityManagerInterface $em, AssetRepository $assetRepository){
-//        // Définir le chemin d'accès au fichier CSV
-//        $csv = '..\public\csv\postes.csv';
-//        $file = fopen($csv, 'r');
-//        while (!feof($file) ) {
-//            $line[] = fgetcsv($file);
-//        }
-//        for($i=1; $i<count($line)-1; $i++){
-//            $array = $line[$i];
-//            $result = explode(";", $array[0]);
-//            $id = $result[0];
-//            $hostname = $result[1];
-//            $asset = new Asset();
-//            if (!$assetRepository->findById($id)){
-//                $asset->setHostname($hostname);
-//                $asset->setIdentifiant($id);
-//                $em->persist($asset);
-//                $em->flush();
-//            }
-//        }
-//        fclose($file);
-//        $this->addFlash('success', 'Synchronisation avec la CMDB effectué');
-//        return $this->redirectToRoute('type');
-//    }
 
 }

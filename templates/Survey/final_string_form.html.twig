@@ -8,19 +8,33 @@
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
             {{ form_start(final_string_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
-            <div class="field column">
+            <div class="field">
                 <label class="label" for="last_name">Votre code final :</label>
 
                 <div class="is-flex">
                     <div class="control" style="flex: 1">
                         <div class="is-info is-fullwidth">
                             {{ form_widget(final_string_form.final_string) }}
+
+{#                            <div id="final_string_form_final_string" class="textarea has-text-left" contenteditable="true" style="overflow-y: scroll; height: 200px">#}
+{#                                Demande suite à incident : {{ from_inct }};<br>#}
+{#                                Type du matériel : {{ asset_type }};<br>#}
+{#                                {% if intervention != 'skip' %}Type d'intervention : {{ intervention }}{% endif %}<br>#}
+{#                                Hostname : {{ hostname }}<br>#}
+{#                                {% if new_user != 'skip' %}Nouvel arrivant : {{ new_user }}{% endif %}<br>#}
+{#                                test <br>#}
+{#                                test <br>#}
+{#                                test <br>#}
+{#                                test <br>#}
+{#                                test <br>#}
+{#                                test <br>#}
+{#                            </div>#}
                         </div>
                     </div>
                 </div>
 
                 <div class="is-flex mt-3 is-justify-content-end">
-                    <a href="#" class="button is-info" id="copy-btn">
+                    <a href="#" class="button is-info" id="copy-btn" onclick="CopyToClipboard('final_string_form_final_string')">
                         <i class="fas fa-clone"></i>
                     </a>
                 </div>
@@ -28,34 +42,6 @@
             </div>
 
             {{ form_end(final_string_form) }}
-
-{#            {{ form_start(hostname_field_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}#}
-
-{#            <div class="field">#}
-{#                <label class="label" for="last_name">Veuillez selectionner le Hostname</label>#}
-
-{#                <div class="control" style="flex: 1">#}
-{#                    <div class="select is-info is-fullwidth">#}
-{#                        {{ form_widget(hostname_field_form.newAsset) }}#}
-{#                    </div>#}
-{#                </div>#}
-
-{#                <h2 class="subtitle is-3 has-text-centered">Ou</h2>#}
-
-{#                <label class="label" for="last_name">Renseigner manuellement le hostname</label>#}
-{#                <div class="control" style="flex: 1">#}
-{#                    {{ form_widget(hostname_field_form.customHostname) }}#}
-{#                </div>#}
-
-{#            </div>#}
-
-{#            <div class="is-flex is-justify-content-end">#}
-{#                <button class="button is-info">#}
-{#                    <i class="fas fa-chevron-right"></i>#}
-{#                </button>#}
-{#            </div>#}
-
-{#            {{ form_end(hostname_field_form) }}#}
 
         </div>
 
@@ -70,15 +56,31 @@
         // console.log(textAreaContent);
         let copyBtn = document.getElementById('copy-btn');
 
-        copyBtn.addEventListener('click', function () {
-            let textArea = document.getElementById('final_string_form_final_string');
+        // function CopyToClipboard(containerid) {
+        //     if (document.selection) {
+        //         var range = document.body.createTextRange();
+        //         range.moveToElementText(document.getElementById(containerid));
+        //         range.select().createTextRange();
+        //         console.log(range);
+        //         document.execCommand("copy");
+        //     } else if (window.getSelection) {
+        //         var range = document.createRange();
+        //         range.selectNode(document.getElementById(containerid));
+        //         window.getSelection().addRange(range);
+        //         document.execCommand("copy");
+        //         console.log(range);
+        //     }
+        // }
+
+        function CopyToClipboard(containerid) {
+            let textArea = document.getElementById(containerid);
             // console.log(textArea);
             // let textAreaContent = textArea.innerHTML;
             // console.log(textAreaContent);
             textArea.select();
             textArea.setSelectionRange(0, 99999); /* For mobile devices */
             document.execCommand('copy');
-        })
+        }
 
     </script>
 
