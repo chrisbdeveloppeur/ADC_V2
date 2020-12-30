@@ -77,12 +77,18 @@ class Survey
      */
     private $hashed_string;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_string;
+
     public function __construct()
     {
         $this->quantity = 1;
         $this->duration = 1;
         $this->asset_type = "Non communiqué";
         $this->proximity = "Non communiqué";
+        $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
     }
 
     public function getId(): ?int
@@ -230,6 +236,18 @@ class Survey
     public function setHashedString(string $hashed_string): self
     {
         $this->hashed_string = hash('crc32', $hashed_string);
+
+        return $this;
+    }
+
+    public function getDateString(): ?\DateTimeInterface
+    {
+        return $this->date_string;
+    }
+
+    public function setDateString(\DateTimeInterface $date_string): self
+    {
+        $this->date_string = $date_string;
 
         return $this;
     }

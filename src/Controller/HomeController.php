@@ -259,9 +259,8 @@ class HomeController extends AbstractController
             }elseif (!$hostname && !$customHostname){
                 $this->addFlash('danger', 'Veuillez indiquer un hostname pour continuer');
             }
-        }else{
-            $hostname = 'Inconnue';
         }
+
         return $this->render('Survey/hostname.html.twig', [
             'hostname_field_form' => $form->createView(),
             'from_inct' => $from_inct,
@@ -305,6 +304,9 @@ class HomeController extends AbstractController
         $survey = new Survey();
 //         Hashage (crc32) de la chaine final
         $survey->setHashedString($finalString);
+        $date = $survey->getDateString();
+        $date = $date->format('d/m/Y - H:i');
+        $finalString .= "\r\n[" . $date . "]";
         $finalString .= "\r\n[" . $survey->getHashedString() . "]";
 
         $survey->setFinalString($finalString);
