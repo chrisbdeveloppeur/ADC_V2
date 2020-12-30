@@ -12,6 +12,7 @@ use App\Form\NewUserType;
 use App\Form\TypeFormType;
 use App\Repository\AssetRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use function mysql_xdevapi\getSession;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,8 +25,38 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(Request $request, EntityManagerInterface $em, AssetRepository $assetRepository): Response
+    public function home(Request $request): Response
     {
+
+        $form = $this->createForm(TypeFormType::class);
+        $form->handleRequest($request);
+//        $type;
+
+        if ($form->isSubmitted() && $form->isValid()){
+//            $user = $form->getData();
+//            $entityManager->persist($user);
+            $type = $form->get("type")->getData();
+
+            $this->addFlash('info', $type . ' selectionné !');
+
+            if ($type == "demande"){
+                return $this->redirectToRoute("taskt_from_inct",  [
+                    'type' => $type,
+                ]);
+            }else{
+                return $this->redirectToRoute("home", [
+                    'type' => $type,
+                ]);
+            }
+
+        }
+        return $this->render('Survey/home.html.twig');
+    }
+
+    /**
+     * @Route("updating-database", name="update_database")
+     */
+    public function updateDatabase(EntityManagerInterface $em, AssetRepository $assetRepository, Request $request){
 //////////////////////////////////////////////////////////////////////////////////////
 /////////////////////       GESTION FICHIER CSV         //////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
@@ -79,32 +110,10 @@ class HomeController extends AbstractController
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-        $form = $this->createForm(TypeFormType::class);
-        $form->handleRequest($request);
-//        $type;
+        $previousUrl = $request->headers->get('referer');
+        return $this->redirect($previousUrl);
 
-        if ($form->isSubmitted() && $form->isValid()){
-//            $user = $form->getData();
-//            $entityManager->persist($user);
-            $type = $form->get("type")->getData();
-
-            $this->addFlash('info', $type . ' selectionné !');
-
-            if ($type == "demande"){
-                return $this->redirectToRoute("taskt_from_inct",  [
-                    'type' => $type,
-                ]);
-            }else{
-                return $this->redirectToRoute("home", [
-                    'type' => $type,
-                ]);
-            }
-
-        }
-        return $this->render('Survey/home.html.twig');
     }
-
-
 
 
 
@@ -268,7 +277,6 @@ class HomeController extends AbstractController
             'assets' => $assets,
             'intervention' => $intervention,
             'new_user' => $new_user,
-            'hostname' => $hostname,
         ]);
     }
 
