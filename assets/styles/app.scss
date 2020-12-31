@@ -87,14 +87,23 @@ $info: #009fe3;
   margin-top: .5rem;
   box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
   transition: .5s;
+  border-radius: 4px;
 }
 .tt-suggestion{
   padding: .5rem;
-  transition: .5s;
+  border-radius: 4px;
 }
 .tt-suggestion:hover{
   cursor: pointer;
-  background: rgba(0, 178, 255, 0.2);
+  //background: rgba(0, 178, 255, 0.5);
+  color: white !important;
+  background: $info;
+  border-color: #3273dc;
+  box-shadow: inset 0 0 0 .125em rgba(50,115,220,.25);
+}
+#hostname .tt-menu {
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 

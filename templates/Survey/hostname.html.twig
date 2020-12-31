@@ -31,7 +31,7 @@
                 <div class="control has-icons-left" style="flex: 1">
 {#                    <input type="text" class="input" id="hostname_form_hostname" name="hostname">#}
                     <div id="hostname">
-                        <input class="typeahead input" type="text" placeholder="Hostname" name="hostname">
+                        <input class="typeahead input is-info" type="text" placeholder="Hostname" name="hostname">
                     </div>
                     <span class="icon is-left">
                         <i class="fas fa-search" aria-hidden="true"></i>
@@ -106,10 +106,11 @@
         $('#hostname .typeahead').typeahead({
                 hint: true,
                 highlight: true,
-                minLength: 1
+                minLength: 0
             },
             {
                 name: 'hostnames',
+                limit: 100,
                 source: substringMatcher(hostnames)
             });
 
