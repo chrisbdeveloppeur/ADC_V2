@@ -55,13 +55,10 @@ class HomeController extends AbstractController
      */
     public function description(Request $request, $from_inct, $asset_type, $intervention, $new_user, $hostname): Response
     {
-//        dump($from_inct, $asset_type, $intervention, $new_user, $hostname);
-//        die();
         $form = $this->createForm(DescriptionFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-
             $infos = $form->get('infos')->getData();
 
                 return $this->redirectToRoute("final_string",  [
@@ -88,11 +85,11 @@ class HomeController extends AbstractController
 
 
     public function miseEnForm($text, $info){
-        if ($text != ' '){
+        if ( ($text == ' ') || ($text == '') ){
+            return $text = null;
+        }else{
             $text = $info . $text;
             return $text . "\r\n";
-        }else{
-            return $text = null;
         }
     }
     /**
@@ -100,12 +97,15 @@ class HomeController extends AbstractController
      */
     public function stringGen(Request $request, $from_inct ,$asset_type, $new_user, $hostname, $intervention): Response
     {
+        $textDescription = $_POST['description_text'];
+        $text = preg_replace('/\s\s+/', ' ', $textDescription);
+
         $from_inct = $this->miseEnForm($from_inct, 'Suite à incident : ');
         $asset_type = $this->miseEnForm($asset_type, 'Type de matériel : ');
         $new_user = $this->miseEnForm($new_user,'Nouvel arrivant : ');
         $hostname = $this->miseEnForm($hostname,'Hostname : ');
         $intervention = $this->miseEnForm($intervention,'Type d\'intervention : ');
-        $description = $this->miseEnForm($_POST['description_text'], 'Déscription : ');
+        $description = $this->miseEnForm($text, 'Déscription : ');
 
         $finalString = [$from_inct, $asset_type, $new_user, $hostname, $intervention, $description] ;
         foreach ($finalString as $key => $value){
@@ -137,47 +137,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/validation", name="final_string", methods={"POST"})
-//     */
-//    public function stringGen(Request $request)
-//    {
-//        $description = $_POST['description_text'];
-////        $from_inct = $this->miseEnForm($from_inct, 'Suite à incident : ');
-////        $asset_type = $this->miseEnForm($asset_type, 'Type de matériel : ');
-////        $new_user = $this->miseEnForm($new_user,'Nouvel arrivant : ');
-////        $hostname = $this->miseEnForm($hostname,'Hostname : ');
-////        $intervention = $this->miseEnForm($intervention,'Type d\'intervention : ');
-//
-////        $finalString = [$from_inct, $asset_type, $new_user, $hostname, $intervention] ;
-////        foreach ($finalString as $key => $value){
-////            if ($value == null){
-////                unset($finalString[$key]);
-////            }
-////        }
-////        $finalString = implode($finalString);
-//
-//        $survey = new Survey();
-////         Hashage (crc32) de la chaine final
-////        $survey->setHashedString($finalString);
-//        $date = $survey->getDateString();
-//        $date = $date->format('d/m/Y - H:i');
-////        $finalString .= "\r\n[" . $date . "]";
-////        $finalString .= "\r\n[" . $survey->getHashedString() . "]";
-//
-////        $survey->setFinalString($finalString);
-//
-//        $form = $this->createForm(FinalStringFormType::class, $survey);
-//        return $this->render('Survey/final_string_form.html.twig', [
-//            'final_string_form' => $form->createView(),
-////            'from_inct' => $from_inct,
-////            'asset_type' => $asset_type,
-////            'intervention' => $intervention,
-////            'new_user' => $new_user,
-////            'hostname' => $hostname,
-////            'final_string' => $finalString,
-//        ]);
-//    }
 
 
 }
