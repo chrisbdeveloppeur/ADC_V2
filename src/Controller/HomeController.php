@@ -26,11 +26,9 @@ class HomeController extends AbstractController
 
         $form = $this->createForm(TypeFormType::class);
         $form->handleRequest($request);
-//        $type;
 
         if ($form->isSubmitted() && $form->isValid()){
-//            $user = $form->getData();
-//            $entityManager->persist($user);
+
             $type = $form->get("type")->getData();
 
             $this->addFlash('info', $type . ' selectionné !');
@@ -48,93 +46,6 @@ class HomeController extends AbstractController
         }
         return $this->render('Survey/home.html.twig');
     }
-
-//    /**
-//     * @Route("updating-database", name="update_database")
-//     */
-//    public function updateDatabase(EntityManagerInterface $em, AssetRepository $assetRepository, Request $request){
-////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////       GESTION FICHIER CSV         //////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-////        $assetsFromBDD = $assetRepository->findAll();
-////        // Définir le chemin d'accès au fichier CSV
-////        $csv = '..\public\csv\postes.csv';
-////        $arrayCsv = file($csv);
-////        $file = fopen($csv, 'r');
-////
-////        foreach ($arrayCsv as $key => $item){
-////            if ($item && ($key != 0)){
-////                $item = substr($item, 0, -2);
-////                $item = explode(';',$item);
-////                $id = $item[0];
-////                $hostname = $item[1];
-////                dump("id : " . $id . " | hostname : " . $hostname);
-////            }
-////        }
-////        die();
-//        // Transformation de chaques ligne du CSV dans un tableau
-////        while (!feof($file) ) {
-////            dd(fgets($file));
-////            $line = fgetcsv($file, 1024);
-////            ini_set('max_execution_time', 0);
-////            ini_set('memory_limit', '-1');
-////        }
-////        for($i=1; $i<$fileLines; $i++){
-////            dump(fgets($file));
-//////            $line = fgetcsv($file, 1024);
-//////            ini_set('max_execution_time', 0);
-//////            ini_set('memory_limit', '-1');
-////        }
-////        die();
-//
-//
-////        //Décomponsition du tableau
-////        for($i=1; $i<count($line)-1; $i++){
-////            $array = $line[$i];
-////            $result = explode(";", $array[0]);
-////            $id = $result[0];
-////            $ids[] = $id;
-////            $hostname = $result[1];
-////            // Ajoute un asset en BDD via le fichier CSV
-////            if (!$assetRepository->findById($id)){
-////                $asset = new Asset();
-////                $asset->setHostname($hostname);
-////                $asset->setIdentifiant($id);
-////                $em->persist($asset);
-////                $em->flush();
-////            }
-////            $asset = $assetRepository->findById($id)[0];
-////            $hostnameFromBDD = $asset->getHostname();
-////            //Synchronise les modifications des Assets entre le CSV et la BDD
-////            if ($hostname != $hostnameFromBDD){
-////                $asset->setHostname($hostname);
-////                $em->persist($asset);
-////                $em->flush();
-////            }
-////        }
-////
-////        //Synchronise les suppression des Assets entre le CSB et la BDD
-////        foreach ( $assetsFromBDD as $item){
-////            if (!in_array($item->getIdentifiant(), $ids)){
-////                $assetToRemove = $assetRepository->findById($item->getIdentifiant());
-////                $em->remove($assetToRemove[0]);
-////                $em->flush();
-////            }
-////
-////        }
-////        fclose($file);
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-////
-////
-////        $previousUrl = $request->headers->get('referer');
-////        return $this->redirect($previousUrl);
-//
-//    }
-
-
-
 
     /**
      * @Route("from-inct={from_inct}/type-asset", name="asset_type")
