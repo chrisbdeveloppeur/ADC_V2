@@ -3,17 +3,13 @@
 namespace App\Controller;
 
 
-use App\Entity\Asset;
+
 use App\Entity\Survey;
 use App\Form\AssetTypeFormType;
 use App\Form\FinalStringFormType;
 use App\Form\HostnameFormType;
 use App\Form\NewUserType;
 use App\Form\TypeFormType;
-use App\Repository\AssetRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use function mysql_xdevapi\getSession;
-use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,67 +49,89 @@ class HomeController extends AbstractController
         return $this->render('Survey/home.html.twig');
     }
 
-    /**
-     * @Route("updating-database", name="update_database")
-     */
-    public function updateDatabase(EntityManagerInterface $em, AssetRepository $assetRepository, Request $request){
-//////////////////////////////////////////////////////////////////////////////////////
-/////////////////////       GESTION FICHIER CSV         //////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
-        // Définir le chemin d'accès au fichier CSV
-        $csv = '..\public\csv\postes.csv';
-        $file = fopen($csv, 'r');
-        // Transformation de chaques ligne du CSV dans un tableau
-        while (!feof($file) ) {
-            $line[] = fgetcsv($file, 1024);
-            ini_set('max_execution_time', 0);
-            ini_set('memory_limit', '-1');
-        }
-        $assetsFromBDD = $assetRepository->findAll();
-        //Décomponsition du tableau
-        for($i=1; $i<count($line)-1; $i++){
-            $array = $line[$i];
-            $result = explode(";", $array[0]);
-            $id = $result[0];
-            $ids[] = $id;
-            $hostname = $result[1];
-            // Ajoute un asset en BDD via le fichier CSV
-            if (!$assetRepository->findById($id)){
-                $asset = new Asset();
-                $asset->setHostname($hostname);
-                $asset->setIdentifiant($id);
-                $em->persist($asset);
-                $em->flush();
-            }
-            $asset = $assetRepository->findById($id)[0];
-            $hostnameFromBDD = $asset->getHostname();
-            //Synchronise les modifications des Assets entre le CSV et la BDD
-            if ($hostname != $hostnameFromBDD){
-                $asset->setHostname($hostname);
-                $em->persist($asset);
-                $em->flush();
-            }
-        }
-
-        //Synchronise les suppression des Assets entre le CSB et la BDD
-        foreach ( $assetsFromBDD as $item){
-            if (!in_array($item->getIdentifiant(), $ids)){
-                $assetToRemove = $assetRepository->findById($item->getIdentifiant());
-                $em->remove($assetToRemove[0]);
-                $em->flush();
-            }
-
-        }
-        fclose($file);
-//////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////
-
-
-        $previousUrl = $request->headers->get('referer');
-        return $this->redirect($previousUrl);
-
-    }
+//    /**
+//     * @Route("updating-database", name="update_database")
+//     */
+//    public function updateDatabase(EntityManagerInterface $em, AssetRepository $assetRepository, Request $request){
+////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////       GESTION FICHIER CSV         //////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////        $assetsFromBDD = $assetRepository->findAll();
+////        // Définir le chemin d'accès au fichier CSV
+////        $csv = '..\public\csv\postes.csv';
+////        $arrayCsv = file($csv);
+////        $file = fopen($csv, 'r');
+////
+////        foreach ($arrayCsv as $key => $item){
+////            if ($item && ($key != 0)){
+////                $item = substr($item, 0, -2);
+////                $item = explode(';',$item);
+////                $id = $item[0];
+////                $hostname = $item[1];
+////                dump("id : " . $id . " | hostname : " . $hostname);
+////            }
+////        }
+////        die();
+//        // Transformation de chaques ligne du CSV dans un tableau
+////        while (!feof($file) ) {
+////            dd(fgets($file));
+////            $line = fgetcsv($file, 1024);
+////            ini_set('max_execution_time', 0);
+////            ini_set('memory_limit', '-1');
+////        }
+////        for($i=1; $i<$fileLines; $i++){
+////            dump(fgets($file));
+//////            $line = fgetcsv($file, 1024);
+//////            ini_set('max_execution_time', 0);
+//////            ini_set('memory_limit', '-1');
+////        }
+////        die();
+//
+//
+////        //Décomponsition du tableau
+////        for($i=1; $i<count($line)-1; $i++){
+////            $array = $line[$i];
+////            $result = explode(";", $array[0]);
+////            $id = $result[0];
+////            $ids[] = $id;
+////            $hostname = $result[1];
+////            // Ajoute un asset en BDD via le fichier CSV
+////            if (!$assetRepository->findById($id)){
+////                $asset = new Asset();
+////                $asset->setHostname($hostname);
+////                $asset->setIdentifiant($id);
+////                $em->persist($asset);
+////                $em->flush();
+////            }
+////            $asset = $assetRepository->findById($id)[0];
+////            $hostnameFromBDD = $asset->getHostname();
+////            //Synchronise les modifications des Assets entre le CSV et la BDD
+////            if ($hostname != $hostnameFromBDD){
+////                $asset->setHostname($hostname);
+////                $em->persist($asset);
+////                $em->flush();
+////            }
+////        }
+////
+////        //Synchronise les suppression des Assets entre le CSB et la BDD
+////        foreach ( $assetsFromBDD as $item){
+////            if (!in_array($item->getIdentifiant(), $ids)){
+////                $assetToRemove = $assetRepository->findById($item->getIdentifiant());
+////                $em->remove($assetToRemove[0]);
+////                $em->flush();
+////            }
+////
+////        }
+////        fclose($file);
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+////
+////
+////        $previousUrl = $request->headers->get('referer');
+////        return $this->redirect($previousUrl);
+//
+//    }
 
 
 
@@ -233,21 +251,41 @@ class HomeController extends AbstractController
     /**
      * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname", name="hostname")
      */
-    public function hostname(Request $request, $from_inct, $asset_type, $new_user, $intervention, AssetRepository $assetRepository): Response
+    public function hostname(Request $request, $from_inct, $asset_type, $new_user, $intervention): Response
     {
         $form = $this->createForm(HostnameFormType::class);
         $form->handleRequest($request);
         $assetType = $asset_type;
-        $assets = $assetRepository->findAll();
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////       GESTION FICHIER CSV         //////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+        $csv = '..\public\csv\postes.csv';
+        $arrayCsv = file($csv);
+//        $file = fopen($csv, 'r');
+
+        foreach ($arrayCsv as $key => $item){
+            if ($item && ($key != 0)){
+                $item = substr($item, 0, -2);
+                $item = explode(';',$item);
+//                $id = $item[0];
+                $assetName = $item[1];
+                $hostnames[] = $assetName;
+            }
+        }
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
 
         if ($form->isSubmitted() && $form->isValid()){
 
-            $hostname = $form->get("newAsset")->getData();
+            $hostname = $_POST["hostname"];
             $customHostname = $form->get('customHostname')->getData();
 
             if ($hostname && !$customHostname){
 //                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $hostname);
-
                 return $this->redirectToRoute("final_string",[
                     'from_inct' => $from_inct,
                     'asset_type' => $asset_type,
@@ -274,7 +312,7 @@ class HomeController extends AbstractController
             'hostname_field_form' => $form->createView(),
             'from_inct' => $from_inct,
             'asset_type' => $assetType,
-            'assets' => $assets,
+            'assets' => $hostnames,
             'intervention' => $intervention,
             'new_user' => $new_user,
         ]);
@@ -291,7 +329,7 @@ class HomeController extends AbstractController
         }
     }
     /**
-     * @Route("{from_inct}/{asset_type}/{intervention}/{new_user}/{hostname}/validation", name="final_string")
+     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname={hostname}/validation", name="final_string")
      */
     public function stringGen($from_inct ,$asset_type, $new_user, $hostname, $intervention): Response
     {

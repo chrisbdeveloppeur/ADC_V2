@@ -6,6 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Welcome!{% endblock %}</title>
+    <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+{#    <script src="https://code.jquery.com/jquery-migrate-3.3.2.js"></script>#}
+    <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -18,18 +21,18 @@
             <img width="100" height="100" src="{{ asset('build/images/sitelogo_SCC.9f1fb72d.png') }}" alt="">
         </a>
 
-        <div class="navbar-item">
-            <div class="field">
-                <p class="control">
-                    <a class="button is-small is-info" href="{{ path('update_database') }}">
-                        <span>Mettre à jour la liste des Assets</span>
-                        <span class="icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </span>
-                    </a>
-                </p>
-            </div>
-        </div>
+{#        <div class="navbar-item">#}
+{#            <div class="field">#}
+{#                <p class="control">#}
+{#                    <a class="button is-small is-info" href="{{ path('update_database') }}">#}
+{#                        <span>Mettre à jour la liste des Assets</span>#}
+{#                        <span class="icon">#}
+{#                        <i class="fas fa-sync-alt"></i>#}
+{#                    </span>#}
+{#                    </a>#}
+{#                </p>#}
+{#            </div>#}
+{#        </div>#}
 
     </div>
 
@@ -49,6 +52,7 @@
 </section>
     {% block javascripts %}
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     {% endblock %}
 </body>
 </html>

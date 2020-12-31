@@ -10,5 +10,6 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+const $ = require('jquery');
 
 const logo_SCC = require('../images/sitelogo_SCC.png');

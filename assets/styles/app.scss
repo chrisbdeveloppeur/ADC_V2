@@ -78,7 +78,24 @@ $info: #009fe3;
   z-index: 100;
   margin-bottom: 0 !important;
 }
-
+.twitter-typeahead{
+  display: block !important;
+}
+.tt-menu{
+  width: 100%;
+  background: rgba(255,255,255,1);
+  margin-top: .5rem;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+  transition: .5s;
+}
+.tt-suggestion{
+  padding: .5rem;
+  transition: .5s;
+}
+.tt-suggestion:hover{
+  cursor: pointer;
+  background: rgba(0, 178, 255, 0.2);
+}
 
 
 
