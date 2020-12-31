@@ -11,25 +11,10 @@
 
             {{ form_start(hostname_field_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
 
-
-
             <div class="field">
-
-{#                <label class="label" for="last_name">Selectionner le Hostname</label>#}
-{#                <div class="control" style="flex: 1">#}
-{#                    <div class="select is-info is-fullwidth">#}
-{#                        <select id="hostname_form_hostname" name="hostname">#}
-{#                            <option value="" selected="selected"></option>#}
-{#                            {% for assets in assets %}#}
-{#                                <option value="{{ assets }}">{{ assets }}</option>#}
-{#                            {% endfor %}#}
-{#                        </select>#}
-{#                    </div>#}
-{#                </div>#}
 
                 <label class="label" for="last_name">Rechercher le Hostname</label>
                 <div class="control has-icons-left" style="flex: 1">
-{#                    <input type="text" class="input" id="hostname_form_hostname" name="hostname">#}
                     <div id="hostname">
                         <input class="typeahead input is-info" type="text" placeholder="Hostname" name="hostname">
                     </div>
