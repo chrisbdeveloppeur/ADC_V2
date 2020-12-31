@@ -19,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+
     /**
      * @Route("/", name="home")
      */
@@ -57,6 +58,7 @@ class HomeController extends AbstractController
     {
         $form = $this->createForm(DescriptionFormType::class);
         $form->handleRequest($request);
+//        $previousUrl = $request->headers->get('referer');
 
         if ($form->isSubmitted() && $form->isValid()){
             $infos = $form->get('infos')->getData();
@@ -78,6 +80,7 @@ class HomeController extends AbstractController
             'hostname' => $hostname,
             'intervention' => $intervention,
             'new_user' => $new_user,
+//            'previous_url' => $previousUrl,
         ]);
     }
 
@@ -120,7 +123,7 @@ class HomeController extends AbstractController
         $survey->setHashedString($finalString);
         $date = $survey->getDateString();
         $date = $date->format('d/m/Y - H:i');
-        $finalString .= "\r\n[" . $date . "]";
+        $finalString .= "[" . $date . "]";
         $finalString .= "\r\n[" . $survey->getHashedString() . "]";
 
         $survey->setFinalString($finalString);

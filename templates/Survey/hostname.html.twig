@@ -37,6 +37,11 @@
             </div>
 
             <div class="is-flex is-justify-content-space-between">
+
+{#                <a href="{{ previous_url }}" class="button is-info is-small">#}
+{#                    <i class="fas fa-chevron-left"></i>#}
+{#                </a>#}
+
                 <a href="{{ path('description',{from_inct : from_inct, asset_type : asset_type, intervention : intervention, new_user : new_user, hostname : 'Inconnue'} ) }}" class="button is-warning is-small">
                     <span>
                         Je ne trouve pas le hostname
@@ -46,7 +51,7 @@
                     </span>
                 </a>
 
-                <button class="button is-info is-small">
+                <button class="button is-info is-small js-hostname">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
@@ -98,6 +103,29 @@
                 limit: 100,
                 source: substringMatcher(hostnames)
             });
+
+
+
+
+
+
+        {#               SCRIPT POUR AJAX                   #}
+
+        // function nextStep(event){
+        //     // event.preventDefault();
+        //
+        //     // console.log(this);
+        //     const url = this.formAction;
+        //
+        //     axios.get(url).then(function (response) {
+        //         console.log(response);
+        //     })
+        // }
+        //
+        // let button = document.querySelectorAll('button.js-hostname').forEach(function (link){
+        //     link.addEventListener('click' || 'touchstart', nextStep);
+        // });
+
 
     </script>
 

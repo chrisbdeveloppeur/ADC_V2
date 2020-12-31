@@ -25,16 +25,15 @@ class TasktController extends AbstractController
         $form = $this->createForm(FromInctFormType::class);
         $form->handleRequest($request);
         $from_inct = $form->get('from_inct')->getData();
-
+//        $previousUrl = $request->headers->get('referer');
+//        dd($request->getSession());
         if ($form->isSubmitted() && $form->isValid()){
             if ($from_inct == 'non'){
                 return $this->redirectToRoute("taskt_asset_type",  [
-//                    'type' => $type,
                     'from_inct' => $from_inct,
                 ]);
             }else{
                 return $this->redirectToRoute("taskt_asset_type",  [
-//                    'type' => $type,
                     'from_inct' => $from_inct,
                 ]);
             }
@@ -42,7 +41,7 @@ class TasktController extends AbstractController
         }
         return $this->render('Survey/Taskt/from_inct_field.html.twig', [
             'form' => $form->createView(),
-//            'type' => $type,
+//            'previous_url' => $previousUrl,
         ]);
     }
 
@@ -54,6 +53,7 @@ class TasktController extends AbstractController
     {
         $form = $this->createForm(AssetTypeFormType::class);
         $form->handleRequest($request);
+//        $previousUrl = $request->headers->get('referer');
         $assetType = '?';
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -86,6 +86,7 @@ class TasktController extends AbstractController
             'asset_type_field_form' => $form->createView(),
             'from_inct' => $from_inct,
             'asset_type' => $assetType,
+//            'previous_url' => $previousUrl,
         ]);
     }
 
@@ -99,6 +100,7 @@ class TasktController extends AbstractController
     {
         $form = $this->createForm(TypeFormType::class);
         $form->handleRequest($request);
+//        $previousUrl = $request->headers->get('referer');
         if ($form->isSubmitted() && $form->isValid()){
             $intervention = $form->get('type')->getData();
             if ( ($intervention == 'Dotation') || ($intervention == 'Prêt') ){
@@ -127,6 +129,7 @@ class TasktController extends AbstractController
             'form' => $form->createView(),
             'from_inct' => $from_inct,
             'asset_type' => $asset_type,
+//            'previous_url' => $previousUrl,
         ]);
     }
 
@@ -139,6 +142,7 @@ class TasktController extends AbstractController
     {
         $form = $this->createForm(NewUserType::class);
         $form->handleRequest($request);
+//        $previousUrl = $request->headers->get('referer');
 
         if ($form->isSubmitted() && $form->isValid()){
             $newUser = $form->get('new_user')->getData();
@@ -155,6 +159,7 @@ class TasktController extends AbstractController
             'from_inct' => $from_inct,
             'asset_type' => $asset_type,
             'intervention' => $intervention,
+//            'previous_url' => $previousUrl,
         ]);
     }
 
@@ -166,6 +171,7 @@ class TasktController extends AbstractController
     {
         $form = $this->createForm(HostnameFormType::class);
         $form->handleRequest($request);
+//        $previousUrl = $request->headers->get('referer');
         $assetType = $asset_type;
 
 
@@ -215,7 +221,7 @@ class TasktController extends AbstractController
                     'new_user' => $new_user,
                 ]);
             }elseif (!$hostname && !$customHostname){
-                $this->addFlash('danger', 'Veuillez indiquer un hostname pour continuer');
+                $this->addFlash('info', 'Veuillez indiquer un hostname pour continuer');
             }
         }
 
@@ -226,6 +232,7 @@ class TasktController extends AbstractController
             'assets' => $hostnames,
             'intervention' => $intervention,
             'new_user' => $new_user,
+//            'previous_url' => $previousUrl,
         ]);
     }
 
