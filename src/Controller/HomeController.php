@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Survey;
 use App\Form\AssetTypeFormType;
+use App\Form\DescriptionFormType;
 use App\Form\FinalStringFormType;
 use App\Form\HostnameFormType;
 use App\Form\NewUserType;
@@ -35,11 +36,11 @@ class HomeController extends AbstractController
 
             if ($type == "demande"){
                 return $this->redirectToRoute("taskt_from_inct",  [
-                    'type' => $type,
+//                    'type' => $type,
                 ]);
             }else{
                 return $this->redirectToRoute("home", [
-                    'type' => $type,
+//                    'type' => $type,
                 ]);
             }
 
@@ -47,187 +48,42 @@ class HomeController extends AbstractController
         return $this->render('Survey/home.html.twig');
     }
 
-    /**
-     * @Route("from-inct={from_inct}/type-asset", name="asset_type")
-     */
-    public function setAssetType(Request $request, $from_inct): Response
-    {
-        $form = $this->createForm(AssetTypeFormType::class);
-        $form->handleRequest($request);
-        $assetType = '?';
-
-        if ($form->isSubmitted() && $form->isValid()){
-            $assetType = $form->get("assetType")->getData();
-
-
-            if ( $assetType == "Autre" ) {
-//                $this->addFlash('info', 'Vous avez selectionner le type du matériel concerné : ' . $assetType);
-                return $this->redirectToRoute("asset_type", [
-                    'asset_type' => $assetType,
-                    'from_inct' => $from_inct,
-                ]);
-            }elseif ( ($assetType == 'Desktop') || ($assetType == 'Laptop') ){
-                return $this->redirectToRoute("type_taskt",[
-                    'asset_type' => $assetType,
-                    'from_inct' => $from_inct,
-                ]);
-            }else{
-//                $this->addFlash('info', 'Vous avez selectionner le type du matériel concerné : ' . $assetType);
-                return $this->redirectToRoute("hostname",[
-                    'asset_type' => $assetType,
-                    'from_inct' => $from_inct,
-                    'new_user' => ' ',
-                    'intervention' => ' ',
-                ]);
-            }
-
-        }
-        return $this->render('Survey/Taskt/asset_type_field.html.twig', [
-            'asset_type_field_form' => $form->createView(),
-            'from_inct' => $from_inct,
-            'asset_type' => $assetType,
-        ]);
-    }
-
-
 
 
     /**
-     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention", name="type_taskt")
+     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname={hostname}/description", name="description")
      */
-    public function typeIntervention($from_inct, $asset_type, Request $request): Response
+    public function description(Request $request, $from_inct, $asset_type, $intervention, $new_user, $hostname): Response
     {
-        $form = $this->createForm(TypeFormType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
-            $intervention = $form->get('type')->getData();
-            if ( ($intervention == 'Dotation') || ($intervention == 'Prêt') ){
-                return $this->redirectToRoute('new_user',[
-                    'from_inct' => $from_inct,
-                    'asset_type' => $asset_type,
-                    'intervention' => $intervention,
-                ]);
-            }elseif( ($intervention == "Restitution")){
-                return $this->redirectToRoute('hostname',[
-                    'from_inct' => $from_inct,
-                    'asset_type' => $asset_type,
-                    'intervention' => $intervention,
-                    'new_user' => ' ',
-                ]);
-            }elseif( ($intervention == "Renouvellement")){
-                return $this->redirectToRoute('hostname',[
-                    'from_inct' => $from_inct,
-                    'asset_type' => $asset_type,
-                    'intervention' => $intervention,
-                    'new_user' => ' ',
-                ]);
-            }
-        }
-        return $this->render('Survey/Taskt/type_field.html.twig', [
-            'form' => $form->createView(),
-            'from_inct' => $from_inct,
-            'asset_type' => $asset_type,
-        ]);
-    }
-
-
-
-    /**
-     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user", name="new_user")
-     */
-    public function newUser($from_inct, $asset_type, $intervention, Request $request): Response
-    {
-        $form = $this->createForm(NewUserType::class);
+//        dump($from_inct, $asset_type, $intervention, $new_user, $hostname);
+//        die();
+        $form = $this->createForm(DescriptionFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $newUser = $form->get('new_user')->getData();
-            return $this->redirectToRoute('hostname',[
-                'from_inct' => $from_inct,
-                'asset_type' => $asset_type,
-                'new_user' => $newUser,
-                'intervention' => $intervention,
-            ]);
 
-        }
-        return $this->render('Survey/Taskt/new_user.html.twig', [
-            'form' => $form->createView(),
-            'from_inct' => $from_inct,
-            'asset_type' => $asset_type,
-            'intervention' => $intervention,
-        ]);
-    }
+            $infos = $form->get('infos')->getData();
 
-
-    /**
-     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname", name="hostname")
-     */
-    public function hostname(Request $request, $from_inct, $asset_type, $new_user, $intervention): Response
-    {
-        $form = $this->createForm(HostnameFormType::class);
-        $form->handleRequest($request);
-        $assetType = $asset_type;
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////       GESTION FICHIER CSV         //////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-        $csv = '..\public\csv\postes.csv';
-        $arrayCsv = file($csv);
-//        $file = fopen($csv, 'r');
-
-        foreach ($arrayCsv as $key => $item){
-            if ($item && ($key != 0)){
-                $item = substr($item, 0, -2);
-                $item = explode(';',$item);
-//                $id = $item[0];
-                $assetName = $item[1];
-                $hostnames[] = $assetName;
-            }
-        }
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-
-
-        if ($form->isSubmitted() && $form->isValid()){
-
-            $hostname = $_POST["hostname"];
-            $customHostname = $form->get('customHostname')->getData();
-
-            if ($hostname && !$customHostname){
-//                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $hostname);
-                return $this->redirectToRoute("final_string",[
+                return $this->redirectToRoute("final_string",  [
+                    'infos' => $infos,
                     'from_inct' => $from_inct,
                     'asset_type' => $asset_type,
                     'hostname' => $hostname,
                     'intervention' => $intervention,
                     'new_user' => $new_user,
                 ]);
-            }elseif($customHostname){
-//                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $customHostname);
 
-                return $this->redirectToRoute("final_string",[
-                    'from_inct' => $from_inct,
-                    'asset_type' => $asset_type,
-                    'hostname' => $customHostname,
-                    'intervention' => $intervention,
-                    'new_user' => $new_user,
-                ]);
-            }elseif (!$hostname && !$customHostname){
-                $this->addFlash('danger', 'Veuillez indiquer un hostname pour continuer');
-            }
         }
-
-        return $this->render('Survey/hostname.html.twig', [
-            'hostname_field_form' => $form->createView(),
+        return $this->render('Survey/description_form.html.twig',[
+            'description_form' => $form->createView(),
             'from_inct' => $from_inct,
-            'asset_type' => $assetType,
-            'assets' => $hostnames,
+            'asset_type' => $asset_type,
+            'hostname' => $hostname,
             'intervention' => $intervention,
             'new_user' => $new_user,
         ]);
     }
+
 
 
 
@@ -240,17 +96,18 @@ class HomeController extends AbstractController
         }
     }
     /**
-     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname={hostname}/validation", name="final_string")
+     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname={hostname}/validation", name="final_string", methods={"POST"})
      */
-    public function stringGen($from_inct ,$asset_type, $new_user, $hostname, $intervention): Response
+    public function stringGen(Request $request, $from_inct ,$asset_type, $new_user, $hostname, $intervention): Response
     {
         $from_inct = $this->miseEnForm($from_inct, 'Suite à incident : ');
         $asset_type = $this->miseEnForm($asset_type, 'Type de matériel : ');
         $new_user = $this->miseEnForm($new_user,'Nouvel arrivant : ');
         $hostname = $this->miseEnForm($hostname,'Hostname : ');
         $intervention = $this->miseEnForm($intervention,'Type d\'intervention : ');
+        $description = $this->miseEnForm($_POST['description_text'], 'Déscription : ');
 
-        $finalString = [$from_inct, $asset_type, $new_user, $hostname, $intervention] ;
+        $finalString = [$from_inct, $asset_type, $new_user, $hostname, $intervention, $description] ;
         foreach ($finalString as $key => $value){
             if ($value == null){
                 unset($finalString[$key]);
@@ -279,6 +136,48 @@ class HomeController extends AbstractController
             'final_string' => $finalString,
         ]);
     }
+
+//    /**
+//     * @Route("/validation", name="final_string", methods={"POST"})
+//     */
+//    public function stringGen(Request $request)
+//    {
+//        $description = $_POST['description_text'];
+////        $from_inct = $this->miseEnForm($from_inct, 'Suite à incident : ');
+////        $asset_type = $this->miseEnForm($asset_type, 'Type de matériel : ');
+////        $new_user = $this->miseEnForm($new_user,'Nouvel arrivant : ');
+////        $hostname = $this->miseEnForm($hostname,'Hostname : ');
+////        $intervention = $this->miseEnForm($intervention,'Type d\'intervention : ');
+//
+////        $finalString = [$from_inct, $asset_type, $new_user, $hostname, $intervention] ;
+////        foreach ($finalString as $key => $value){
+////            if ($value == null){
+////                unset($finalString[$key]);
+////            }
+////        }
+////        $finalString = implode($finalString);
+//
+//        $survey = new Survey();
+////         Hashage (crc32) de la chaine final
+////        $survey->setHashedString($finalString);
+//        $date = $survey->getDateString();
+//        $date = $date->format('d/m/Y - H:i');
+////        $finalString .= "\r\n[" . $date . "]";
+////        $finalString .= "\r\n[" . $survey->getHashedString() . "]";
+//
+////        $survey->setFinalString($finalString);
+//
+//        $form = $this->createForm(FinalStringFormType::class, $survey);
+//        return $this->render('Survey/final_string_form.html.twig', [
+//            'final_string_form' => $form->createView(),
+////            'from_inct' => $from_inct,
+////            'asset_type' => $asset_type,
+////            'intervention' => $intervention,
+////            'new_user' => $new_user,
+////            'hostname' => $hostname,
+////            'final_string' => $finalString,
+//        ]);
+//    }
 
 
 }

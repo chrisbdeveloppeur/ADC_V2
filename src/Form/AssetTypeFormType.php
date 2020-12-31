@@ -21,7 +21,7 @@ class AssetTypeFormType extends AbstractType
                         'Poste portable' => 'Laptop',
                         'Ecran' => 'Ecran',
                         'Accessoires' => 'Accessoire',
-                        'Smartphone' => 'Smartphone',
+                        'Téléphone' => 'Téléphone',
                         'Infra / Prise réseau' => 'Infra-Réseau',
                         'Baie de brassage' => 'Baie-de-brassage',
                         'Autre' => 'Autre',
