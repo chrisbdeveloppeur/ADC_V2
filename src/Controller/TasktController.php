@@ -76,8 +76,8 @@ class TasktController extends AbstractController
                 return $this->redirectToRoute("taskt_hostname",[
                     'asset_type' => $assetType,
                     'from_inct' => $from_inct,
-                    'new_user' => ' ',
-                    'intervention' => ' ',
+                    'new_user' => 'skipped',
+                    'intervention' => 'skipped',
                 ]);
             }
 
@@ -114,14 +114,14 @@ class TasktController extends AbstractController
                     'from_inct' => $from_inct,
                     'asset_type' => $asset_type,
                     'intervention' => $intervention,
-                    'new_user' => ' ',
+                    'new_user' => 'skipped',
                 ]);
             }elseif( ($intervention == "Renouvellement")){
                 return $this->redirectToRoute('taskt_hostname',[
                     'from_inct' => $from_inct,
                     'asset_type' => $asset_type,
                     'intervention' => $intervention,
-                    'new_user' => ' ',
+                    'new_user' => 'skipped',
                 ]);
             }
         }
