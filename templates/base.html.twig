@@ -50,6 +50,13 @@
         {% block body %}{% endblock %}
     </div>
 </section>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
     {% block javascripts %}
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
