@@ -88,7 +88,7 @@ class HomeController extends AbstractController
 
 
     public function miseEnForm($text, $info){
-        if ( ($text == 'skipped') || ($text == '') ){
+        if ( ($text == 'skipped') || ($text == '') || ($text == ' ') ){
             return $text = null;
         }else{
             $text = $info . $text;
