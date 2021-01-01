@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Arbre de clôture v1.9{% endblock %}</title>
     <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 {#    <script src="https://code.jquery.com/jquery-migrate-3.3.2.js"></script>#}
     <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
@@ -18,22 +18,10 @@
 <nav class="navbar is-light has-text-black is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ path('home') }}">
-            <img width="100" height="100" src="{{ asset('build/images/sitelogo_SCC.9f1fb72d.png') }}" alt="">
+            <figure class="is-flex is-justify-content-center is-align-items-center">
+                <img width="100" height="100" src="{{ asset('build/images/sitelogo_SCC.9f1fb72d.png') }}" alt="" style="width: 124px">
+            </figure>
         </a>
-
-{#        <div class="navbar-item">#}
-{#            <div class="field">#}
-{#                <p class="control">#}
-{#                    <a class="button is-small is-info" href="{{ path('update_database') }}">#}
-{#                        <span>Mettre à jour la liste des Assets</span>#}
-{#                        <span class="icon">#}
-{#                        <i class="fas fa-sync-alt"></i>#}
-{#                    </span>#}
-{#                    </a>#}
-{#                </p>#}
-{#            </div>#}
-{#        </div>#}
-
     </div>
 
     <div class="navbar-end has-text-centered">
