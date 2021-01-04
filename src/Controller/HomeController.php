@@ -14,6 +14,7 @@ use App\Form\NewUserType;
 use App\Form\TypeFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +28,7 @@ class HomeController extends AbstractController
 
     /**
      * @Route("/", name="home")
+     * @IsGranted("ROLE_USER")
      */
     public function home(Request $request, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em): Response
     {
@@ -74,6 +76,7 @@ class HomeController extends AbstractController
 
     /**
      * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname={hostname}/description", name="description")
+     * @IsGranted("ROLE_USER")
      */
     public function description(Request $request, $from_inct, $asset_type, $intervention, $new_user, $hostname): Response
     {
@@ -118,6 +121,7 @@ class HomeController extends AbstractController
     }
     /**
      * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname={hostname}/validation", name="final_string", methods={"POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function stringGen(Request $request, $from_inct ,$asset_type, $new_user, $hostname, $intervention): Response
     {
