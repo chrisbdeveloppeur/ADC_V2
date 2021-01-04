@@ -7,24 +7,40 @@
     <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
-            <form name="from_inct_form" id="from_inct_form_from_inct" method="post" class="is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column">
+{#            <form name="from_inct_form" id="from_inct_form_from_inct" method="post" class="is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column">#}
+            {{ form_start(form) }}
                 <div class="field">
-                    <label class="label" for="last_name">La demande fait-elle suite à un incident ?</label>
+                    <label class="label" for="from_inct_form_from_inct">La demande fait-elle suite à un incident ?</label>
 
-                        <div class="control" style="flex: 1">
+
 
                             <div class="control">
-                                <label class="radio">
-                                    <input type="radio" name="from_inct_form[from_inct]" value="Oui">
-                                    Oui
+{#                                {{ form_widget(form.from_inct) }}#}
+                                {% set i = 0 %}
+                                {% for child in form.from_inct %}
+                                    {% set i = i+1 %}
+                                <label class="radio" for="{{ child.vars.id }}">
+                                    {% if i == 1 %}
+                                        {{- form_widget(child, {'attr' : {'checked' : 'true'} }) -}}
+                                    {% else %}
+                                        {{- form_widget(child) -}}
+                                    {% endif %}
+                                    {{ child.vars.label }}
+{#                                        {{- form_label(child, null) -}}#}
                                 </label>
-                                <label class="radio">
-                                    <input type="radio" name="from_inct_form[from_inct]" value="Non" checked>
-                                    Non
-                                </label>
+                                {% endfor %}
+
+{#                                <label class="radio">#}
+{#                                    <input type="radio" name="from_inct_form[from_inct]" value="Oui">#}
+{#                                    Oui#}
+{#                                </label>#}
+{#                                <label class="radio">#}
+{#                                    <input type="radio" name="from_inct_form[from_inct]" value="Non" checked>#}
+{#                                    Non#}
+{#                                </label>#}
                             </div>
 
-                        </div>
+
 
                 </div>
 
@@ -39,8 +55,8 @@
                     </button>
 
                 </div>
-
-            </form>
+            {{ form_end(form) }}
+{#            </form>#}
 
         </div>
 

@@ -13,12 +13,14 @@ class FromInctFormType extends AbstractType
     {
         $builder
             ->add('from_inct', ChoiceType::class,[
+                'placeholder' => 'Non',
                 'label' => false,
                 'required' => true,
                 'method' => 'poste',
+                'expanded' => true,
                 'choices' => [
-                    'Oui' => 'Oui',
                     'Non' => 'Non',
+                    'Oui' => 'Oui',
                 ]
             ])
         ;
