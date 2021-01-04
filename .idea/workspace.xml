@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a5ed598-3b44-447a-9f79-e12ffb334f49" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/Taskt/asset_type_field.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/Taskt/asset_type_field.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/Taskt/from_inct_field.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/Taskt/from_inct_field.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/Taskt/new_user.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/Taskt/new_user.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/Taskt/type_field.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/Taskt/type_field.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/description_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/description_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/final_string_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/final_string_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/hostname.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/hostname.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/controllers.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/controllers.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/csv/postes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/assets/csv/postes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/postes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TasktController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TasktController.php" afterDir="false" />
     </list>
     <ignored path="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\public\build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,64 +55,38 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Survey/Taskt/type_field.html.twig">
+        <entry file="file://$PROJECT_DIR$/src/Controller/TasktController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Survey/Taskt/from_inct_field.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Survey/Taskt/asset_type_field.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="27" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Survey/description_form.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Survey/Taskt/new_user.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Survey/hostname.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+            <state relative-caret-position="36">
+              <caret line="184" column="2" selection-start-line="184" selection-start-column="2" selection-end-line="184" selection-end-column="2" />
+              <folding>
+                <element signature="e#34#65#0#PHP" expanded="true" />
+                <element signature="e#1001#1019#0#PHP" expanded="true" />
+                <element signature="e#1156#1174#0#PHP" expanded="true" />
+                <element signature="e#1300#1340#0#PHP" expanded="true" />
+                <element signature="e#2126#2144#0#PHP" expanded="true" />
+                <element signature="e#2388#2406#0#PHP" expanded="true" />
+                <element signature="e#2703#2719#0#PHP" expanded="true" />
+                <element signature="e#2985#3026#0#PHP" expanded="true" />
+                <element signature="e#3839#3855#0#PHP" expanded="true" />
+                <element signature="e#4129#4145#0#PHP" expanded="true" />
+                <element signature="e#4467#4483#0#PHP" expanded="true" />
+                <element signature="e#4753#4788#0#PHP" expanded="true" />
+                <element signature="e#5528#5544#0#PHP" expanded="true" />
+                <element signature="e#5780#5813#0#PHP" expanded="true" />
+                <element signature="e#8072#8085#0#PHP" expanded="true" />
+                <element signature="e#8531#8544#0#PHP" expanded="true" />
+                <element signature="e#9009#9036#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/Survey/final_string_form.html.twig">
+        <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="24" lean-forward="true" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+            <state relative-caret-position="273">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -156,13 +128,11 @@
         <option value="$PROJECT_DIR$/src/Form/DescriptionFormType.php" />
         <option value="$PROJECT_DIR$/src/Form/FromInctFormType.php" />
         <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/templates/Survey/home.html.twig" />
         <option value="$PROJECT_DIR$/deploy.bat" />
         <option value="$PROJECT_DIR$/assets/app.js" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/HomeController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/TasktController.php" />
         <option value="$PROJECT_DIR$/templates/Survey/Taskt/type_field.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/Taskt/from_inct_field.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/Taskt/asset_type_field.html.twig" />
@@ -170,6 +140,9 @@
         <option value="$PROJECT_DIR$/templates/Survey/Taskt/new_user.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/hostname.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/final_string_form.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/TasktController.php" />
+        <option value="$PROJECT_DIR$/.env.local" />
+        <option value="$PROJECT_DIR$/.env" />
       </list>
     </option>
   </component>
@@ -260,11 +233,11 @@
       <path value="$PROJECT_DIR$/vendor/symfony/debug-bundle" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="919" />
-    <option name="y" value="158" />
-    <option name="width" value="860" />
-    <option name="height" value="607" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-195" />
+    <option name="y" value="-27" />
+    <option name="width" value="1938" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -274,7 +247,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -296,78 +268,39 @@
             <path>
               <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
               <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Survey" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Survey" type="462c0819:PsiDirectoryNode" />
-              <item name="Taskt" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../chrisBdev" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\images" />
-      <recent name="C:\Users\K4gur0\PhpstormProjects\OUTIL_TRACAGE_SCC\templates\Survey" />
-      <recent name="C:\Users\K4gur0\PhpstormProjects\OUTIL_TRACAGE_SCC\templates\Survey\Taskt" />
-      <recent name="C:\Users\K4gur0\PhpstormProjects\OUTIL_TRACAGE_SCC\src\csv" />
-      <recent name="C:\Users\K4gur0\PhpstormProjects\OUTIL_TRACAGE_SCC\src\Repository" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\assets" />
       <recent name="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\csv" />
       <recent name="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC" />
       <recent name="C:\Users\K4gur0\PhpstormProjects\OUTIL_TRACAGE_SCC\templates\Survey\Taskt" />
       <recent name="C:\Users\K4gur0\PhpstormProjects\OUTIL_TRACAGE_SCC\images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC" />
+      <recent name="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\images" />
+      <recent name="C:\Users\K4gur0\PhpstormProjects\OUTIL_TRACAGE_SCC\templates\Survey" />
+      <recent name="C:\Users\K4gur0\PhpstormProjects\OUTIL_TRACAGE_SCC\templates\Survey\Taskt" />
+      <recent name="C:\Users\K4gur0\PhpstormProjects\OUTIL_TRACAGE_SCC\src\csv" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -413,16 +346,18 @@
       <workItem from="1609530455522" duration="5623000" />
       <workItem from="1609538169665" duration="2936000" />
       <workItem from="1609581194321" duration="252000" />
+      <workItem from="1609748398734" duration="1969000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153298000" />
+    <option name="totallyTimeSpent" value="155267000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12153518" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12307692" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -436,7 +371,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24593717" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.26465365" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -448,9 +383,7 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9d159499-6b2e-495f-a0d4-2bc1a7039386/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9d159499-6b2e-495f-a0d4-2bc1a7039386/console.sql" />
     <entry file="file://$PROJECT_DIR$/src/Repository/SurveyRepository.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -463,20 +396,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/build/images/fa-solid-900.371dbce0.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/build/images/fa-regular-400.06b9d19c.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/build/images/fa-brands-400.e33e2cf6.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/build/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-55" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/build/images/fa-solid-900.371dbce0.svg" />
+    <entry file="file://$PROJECT_DIR$/public/build/images/fa-regular-400.06b9d19c.svg" />
+    <entry file="file://$PROJECT_DIR$/public/build/images/fa-brands-400.e33e2cf6.svg" />
+    <entry file="file://$PROJECT_DIR$/public/build/app.js" />
     <entry file="file://$PROJECT_DIR$/assets/controllers.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -524,13 +447,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOStatement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="791">
-          <caret line="114" selection-start-line="114" selection-end-line="114" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOStatement.php" />
     <entry file="file://$PROJECT_DIR$/src/Form/HostnameFormType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -615,16 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.env.local">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -639,12 +546,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/images/postes.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/images/postes.csv" />
     <entry file="file://$PROJECT_DIR$/assets/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -656,10 +558,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/csv/postes.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="-1439531">
           <caret line="18" selection-start-line="18" selection-end-line="18" />
@@ -700,16 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/TasktController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="208" column="67" selection-start-line="208" selection-start-column="67" selection-end-line="208" selection-end-column="67" />
-          <folding>
-            <element signature="e#34#65#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -719,28 +607,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/Taskt/type_field.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
+        <state relative-caret-position="493">
           <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/Taskt/from_inct_field.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="595">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/Taskt/asset_type_field.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="27" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="27" />
+        <state relative-caret-position="357">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/description_form.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="476">
           <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
         </state>
       </provider>
@@ -754,15 +642,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/hostname.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+        <state relative-caret-position="1020">
+          <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/final_string_form.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="24" lean-forward="true" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        <state relative-caret-position="343">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env.local">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/TasktController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="184" column="2" selection-start-line="184" selection-start-column="2" selection-end-line="184" selection-end-column="2" />
+          <folding>
+            <element signature="e#34#65#0#PHP" expanded="true" />
+            <element signature="e#1001#1019#0#PHP" expanded="true" />
+            <element signature="e#1156#1174#0#PHP" expanded="true" />
+            <element signature="e#1300#1340#0#PHP" expanded="true" />
+            <element signature="e#2126#2144#0#PHP" expanded="true" />
+            <element signature="e#2388#2406#0#PHP" expanded="true" />
+            <element signature="e#2703#2719#0#PHP" expanded="true" />
+            <element signature="e#2985#3026#0#PHP" expanded="true" />
+            <element signature="e#3839#3855#0#PHP" expanded="true" />
+            <element signature="e#4129#4145#0#PHP" expanded="true" />
+            <element signature="e#4467#4483#0#PHP" expanded="true" />
+            <element signature="e#4753#4788#0#PHP" expanded="true" />
+            <element signature="e#5528#5544#0#PHP" expanded="true" />
+            <element signature="e#5780#5813#0#PHP" expanded="true" />
+            <element signature="e#8072#8085#0#PHP" expanded="true" />
+            <element signature="e#8531#8544#0#PHP" expanded="true" />
+            <element signature="e#9009#9036#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>

@@ -180,9 +180,9 @@ class TasktController extends AbstractController
 ////////////////////////////////////////////////////////////////////////////////////////
 ///
         //////////////////         EN LOCAL HOST          //////////////////
-//        $csv = '..\assets\csv\postes.csv';
+        $csv = '..\assets\csv\postes.csv';
         //////////////////         EN SERVEUR PROD        //////////////////
-        $csv = '/home/scctcrvc/public_html/scc-tool/assets/csv/postes.csv';
+//        $csv = '/home/scctcrvc/public_html/scc-tool/assets/csv/postes.csv';
         $arrayCsv = file($csv);
 //        $file = fopen($csv, 'r');
 
