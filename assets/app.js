@@ -13,3 +13,4 @@ import './bootstrap';
 const $ = require('jquery');
 
 const logo_SCC = require('../images/sitelogo_SCC.png');
+const safran_wallpaper = require('../images/1200px-Safran_-_logo_2016.png');

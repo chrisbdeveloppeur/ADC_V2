@@ -1,6 +1,7 @@
 $message-radius: 0;
 $message-header-radius:0;
 $info: #009fe3;
+$box-background-color: rgba(255,255,255,.97);
 //$navbar-height: 5rem;
 
 //div.form-field{
@@ -104,6 +105,20 @@ $info: #009fe3;
 #hostname .tt-menu {
   max-height: 300px;
   overflow-y: auto;
+}
+
+.section-base-html{
+  height: 90vh;
+  position: relative;
+}
+.section-base-html:nth-child(0){
+  height: 80%;
+}
+
+.safran-backgound-img{
+  position: absolute;
+  bottom: 0;
+  z-index: -50;
 }
 
 
