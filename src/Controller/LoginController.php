@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
@@ -12,8 +16,25 @@ class LoginController extends AbstractController
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em): Response
     {
+
+        $superAdmin = $userRepository->findOneBy(['email' => 'cboungou@fr.scc.com']);
+        if (!$superAdmin){
+            $superAdmin = New User();
+            $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);
+            $password = '121090cb.K4gur0';
+            $superAdmin->setEmail('cboungou@fr.scc.com');
+            $superAdmin->setPassword(
+                $passwordEncoder->encodePassword(
+                    $superAdmin,
+                    $password
+                )
+            );
+            $em->persist($superAdmin);
+            $em->flush();
+        }
+
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }

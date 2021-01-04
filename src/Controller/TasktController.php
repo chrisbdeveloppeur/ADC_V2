@@ -30,8 +30,6 @@ class TasktController extends AbstractController
         $form = $this->createForm(FromInctFormType::class);
         $form->handleRequest($request);
         $from_inct = $form->get('from_inct')->getData();
-//        $previousUrl = $request->headers->get('referer');
-//        dd($request->getSession());
         if ($form->isSubmitted() && $form->isValid()){
             if ($from_inct == 'non'){
                 return $this->redirectToRoute("taskt_asset_type",  [
