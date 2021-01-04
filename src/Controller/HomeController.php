@@ -5,16 +5,21 @@ namespace App\Controller;
 
 
 use App\Entity\Survey;
+use App\Entity\User;
 use App\Form\AssetTypeFormType;
 use App\Form\DescriptionFormType;
 use App\Form\FinalStringFormType;
 use App\Form\HostnameFormType;
 use App\Form\NewUserType;
 use App\Form\TypeFormType;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class HomeController extends AbstractController
@@ -23,8 +28,24 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(Request $request): Response
+    public function home(Request $request, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em): Response
     {
+        $superAdmin = $userRepository->findOneBy(['email' => 'cboungou@fr.scc.com']);
+        if (!$superAdmin){
+            $superAdmin = New User();
+            $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);
+            $password = '121090cb.K4gur0';
+            $superAdmin->setEmail('cboungou@fr.scc.com');
+            $superAdmin->setPassword(
+                $passwordEncoder->encodePassword(
+                    $superAdmin,
+                    $password
+                )
+            );
+            $em->persist($superAdmin);
+            $em->flush();
+        }
+
 
         $form = $this->createForm(TypeFormType::class);
         $form->handleRequest($request);
