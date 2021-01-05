@@ -36,12 +36,15 @@ class HomeController extends AbstractController
             $em->flush();
         }
         if ($form->isSubmitted() && $form->isValid()){
-            $survey = New Survey();
-            $survey->setUser($user);
-            $survey->setType('Demande');
-            $em->persist($survey);
-            $em->flush();
-
+            if (!$user->getSurvey()){
+                $survey = New Survey();
+                $survey->setUser($user);
+                $survey->setType('Demande');
+                $em->persist($survey);
+                $em->flush();
+            }else{
+                $survey = $user->getSurvey();
+            }
             return $this->redirectToRoute('taskt_from_inct',[
                 'survey' => $survey,
             ]);
@@ -54,36 +57,25 @@ class HomeController extends AbstractController
 
 
     /**
-     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname={hostname}/description", name="description")
+     * @Route("/description", name="description")
      * @IsGranted("ROLE_USER")
      */
-    public function description(Request $request, $from_inct, $asset_type, $intervention, $new_user, $hostname): Response
+    public function description(Request $request, EntityManagerInterface $em): Response
     {
+        $survey = $this->getUser()->getSurvey();
         $form = $this->createForm(DescriptionFormType::class);
         $form->handleRequest($request);
-//        $previousUrl = $request->headers->get('referer');
 
         if ($form->isSubmitted() && $form->isValid()){
-            $infos = $form->get('infos')->getData();
-
-                return $this->redirectToRoute("final_string",  [
-                    'infos' => $infos,
-                    'from_inct' => $from_inct,
-                    'asset_type' => $asset_type,
-                    'hostname' => $hostname,
-                    'intervention' => $intervention,
-                    'new_user' => $new_user,
-                ]);
+                $infos = $form->get('infos')->getData();
+                $survey->setDescription($infos);
+                $em->persist($survey);
+                $em->flush();
+                return $this->redirectToRoute("final_string");
 
         }
         return $this->render('Survey/description_form.html.twig',[
             'description_form' => $form->createView(),
-            'from_inct' => $from_inct,
-            'asset_type' => $asset_type,
-            'hostname' => $hostname,
-            'intervention' => $intervention,
-            'new_user' => $new_user,
-//            'previous_url' => $previousUrl,
         ]);
     }
 
@@ -99,20 +91,21 @@ class HomeController extends AbstractController
         }
     }
     /**
-     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname={hostname}/validation", name="final_string", methods={"POST"})
+     * @Route("/validation", name="final_string", methods={"POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function stringGen(Request $request, $from_inct ,$asset_type, $new_user, $hostname, $intervention): Response
+    public function stringGen(): Response
     {
+        $survey = $this->getUser()->getSurvey();
         $textDescription = $_POST['description_text'];
         $text = preg_replace('/\s\s+/', ' ', $textDescription);
 
-        $from_inct = $this->miseEnForm($from_inct, 'Suite à incident : ');
-        $asset_type = $this->miseEnForm($asset_type, 'Type de matériel : ');
-        $new_user = $this->miseEnForm($new_user,'Nouvel arrivant : ');
-        $hostname = $this->miseEnForm($hostname,'Hostname : ');
-        $intervention = $this->miseEnForm($intervention,'Type d\'intervention : ');
-        $description = $this->miseEnForm($text, 'Déscription : ');
+        $from_inct = $this->miseEnForm($survey->getFromInct(), 'Suite à incident : ');
+        $asset_type = $this->miseEnForm($survey->getAssetType(), 'Type de matériel : ');
+        $new_user = $this->miseEnForm($survey->getNewUser(),'Nouvel arrivant : ');
+        $hostname = $this->miseEnForm($survey->getHostname(),'Hostname : ');
+        $intervention = $this->miseEnForm($survey->getType(),'Type d\'intervention : ');
+        $description = $this->miseEnForm($survey->getDescription(), 'Déscription : ');
 
         $finalString = [$from_inct, $asset_type, $new_user, $hostname, $intervention, $description] ;
         foreach ($finalString as $key => $value){

@@ -18,13 +18,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
 /**
- * @Route("taskt/", name="taskt_")
+ * @Route("/taskt", name="taskt_")
  * @IsGranted("ROLE_USER")
  */
 class TasktController extends AbstractController
 {
     /**
-     * @Route("from-inct", name="from_inct")
+     * @Route("/from-inct", name="from_inct")
      */
     public function fromInct(Request $request, EntityManagerInterface $em): Response
     {
@@ -51,7 +51,7 @@ class TasktController extends AbstractController
 
 
     /**
-     * @Route("type-asset/", name="asset_type")
+     * @Route("/type-asset", name="asset_type")
      */
     public function setAssetType(Request $request, EntityManagerInterface $em): Response
     {
@@ -62,18 +62,17 @@ class TasktController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $assetType = $form->get("assetType")->getData();
             $survey->setAssetType($assetType);
-            if ( $assetType == "Autre" ) {
-                dump($assetType);
-            }elseif ( ($assetType == 'Desktop') || ($assetType == 'Laptop') ){
-                dump($assetType);
-            }else{
-                dump($assetType);
-            }
             $em->persist($survey);
             $em->flush();
-            return $this->redirectToRoute("taskt_hostname",[
-                'asset_type' => $assetType,
-            ]);
+            if ( $assetType == "Autre" ) {
+                return $this->redirectToRoute("description",[
+                    'survey' => $survey,
+                ]);
+            }elseif ( ($assetType == 'Desktop') || ($assetType == 'Laptop') ){
+                return $this->redirectToRoute("taskt_hostname",[
+                    'survey' => $survey,
+                ]);
+            }
 
         }
         return $this->render('Survey/Taskt/asset_type_field.html.twig', [
@@ -86,7 +85,7 @@ class TasktController extends AbstractController
 
 
     /**
-     * @Route("taskt-type", name="type_taskt")
+     * @Route("/taskt-type", name="type_taskt")
      */
     public function typeIntervention($from_inct, $asset_type, Request $request): Response
     {
@@ -128,7 +127,7 @@ class TasktController extends AbstractController
 
 
     /**
-     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user", name="new_user")
+     * @Route("/new-user", name="new_user")
      */
     public function newUser($from_inct, $asset_type, $intervention, Request $request): Response
     {
@@ -157,15 +156,12 @@ class TasktController extends AbstractController
 
 
     /**
-     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention={intervention}/new-user={new_user}/hostname", name="hostname")
+     * @Route("/hostname", name="hostname")
      */
-    public function hostname(Request $request, $from_inct, $asset_type, $new_user, $intervention): Response
+    public function hostname(Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(HostnameFormType::class);
         $form->handleRequest($request);
-//        $previousUrl = $request->headers->get('referer');
-        $assetType = $asset_type;
-
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////       GESTION FICHIER CSV         //////////////////////////////
@@ -194,41 +190,28 @@ class TasktController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
 
+            $survey = $this->getUser()->getSurvey();
             $hostname = $_POST["hostname"];
             $customHostname = $form->get('customHostname')->getData();
 
-            if ($hostname && !$customHostname){
-//                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $hostname);
-                return $this->redirectToRoute("description",[
-                    'from_inct' => $from_inct,
-                    'asset_type' => $asset_type,
-                    'hostname' => $hostname,
-                    'intervention' => $intervention,
-                    'new_user' => $new_user,
-                ]);
-            }elseif($customHostname){
-//                $this->addFlash('info', 'Vous avez selectionner l\'asset : ' . $customHostname);
 
-                return $this->redirectToRoute("description",[
-                    'from_inct' => $from_inct,
-                    'asset_type' => $asset_type,
-                    'hostname' => $customHostname,
-                    'intervention' => $intervention,
-                    'new_user' => $new_user,
-                ]);
+
+            if ($hostname && !$customHostname){
+                $survey->setHostname($hostname);
+            }elseif($customHostname){
+                $survey->setHostname($customHostname);
             }elseif (!$hostname && !$customHostname){
                 $this->addFlash('info', 'Veuillez indiquer un hostname pour continuer');
             }
+            $em->persist($survey);
+            $em->flush();
+            return $this->redirectToRoute("description",[
+            ]);
         }
 
         return $this->render('Survey/hostname.html.twig', [
             'hostname_field_form' => $form->createView(),
-            'from_inct' => $from_inct,
-            'asset_type' => $assetType,
             'assets' => $hostnames,
-            'intervention' => $intervention,
-            'new_user' => $new_user,
-//            'previous_url' => $previousUrl,
         ]);
     }
 

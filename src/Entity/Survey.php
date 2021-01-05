@@ -89,9 +89,19 @@ class Survey
     private $from_inct;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="Survey", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="survey")
      */
-    private $user;
+    private $User;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $hostname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $new_user;
 
     public function __construct()
     {
@@ -278,23 +288,38 @@ class Survey
 
     public function getUser(): ?User
     {
-        return $this->user;
+        return $this->User;
     }
 
-    public function setUser(?User $user): self
+    public function setUser(?User $User): self
     {
-        // unset the owning side of the relation if necessary
-        if ($user === null && $this->user !== null) {
-            $this->user->setSurvey(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($user !== null && $user->getSurvey() !== $this) {
-            $user->setSurvey($this);
-        }
-
-        $this->user = $user;
+        $this->User = $User;
 
         return $this;
     }
+
+    public function getHostname(): ?string
+    {
+        return $this->hostname;
+    }
+
+    public function setHostname(?string $hostname): self
+    {
+        $this->hostname = $hostname;
+
+        return $this;
+    }
+
+    public function getNewUser(): ?string
+    {
+        return $this->new_user;
+    }
+
+    public function setNewUser(?string $new_user): self
+    {
+        $this->new_user = $new_user;
+
+        return $this;
+    }
+
 }

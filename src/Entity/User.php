@@ -35,9 +35,9 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToOne(targetEntity=Survey::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Survey::class, mappedBy="User", cascade={"persist", "remove"})
      */
-    private $Survey;
+    private $survey;
 
     public function getId(): ?int
     {
@@ -119,12 +119,22 @@ class User implements UserInterface
 
     public function getSurvey(): ?Survey
     {
-        return $this->Survey;
+        return $this->survey;
     }
 
-    public function setSurvey(?Survey $Survey): self
+    public function setSurvey(?Survey $survey): self
     {
-        $this->Survey = $Survey;
+        // unset the owning side of the relation if necessary
+        if ($survey === null && $this->survey !== null) {
+            $this->survey->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($survey !== null && $survey->getUser() !== $this) {
+            $survey->setUser($this);
+        }
+
+        $this->survey = $survey;
 
         return $this;
     }
