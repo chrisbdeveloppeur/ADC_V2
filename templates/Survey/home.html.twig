@@ -9,18 +9,18 @@
                 <div class="column">
                     Bienvenue sur l'outil d'assistance à la fermeture de demandes [TASKT]
                 </div>
-
+{{ form_start(form) }}
                 <div class="is-flex is-justify-content-center is-align-items-end">
-                    <a href="{{ path('taskt_from_inct') }}" class="button is-info">
+                    <button class="button is-info">
                         <span>
                             Commencer
                         </span>
                         <span class="icon">
                             <i class="fas fa-chevron-right"></i>
                         </span>
-                    </a>
+                    </button>
                 </div>
-
+{{ form_end(form) }}
             </div>
 
         </div>

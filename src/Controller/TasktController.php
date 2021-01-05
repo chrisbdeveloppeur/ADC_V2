@@ -9,6 +9,7 @@ use App\Form\HostnameFormType;
 use App\Form\NewUserType;
 use App\Form\TypeFormType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,71 +26,59 @@ class TasktController extends AbstractController
     /**
      * @Route("from-inct", name="from_inct")
      */
-    public function fromInct(Request $request): Response
+    public function fromInct(Request $request, EntityManagerInterface $em): Response
     {
+        $survey = $this->getUser()->getSurvey();
         $form = $this->createForm(FromInctFormType::class);
         $form->handleRequest($request);
         $from_inct = $form->get('from_inct')->getData();
         if ($form->isSubmitted() && $form->isValid()){
-            if ($from_inct == 'non'){
-                return $this->redirectToRoute("taskt_asset_type",  [
-                    'from_inct' => $from_inct,
-                ]);
+            if ($from_inct == 'Non'){
+                $survey->setFromInct('Non');
             }else{
-                return $this->redirectToRoute("taskt_asset_type",  [
-                    'from_inct' => $from_inct,
-                ]);
+                $survey->setFromInct('Oui');
             }
+            $em->persist($survey);
+            $em->flush();
+            return $this->redirectToRoute("taskt_asset_type",  [
+            ]);
 
         }
         return $this->render('Survey/Taskt/from_inct_field.html.twig', [
             'form' => $form->createView(),
-//            'previous_url' => $previousUrl,
         ]);
     }
 
 
     /**
-     * @Route("from-inct={from_inct}/type-asset", name="asset_type")
+     * @Route("type-asset/", name="asset_type")
      */
-    public function setAssetType(Request $request, $from_inct): Response
+    public function setAssetType(Request $request, EntityManagerInterface $em): Response
     {
+        $survey = $this->getUser()->getSurvey();
         $form = $this->createForm(AssetTypeFormType::class);
         $form->handleRequest($request);
-//        $previousUrl = $request->headers->get('referer');
-        $assetType = '?';
 
         if ($form->isSubmitted() && $form->isValid()){
             $assetType = $form->get("assetType")->getData();
-
-
+            $survey->setAssetType($assetType);
             if ( $assetType == "Autre" ) {
-//                $this->addFlash('info', 'Vous avez selectionner le type du matériel concerné : ' . $assetType);
-                return $this->redirectToRoute("taskt_asset_type", [
-                    'asset_type' => $assetType,
-                    'from_inct' => $from_inct,
-                ]);
+                dump($assetType);
             }elseif ( ($assetType == 'Desktop') || ($assetType == 'Laptop') ){
-                return $this->redirectToRoute("taskt_type_taskt",[
-                    'asset_type' => $assetType,
-                    'from_inct' => $from_inct,
-                ]);
+                dump($assetType);
             }else{
-//                $this->addFlash('info', 'Vous avez selectionner le type du matériel concerné : ' . $assetType);
-                return $this->redirectToRoute("taskt_hostname",[
-                    'asset_type' => $assetType,
-                    'from_inct' => $from_inct,
-                    'new_user' => 'skipped',
-                    'intervention' => 'skipped',
-                ]);
+                dump($assetType);
             }
+            $em->persist($survey);
+            $em->flush();
+            return $this->redirectToRoute("taskt_hostname",[
+                'asset_type' => $assetType,
+            ]);
 
         }
         return $this->render('Survey/Taskt/asset_type_field.html.twig', [
             'asset_type_field_form' => $form->createView(),
-            'from_inct' => $from_inct,
-            'asset_type' => $assetType,
-//            'previous_url' => $previousUrl,
+
         ]);
     }
 
@@ -97,7 +86,7 @@ class TasktController extends AbstractController
 
 
     /**
-     * @Route("from-inct={from_inct}/type-asset={asset_type}/intervention", name="type_taskt")
+     * @Route("taskt-type", name="type_taskt")
      */
     public function typeIntervention($from_inct, $asset_type, Request $request): Response
     {

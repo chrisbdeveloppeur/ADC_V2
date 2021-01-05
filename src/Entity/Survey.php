@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SurveyRepository;
+use Doctrine\DBAL\Types\DateType;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -73,14 +74,24 @@ class Survey
     private $final_string;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $hashed_string;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date_string;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $from_inct;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="Survey", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function __construct()
     {
@@ -88,6 +99,7 @@ class Survey
         $this->duration = 1;
         $this->asset_type = "Non communiqué";
         $this->proximity = "Non communiqué";
+        $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
     }
 
@@ -248,6 +260,40 @@ class Survey
     public function setDateString(\DateTimeInterface $date_string): self
     {
         $this->date_string = $date_string;
+
+        return $this;
+    }
+
+    public function getFromInct(): ?string
+    {
+        return $this->from_inct;
+    }
+
+    public function setFromInct(?string $from_inct): self
+    {
+        $this->from_inct = $from_inct;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setSurvey(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getSurvey() !== $this) {
+            $user->setSurvey($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

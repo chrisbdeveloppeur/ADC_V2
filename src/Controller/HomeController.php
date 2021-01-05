@@ -5,18 +5,16 @@ namespace App\Controller;
 
 
 use App\Entity\Survey;
-use App\Entity\User;
 use App\Form\DescriptionFormType;
 use App\Form\FinalStringFormType;
-use App\Form\TypeFormType;
-use App\Repository\UserRepository;
+use App\Form\HomeType;
+use App\Repository\SurveyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class HomeController extends AbstractController
@@ -26,29 +24,31 @@ class HomeController extends AbstractController
      * @Route("/", name="home")
      * @IsGranted("ROLE_USER")
      */
-    public function home(Request $request): Response
+    public function home(Request $request, EntityManagerInterface $em, SurveyRepository $surveyRepository): Response
     {
-        $form = $this->createForm(TypeFormType::class);
+        $form = $this->createForm(HomeType::class);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()){
-
-            $type = $form->get("type")->getData();
-
-            $this->addFlash('info', $type . ' selectionné !');
-
-            if ($type == "demande"){
-                return $this->redirectToRoute("taskt_from_inct",  [
-//                    'type' => $type,
-                ]);
-            }else{
-                return $this->redirectToRoute("home", [
-//                    'type' => $type,
-                ]);
-            }
-
+        $user = $this->getUser();
+        if ($user->getSurvey()){
+            $surveyId = $user->getSurvey()->getId();
+            $actualSurvey = $surveyRepository->find($surveyId);
+            $em->remove($actualSurvey);
+            $em->flush();
         }
-        return $this->render('Survey/home.html.twig');
+        if ($form->isSubmitted() && $form->isValid()){
+            $survey = New Survey();
+            $survey->setUser($user);
+            $survey->setType('Demande');
+            $em->persist($survey);
+            $em->flush();
+
+            return $this->redirectToRoute('taskt_from_inct',[
+                'survey' => $survey,
+            ]);
+        }
+        return $this->render('Survey/home.html.twig',[
+            'form' => $form->createView(),
+        ]);
     }
 
 

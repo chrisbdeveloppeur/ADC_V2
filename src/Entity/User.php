@@ -34,6 +34,11 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Survey::class, inversedBy="user", cascade={"persist", "remove"})
+     */
+    private $Survey;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -111,4 +116,17 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getSurvey(): ?Survey
+    {
+        return $this->Survey;
+    }
+
+    public function setSurvey(?Survey $Survey): self
+    {
+        $this->Survey = $Survey;
+
+        return $this;
+    }
+
 }
