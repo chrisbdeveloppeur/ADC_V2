@@ -5,14 +5,24 @@
 {% block body %}
 <form method="post">
     {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <article class="message is-info has-text-centered flash-msg">
+            <div class="message-header">
+                <span class="icon has-text-light">
+                    <i class="fas fa-lg fa-info-circle"></i>
+                </span>
+                <button class="delete" aria-label="delete" onclick="this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);" ></button>
+            </div>
+            <div class="message-body">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        </article>
     {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+{#    {% if app.user %}#}
+{#        <div class="mb-3">#}
+{#            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>#}
+{#        </div>#}
+{#    {% endif %}#}
 
     <div class="label has-text-centered">Veuillez entrer vos identifiants</div>
 
@@ -38,12 +48,21 @@
            value="{{ csrf_token('authenticate') }}"
     >
 
-    <div class="field">
+    <div class="field is-flex is-justify-content-space-between">
         <p class="control">
-            <button class="button is-info" type="submit">
+            <button class="button is-small is-info" type="submit">
                 Se connecter
             </button>
         </p>
+
+        <a class="button is-small is-info-custom" href="{{ path('lost_password') }}">
+            <span class="icon is-small is-left">
+                <i class="fas fa-user-lock"></i>
+            </span>
+            <span>
+                Mot de passe oublié ?
+            </span>
+        </a>
     </div>
 
 </form>

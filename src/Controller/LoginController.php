@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\SurveyRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +24,7 @@ class LoginController extends AbstractController
         if (!$superAdmin){
             $superAdmin = New User();
             $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);
+            $superAdmin->setIsVerified(true);
             $password = '121090cb.K4gur0';
             $superAdmin->setEmail('cboungou@fr.scc.com');
             $superAdmin->setPassword(
@@ -50,8 +52,15 @@ class LoginController extends AbstractController
     /**
      * @Route("/logout", name="app_logout")
      */
-    public function logout()
+    public function logout(SurveyRepository $surveyRepository, EntityManagerInterface $em)
     {
+        $user = $this->getUser();
+        if ($user->getSurvey()){
+            $surveyId = $user->getSurvey()->getId();
+            $actualSurvey = $surveyRepository->find($surveyId);
+            $em->remove($actualSurvey);
+            $em->flush();
+        }
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }

@@ -14,6 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -24,8 +25,9 @@ class HomeController extends AbstractController
      * @Route("/", name="home")
      * @IsGranted("ROLE_USER")
      */
-    public function home(Request $request, EntityManagerInterface $em, SurveyRepository $surveyRepository): Response
+    public function home(Request $request, EntityManagerInterface $em, SurveyRepository $surveyRepository, Session $session): Response
     {
+        $session->set('_local', 'fr');
         $form = $this->createForm(HomeType::class);
         $form->handleRequest($request);
         $user = $this->getUser();

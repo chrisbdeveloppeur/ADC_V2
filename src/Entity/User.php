@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
@@ -17,6 +20,11 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $securityToken;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -38,6 +46,28 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity=Survey::class, mappedBy="User", cascade={"persist", "remove"})
      */
     private $survey;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
+
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        // Si le statut isConfirmed n'est pas défini: mettre à false
+//        if ($this->isConfirmed === null) {
+//            $this->setIsConfirmed(false);
+//        }
+
+        // Définir un jeton s'il n'y en a pas
+        if ($this->securityToken === null) {
+            $this->renewToken();
+        }
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +167,42 @@ class User implements UserInterface
         $this->survey = $survey;
 
         return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+
+    public function getSecurityToken(): ?string
+    {
+        return $this->securityToken;
+    }
+
+    public function setSecurityToken(string $securityToken): self
+    {
+        $this->securityToken = $securityToken;
+
+        return $this;
+    }
+
+    /**
+     * Renouveller le jeton de sécurité
+     */
+    public function renewToken() : self
+    {
+        // Création d'un jeton
+        $token = bin2hex(random_bytes(16));
+
+        return $this->setSecurityToken($token);
     }
 
 }

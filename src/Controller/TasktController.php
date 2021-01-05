@@ -194,19 +194,17 @@ class TasktController extends AbstractController
             $hostname = $_POST["hostname"];
             $customHostname = $form->get('customHostname')->getData();
 
-
-
             if ($hostname && !$customHostname){
                 $survey->setHostname($hostname);
             }elseif($customHostname){
                 $survey->setHostname($customHostname);
             }elseif (!$hostname && !$customHostname){
                 $this->addFlash('info', 'Veuillez indiquer un hostname pour continuer');
+                return $this->redirectToRoute("taskt_hostname");
             }
             $em->persist($survey);
             $em->flush();
-            return $this->redirectToRoute("description",[
-            ]);
+            return $this->redirectToRoute("description");
         }
 
         return $this->render('Survey/hostname.html.twig', [
