@@ -19,17 +19,37 @@
 <nav class="navbar is-light has-text-black is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ path('home') }}">
-            <figure class="is-flex is-justify-content-center is-align-items-center">
-                <img width="100" height="100" src="{{ asset('build/images/sitelogo_SCC.9f1fb72d.png') }}" alt="" style="width: 124px">
-            </figure>
+            <div class="field is-grouped is-justify-content-center">
+                <figure class="is-flex is-justify-content-center is-align-items-center control">
+                    <img width="100" height="100" src="{{ asset('build/images/sitelogo_SCC.9f1fb72d.png') }}" alt="" style="width: 124px">
+                </figure>
+                <p class="control is-flex is-align-items-center">
+                    <b>Arbre de clôture | v1.9</b>
+                </p>
+            </div>
         </a>
     </div>
 
+    {% if app.user %}
     <div class="navbar-end has-text-centered">
         <div class="navbar-item">
-            <b>Arbre de clôture | v1.9</b>
+            <div class="tags has-addons is-justify-content-center">
+                    <span class="tag is-white is-medium ">
+                        {{ app.user.username }}
+                    </span>
+                    <a href="{{ path('app_logout') }}" class="tag button is-danger is-medium ">
+                        <span>
+                            <strong>Deconnexion</strong>
+                        </span>
+                        <span class="icon">
+                            <i class="fas fa-door-open"></i>
+                        </span>
+                    </a>
+            </div>
         </div>
     </div>
+    {% endif %}
+
 </nav>
 
 {{ include('includes/flash_message.html.twig') }}
