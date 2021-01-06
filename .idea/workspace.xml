@@ -93,7 +93,7 @@
         <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="82" selection-start-line="10" selection-start-column="82" selection-end-line="10" selection-end-column="82" />
+              <caret line="10" column="186" selection-start-line="10" selection-start-column="186" selection-end-line="10" selection-end-column="186" />
             </state>
           </provider>
         </entry>
@@ -272,7 +272,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="948" />
     <option name="width" value="981" />
     <option name="height" value="1032" />
@@ -466,12 +466,12 @@
       <workItem from="1609866044974" duration="16814000" />
       <workItem from="1609924667888" duration="2918000" />
       <workItem from="1609929111422" duration="5429000" />
-      <workItem from="1609939072268" duration="977000" />
+      <workItem from="1609939072268" duration="1293000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209557000" />
+    <option name="totallyTimeSpent" value="209873000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -877,7 +877,7 @@
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="82" selection-start-line="10" selection-start-column="82" selection-end-line="10" selection-end-column="82" />
+          <caret line="10" column="186" selection-start-line="10" selection-start-column="186" selection-end-line="10" selection-end-column="186" />
         </state>
       </provider>
     </entry>
