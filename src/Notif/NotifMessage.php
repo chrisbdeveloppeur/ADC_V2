@@ -26,9 +26,9 @@ class NotifMessage
     public function notifyRegistrationUser(User $user)
     {
         $message = (new \Swift_Message('Chris B Dev - Mail de confirmation pour la création de compte'))
-            ->setFrom('admin@chrisbdev.com')
-//            ->setTo($user->getEmail())
-            ->setTo('kenshin91cb@gmail.com')
+            ->setFrom('admin@scc-tool.com')
+            ->setTo($user->getEmail())
+//            ->setTo('kenshin91cb@gmail.com')
             ->setBody($this->renderer->render('emails/confirmation_user.html.twig',[
                 'user' => $user,
             ]), 'text/html' );
@@ -39,7 +39,7 @@ class NotifMessage
     {
 //         Création de l'email de réinitialisation
         $message = (new \Swift_Message('chris B dev - Réinitialisation de votre mot de passe'))
-            ->setFrom('admin@chrisbdev.com')
+            ->setFrom('admin@scc-tool.com')
             ->setTo($user->getEmail())
 //                ->setTo('kenshin91cb@gmail.com')
             ->setBody($this->renderer->render('emails/reset_password.html.twig',[
