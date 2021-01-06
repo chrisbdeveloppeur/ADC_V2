@@ -49,58 +49,27 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $email = $form->get('email')->getData();
+            $email = explode('@', $email);
+            $mailScc = $email[1];
 
-            // generate a signed url and email it to the user
-//            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-//                (new TemplatedEmail())
-//                    ->from(new Address('admin@scc.com', 'admin scc'))
-//                    ->to($user->getEmail())
-//                    ->subject('Confirmer mon compte Arbre de clôture v1.9')
-//                    ->htmlTemplate('registration/confirmation_email.html.twig')
-//            );
-            // do anything else you need here, like send an email
-//            $this->addFlash('info', 'Votre compte a bien été créé ! Un mail de confirmation viens de vous être envoyer vers par Email');
-//            return $guardHandler->authenticateUserAndHandleSuccess(
-//                $user,
-//                $request,
-//                $authenticator,
-//                'main' // firewall name in security.yaml
-//            );
-            $notifMessage->notifyRegistrationUser($user);
-            $this->addFlash('info', 'Votre compte a bien été créé ! Un mail de confirmation viens de vous être envoyer vers par Email');
-            return $this->redirectToRoute('home');
+            if ($mailScc == 'fr.scc.com'){
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+                $notifMessage->notifyRegistrationUser($user);
+                $this->addFlash('info', 'Votre compte a bien été créé ! Un mail de confirmation viens de vous être envoyer vers par Email');
+                return $this->redirectToRoute('home');
+            }else{
+                $this->addFlash('info', 'Veuilliez indiquez une adresse mail SCC');
+            }
+
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
-
-//    /**
-//     * @Route("/verify/email", name="app_verify_email")
-//     */
-//    public function verifyUserEmail(Request $request): Response
-//    {
-//        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-//
-//        // validate email confirmation link, sets User::isVerified=true and persists
-//        try {
-//            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
-//        } catch (VerifyEmailExceptionInterface $exception) {
-//            $this->addFlash('verify_email_error', $exception->getReason());
-//
-//            return $this->redirectToRoute('home');
-//        }
-//
-//        // @TODO Change the redirect on success and handle or remove the flash message in your templates
-//        $this->addFlash('success', 'Votre compte à bien été valider');
-//
-//        return $this->redirectToRoute('home');
-//    }
-
 
     /**
      * Confirmation du compte après inscription (lien envoyé par email)
