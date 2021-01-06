@@ -25,7 +25,7 @@ class NotifMessage
 
     public function notifyRegistrationUser(User $user)
     {
-        $message = (new \Swift_Message('Chris B Dev - Mail de confirmation pour la création de compte'))
+        $message = (new \Swift_Message('Arbre de clôture v1.9 - Mail de confirmation pour la création de compte'))
             ->setFrom('admin@scc-tool.com')
             ->setTo($user->getEmail())
 //            ->setTo('kenshin91cb@gmail.com')
@@ -38,7 +38,7 @@ class NotifMessage
     public function lostPassword(User $user)
     {
 //         Création de l'email de réinitialisation
-        $message = (new \Swift_Message('chris B dev - Réinitialisation de votre mot de passe'))
+        $message = (new \Swift_Message('Arbre de clôture v1.9 - Réinitialisation de votre mot de passe'))
             ->setFrom('admin@scc-tool.com')
             ->setTo($user->getEmail())
 //                ->setTo('kenshin91cb@gmail.com')
