@@ -1,21 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Enregistrement de votre compte SCC{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+    <div class="columns is-flex has-text-centered is-centered">
+        <div class="column">
 
-    <h1>Register</h1>
+            {{ form_start(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+              <h1 class="title">Enregistrement de votre compte SCC</h1>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+            <div class="field">
+                <label class="label">Entrez votre adresse mail SCC</label>
+                <div class="control">
+                    {{ form_widget(registrationForm.email, {'attr' : {'placeholder' : 'ex : monmail@fr.scc.com', 'class' : 'input has-text-centered', 'alt' : 'email'}
+                    }) }}
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Entrez votre mot de passe</label>
+                <div class="control">
+                    {{ form_widget(registrationForm.plainPassword.first, {'attr' : {'placeholder' : 'Entrez le Mot de passe', 'class' : 'input has-text-centered', 'alt' : 'password'}
+                    }) }}
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Validez votre mot de passe</label>
+                <div class="control">
+                    {{ form_widget(registrationForm.plainPassword.second, {'attr' : {'placeholder' : 'Répétez votre mot de passe', 'class' : 'input has-text-centered', 'alt' : 'confirm password'}
+                    }) }}
+                </div>
+            </div>
+
+            {% if form_errors(registrationForm) != null %}
+                <div class="notification is-danger">
+                    <button class="delete" onclick="this.parentElement.parentElement.removeChild(this.parentElement);"></button>
+                    {{ form_errors(registrationForm) }}
+                </div>
+            {% endif %}
+
+            {% include 'includes/flash_message.html.twig' %}
+
+            <button type="submit" class="button is-info is-small">
+                <span class="icon">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span>
+                    Valider
+                </span>
+            </button>
+
+            {{ form_end(registrationForm) }}
+
+        </div>
+    </div>
+
+{#    {{ form_start(registrationForm) }}#}
+{#        {{ form_row(registrationForm.email) }}#}
+{#        {{ form_row(registrationForm.plainPassword, {#}
+{#            label: 'Password'#}
+{#        }) }}#}
+
+{#        <button type="submit" class="btn">Register</button>#}
+{#    {{ form_end(registrationForm) }}#}
 {% endblock %}

@@ -93,13 +93,13 @@ class HomeController extends AbstractController
         }
     }
     /**
-     * @Route("/validation", name="final_string", methods={"POST"})
+     * @Route("/validation", name="final_string")
      * @IsGranted("ROLE_USER")
      */
     public function stringGen(): Response
     {
         $survey = $this->getUser()->getSurvey();
-        $textDescription = $_POST['description_text'];
+        $textDescription = $survey->getDescription();
         $text = preg_replace('/\s\s+/', ' ', $textDescription);
 
         $from_inct = $this->miseEnForm($survey->getFromInct(), 'Suite à incident : ');
