@@ -83,10 +83,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/emails/confirmation_user.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1785">
-              <caret line="249" column="95" lean-forward="true" selection-start-line="249" selection-start-column="95" selection-end-line="249" selection-end-column="95" />
+            <state relative-caret-position="173">
+              <caret line="240" column="35" lean-forward="true" selection-start-line="240" selection-start-column="35" selection-end-line="240" selection-end-column="35" />
               <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="e#10242#10259#0#Twig" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#p#2;n#div#1;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -160,6 +164,9 @@
       <find>Asset</find>
       <find>Chris</find>
       <find>arbre</find>
+      <find>img</find>
+      <find>image</find>
+      <find>url</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -514,12 +521,12 @@
       <workItem from="1609838194895" duration="12102000" />
       <workItem from="1609866044974" duration="16814000" />
       <workItem from="1609924667888" duration="2918000" />
-      <workItem from="1609929111422" duration="3847000" />
+      <workItem from="1609929111422" duration="4370000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206998000" />
+    <option name="totallyTimeSpent" value="207521000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
@@ -934,10 +941,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/emails/confirmation_user.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1785">
-          <caret line="249" column="95" lean-forward="true" selection-start-line="249" selection-start-column="95" selection-end-line="249" selection-end-column="95" />
+        <state relative-caret-position="173">
+          <caret line="240" column="35" lean-forward="true" selection-start-line="240" selection-start-column="35" selection-end-line="240" selection-end-column="35" />
           <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="e#10242#10259#0#Twig" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#p#2;n#div#1;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#td#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
