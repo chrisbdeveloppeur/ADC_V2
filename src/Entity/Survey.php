@@ -103,6 +103,11 @@ class Survey
      */
     private $new_user;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $service;
+
     public function __construct()
     {
         $this->quantity = 1;
@@ -318,6 +323,18 @@ class Survey
     public function setNewUser(?string $new_user): self
     {
         $this->new_user = $new_user;
+
+        return $this;
+    }
+
+    public function getService(): ?string
+    {
+        return $this->service;
+    }
+
+    public function setService(?string $service): self
+    {
+        $this->service = $service;
 
         return $this;
     }

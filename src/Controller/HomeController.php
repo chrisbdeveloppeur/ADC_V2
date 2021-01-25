@@ -27,19 +27,20 @@ class HomeController extends AbstractController
 {
 
     public function resetSurvey(SurveyRepository $surveyRepository, EntityManagerInterface $em){
-        $user = $this->getUser();
-        if ($user->getSurvey()){
-            $surveyId = $user->getSurvey()->getId();
-            $actualSurvey = $surveyRepository->find($surveyId);
-            $em->remove($actualSurvey);
-            $em->flush();
-        }else{
+//        $user = $this->getUser();
+//        if ($user->getSurvey()){
+//            $surveyId = $user->getSurvey()->getId();
+//            $actualSurvey = $surveyRepository->find($surveyId);
+//            $em->remove($actualSurvey);
+//            $em->flush();
+//        }else{
             $survey = new Survey();
-            $user->setSurvey($survey);
+//            $user->setSurvey($survey);
             $em->persist($survey);
-            $em->flush();
-        }
+//            $em->flush();
+//        }
     }
+
     /**
      * @Route("/", name="home")
      */
@@ -48,7 +49,6 @@ class HomeController extends AbstractController
 //        $session->set('_local', 'fr');
         $form = $this->createForm(HomeType::class);
         $form->handleRequest($request);
-        $user = $this->getUser();
         $this->resetSurvey($surveyRepository, $em);
         return $this->render('Survey/home.html.twig');
     }
@@ -59,13 +59,12 @@ class HomeController extends AbstractController
      */
     public function setService(EntityManagerInterface $em, SurveyRepository $surveyRepository)
     {
-        $user = $this->getUser();
         $this->resetSurvey($surveyRepository, $em);
         return $this->render('Survey/service.html.twig');
     }
 
     /**
-     * @Route("/{service}/type", name="type")
+     * @Route("/{service}/q1", name="q1")
      */
     public function tasktOrInct($service,EntityManagerInterface $em)
     {
@@ -82,7 +81,26 @@ class HomeController extends AbstractController
         }else{
             return $this->render('Survey/service.html.twig');
         }
+    }
 
+    /**
+     * @Route("/{tasktOrInct}/q2", name="q2")
+     */
+    public function typeInter($tasktOrInct,EntityManagerInterface $em)
+    {
+        $user = $this->getUser();
+        $survey = $user->getSurvey();
+        $survey->setType($tasktOrInct);
+        $em->persist($survey);
+        if ($tasktOrInct == 'taskt'){
+            return $this->render('Survey/sdp/type_inter.html.twig',[
+                'survey' => $survey,
+            ]);
+        }elseif ($tasktOrInct == 'inct'){
+            return $this->render('Survey/service.html.twig');
+        }else{
+            return $this->render('Survey/service.html.twig');
+        }
     }
 
     /**
