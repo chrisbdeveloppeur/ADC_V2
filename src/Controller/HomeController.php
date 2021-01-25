@@ -26,6 +26,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
 
+    public function resetSurvey(SurveyRepository $surveyRepository, EntityManagerInterface $em){
+        $user = $this->getUser();
+        if ($user->getSurvey()){
+            $surveyId = $user->getSurvey()->getId();
+            $actualSurvey = $surveyRepository->find($surveyId);
+            $em->remove($actualSurvey);
+            $em->flush();
+        }else{
+            $survey = new Survey();
+            $user->setSurvey($survey);
+            $em->persist($survey);
+            $em->flush();
+        }
+    }
     /**
      * @Route("/", name="home")
      */
@@ -35,12 +49,7 @@ class HomeController extends AbstractController
         $form = $this->createForm(HomeType::class);
         $form->handleRequest($request);
         $user = $this->getUser();
-        if ($user->getSurvey()){
-            $surveyId = $user->getSurvey()->getId();
-            $actualSurvey = $surveyRepository->find($surveyId);
-            $em->remove($actualSurvey);
-            $em->flush();
-        }
+        $this->resetSurvey($surveyRepository, $em);
         return $this->render('Survey/home.html.twig');
     }
 
@@ -48,18 +57,26 @@ class HomeController extends AbstractController
     /**
      * @Route("/service", name="service")
      */
-    public function setService()
+    public function setService(EntityManagerInterface $em, SurveyRepository $surveyRepository)
     {
+        $user = $this->getUser();
+        $this->resetSurvey($surveyRepository, $em);
         return $this->render('Survey/service.html.twig');
     }
 
     /**
      * @Route("/{service}/type", name="type")
      */
-    public function tasktOrInct($service)
+    public function tasktOrInct($service,EntityManagerInterface $em)
     {
+        $user = $this->getUser();
+        $survey = $user->getSurvey();
+        $survey->setService($service);
+        $em->persist($survey);
         if ($service == 'sdp'){
-            return $this->render('Survey/sdp/type_inter.html.twig');
+            return $this->render('Survey/sdp/type_inter.html.twig',[
+                'survey' => $survey,
+            ]);
         }elseif ($service == 'hd'){
             return $this->render('Survey/service.html.twig');
         }else{
