@@ -17,17 +17,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class HomeController
+ * @package App\Controller
+ * @IsGranted("ROLE_USER")
+ */
 
 class HomeController extends AbstractController
 {
 
     /**
      * @Route("/", name="home")
-     * @IsGranted("ROLE_USER")
      */
-    public function home(Request $request, EntityManagerInterface $em, SurveyRepository $surveyRepository, Session $session): Response
+    public function home(Request $request, EntityManagerInterface $em, SurveyRepository $surveyRepository): Response
     {
-        $session->set('_local', 'fr');
+//        $session->set('_local', 'fr');
         $form = $this->createForm(HomeType::class);
         $form->handleRequest($request);
         $user = $this->getUser();
@@ -37,30 +41,35 @@ class HomeController extends AbstractController
             $em->remove($actualSurvey);
             $em->flush();
         }
-        if ($form->isSubmitted() && $form->isValid()){
-            if (!$user->getSurvey()){
-                $survey = New Survey();
-                $survey->setUser($user);
-                $survey->setType('Demande');
-                $em->persist($survey);
-                $em->flush();
-            }else{
-                $survey = $user->getSurvey();
-            }
-            return $this->redirectToRoute('taskt_from_inct',[
-                'survey' => $survey,
-            ]);
-        }
-        return $this->render('Survey/home.html.twig',[
-            'form' => $form->createView(),
-        ]);
+        return $this->render('Survey/home.html.twig');
     }
 
 
+    /**
+     * @Route("/service", name="service")
+     */
+    public function setService()
+    {
+        return $this->render('Survey/service.html.twig');
+    }
+
+    /**
+     * @Route("/{service}/type", name="type")
+     */
+    public function tasktOrInct($service)
+    {
+        if ($service == 'sdp'){
+            return $this->render('Survey/sdp/type_inter.html.twig');
+        }elseif ($service == 'hd'){
+            return $this->render('Survey/service.html.twig');
+        }else{
+            return $this->render('Survey/service.html.twig');
+        }
+
+    }
 
     /**
      * @Route("/description", name="description")
-     * @IsGranted("ROLE_USER")
      */
     public function description(Request $request, EntityManagerInterface $em): Response
     {
