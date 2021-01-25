@@ -8,24 +8,57 @@
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
             <div class="field">
-                <label class="label">Cela concerne t-il une demande ou un incident ?</label>
+            {% if form_name == 'type_form' %}
+                <label class="label">S'agit-il d'une demande ou d'un incident ?</label>
+            {% elseif form_name == 'type_inter_taskt_form' %}
+                <label class="label">Veuillez préciser la nature de la demande</label>
+            {% elseif form_name == 'type_inter_inct_form' %}
+                <label class="label">Veuillez préciser la nature de l'incident</label>
+            {% endif %}
             </div>
 
             <div class="is-flex is-justify-content-center is-align-items-end">
 
                 {{ form_start(form) }}
 
-                <div class="control">
-                    {% for child in form.choices %}
-                        <label class="radio" onclick="checkRadio(this)">
-                            <button class="button">
-                                {{ child.vars.label }}
-                                {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
-                            </button>
+                {{ form_name }}
 
-                        </label>
-                    {% endfor %}
-                </div>
+                {% if form_name == 'type_inter_taskt_form' %}
+                    <div class="field is-grouped">
+                        <div class="control">
+                            {{ form_widget(form, {'attr': {'class': 'select'} } ) }}
+                        </div>
+                        <div class="control">
+                            <button class="button is-info is-normal">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+{#                    <div class="is-flex is-justify-content-space-between mt-4">#}
+
+{#                        <a href="#" class="button is-info is-small js-hostname" onclick="goBack()">#}
+{#                            <i class="fas fa-chevron-left"></i>#}
+{#                        </a>#}
+
+{#                        <button class="button is-info is-small">#}
+{#                            <i class="fas fa-chevron-right"></i>#}
+{#                        </button>#}
+
+{#                    </div>#}
+                {% else %}
+                    <div class="control">
+                        {% for child in form.choices %}
+                            <label class="radio" onclick="checkRadio(this)">
+                                <button class="button">
+                                    {{ child.vars.label }}
+                                    {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                                </button>
+
+                            </label>
+                        {% endfor %}
+                    </div>
+                {% endif %}
 
                 {{ form_end(form) }}
 

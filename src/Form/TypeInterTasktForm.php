@@ -15,13 +15,14 @@ class TypeInterTasktForm extends AbstractType
             ->add('choices', ChoiceType::class,
                 array('label' => false,
                     'required' => true,
-                    'multiple' => false,
-                    'expanded' => true,
-//                'choice_label' => false,
                     'choices' => [
-                        'Changement de PC' => 1,
-                        'Autre intervention matérielle' => 2,
-                        'Intervention software' => 3,
+                        'Fourniture, reprise et déménagement de postes de travail' => 1,
+                        'Fourniture, reprise et déménagement de matériels hors postes de travail' => 2,
+                        'Installation d’applications sans fourniture de matériel.' => 3,
+                        'Autres actions matériel' => 4,
+                        'Autres actions logiciel et accès' => 5,
+                        'Support téléphonie' => 6,
+                        'Actions CMDB' => 7,
                     ]
                 )
             )

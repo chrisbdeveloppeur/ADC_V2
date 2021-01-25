@@ -11,6 +11,7 @@ use App\Form\HomeType;
 use App\Form\ServiceType;
 use App\Form\TypeFormType;
 use App\Form\TypeInterTasktForm;
+use App\Form\TypeInterInctForm;
 use App\Repository\SurveyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -66,6 +67,7 @@ class HomeController extends AbstractController
         }
         return $this->render('Survey/sdp/type_inter.html.twig',[
             'form' => $form->createView(),
+            'form_name' => $form->getName(),
         ]);
     }
 
@@ -74,8 +76,14 @@ class HomeController extends AbstractController
      */
     public function typeInter($tasktorinct, $service, EntityManagerInterface $em, Request $request)
     {
-        $form = $this->createForm(TypeFormType::class);
+        if ($tasktorinct == "inct"){
+            $form = $this->createForm(TypeInterInctForm::class);
+
+        }elseif ($tasktorinct == 'taskt'){
+            $form = $this->createForm(TypeInterTasktForm::class);
+        }
         $form->handleRequest($request);
+
         if ($form->isSubmitted()){
             $reponse = $form->get('choices')->getData();
             if ($reponse == 1){         /* Changement de PC */
@@ -96,8 +104,10 @@ class HomeController extends AbstractController
             }
 
         }
+
         return $this->render('Survey/sdp/type_inter.html.twig',[
             'form' => $form->createView(),
+            'form_name' => $form->getName(),
         ]);
 
     }
