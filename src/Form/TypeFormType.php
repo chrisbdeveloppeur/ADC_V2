@@ -16,18 +16,21 @@ class TypeFormType extends AbstractType
                 array('label' => false,
                     'required' => true,
                     'choices' => [
-                        'Hardware' => [
-                            'Dotation de poste' => 'Dotation',
-                            'Prêt de poste' => 'Prêt',
-                            'Restitution' => 'Restitution',
-                            'Renouvellement' => 'Renouvellement',
-                            'Déménagement' => 'Déménagement',
-                        ],
-                        'Software' => [
-                            'Installation logiciel' => 'Installation',
-                            'Desinstallation logiciel' => 'Desinstallation',
-                            'Réinstallation logiciel' => 'Réinstallation',
-                        ],
+                        'Demande' => 'taskt',
+                        'incident' => 'inct',
+
+                        //                        'Hardware' => [
+//                            'Dotation de poste' => 'Dotation',
+//                            'Prêt de poste' => 'Prêt',
+//                            'Restitution' => 'Restitution',
+//                            'Renouvellement' => 'Renouvellement',
+//                            'Déménagement' => 'Déménagement',
+//                        ],
+//                        'Software' => [
+//                            'Installation logiciel' => 'Installation',
+//                            'Desinstallation logiciel' => 'Desinstallation',
+//                            'Réinstallation logiciel' => 'Réinstallation',
+//                        ],
 
                     ]
                 )

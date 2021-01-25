@@ -8,28 +8,37 @@
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
             <div class="field">
-                <label class="label" for="last_name">Cela concerne t-il une demande ou un incident ?</label>
+                <label class="label">Cela concerne t-il une demande ou un incident ?</label>
             </div>
 
             <div class="is-flex is-justify-content-center is-align-items-end">
 
-                <a href="{{ path('q2', {'tasktOrInct': 'taskt'}) }}" class="button is-info">
-                        <span>
-                            Demande [TASKT]
-                        </span>
-                    <span class="icon">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                </a>
+{#                {{ form_start(form, {'attr': {'method': 'post'}}) }}#}
+{#                {{ form(form) }}#}
 
-                <a href="{{ path('q2', {'tasktOrInct': 'inct'}) }}" class="button is-info">
-                        <span>
-                            Incident [INCT]
-                        </span>
-                    <span class="icon">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                </a>
+{#                <button class="button is-info is-small" type="submit">#}
+{#                    <i class="fas fa-chevron-right"></i>#}
+{#                </button>#}
+
+{#                {{ form_end(form) }}#}
+
+{#                <a href="{{ path('q2', {'tasktOrInct': 'taskt'}) }}" class="button is-info">#}
+{#                        <span>#}
+{#                            Demande [TASKT]#}
+{#                        </span>#}
+{#                    <span class="icon">#}
+{#                            <i class="fas fa-chevron-right"></i>#}
+{#                        </span>#}
+{#                </a>#}
+
+{#                <a href="{{ path('q2', {'tasktOrInct': 'inct'}) }}" class="button is-info">#}
+{#                        <span>#}
+{#                            Incident [INCT]#}
+{#                        </span>#}
+{#                    <span class="icon">#}
+{#                            <i class="fas fa-chevron-right"></i>#}
+{#                        </span>#}
+{#                </a>#}
             </div>
 
             <div class="is-flex is-justify-content-space-between">

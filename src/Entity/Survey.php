@@ -108,6 +108,7 @@ class Survey
      */
     private $service;
 
+
     public function __construct()
     {
         $this->quantity = 1;

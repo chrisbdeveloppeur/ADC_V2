@@ -11,14 +11,14 @@
                 </div>
 {#{{ form_start(form) }}#}
                 <div class="is-flex is-justify-content-center is-align-items-end">
-                    <a href="service" class="button is-info">
-                        <span>
-                            Commencer
-                        </span>
-                        <span class="icon">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                    </a>
+                    {{ form_start(form, {'action': path('q1'), 'method': 'POST'}) }}
+                    {{ form_widget(form.service , {'attr': {'class':'select'}}) }}
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button type="submit" class="button is-link" formmethod="post">Submit</button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
                 </div>
 {#{{ form_end(form) }}#}
             </div>

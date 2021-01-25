@@ -8,6 +8,8 @@ use App\Entity\Survey;
 use App\Form\DescriptionFormType;
 use App\Form\FinalStringFormType;
 use App\Form\HomeType;
+use App\Form\ServiceType;
+use App\Form\TypeFormType;
 use App\Repository\SurveyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -17,65 +19,44 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class HomeController
- * @package App\Controller
- * @IsGranted("ROLE_USER")
- */
+///**
+// * Class HomeController
+// * @package App\Controller
+// *
+// */
 
 class HomeController extends AbstractController
 {
-
-    public function resetSurvey(SurveyRepository $surveyRepository, EntityManagerInterface $em){
-//        $user = $this->getUser();
-//        if ($user->getSurvey()){
-//            $surveyId = $user->getSurvey()->getId();
-//            $actualSurvey = $surveyRepository->find($surveyId);
-//            $em->remove($actualSurvey);
-//            $em->flush();
-//        }else{
-            $survey = new Survey();
-//            $user->setSurvey($survey);
-            $em->persist($survey);
-//            $em->flush();
-//        }
-    }
-
     /**
      * @Route("/", name="home")
      */
-    public function home(Request $request, EntityManagerInterface $em, SurveyRepository $surveyRepository): Response
+    public function home(Request $request): Response
     {
-//        $session->set('_local', 'fr');
-        $form = $this->createForm(HomeType::class);
+        $form = $this->createForm(ServiceType::class,[
+           'method' => 'POST'
+        ]);
         $form->handleRequest($request);
-        $this->resetSurvey($surveyRepository, $em);
-        return $this->render('Survey/home.html.twig');
+
+//        if ($form->isSubmitted()){
+//            dd($_POST);
+//            return $this->redirectToRoute('q1');
+//        }
+
+        return $this->render('Survey/home.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 
     /**
-     * @Route("/service", name="service")
+     * @Route("/service", name="q1", methods={"POST"})
      */
-    public function setService(EntityManagerInterface $em, SurveyRepository $surveyRepository)
+    public function tasktOrInct(EntityManagerInterface $em)
     {
-        $this->resetSurvey($surveyRepository, $em);
-        return $this->render('Survey/service.html.twig');
-    }
 
-    /**
-     * @Route("/{service}/q1", name="q1")
-     */
-    public function tasktOrInct($service,EntityManagerInterface $em)
-    {
-        $user = $this->getUser();
-        $survey = $user->getSurvey();
-        $survey->setService($service);
-        $em->persist($survey);
+//        dd($_POST);
         if ($service == 'sdp'){
-            return $this->render('Survey/sdp/type_inter.html.twig',[
-                'survey' => $survey,
-            ]);
+            return $this->render('Survey/sdp/type_inter.html.twig');
         }elseif ($service == 'hd'){
             return $this->render('Survey/service.html.twig');
         }else{
@@ -88,10 +69,11 @@ class HomeController extends AbstractController
      */
     public function typeInter($tasktOrInct,EntityManagerInterface $em)
     {
-        $user = $this->getUser();
-        $survey = $user->getSurvey();
-        $survey->setType($tasktOrInct);
-        $em->persist($survey);
+//        dd($_POST('type_form[type]'));
+//        $user = $this->getUser();
+//        $survey = $user->getSurvey();
+//        $survey->setType($tasktOrInct);
+//        $em->persist($survey);
         if ($tasktOrInct == 'taskt'){
             return $this->render('Survey/sdp/type_inter.html.twig',[
                 'survey' => $survey,
