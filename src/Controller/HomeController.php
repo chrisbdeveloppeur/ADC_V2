@@ -38,9 +38,9 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted()){
-            $service = $form->get('service')->getData();
+            $reponse = $form->get('service')->getData();
             return $this->redirectToRoute('q1',[
-                'service' => $service,
+                'service' => $reponse,
             ]);
         }
 
@@ -58,10 +58,10 @@ class HomeController extends AbstractController
         $form = $this->createForm(TypeFormType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()){
-            $tasktorinct = $form->get('tasktorinct')->getData();
+            $reponse = $form->get('choices')->getData();
             return $this->redirectToRoute('q2',[
                 'service' => $service,
-                'tasktorinct' => $tasktorinct,
+                'tasktorinct' => $reponse,
             ]);
         }
         return $this->render('Survey/sdp/type_inter.html.twig',[
@@ -72,14 +72,33 @@ class HomeController extends AbstractController
     /**
      * @Route("/{service}/{tasktorinct}", name="q2")
      */
-    public function typeInter($tasktorinct,EntityManagerInterface $em, $service)
+    public function typeInter($tasktorinct, $service, EntityManagerInterface $em, Request $request)
     {
-        if ($tasktorinct == 'taskt'){
-            $form = $this->createForm(TypeInterTasktForm::class);
-            return $this->render('Survey/sdp/type_inter.html.twig',[
-                'form' => $form->createView(),
-            ]);
+        $form = $this->createForm(TypeFormType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $reponse = $form->get('choices')->getData();
+            if ($reponse == 1){         /* Changement de PC */
+                return $this->redirectToRoute('q2',[
+                    'service' => $service,
+                    'tasktorinct' => $reponse,
+                ]);
+            }elseif ($reponse == 2 ){   /* Autre intervention matérielle */
+                return $this->redirectToRoute('q2',[
+                    'service' => $service,
+                    'tasktorinct' => $reponse,
+                ]);
+            }else{                      /* Intervention software */
+                return $this->redirectToRoute('q2',[
+                    'service' => $service,
+                    'tasktorinct' => $reponse,
+                ]);
+            }
+
         }
+        return $this->render('Survey/sdp/type_inter.html.twig',[
+            'form' => $form->createView(),
+        ]);
 
     }
 

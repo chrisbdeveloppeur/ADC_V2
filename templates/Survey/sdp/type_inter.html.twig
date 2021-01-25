@@ -13,52 +13,21 @@
 
             <div class="is-flex is-justify-content-center is-align-items-end">
 
-                {{ form_start(form, {'attr': {'class': ''}}) }}
-                {{ form_widget(form) }}
+                {{ form_start(form) }}
 
-                <button class="button is-info is-small" type="submit">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+                <div class="control">
+                    {% for child in form.choices %}
+                        <label class="radio" onclick="checkRadio(this)">
+                            <button class="button">
+                                {{ child.vars.label }}
+                                {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                            </button>
+
+                        </label>
+                    {% endfor %}
+                </div>
 
                 {{ form_end(form) }}
-
-{#                {{ form_start(form, {'attr': {'method': 'post'}}) }}#}
-{#                {{ form(form) }}#}
-
-{#                <button class="button is-info is-small" type="submit">#}
-{#                    <i class="fas fa-chevron-right"></i>#}
-{#                </button>#}
-
-{#                {{ form_end(form) }}#}
-
-{#                <a href="{{ path('q2', {'tasktOrInct': 'taskt'}) }}" class="button is-info">#}
-{#                        <span>#}
-{#                            Demande [TASKT]#}
-{#                        </span>#}
-{#                    <span class="icon">#}
-{#                            <i class="fas fa-chevron-right"></i>#}
-{#                        </span>#}
-{#                </a>#}
-
-{#                <a href="{{ path('q2', {'tasktOrInct': 'inct'}) }}" class="button is-info">#}
-{#                        <span>#}
-{#                            Incident [INCT]#}
-{#                        </span>#}
-{#                    <span class="icon">#}
-{#                            <i class="fas fa-chevron-right"></i>#}
-{#                        </span>#}
-{#                </a>#}
-            </div>
-
-            <div class="is-flex is-justify-content-space-between">
-
-                <a href="#" class="button is-info is-small js-hostname" onclick="goBack()">
-                    <i class="fas fa-chevron-left"></i>
-                </a>
-
-                <button class="button is-info is-small">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
 
             </div>
 

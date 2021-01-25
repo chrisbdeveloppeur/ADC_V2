@@ -12,13 +12,16 @@ class TypeInterTasktForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('typeInter', ChoiceType::class,
+            ->add('choices', ChoiceType::class,
                 array('label' => false,
                     'required' => true,
+                    'multiple' => false,
+                    'expanded' => true,
+//                'choice_label' => false,
                     'choices' => [
-                        'Changement de PC' => 'changement de PC',
-                        'Autre intervention matérielle' => 'autre intevention materielle',
-                        'Intervention software' => 'intervention software',
+                        'Changement de PC' => 1,
+                        'Autre intervention matérielle' => 2,
+                        'Intervention software' => 3,
                     ]
                 )
             )
