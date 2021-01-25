@@ -10,6 +10,7 @@ use App\Form\FinalStringFormType;
 use App\Form\HomeType;
 use App\Form\ServiceType;
 use App\Form\TypeFormType;
+use App\Form\TypeInterTasktForm;
 use App\Repository\SurveyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -32,15 +33,16 @@ class HomeController extends AbstractController
      */
     public function home(Request $request): Response
     {
-        $form = $this->createForm(ServiceType::class,[
-           'method' => 'POST'
-        ]);
+        $survey = new Survey();
+        $form = $this->createForm(ServiceType::class);
         $form->handleRequest($request);
 
-//        if ($form->isSubmitted()){
-//            dd($_POST);
-//            return $this->redirectToRoute('q1');
-//        }
+        if ($form->isSubmitted()){
+            $service = $form->get('service')->getData();
+            return $this->redirectToRoute('q1',[
+                'service' => $service,
+            ]);
+        }
 
         return $this->render('Survey/home.html.twig', [
             'form' => $form->createView(),
@@ -49,40 +51,36 @@ class HomeController extends AbstractController
 
 
     /**
-     * @Route("/service", name="q1", methods={"POST"})
+     * @Route("/{service}", name="q1")
      */
-    public function tasktOrInct(EntityManagerInterface $em)
+    public function tasktOrInct(EntityManagerInterface $em, $service, Request $request)
     {
-
-//        dd($_POST);
-        if ($service == 'sdp'){
-            return $this->render('Survey/sdp/type_inter.html.twig');
-        }elseif ($service == 'hd'){
-            return $this->render('Survey/service.html.twig');
-        }else{
-            return $this->render('Survey/service.html.twig');
+        $form = $this->createForm(TypeFormType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $tasktorinct = $form->get('tasktorinct')->getData();
+            return $this->redirectToRoute('q2',[
+                'service' => $service,
+                'tasktorinct' => $tasktorinct,
+            ]);
         }
+        return $this->render('Survey/sdp/type_inter.html.twig',[
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-     * @Route("/{tasktOrInct}/q2", name="q2")
+     * @Route("/{service}/{tasktorinct}", name="q2")
      */
-    public function typeInter($tasktOrInct,EntityManagerInterface $em)
+    public function typeInter($tasktorinct,EntityManagerInterface $em, $service)
     {
-//        dd($_POST('type_form[type]'));
-//        $user = $this->getUser();
-//        $survey = $user->getSurvey();
-//        $survey->setType($tasktOrInct);
-//        $em->persist($survey);
-        if ($tasktOrInct == 'taskt'){
+        if ($tasktorinct == 'taskt'){
+            $form = $this->createForm(TypeInterTasktForm::class);
             return $this->render('Survey/sdp/type_inter.html.twig',[
-                'survey' => $survey,
+                'form' => $form->createView(),
             ]);
-        }elseif ($tasktOrInct == 'inct'){
-            return $this->render('Survey/service.html.twig');
-        }else{
-            return $this->render('Survey/service.html.twig');
         }
+
     }
 
     /**

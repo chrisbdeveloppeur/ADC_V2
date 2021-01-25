@@ -12,14 +12,23 @@
 
                 <div class="is-flex is-justify-content-center is-align-items-end">
 
-                    {{ form_start(form, {'action': path('q1'), 'method': 'POST'}) }}
-                        {{ form_widget(form.service , {'attr': {'class':'select'}}) }}
+                    {{ form_start(form) }}
+                    {{ form_widget(form.service , {'attr': {'class':'select'}}) }}
                     <div class="field is-grouped">
                         <div class="control">
                             <button type="submit" class="button is-link" formmethod="post">Submit</button>
                         </div>
                     </div>
                     {{ form_end(form) }}
+
+{#                    {{ form_start(form, {'action': path('q1'), 'method': 'POST'}) }}#}
+{#                        {{ form_widget(form.service , {'attr': {'class':'select'}}) }}#}
+{#                    <div class="field is-grouped">#}
+{#                        <div class="control">#}
+{#                            <button type="submit" class="button is-link" formmethod="post">Submit</button>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    {{ form_end(form) }}#}
 
 {#                    <a href="{{ path('q1', {'service': 'sdp'}) }}" class="button is-info">#}
 {#                        <span>#}

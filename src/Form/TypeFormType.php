@@ -12,9 +12,12 @@ class TypeFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', ChoiceType::class,
+            ->add('tasktorinct', ChoiceType::class,
                 array('label' => false,
                     'required' => true,
+                    'multiple' => false,
+                    'expanded' => true,
+//                'choice_label' => false,
                     'choices' => [
                         'Demande' => 'taskt',
                         'incident' => 'inct',

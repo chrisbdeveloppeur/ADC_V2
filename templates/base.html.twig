@@ -69,7 +69,12 @@
 
     {% block javascripts %}
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+        <script>
+            function checkRadio(radio){
+                let thisRadio = radio.querySelector('.radio-select');
+                thisRadio.checked = true;
+            }
+        </script>
     {% endblock %}
 </body>
 </html>

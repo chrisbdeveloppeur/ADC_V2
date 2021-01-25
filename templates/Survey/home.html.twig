@@ -9,18 +9,27 @@
                 <div class="column">
                     Bienvenue sur l'outil d'assistance à la fermeture de demandes [TASKT] & incidents [INCT]
                 </div>
-{#{{ form_start(form) }}#}
+
                 <div class="is-flex is-justify-content-center is-align-items-end">
-                    {{ form_start(form, {'action': path('q1'), 'method': 'POST'}) }}
-                    {{ form_widget(form.service , {'attr': {'class':'select'}}) }}
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <button type="submit" class="button is-link" formmethod="post">Submit</button>
-                        </div>
+
+                    {{ form_start(form) }}
+
+                    <div class="control">
+                        {% for child in form.service %}
+                        <label class="radio" onclick="checkRadio(this)">
+                            <button class="button">
+                                {{ child.vars.label }}
+                                {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                            </button>
+
+                        </label>
+                        {% endfor %}
                     </div>
+
                     {{ form_end(form) }}
+
                 </div>
-{#{{ form_end(form) }}#}
+
             </div>
 
         </div>

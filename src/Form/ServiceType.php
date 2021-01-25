@@ -15,12 +15,12 @@ class ServiceType extends AbstractType
             ->add('service', ChoiceType::class,[
                 'label' => false,
                 'mapped' => false,
-//                'multiple' => false,
-//                'expanded' => true,
+                'multiple' => false,
+                'expanded' => true,
 //                'choice_label' => false,
                 'choices' => [
-                    'Service de proximité' => 'SDP',
-                    'Help desk' => 'HD',
+                    'Service de proximité' => 'sdp',
+                    'Help desk' => 'hd',
                 ]
             ])
         ;
