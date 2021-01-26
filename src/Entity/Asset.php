@@ -18,35 +18,56 @@ class Asset
      */
     private $id;
 
-//    /**
-//     * @ORM\Column(type="string", length=255, nullable=true)
-//     */
-//    private $current_hostname;
-//
-//    /**
-//     * @ORM\Column(type="string", length=255, nullable=true)
-//     */
-//    private $new_hostname;
-//
-//    /**
-//     * @ORM\Column(type="string", length=255, nullable=true)
-//     */
-//    private $type;
-//
-//    /**
-//     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="assets")
-//     */
-//    private $survey;
-//
-//    /**
-//     * @ORM\Column(type="integer", nullable=true)
-//     */
-//    private $position;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $current_hostname;
 
-//    public function __toString()
-//    {
-//        $this->getCurrentHostname();
-//    }
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $new_hostname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="assets")
+     */
+    private $survey;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $position;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $action;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $rspd;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $duree;
+
+    public function __construct()
+    {
+        $this->setCurrentHostname('n/a');
+        $this->setNewHostname('n/a');
+    }
+
+    public function __toString()
+    {
+        return $this->getNewHostname();
+    }
 
     public function getId(): ?int
     {
@@ -109,6 +130,42 @@ class Asset
     public function setPosition(?int $position): self
     {
         $this->position = $position;
+
+        return $this;
+    }
+
+    public function getAction(): ?string
+    {
+        return $this->action;
+    }
+
+    public function setAction(?string $action): self
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    public function getRspd(): ?bool
+    {
+        return $this->rspd;
+    }
+
+    public function setRspd(?bool $rspd): self
+    {
+        $this->rspd = $rspd;
+
+        return $this;
+    }
+
+    public function getDuree(): ?int
+    {
+        return $this->duree;
+    }
+
+    public function setDuree(?int $duree): self
+    {
+        $this->duree = $duree;
 
         return $this;
     }

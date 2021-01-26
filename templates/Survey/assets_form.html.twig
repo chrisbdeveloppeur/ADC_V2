@@ -51,9 +51,14 @@
                 </p>
             </div>
 
-            <div class="field">
+            <div class="field has-addons">
                 <p class="control is-expanded">
-                    {{ form_widget(asset_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 90'}}) }}
+                    {{ form_widget(asset_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 30'}}) }}
+                </p>
+                <p class="control">
+                    <a class="button is-static">
+                        Min
+                    </a>
                 </p>
             </div>
 
@@ -77,6 +82,14 @@
                 {% for asset in survey.assets %}
                     <div class="control">
                         <div class="tags has-addons">
+                            {% if asset.type and asset.action %}
+                                <span class="tag is-light">{{ asset.action }}_{{ asset.type }}</span>
+                            {% elseif asset.action %}
+                                <span class="tag is-light">{{ asset.action }}</span>
+                            {% elseif asset.type %}
+                                <span class="tag is-light">{{ asset.type }}</span>
+                            {% endif %}
+
                             {% if asset.newhostname %}
                                 <span class="tag is-primary">{{ asset.newhostname }}</span>
                             {% endif %}

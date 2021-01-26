@@ -21,11 +21,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class HomeController
- * @package App\Controller
- * @IsGranted("ROLE_USER")
- */
+///**
+// * Class HomeController
+// * @package App\Controller
+// * @IsGranted("ROLE_USER")
+// */
 
 class HomeController extends AbstractController
 {
@@ -56,7 +56,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/service", name="q1")
      */
-    public function tasktOrInct(EntityManagerInterface $em, Request $request)
+    public function tasktOrInct(Request $request)
     {
         $survey = $this->get('session')->get('survey');
         $form = $this->createForm(TypeFormType::class);
@@ -64,10 +64,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted()){
             $reponse = $form->get('choices')->getData();
             $survey->setType($reponse);
-            return $this->redirectToRoute('q2',[
-//                'service' => $service,
-//                'tasktorinct' => $reponse,
-            ]);
+            return $this->redirectToRoute('q2');
         }
         return $this->render('Survey/sdp/type_inter.html.twig',[
             'form' => $form->createView(),
@@ -78,7 +75,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/type", name="q2")
      */
-    public function typeInter(EntityManagerInterface $em, Request $request)
+    public function typeInter(Request $request)
     {
         $survey = $this->get('session')->get('survey');
         $type = $survey->getType();
@@ -94,18 +91,12 @@ class HomeController extends AbstractController
             $survey->setTypeInter($reponse);
             if ($reponse == 'inct_1'){         /* Changement de PC */
                 return $this->redirectToRoute('asset_form',[
-//                    'service' => $service,
-//                    'tasktorinct' => $type,
                     'reponse' => $reponse,
                 ]);
             }elseif ($reponse == 'inct_2' ){   /* Autre intervention matérielle */
-                return $this->redirectToRoute('q2',[
-//                    'service' => $service,
-//                    'tasktorinct' => $reponse,
-                ]);
+                return $this->redirectToRoute('q2');
             }elseif($reponse == 'inct_3'){                      /* Intervention software */
                 return $this->redirectToRoute('q2',[
-//                    'service' => $service,
                     'tasktorinct' => $reponse,
                 ]);
             }
@@ -126,7 +117,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/asset-form", name="asset_form")
      */
-    public function assetForm(EntityManagerInterface $em, Request $request): Response
+    public function assetForm(Request $request): Response
     {
         $survey = $this->get('session')->get('survey');
         $form = $this->createForm(AssetsType::class);
@@ -136,7 +127,7 @@ class HomeController extends AbstractController
         for ($i=0; $i<=count($survey->getAssets()); $i++ ){
             $number = $i;
         }
-//        dd($survey->getAssets()[1]);
+
         if ($assetForm->isSubmitted() && $number<=10){
             $newAsset = new Asset();
             $newAsset->setSurvey($survey);
@@ -144,6 +135,18 @@ class HomeController extends AbstractController
             $newAsset->setCurrentHostname($assetForm->get('as')->getData());
             $newAsset->setNewHostname($assetForm->get('ae')->getData());
             $newAsset->setType($assetForm->get('type')->getData());
+            $newAsset->setAction($assetForm->get('action')->getData());
+            if ( ($newAsset->getAction()=="DEM_PDT") || ($newAsset->getAction()=="PRT_PCF") ){
+                $newAsset->setType(null);
+            }
+            $newAsset->setRspd($assetForm->get('rspd')->getData());
+            $newAsset->setDuree($assetForm->get('tpx')->getData());
+            if ($newAsset->getNewHostname()==null){
+                $newAsset->setNewHostname('n/a');
+            }
+            if ($newAsset->getCurrentHostname()==null){
+                $newAsset->setCurrentHostname('n/a');
+            }
             $survey->addAsset($newAsset);
         }
 
@@ -161,43 +164,21 @@ class HomeController extends AbstractController
     }
 
 
-//    /**
-//     * @Route("/add_asset", name="add_asset")
-//     */
-//    public function addAsset($reponse, $service, EntityManagerInterface $em, Request $request)
-//    {
-//        $survey = $this->get('session')->get('survey');
-//        $form = $this->createForm(AssetsType::class);
-//        $assetForm = $this->createForm(AssetType::class);
-//        $form->handleRequest($request);
-//
-//
-//        return $this->render('Survey/assets_form.html.twig',[
-//            'form' => $form->createView(),
-//            'form_name' => $form->getName(),
-//            'asset_form' => $assetForm->createView(),
-//            'survey' => $survey,
-//        ]);
-//
-//    }
-
     /**
      * @Route("/del-asset={position}", name="del_asset")
      */
-    public function delAsset($position, EntityManagerInterface $em, Request $request)
+    public function delAsset($position, Request $request)
     {
         $survey = $this->get('session')->get('survey');
-        for ($i=0; $i<=count($survey->getAssets()); $i++ ){
-            if ($i == $position){
-                unset($survey->getAssets()[$i]);
-            }
-        }
+//        dd($survey);
+        $assetToDelete = $survey->getAssets()[$position];
+        unset($survey->getAssets()[$position]);
         $form = $this->createForm(AssetsType::class);
-        $assetForm = $this->createForm(AssetType::class);
         $form->handleRequest($request);
 
-        $referer = $request->headers->get('referer');
+        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
         return $this->redirect($referer);
+//        return $this->json('asset ' . $assetToDelete . ' retiré !');
 
     }
 
