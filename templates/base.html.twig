@@ -160,27 +160,36 @@
 
 
 
-            // function addAsset(event){
-            //     console.log(this);
-            //     // assetTag.style.display = 'none';
-            //     event.preventDefault();
+            // $('#asset-btn-form').on('click', function(e){
+            //     e.preventDefault();
             //
-            //     const url = this.baseURI;
-            //     // console.log(url);
+            //         const url = this.baseURI;
+            //         console.log(url);
             //     axios.get(url).then(function (response) {
-            //
             //     });
-            //
-            //     // return false;
-            // }
-            //
-            // let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
-            //
-            // ajaxForm.forEach(function (form) {
-            //     // let btn = form.querySelector('button');
-            //
-            //     form.addEventListener('click', addAsset);
-            // })
+            // });
+
+            function addAsset(event){
+                console.log(this.action);
+                // assetTag.style.display = 'none';
+                event.preventDefault();
+
+                const url = this.action;
+                const formData = $(this).serialize();
+                axios.post(url,formData).then(function (response) {
+
+                });
+
+                // return false;
+            }
+
+            let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
+
+            ajaxForm.forEach(function (form) {
+                // let btn = form.querySelector('button');
+
+                form.addEventListener('click', addAsset);
+            })
 
         </script>
 

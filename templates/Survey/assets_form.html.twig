@@ -70,7 +70,7 @@
             </div>
 
             <div class="control">
-                <button type="submit" class="button is-info is-small">
+                <button type="submit" class="button is-info is-small" id="asset-btn-form">
                     <span>Ajouter d'autres actions</span>
                     <span class="icon">
                         <i class="fas fa-plus"></i>
@@ -88,7 +88,7 @@
 
             </div>
 
-            <div class="field is-grouped is-grouped-multiline">
+            <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
                 {% for asset in survey.assets %}
                     <div class="control">
                         <div class="tags has-addons">
