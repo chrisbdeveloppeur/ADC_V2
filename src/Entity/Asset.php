@@ -21,44 +21,74 @@ class Asset
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $hostname;
+    private $current_hostname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $identifiant;
+    private $new_hostname;
 
-    public function __toString()
-    {
-        return $this->getHostname();
-    }
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="assets")
+     */
+    private $survey;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getHostname(): ?string
+    public function getCurrentHostname(): ?string
     {
-        return $this->hostname;
+        return $this->current_hostname;
     }
 
-    public function setHostname(?string $hostname): self
+    public function setCurrentHostname(?string $current_hostname): self
     {
-        $this->hostname = $hostname;
+        $this->current_hostname = $current_hostname;
 
         return $this;
     }
 
-    public function getIdentifiant(): ?string
+    public function getNewHostname(): ?string
     {
-        return $this->identifiant;
+        return $this->new_hostname;
     }
 
-    public function setIdentifiant(?string $identifiant): self
+    public function setNewHostname(?string $new_hostname): self
     {
-        $this->identifiant = $identifiant;
+        $this->new_hostname = $new_hostname;
 
         return $this;
     }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getSurvey(): ?Survey
+    {
+        return $this->survey;
+    }
+
+    public function setSurvey(?Survey $survey): self
+    {
+        $this->survey = $survey;
+
+        return $this;
+    }
+
 }

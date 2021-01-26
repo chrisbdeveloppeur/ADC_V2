@@ -19,9 +19,9 @@ class TypeInterInctForm extends AbstractType
                     'expanded' => true,
 //                'choice_label' => false,
                     'choices' => [
-                        'Changement de PC' => 1,
-                        'Autre intervention matérielle' => 2,
-                        'Intervention software' => 3,
+                        'Changement de PC' => 'inct_1',
+                        'Autre intervention matérielle' => 'inct_2',
+                        'Intervention software' => 'inct_3',
                     ]
                 )
             )

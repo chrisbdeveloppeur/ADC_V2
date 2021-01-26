@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{#{% block title %}Hello AskUserController!{% endblock %}#}
+
+{% block body %}
+
+    <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
+        <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
+
+            {{ form_start(form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
+
+            <div class="field">
+                <label class="label" for="last_name">Veuillez indiquer le(s) asset(s) concerné(s)</label>
+
+                {{ form_widget(form) }}
+
+                <div class="field has-addons">
+                    <p class="control">
+                    <span class="select">
+                      <select>
+                        <option>$</option>
+                        <option>£</option>
+                        <option>€</option>
+                      </select>
+                    </span>
+                    </p>
+                    <p class="control is-expanded">
+                        <input class="input" type="text" placeholder="Amount of money">
+                    </p>
+                    <p class="control">
+                        <a class="button">
+                            Transfer
+                        </a>
+                    </p>
+                </div>
+
+                {% for asset in survey %}
+                    {{ asset.id }}
+                {% endfor %}
+
+                {{ form_start(asset_form) }}
+                    {{ form_widget(asset_form) }}
+                {{ form_end(asset_form) }}
+{#                <div class="is-flex">#}
+{#                    <div class="control" style="flex: 1">#}
+{#                        <div class="select is-info is-fullwidth">#}
+{#                            {{ form_widget(form.type, {'attr' : {'class' : '', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}#}
+{#                        </div>#}
+{#                    </div>#}
+
+{#                </div>#}
+
+            </div>
+
+{#            <div class="is-flex is-justify-content-space-between">#}
+
+{#                <a href="#" class="button is-info is-small js-hostname" onclick="goBack()">#}
+{#                    <i class="fas fa-chevron-left"></i>#}
+{#                </a>#}
+
+{#                <button class="button is-info is-small">#}
+{#                    <i class="fas fa-chevron-right"></i>#}
+{#                </button>#}
+
+{#            </div>#}
+
+            <div class="control">
+                <button class="button is-info is-normal">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            {{ form_end(form) }}
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+

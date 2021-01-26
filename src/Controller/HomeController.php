@@ -5,6 +5,8 @@ namespace App\Controller;
 
 
 use App\Entity\Survey;
+use App\Form\AssetsType;
+use App\Form\AssetType;
 use App\Form\DescriptionFormType;
 use App\Form\FinalStringFormType;
 use App\Form\ServiceType;
@@ -78,28 +80,29 @@ class HomeController extends AbstractController
     public function typeInter($tasktorinct, $service, EntityManagerInterface $em, Request $request)
     {
         $survey = $this->get('session')->get('survey');
-        if ($tasktorinct == "inct"){
+        $type = $survey->getType();
+        if ($type == "inct"){
             $form = $this->createForm(TypeInterInctForm::class);
-        }elseif ($tasktorinct == 'taskt'){
+        }elseif ($type == 'taskt'){
             $form = $this->createForm(TypeInterTasktForm::class);
         }
         $form->handleRequest($request);
 
         if ($form->isSubmitted()){
             $reponse = $form->get('choices')->getData();
-//            $survey->set($reponse);
-            dd($survey);
-            if ($reponse == 1){         /* Changement de PC */
+            $survey->setTypeInter($reponse);
+            if ($reponse == 'inct_1'){         /* Changement de PC */
+                return $this->redirectToRoute('asset_form',[
+                    'service' => $service,
+                    'tasktorinct' => $type,
+                    'reponse' => $reponse,
+                ]);
+            }elseif ($reponse == 'inct_2' ){   /* Autre intervention matérielle */
                 return $this->redirectToRoute('q2',[
                     'service' => $service,
                     'tasktorinct' => $reponse,
                 ]);
-            }elseif ($reponse == 2 ){   /* Autre intervention matérielle */
-                return $this->redirectToRoute('q2',[
-                    'service' => $service,
-                    'tasktorinct' => $reponse,
-                ]);
-            }else{                      /* Intervention software */
+            }elseif($reponse == 'inct_3'){                      /* Intervention software */
                 return $this->redirectToRoute('q2',[
                     'service' => $service,
                     'tasktorinct' => $reponse,
@@ -114,6 +117,35 @@ class HomeController extends AbstractController
         ]);
 
     }
+
+
+
+
+
+    /**
+     * @Route("/{service}/{tasktorinct}/{reponse}", name="asset_form")
+     */
+    public function assetForm($reponse, $service, EntityManagerInterface $em, Request $request)
+    {
+        $survey = $this->get('session')->get('survey');
+        $form = $this->createForm(AssetsType::class);
+        $assetForm = $this->createForm(AssetType::class);
+        $form->handleRequest($request);
+
+
+        return $this->render('Survey/assets_form.html.twig',[
+            'form' => $form->createView(),
+            'form_name' => $form->getName(),
+            'asset_form' => $assetForm->createView(),
+            'survey' => $survey,
+        ]);
+
+    }
+
+
+
+
+
 
     /**
      * @Route("/description", name="description")

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SurveyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\DateType;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -37,21 +39,6 @@ class Survey
      * @ORM\Column(type="integer")
      */
     private $duration;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $asset_type;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $new_asset;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $old_asset;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -108,6 +95,16 @@ class Survey
      */
     private $service;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type_inter;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Asset::class, mappedBy="survey")
+     */
+    private $assets;
+
 
     public function __construct()
     {
@@ -117,6 +114,7 @@ class Survey
         $this->proximity = "Non communiqué";
         $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
+        $this->assets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,42 +166,6 @@ class Survey
     public function setDuration(int $duration): self
     {
         $this->duration = $duration;
-
-        return $this;
-    }
-
-    public function getAssetType(): ?string
-    {
-        return $this->asset_type;
-    }
-
-    public function setAssetType(string $asset_type): self
-    {
-        $this->asset_type = $asset_type;
-
-        return $this;
-    }
-
-    public function getNewAsset(): ?string
-    {
-        return $this->new_asset;
-    }
-
-    public function setNewAsset(string $new_asset): self
-    {
-        $this->new_asset = $new_asset;
-
-        return $this;
-    }
-
-    public function getOldAsset(): ?string
-    {
-        return $this->old_asset;
-    }
-
-    public function setOldAsset(?string $old_asset): self
-    {
-        $this->old_asset = $old_asset;
 
         return $this;
     }
@@ -336,6 +298,48 @@ class Survey
     public function setService(?string $service): self
     {
         $this->service = $service;
+
+        return $this;
+    }
+
+    public function getTypeInter(): ?string
+    {
+        return $this->type_inter;
+    }
+
+    public function setTypeInter(?string $type_inter): self
+    {
+        $this->type_inter = $type_inter;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Asset[]
+     */
+    public function getAssets(): Collection
+    {
+        return $this->assets;
+    }
+
+    public function addAsset(Asset $asset): self
+    {
+        if (!$this->assets->contains($asset)) {
+            $this->assets[] = $asset;
+            $asset->setSurvey($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAsset(Asset $asset): self
+    {
+        if ($this->assets->removeElement($asset)) {
+            // set the owning side to null (unless already changed)
+            if ($asset->getSurvey() === $this) {
+                $asset->setSurvey(null);
+            }
+        }
 
         return $this;
     }
