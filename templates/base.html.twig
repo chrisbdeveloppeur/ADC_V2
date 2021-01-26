@@ -160,24 +160,39 @@
 
 
 
-            // $('#asset-btn-form').on('click', function(e){
-            //     e.preventDefault();
-            //
-            //         const url = this.baseURI;
-            //         console.log(url);
-            //     axios.get(url).then(function (response) {
-            //     });
-            // });
 
             function addAsset(event){
                 console.log(this.action);
-                // assetTag.style.display = 'none';
                 event.preventDefault();
 
                 const url = this.action;
                 const formData = $(this).serialize();
                 axios.post(url,formData).then(function (response) {
-
+                    console.log(response);
+                    let container = document.querySelector('#asset-tags-grouped');
+                    let datas = response.data;
+                    let arrayDatas = [];
+                    if (datas.action){
+                        let action = datas.action;
+                        arrayDatas.push(action);
+                    }
+                    if (datas.type && (datas.action !== 'DEM_PDT')){
+                        let type = datas.type;
+                        arrayDatas.push(type);
+                    }
+                    if (datas.ae){
+                        let ae = datas.ae;
+                        arrayDatas.push(ae);
+                    }else{
+                        arrayDatas.push('n/a');
+                    }
+                    if (datas.as){
+                        let as = datas.as;
+                        arrayDatas.push(as);
+                    }else{
+                        arrayDatas.push('n/a');
+                    }
+                    container.innerHTML = container.innerHTML + ""+ arrayDatas + "";
                 });
 
                 // return false;
@@ -186,8 +201,6 @@
             let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
 
             ajaxForm.forEach(function (form) {
-                // let btn = form.querySelector('button');
-
                 form.addEventListener('click', addAsset);
             })
 

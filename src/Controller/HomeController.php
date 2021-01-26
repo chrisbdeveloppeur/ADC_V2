@@ -149,8 +149,13 @@ class HomeController extends AbstractController
             }
             $survey->addAsset($newAsset);
 
-            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-//            return $this->redirect($referer);
+            $action = $assetForm->get('action')->getData();
+            $type = $assetForm->get('type')->getData();
+            $ae = $assetForm->get('ae')->getData();
+            $as = $assetForm->get('ae')->getData();
+
+//            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+            return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as]);
         }
 
         if ($form->isSubmitted()){
