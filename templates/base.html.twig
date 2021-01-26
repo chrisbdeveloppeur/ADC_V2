@@ -75,6 +75,45 @@
                 thisRadio.checked = true;
             }
         </script>
+
+        <script>
+
+            let input = document.querySelectorAll(".js-on-change");
+            let dynamicFields = document.querySelectorAll(".dynamic-field");
+            let fieldAe = document.getElementById('ae-field');
+            let fieldAs = document.getElementById('as-field');
+            let fieldTpx = document.getElementById('tpx-field');
+            let fieldRsdp = document.getElementById('rsdp-field');
+
+            input.forEach(element => element.addEventListener('input', updateValue) );
+            // dynamicFields.forEach(element => console.log(element) );
+
+            window.onload = function(){
+                // input.forEach(element => console.log(element.value) )
+            } ;
+
+            function updateValue(e) {
+                let valueString = '';
+                input.forEach(element => valueString = valueString + element.value);
+                if (valueString.includes('DEM_PDT') || valueString.includes('PRT') || valueString.includes('NDO') ){
+                    console.log('display AE');
+                    updateFieldsVisibility(fieldAe);
+                }
+                // dynamicFields.forEach(element => updateFieldsVisibility(element) );
+                console.log(valueString);
+            }
+
+
+            function updateFieldsVisibility(element) {
+                dynamicFields.forEach(thisElement => thisElement.classList.add('is-hidden') );
+                // if (element.classList.contains('is-hidden')){
+                    element.classList.remove('is-hidden')
+                // } else {
+                //     element.classList.add('is-hidden')
+                // }
+            }
+
+        </script>
     {% endblock %}
 </body>
 </html>
