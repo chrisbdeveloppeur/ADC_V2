@@ -119,15 +119,15 @@ class HomeController extends AbstractController
      */
     public function assetForm(Request $request): Response
     {
-        $survey = $this->get('session')->get('survey');
         $form = $this->createForm(AssetsType::class);
         $assetForm = $this->createForm(AssetType::class);
+        $survey = $this->get('session')->get('survey');
         $form->handleRequest($request);
         $assetForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getAssets()); $i++ ){
             $number = $i;
         }
-
+//
         if ($assetForm->isSubmitted() && $number<=10){
             $newAsset = new Asset();
             $newAsset->setSurvey($survey);
@@ -148,10 +148,13 @@ class HomeController extends AbstractController
                 $newAsset->setCurrentHostname('n/a');
             }
             $survey->addAsset($newAsset);
+
+            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+//            return $this->redirect($referer);
         }
 
         if ($form->isSubmitted()){
-            dump($survey);
+            dump('form suivant');
             die();
         }
 
@@ -162,6 +165,42 @@ class HomeController extends AbstractController
             'survey' => $survey,
         ]);
     }
+
+
+//    /**
+//     * @Route("/add-asset", name="add_asset")
+//     */
+//    public function addAsset(Request $request): Response
+//    {
+//        $survey = $this->get('session')->get('survey');
+////        dd($survey);
+//        for ($i=0; $i<=count($survey->getAssets()); $i++ ){
+//            $number = $i;
+//        }
+//
+////            $newAsset = new Asset();
+////            $newAsset->setSurvey($survey);
+////            $newAsset->setPosition($number);
+////            $newAsset->setCurrentHostname($assetForm->get('as')->getData());
+////            $newAsset->setNewHostname($assetForm->get('ae')->getData());
+////            $newAsset->setType($assetForm->get('type')->getData());
+////            $newAsset->setAction($assetForm->get('action')->getData());
+////            if ( ($newAsset->getAction()=="DEM_PDT") || ($newAsset->getAction()=="PRT_PCF") ){
+////                $newAsset->setType(null);
+////            }
+////            $newAsset->setRspd($assetForm->get('rspd')->getData());
+////            $newAsset->setDuree($assetForm->get('tpx')->getData());
+////            if ($newAsset->getNewHostname()==null){
+////                $newAsset->setNewHostname('n/a');
+////            }
+////            if ($newAsset->getCurrentHostname()==null){
+////                $newAsset->setCurrentHostname('n/a');
+////            }
+////            $survey->addAsset($newAsset);
+//
+//            return $this->json($survey);
+//
+//    }
 
 
     /**

@@ -75,7 +75,6 @@
                     <span class="icon">
                         <i class="fas fa-plus"></i>
                     </span>
-
                 </button>
             </div>
 
@@ -107,7 +106,7 @@
                             {% if asset.currenthostname %}
                                 <span class="tag is-danger">{{ asset.currenthostname }}</span>
                             {% endif %}
-                            <a class="tag is-delete ajax-remove" href="{{ path('del_asset', {'position': asset.position }) }}" title="Retiré cette action"></a>
+                            <a class="tag is-delete ajax-remove-asset" href="{{ path('del_asset', {'position': asset.position }) }}" title="Retiré cette action"></a>
                         </div>
                     </div>
                 {% endfor %}
