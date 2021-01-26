@@ -9,36 +9,42 @@
 
             <label class="label" for="last_name">Veuillez indiquer le(s) asset(s) concerné(s)</label>
 
-            {{ form_start(asset_form) }}
+            {{ form_start(asset_form, {'attr': {'class': ''}}) }}
 
+            <label class="label">Type de l'intervention</label>
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(asset_form.action, {'attr': {'class': 'select'}}) }}
+                        {{ form_widget(asset_form.action, {'attr': {'class': 'select has-text-centered'}}) }}
                     </span>
                 </p>
             </div>
 
+            <label class="label">Type de matériel</label>
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(asset_form.type, {'attr': {'class': 'select'}}) }}
+                        {{ form_widget(asset_form.type, {'attr': {'class': 'select has-text-centered'}}) }}
                     </span>
                 </p>
             </div>
 
+            <div class="is-flex is-justify-content-space-around">
+                <label class="label">Asset sortant</label>
+                <label class="label">Asset entrant</label>
+            </div>
             <div class="field has-addons has-addons-centered">
                 <p class="control is-expanded">
-                    {{ form_widget(asset_form.ae, {'attr': {'class':'input', 'placeholder': 'Asset entrant'}}) }}
+                    {{ form_widget(asset_form.ae, {'attr': {'class':'input has-text-centered', 'placeholder': 'Asset entrant'}}) }}
                 </p>
                 <p class="control is-expanded">
-                    {{ form_widget(asset_form.as, {'attr': {'class':'input', 'placeholder': 'Asset sortant'}}) }}
+                    {{ form_widget(asset_form.as, {'attr': {'class':'input has-text-centered', 'placeholder': 'Asset sortant'}}) }}
                 </p>
             </div>
 
             <div class="field">
                 <p class="control">
-                    <label class="checkbox">
+                    <label class="checkbox label">
                         Rendez-vous respécté par l'utilisateur ?
                         {{ form_widget(asset_form.rspd, {'attr': {}}) }}
                     </label>
@@ -47,7 +53,7 @@
 
             <div class="field">
                 <p class="control is-expanded">
-                    {{ form_widget(asset_form.tpx, {'attr': {'class':'input', 'placeholder': 'Exemple : 90'}}) }}
+                    {{ form_widget(asset_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 90'}}) }}
                 </p>
             </div>
 

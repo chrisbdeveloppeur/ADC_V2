@@ -21,11 +21,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-///**
-// * Class HomeController
-// * @package App\Controller
-// *
-// */
+/**
+ * Class HomeController
+ * @package App\Controller
+ * @IsGranted("ROLE_USER")
+ */
 
 class HomeController extends AbstractController
 {
