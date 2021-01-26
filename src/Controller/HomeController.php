@@ -7,18 +7,15 @@ namespace App\Controller;
 use App\Entity\Survey;
 use App\Form\DescriptionFormType;
 use App\Form\FinalStringFormType;
-use App\Form\HomeType;
 use App\Form\ServiceType;
 use App\Form\TypeFormType;
 use App\Form\TypeInterTasktForm;
 use App\Form\TypeInterInctForm;
-use App\Repository\SurveyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 ///**
@@ -35,11 +32,13 @@ class HomeController extends AbstractController
     public function home(Request $request): Response
     {
         $survey = new Survey();
+
         $form = $this->createForm(ServiceType::class);
         $form->handleRequest($request);
-
+        $this->get('session')->set('survey', $survey);
         if ($form->isSubmitted()){
             $reponse = $form->get('service')->getData();
+            $survey->setService($reponse);
             return $this->redirectToRoute('q1',[
                 'service' => $reponse,
             ]);
@@ -56,10 +55,12 @@ class HomeController extends AbstractController
      */
     public function tasktOrInct(EntityManagerInterface $em, $service, Request $request)
     {
+        $survey = $this->get('session')->get('survey');
         $form = $this->createForm(TypeFormType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()){
             $reponse = $form->get('choices')->getData();
+            $survey->setType($reponse);
             return $this->redirectToRoute('q2',[
                 'service' => $service,
                 'tasktorinct' => $reponse,
@@ -76,9 +77,9 @@ class HomeController extends AbstractController
      */
     public function typeInter($tasktorinct, $service, EntityManagerInterface $em, Request $request)
     {
+        $survey = $this->get('session')->get('survey');
         if ($tasktorinct == "inct"){
             $form = $this->createForm(TypeInterInctForm::class);
-
         }elseif ($tasktorinct == 'taskt'){
             $form = $this->createForm(TypeInterTasktForm::class);
         }
@@ -86,6 +87,8 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted()){
             $reponse = $form->get('choices')->getData();
+//            $survey->set($reponse);
+            dd($survey);
             if ($reponse == 1){         /* Changement de PC */
                 return $this->redirectToRoute('q2',[
                     'service' => $service,
