@@ -12,17 +12,13 @@
             <div class="field">
                 <label class="label" for="last_name">Veuillez indiquer le(s) asset(s) concerné(s)</label>
 
-                {{ form_widget(form) }}
+                {{ form_widget(form, {'attr': {'class': 'is-hidden'}}) }}
 
                 <div class="field has-addons">
                     <p class="control">
-                    <span class="select">
-                      <select>
-                        <option>$</option>
-                        <option>£</option>
-                        <option>€</option>
-                      </select>
-                    </span>
+                        <span class="select">
+                        {{ form_widget(asset_form.type, {'attr': {'class': 'select'}}) }}
+                        </span>
                     </p>
                     <p class="control is-expanded">
                         <input class="input" type="text" placeholder="Amount of money">
@@ -34,12 +30,29 @@
                     </p>
                 </div>
 
-                {% for asset in survey %}
-                    {{ asset.id }}
+                {% for asset in survey.assets %}
+                    {{ asset.type }}
+                    {{ asset.currenthostname }}
+                    {{ asset.newhostname }}
+{#                    {{ asset.rsdp }}#}
+{#                    {{ asset.tpx }}#}
+{#                    {{ asset.action }}#}
                 {% endfor %}
 
                 {{ form_start(asset_form) }}
-                    {{ form_widget(asset_form) }}
+
+                {{ form_widget(asset_form.type) }}
+                {{ form_widget(asset_form.ae) }}
+                {{ form_widget(asset_form.as) }}
+                {{ form_widget(asset_form.rspd) }}
+                {{ form_widget(asset_form.tpx) }}
+                {{ form_widget(asset_form.action) }}
+                        <div class="control">
+                            <button type="submit" class="button is-info is-small">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+
                 {{ form_end(asset_form) }}
 {#                <div class="is-flex">#}
 {#                    <div class="control" style="flex: 1">#}

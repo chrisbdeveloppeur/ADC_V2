@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 
+use App\Entity\Asset;
 use App\Entity\Survey;
 use App\Form\AssetsType;
 use App\Form\AssetType;
@@ -128,6 +129,45 @@ class HomeController extends AbstractController
     public function assetForm($reponse, $service, EntityManagerInterface $em, Request $request)
     {
         $survey = $this->get('session')->get('survey');
+        $form = $this->createForm(AssetsType::class);
+        $assetForm = $this->createForm(AssetType::class);
+        $form->handleRequest($request);
+        $assetForm->handleRequest($request);
+
+        if ($assetForm->isSubmitted()){
+//            dd($assetForm->getData());
+            $newAsset = new Asset();
+            $newAsset->setSurvey($survey);
+            dd(count($survey->getAssets()));
+            for ($i=0; $i<=count($survey->getAssets()); $i++ ){
+                $number = $i+1;
+            }
+            $newAsset->setCurrentHostname($assetForm->get('as')->getData());
+            $newAsset->setNewHostname($assetForm->get('ae')->getData());
+            $newAsset->setType($assetForm->get('type')->getData());
+            $survey->addAsset($newAsset);
+//            dd($survey);
+        }elseif ($form->isSubmitted()){
+            dump('Passage au formulaire des autre matériels');
+            die();
+        }
+
+        return $this->render('Survey/assets_form.html.twig',[
+            'form' => $form->createView(),
+            'form_name' => $form->getName(),
+            'asset_form' => $assetForm->createView(),
+            'survey' => $survey,
+        ]);
+    }
+
+
+    /**
+     * @Route("/add_asset", name="add_asset")
+     */
+    public function addAsset($reponse, $service, EntityManagerInterface $em, Request $request)
+    {
+        $survey = $this->get('session')->get('survey');
+        dd($survey);
         $form = $this->createForm(AssetsType::class);
         $assetForm = $this->createForm(AssetType::class);
         $form->handleRequest($request);

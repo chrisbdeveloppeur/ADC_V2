@@ -38,6 +38,11 @@ class Asset
      */
     private $survey;
 
+    public function __toString()
+    {
+        $this->getCurrentHostname();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -18,7 +18,7 @@ class AssetType extends AbstractType
         $builder
             ->add('type', ChoiceType::class,[
 //                'label' => false,
-                'required' => true,
+                'required' => false,
                 'choices' => [
                     'Poste fixe' => 'PCF',
                     'Laptop + avec ou sans d\'accueil' => 'LAP',
@@ -28,7 +28,7 @@ class AssetType extends AbstractType
             )
             ->add('action', ChoiceType::class, [
 //                'label' => false,
-                'required' => true,
+                'required' => false,
                 'choices' => [
                     'Déménagement' => 'DEM_PDT',
                     'Prêt' => 'PRT',
@@ -41,22 +41,22 @@ class AssetType extends AbstractType
             )
             ->add('ae', TextType::class,[
 //                    'label' => false,
-                    'required' => true,
+                    'required' => false,
                 ]
             )
             ->add('as', TextType::class,[
 //                    'label' => false,
-                    'required' => true,
+                    'required' => false,
                 ]
             )
             ->add('rspd', CheckboxType::class,[
 //                    'label' => false,
-                    'required' => true,
+                    'required' => false,
                 ]
             )
             ->add('tpx', IntegerType::class,[
 //                'label' => false,
-                'required' => true,
+                'required' => false,
                 ]
             )
         ;
@@ -65,7 +65,7 @@ class AssetType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Asset::class,
+//            'data_class' => Asset::class,
         ]);
     }
 }
