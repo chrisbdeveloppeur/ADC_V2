@@ -29,36 +29,36 @@
                 </p>
             </div>
 
-            <div class="is-hidden dynamic-field mb-4">
+            <div class="is-hidden dynamic-field mb-4" id="assets-field">
                 <div class="is-flex is-justify-content-space-around">
-                    <label class="label">Asset sortant</label>
                     <label class="label">Asset entrant</label>
+                    <label class="label">Asset sortant</label>
                 </div>
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
-                        {{ form_widget(asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'id':'ae-field', 'placeholder': 'Asset entrant'}}) }}
+                        {{ form_widget(asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset entrant'}}) }}
                     </p>
                     <p class="control is-expanded">
-                        {{ form_widget(asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'id':'as-field', 'placeholder': 'Asset sortant'}}) }}
+                        {{ form_widget(asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset sortant'}}) }}
                     </p>
                 </div>
             </div>
 
-            <div class="is-hidden dynamic-field mb-4">
+            <div class="is-hidden dynamic-field mb-4" id="rspd-field">
                 <div class="field">
                     <p class="control">
                         <label class="checkbox label">
                             Rendez-vous respécté par l'utilisateur ?
-                            {{ form_widget(asset_form.rspd, {'attr': {'id':'rspd-field'}}) }}
+                            {{ form_widget(asset_form.rspd, {'attr': {}}) }}
                         </label>
                     </p>
                 </div>
             </div>
 
-            <div class="is-hidden dynamic-field mb-4">
+            <div class="is-hidden dynamic-field mb-4" id="tpx-field">
                 <div class="field has-addons">
                     <p class="control is-expanded">
-                        {{ form_widget(asset_form.tpx, {'attr': {'class':'input has-text-centered', 'id':'tpx-field', 'placeholder': 'Exemple : 30'}}) }}
+                        {{ form_widget(asset_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 30'}}) }}
                     </p>
                     <p class="control">
                         <a class="button is-static">

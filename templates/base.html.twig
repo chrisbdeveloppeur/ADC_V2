@@ -80,37 +80,58 @@
 
             let input = document.querySelectorAll(".js-on-change");
             let dynamicFields = document.querySelectorAll(".dynamic-field");
-            let fieldAe = document.getElementById('ae-field');
-            let fieldAs = document.getElementById('as-field');
+            let fieldAssets = document.getElementById('assets-field');
+            let asset_ae = document.getElementById('asset_ae');
+            // let fieldAs = document.getElementById('as-field');
+            let asset_as = document.getElementById('asset_as');
             let fieldTpx = document.getElementById('tpx-field');
-            let fieldRsdp = document.getElementById('rsdp-field');
+            let fieldRsdp = document.getElementById('rspd-field');
 
             input.forEach(element => element.addEventListener('input', updateValue) );
             // dynamicFields.forEach(element => console.log(element) );
 
             window.onload = function(){
                 // input.forEach(element => console.log(element.value) )
+                updateValue();
             } ;
 
             function updateValue(e) {
                 let valueString = '';
                 input.forEach(element => valueString = valueString + element.value);
+                initializeAssetsForm();
                 if (valueString.includes('DEM_PDT') || valueString.includes('PRT') || valueString.includes('NDO') ){
-                    console.log('display AE');
-                    updateFieldsVisibility(fieldAe);
+                    updateFieldsVisibility(fieldAssets);
+                    updateFieldsVisibility(fieldRsdp);
+                    updateFieldsVisibility(fieldTpx);
+                    asset_ae.attributes.removeNamedItem('disabled');
+                }else if (valueString.includes('REP_PDT')) {
+                    updateFieldsVisibility(fieldAssets);
+                    updateFieldsVisibility(fieldRsdp);
+                    updateFieldsVisibility(fieldTpx);
+                    asset_as.attributes.removeNamedItem('disabled');
+                }else if (valueString.includes('REN')) {
+                    updateFieldsVisibility(fieldAssets);
+                    updateFieldsVisibility(fieldRsdp);
+                    updateFieldsVisibility(fieldTpx);
+                    asset_ae.attributes.removeNamedItem('disabled');
+                    asset_as.attributes.removeNamedItem('disabled');
                 }
-                // dynamicFields.forEach(element => updateFieldsVisibility(element) );
-                console.log(valueString);
             }
 
 
+
+            function initializeAssetsForm() {
+                hiddeAllFields();
+                asset_ae.setAttribute('disabled', true);
+                asset_ae.value = null;
+                asset_as.setAttribute('disabled', true);
+                asset_as.value = null;
+            }
+            function hiddeAllFields() {
+                dynamicFields.forEach(element => element.classList.add('is-hidden') );
+            }
             function updateFieldsVisibility(element) {
-                dynamicFields.forEach(thisElement => thisElement.classList.add('is-hidden') );
-                // if (element.classList.contains('is-hidden')){
-                    element.classList.remove('is-hidden')
-                // } else {
-                //     element.classList.add('is-hidden')
-                // }
+                element.classList.remove('is-hidden')
             }
 
         </script>
