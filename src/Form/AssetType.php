@@ -19,6 +19,7 @@ class AssetType extends AbstractType
             ->add('type', ChoiceType::class,[
 //                'label' => false,
                 'required' => false,
+                'placeholder' => false,
                 'choices' => [
                     'Poste fixe' => 'PCF',
                     'Laptop + avec ou sans d\'accueil' => 'LAP',
@@ -29,6 +30,7 @@ class AssetType extends AbstractType
             ->add('action', ChoiceType::class, [
 //                'label' => false,
                 'required' => false,
+                'placeholder' => false,
                 'choices' => [
                     'Déménagement' => 'DEM_PDT',
                     'Prêt' => 'PRT',

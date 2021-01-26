@@ -151,7 +151,7 @@ class HomeController extends AbstractController
         }
 
         if ($form->isSubmitted()){
-            dump('Passage au formulaire des autre matériels');
+            dump($survey);
             die();
         }
 
@@ -167,7 +167,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/del-asset={position}", name="del_asset")
      */
-    public function delAsset($position, Request $request)
+    public function delAsset($position, Request $request): Response
     {
         $survey = $this->get('session')->get('survey');
 //        dd($survey);
@@ -176,9 +176,9 @@ class HomeController extends AbstractController
         $form = $this->createForm(AssetsType::class);
         $form->handleRequest($request);
 
-        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-        return $this->redirect($referer);
-//        return $this->json('asset ' . $assetToDelete . ' retiré !');
+//        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+//        return $this->redirect($referer);
+        return $this->json('asset ' . $assetToDelete . ' retiré !');
 
     }
 

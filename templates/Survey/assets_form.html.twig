@@ -56,8 +56,9 @@
             </div>
 
             <div class="is-hidden dynamic-field mb-4" id="tpx-field">
-                <div class="field has-addons">
-                    <p class="control is-expanded">
+                <label class="label">Durée de l'opération</label>
+                <div class="field has-addons is-justify-content-center">
+                    <p class="control">
                         {{ form_widget(asset_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 30'}}) }}
                     </p>
                     <p class="control">
@@ -70,7 +71,11 @@
 
             <div class="control">
                 <button type="submit" class="button is-info is-small">
-                    <i class="fas fa-plus"></i>
+                    <span>Ajouter d'autres actions</span>
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                    </span>
+
                 </button>
             </div>
 
@@ -102,7 +107,7 @@
                             {% if asset.currenthostname %}
                                 <span class="tag is-danger">{{ asset.currenthostname }}</span>
                             {% endif %}
-                            <a class="tag is-delete" href="{{ path('del_asset', {'position': asset.position }) }}"></a>
+                            <a class="tag is-delete ajax-remove" href="{{ path('del_asset', {'position': asset.position }) }}" title="Retiré cette action"></a>
                         </div>
                     </div>
                 {% endfor %}
@@ -111,7 +116,12 @@
 
                 <div class="control has-text-right">
                     <button class="button is-info is-normal">
-                        <i class="fas fa-chevron-right"></i>
+                        <span>
+                            Suivant
+                        </span>
+                        <span class="icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
                     </button>
                 </div>
 

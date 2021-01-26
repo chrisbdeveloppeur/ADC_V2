@@ -76,6 +76,9 @@
             }
         </script>
 
+
+
+{#    JS POUR FORMULAIRE DYNAMIQUE    #}
         <script>
 
             let input = document.querySelectorAll(".js-on-change");
@@ -135,6 +138,32 @@
             }
 
         </script>
+
+        {#               SCRIPT POUR AJAX                   #}
+        <script>
+
+            function removeAsset(event){
+                // console.log(event.target.parentElement.parentElement);
+                let assetTag = event.target.parentElement.parentElement;
+                assetTag.style.display = 'none';
+                event.preventDefault();
+
+                const url = this.href;
+
+                axios.get(url).then(function (response) {
+
+                })
+            }
+
+            let removeBtn = document.querySelectorAll('a.ajax-remove').forEach(function (link){
+                link.addEventListener('click' || 'touchstart', removeAsset);
+            });
+
+
+
+        </script>
+
+
     {% endblock %}
 </body>
 </html>
