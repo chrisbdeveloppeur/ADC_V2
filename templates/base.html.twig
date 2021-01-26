@@ -76,69 +76,6 @@
             }
         </script>
 
-
-
-{#    JS POUR FORMULAIRE DYNAMIQUE    #}
-        <script>
-
-            let input = document.querySelectorAll(".js-on-change");
-            let dynamicFields = document.querySelectorAll(".dynamic-field");
-            let fieldAssets = document.getElementById('assets-field');
-            let asset_ae = document.getElementById('asset_ae');
-            // let fieldAs = document.getElementById('as-field');
-            let asset_as = document.getElementById('asset_as');
-            let fieldTpx = document.getElementById('tpx-field');
-            let fieldRsdp = document.getElementById('rspd-field');
-
-            input.forEach(element => element.addEventListener('input', updateValue) );
-            // dynamicFields.forEach(element => console.log(element) );
-
-            window.onload = function(){
-                // input.forEach(element => console.log(element.value) )
-                updateValue();
-            } ;
-
-            function updateValue(e) {
-                let valueString = '';
-                input.forEach(element => valueString = valueString + element.value);
-                initializeAssetsForm();
-                if (valueString.includes('DEM_PDT') || valueString.includes('PRT') || valueString.includes('NDO') ){
-                    updateFieldsVisibility(fieldAssets);
-                    updateFieldsVisibility(fieldRsdp);
-                    updateFieldsVisibility(fieldTpx);
-                    asset_ae.attributes.removeNamedItem('disabled');
-                }else if (valueString.includes('REP_PDT')) {
-                    updateFieldsVisibility(fieldAssets);
-                    updateFieldsVisibility(fieldRsdp);
-                    updateFieldsVisibility(fieldTpx);
-                    asset_as.attributes.removeNamedItem('disabled');
-                }else if (valueString.includes('REN')) {
-                    updateFieldsVisibility(fieldAssets);
-                    updateFieldsVisibility(fieldRsdp);
-                    updateFieldsVisibility(fieldTpx);
-                    asset_ae.attributes.removeNamedItem('disabled');
-                    asset_as.attributes.removeNamedItem('disabled');
-                }
-            }
-
-
-
-            function initializeAssetsForm() {
-                hiddeAllFields();
-                asset_ae.setAttribute('disabled', true);
-                asset_ae.value = null;
-                asset_as.setAttribute('disabled', true);
-                asset_as.value = null;
-            }
-            function hiddeAllFields() {
-                dynamicFields.forEach(element => element.classList.add('is-hidden') );
-            }
-            function updateFieldsVisibility(element) {
-                element.classList.remove('is-hidden')
-            }
-
-        </script>
-
         {#               SCRIPT POUR AJAX                   #}
         <script>
 
@@ -168,31 +105,49 @@
                 const url = this.action;
                 const formData = $(this).serialize();
                 axios.post(url,formData).then(function (response) {
-                    console.log(response);
-                    let container = document.querySelector('#asset-tags-grouped');
-                    let datas = response.data;
-                    let arrayDatas = [];
-                    if (datas.action){
-                        let action = datas.action;
-                        arrayDatas.push(action);
-                    }
-                    if (datas.type && (datas.action !== 'DEM_PDT')){
-                        let type = datas.type;
-                        arrayDatas.push(type);
-                    }
-                    if (datas.ae){
-                        let ae = datas.ae;
-                        arrayDatas.push(ae);
-                    }else{
-                        arrayDatas.push('n/a');
-                    }
-                    if (datas.as){
-                        let as = datas.as;
-                        arrayDatas.push(as);
-                    }else{
-                        arrayDatas.push('n/a');
-                    }
-                    container.innerHTML = container.innerHTML + ""+ arrayDatas + "";
+                    // console.log(response);
+                    // let container = document.querySelector('#asset-tags-grouped');
+                    // let datas = response.data;
+                    // let arrayDatas = [];
+                    // if (datas.action){
+                    //     let action = datas.action;
+                    //     arrayDatas.push(action);
+                    // }
+                    // if (datas.type && (datas.action !== 'DEM_PDT')){
+                    //     let type = datas.type;
+                    //     arrayDatas.push("_" + type);
+                    // }
+                    // if (datas.ae){
+                    //     let ae = datas.ae;
+                    //     arrayDatas.push(ae);
+                    // }else{
+                    //     arrayDatas.push('n/a');
+                    // }
+                    // if (datas.as){
+                    //     let as = datas.as;
+                    //     arrayDatas.push(as);
+                    // }else{
+                    //     arrayDatas.push('n/a');
+                    // }
+                    // container.innerHTML = container.innerHTML + "<div class=\"control\">\n" +
+                    //     "                        <div class=\"tags has-addons\">\n" +
+                    //     "                            \n" +
+                    //     "                                <span class=\"tag is-light\">" + arrayDatas[0] + "</span>\n" +
+                    //     "                            \n" +
+                    //     "                                <span class=\"tag is-light\">action</span>\n" +
+                    //     "                            \n" +
+                    //     "                                <span class=\"tag is-light\">type</span>\n" +
+                    //     "                            \n" +
+                    //     "\n" +
+                    //     "                            \n" +
+                    //     "                                <span class=\"tag is-primary\">AE</span>\n" +
+                    //     "                            \n" +
+                    //     "                            \n" +
+                    //     "                                <span class=\"tag is-danger\">AS</span>\n" +
+                    //     "                            \n" +
+                    //     "                            <a class=\"tag is-delete ajax-remove-asset\" href=\"url de redirection\" title=\"Retiré cette action\"></a>\n" +
+                    //     "                        </div>\n" +
+                    //     "                    </div>";
                 });
 
                 // return false;
@@ -201,7 +156,7 @@
             let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
 
             ajaxForm.forEach(function (form) {
-                form.addEventListener('click', addAsset);
+                form.addEventListener('submit', addAsset);
             })
 
         </script>
