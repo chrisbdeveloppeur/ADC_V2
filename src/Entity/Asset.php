@@ -38,6 +38,11 @@ class Asset
      */
     private $survey;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $position;
+
     public function __toString()
     {
         $this->getCurrentHostname();
@@ -92,6 +97,18 @@ class Asset
     public function setSurvey(?Survey $survey): self
     {
         $this->survey = $survey;
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?int $position): self
+    {
+        $this->position = $position;
 
         return $this;
     }

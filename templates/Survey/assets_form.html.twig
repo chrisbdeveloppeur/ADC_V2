@@ -7,81 +7,89 @@
     <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
+            <label class="label" for="last_name">Veuillez indiquer le(s) asset(s) concerné(s)</label>
+
+            {{ form_start(asset_form) }}
+
+            <div class="field">
+                <p class="control">
+                    <span class="select is-fullwidth">
+                        {{ form_widget(asset_form.action, {'attr': {'class': 'select'}}) }}
+                    </span>
+                </p>
+            </div>
+
+            <div class="field">
+                <p class="control">
+                    <span class="select is-fullwidth">
+                        {{ form_widget(asset_form.type, {'attr': {'class': 'select'}}) }}
+                    </span>
+                </p>
+            </div>
+
+            <div class="field has-addons has-addons-centered">
+                <p class="control is-expanded">
+                    {{ form_widget(asset_form.ae, {'attr': {'class':'input', 'placeholder': 'Asset entrant'}}) }}
+                </p>
+                <p class="control is-expanded">
+                    {{ form_widget(asset_form.as, {'attr': {'class':'input', 'placeholder': 'Asset sortant'}}) }}
+                </p>
+            </div>
+
+            <div class="field">
+                <p class="control">
+                    <label class="checkbox">
+                        Rendez-vous respécté par l'utilisateur ?
+                        {{ form_widget(asset_form.rspd, {'attr': {}}) }}
+                    </label>
+                </p>
+            </div>
+
+            <div class="field">
+                <p class="control is-expanded">
+                    {{ form_widget(asset_form.tpx, {'attr': {'class':'input', 'placeholder': 'Exemple : 90'}}) }}
+                </p>
+            </div>
+
+            <div class="control">
+                <button type="submit" class="button is-info is-small">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+
+            {{ form_end(asset_form) }}
+
             {{ form_start(form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
 
             <div class="field">
-                <label class="label" for="last_name">Veuillez indiquer le(s) asset(s) concerné(s)</label>
 
                 {{ form_widget(form, {'attr': {'class': 'is-hidden'}}) }}
 
-                <div class="field has-addons">
-                    <p class="control">
-                        <span class="select">
-                        {{ form_widget(asset_form.type, {'attr': {'class': 'select'}}) }}
-                        </span>
-                    </p>
-                    <p class="control is-expanded">
-                        <input class="input" type="text" placeholder="Amount of money">
-                    </p>
-                    <p class="control">
-                        <a class="button">
-                            Transfer
-                        </a>
-                    </p>
+            </div>
+
+            <div class="field is-grouped is-grouped-multiline">
+                {% for asset in survey.assets %}
+                    <div class="control">
+                        <div class="tags has-addons">
+                            {% if asset.newhostname %}
+                                <span class="tag is-primary">{{ asset.newhostname }}</span>
+                            {% endif %}
+                            {% if asset.currenthostname %}
+                                <span class="tag is-danger">{{ asset.currenthostname }}</span>
+                            {% endif %}
+                            <a class="tag is-delete" href="{{ path('del_asset', {'position': asset.position }) }}"></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+                <div class="control has-text-right">
+                    <button class="button is-info is-normal">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
 
-                {% for asset in survey.assets %}
-                    {{ asset.type }}
-                    {{ asset.currenthostname }}
-                    {{ asset.newhostname }}
-{#                    {{ asset.rsdp }}#}
-{#                    {{ asset.tpx }}#}
-{#                    {{ asset.action }}#}
-                {% endfor %}
-
-                {{ form_start(asset_form) }}
-
-                {{ form_widget(asset_form.type) }}
-                {{ form_widget(asset_form.ae) }}
-                {{ form_widget(asset_form.as) }}
-                {{ form_widget(asset_form.rspd) }}
-                {{ form_widget(asset_form.tpx) }}
-                {{ form_widget(asset_form.action) }}
-                        <div class="control">
-                            <button type="submit" class="button is-info is-small">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-
-                {{ form_end(asset_form) }}
-{#                <div class="is-flex">#}
-{#                    <div class="control" style="flex: 1">#}
-{#                        <div class="select is-info is-fullwidth">#}
-{#                            {{ form_widget(form.type, {'attr' : {'class' : '', 'placeholder' : 'Type de l\'intervention', 'name' : 'type'} } ) }}#}
-{#                        </div>#}
-{#                    </div>#}
-
-{#                </div>#}
-
-            </div>
-
-{#            <div class="is-flex is-justify-content-space-between">#}
-
-{#                <a href="#" class="button is-info is-small js-hostname" onclick="goBack()">#}
-{#                    <i class="fas fa-chevron-left"></i>#}
-{#                </a>#}
-
-{#                <button class="button is-info is-small">#}
-{#                    <i class="fas fa-chevron-right"></i>#}
-{#                </button>#}
-
-{#            </div>#}
-
-            <div class="control">
-                <button class="button is-info is-normal">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
 
             {{ form_end(form) }}
 
