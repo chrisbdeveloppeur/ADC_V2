@@ -76,11 +76,6 @@ class Survey
     private $from_inct;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="survey")
-     */
-    private $User;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $hostname;
@@ -254,18 +249,6 @@ class Survey
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->User;
-    }
-
-    public function setUser(?User $User): self
-    {
-        $this->User = $User;
-
-        return $this;
-    }
-
     public function getHostname(): ?string
     {
         return $this->hostname;
@@ -274,18 +257,6 @@ class Survey
     public function setHostname(?string $hostname): self
     {
         $this->hostname = $hostname;
-
-        return $this;
-    }
-
-    public function getNewUser(): ?string
-    {
-        return $this->new_user;
-    }
-
-    public function setNewUser(?string $new_user): self
-    {
-        $this->new_user = $new_user;
 
         return $this;
     }

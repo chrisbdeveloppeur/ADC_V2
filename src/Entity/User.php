@@ -43,11 +43,6 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToOne(targetEntity=Survey::class, mappedBy="User", cascade={"persist", "remove"})
-     */
-    private $survey;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
@@ -145,28 +140,6 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function getSurvey(): ?Survey
-    {
-        return $this->survey;
-    }
-
-    public function setSurvey(?Survey $survey): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($survey === null && $this->survey !== null) {
-            $this->survey->setUser(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($survey !== null && $survey->getUser() !== $this) {
-            $survey->setUser($this);
-        }
-
-        $this->survey = $survey;
-
-        return $this;
     }
 
     public function isVerified(): bool

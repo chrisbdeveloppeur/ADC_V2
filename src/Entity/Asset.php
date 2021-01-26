@@ -18,35 +18,35 @@ class Asset
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $current_hostname;
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
+//    private $current_hostname;
+//
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
+//    private $new_hostname;
+//
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
+//    private $type;
+//
+//    /**
+//     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="assets")
+//     */
+//    private $survey;
+//
+//    /**
+//     * @ORM\Column(type="integer", nullable=true)
+//     */
+//    private $position;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $new_hostname;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $type;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="assets")
-     */
-    private $survey;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $position;
-
-    public function __toString()
-    {
-        $this->getCurrentHostname();
-    }
+//    public function __toString()
+//    {
+//        $this->getCurrentHostname();
+//    }
 
     public function getId(): ?int
     {
