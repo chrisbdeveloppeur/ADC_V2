@@ -112,7 +112,8 @@
                     let container = document.querySelector('#asset-tags-grouped');
                     let datas = response.data;
                     let arrayDatas = [];
-                    let newDeleteBtn = document.querySelectorAll('.new-delete-btn');
+                    // let deleteBtn = document.querySelectorAll('.ajax-remove-asset');
+                    // console.log(deleteBtn);
                     for (const property in datas) {
                         // console.log(`${property}: ${datas[property]}`);
                         if ( (datas[property] !== null) ){
@@ -150,11 +151,15 @@
 
                     container.lastElementChild.lastElementChild.innerHTML += "<a class=\"tag is-delete ajax-remove-asset new-delete-btn\" href="+ urlForDelete +" title=\"Retiré cette action\"></a>"
 
-                    // let newDeleteBtn = document.querySelectorAll('.new-delete-btn').forEach(function (link){
-                    //     // link.preventDefault();
-                    //
-                    // });
-                    console.log(newDeleteBtn);
+                    let deleteBtn = document.querySelectorAll('.ajax-remove-asset');
+                    // console.log(deleteBtn);
+                    deleteBtn.forEach(function (element) {
+                        element.addEventListener('click' || 'touchstart', removeAsset);
+                    });
+
+                    let removeBtn = document.querySelectorAll('a.ajax-remove-asset').forEach(function (link){
+                        link.addEventListener('click' || 'touchstart', removeAsset);
+                    });
 
                 });
 
