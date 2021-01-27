@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a5ed598-3b44-447a-9f79-e12ffb334f49" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Controller/FormsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FormsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/OtherAssetType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/OtherAssetType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/assets_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/assets_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/other_assets_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/other_assets_form.html.twig" afterDir="false" />
     </list>
     <ignored path="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\public\build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -92,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Form/OtherAssetType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="25" column="70" selection-start-line="25" selection-start-column="70" selection-end-line="25" selection-end-column="70" />
+            <state relative-caret-position="140">
+              <caret line="22" column="62" lean-forward="true" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
               <folding>
                 <element signature="e#28#68#0#PHP" expanded="true" />
               </folding>
@@ -116,11 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Survey/other_assets_form.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="183" column="13" lean-forward="true" selection-start-line="183" selection-start-column="13" selection-end-line="183" selection-end-column="13" />
+            <state relative-caret-position="888">
+              <caret line="181" column="113" selection-start-line="181" selection-start-column="113" selection-end-line="181" selection-end-column="113" />
             </state>
           </provider>
         </entry>
@@ -235,8 +232,8 @@
         <option value="$PROJECT_DIR$/src/Entity/OtherAsset.php" />
         <option value="$PROJECT_DIR$/templates/Survey/assets_form.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/FormsController.php" />
-        <option value="$PROJECT_DIR$/src/Form/OtherAssetType.php" />
         <option value="$PROJECT_DIR$/templates/Survey/other_assets_form.html.twig" />
+        <option value="$PROJECT_DIR$/src/Form/OtherAssetType.php" />
       </list>
     </option>
   </component>
@@ -541,12 +538,12 @@
       <workItem from="1611597869253" duration="13709000" />
       <workItem from="1611625159581" duration="18526000" />
       <workItem from="1611660350494" duration="26928000" />
-      <workItem from="1611734117505" duration="11106000" />
+      <workItem from="1611734117505" duration="11711000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="297700000" />
+    <option name="totallyTimeSpent" value="298305000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -928,16 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/GlobalFormType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-          <folding>
-            <element signature="e#28#49#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="701">
@@ -962,16 +949,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/OtherAssetType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="25" column="70" selection-start-line="25" selection-start-column="70" selection-end-line="25" selection-end-column="70" />
-          <folding>
-            <element signature="e#28#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/assets_form.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="820">
@@ -985,8 +962,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/other_assets_form.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="183" column="13" lean-forward="true" selection-start-line="183" selection-start-column="13" selection-end-line="183" selection-end-column="13" />
+        <state relative-caret-position="888">
+          <caret line="181" column="113" selection-start-line="181" selection-start-column="113" selection-end-line="181" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/GlobalFormType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <folding>
+            <element signature="e#28#49#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/OtherAssetType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="22" column="62" lean-forward="true" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
+          <folding>
+            <element signature="e#28#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
