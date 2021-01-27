@@ -81,7 +81,6 @@
 
             function removeAsset(event){
                 let assetTag = event.target.parentElement.parentElement;
-                // assetTag.style.display = 'none';
                 if (assetTag.parentNode) {
                     assetTag.parentNode.removeChild(assetTag);
                 }
@@ -113,6 +112,7 @@
                     let container = document.querySelector('#asset-tags-grouped');
                     let datas = response.data;
                     let arrayDatas = [];
+                    let newDeleteBtn = document.querySelectorAll('.new-delete-btn');
                     for (const property in datas) {
                         // console.log(`${property}: ${datas[property]}`);
                         if ( (datas[property] !== null) ){
@@ -148,7 +148,13 @@
                         });
                     }
 
-                    container.lastElementChild.lastElementChild.innerHTML += "<a class=\"tag is-delete ajax-remove-asset\" href="+ urlForDelete +" title=\"Retiré cette action\"></a>"
+                    container.lastElementChild.lastElementChild.innerHTML += "<a class=\"tag is-delete ajax-remove-asset new-delete-btn\" href="+ urlForDelete +" title=\"Retiré cette action\"></a>"
+
+                    // let newDeleteBtn = document.querySelectorAll('.new-delete-btn').forEach(function (link){
+                    //     // link.preventDefault();
+                    //
+                    // });
+                    console.log(newDeleteBtn);
 
                 });
 

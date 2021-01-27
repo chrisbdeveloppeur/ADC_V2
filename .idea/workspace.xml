@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a5ed598-3b44-447a-9f79-e12ffb334f49" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Controller/FormsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FormsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <ignored path="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\public\build/" />
@@ -66,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/FormsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="70" column="113" selection-start-line="70" selection-start-column="113" selection-end-line="70" selection-end-column="113" />
+            <state relative-caret-position="378">
+              <caret line="99" selection-start-line="99" selection-end-line="99" />
               <folding>
                 <element signature="e#34#55#0#PHP" expanded="true" />
                 <element signature="e#2252#2268#0#PHP" expanded="true" />
@@ -119,7 +118,7 @@
         <entry file="file://$PROJECT_DIR$/templates/Survey/assets_form.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="446">
-              <caret line="114" column="132" selection-start-line="114" selection-start-column="101" selection-end-line="114" selection-end-column="132" />
+              <caret line="114" column="129" selection-start-line="114" selection-start-column="129" selection-end-line="114" selection-end-column="129" />
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="true" />
                 <element signature="e#5356#5370#0#Twig" expanded="true" />
@@ -131,8 +130,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="145" column="33" lean-forward="true" selection-start-line="145" selection-start-column="33" selection-end-line="145" selection-end-column="33" />
+            <state relative-caret-position="387">
+              <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
             </state>
           </provider>
         </entry>
@@ -153,6 +152,7 @@
       <find>out</find>
       <find>updateValue</find>
       <find>$rspd</find>
+      <find>removeBtn</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -516,12 +516,12 @@
       <workItem from="1611597869253" duration="13709000" />
       <workItem from="1611625159581" duration="18526000" />
       <workItem from="1611660350494" duration="26928000" />
-      <workItem from="1611734117505" duration="30769000" />
+      <workItem from="1611734117505" duration="31529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="317363000" />
+    <option name="totallyTimeSpent" value="318123000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -943,10 +943,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/FormsController.php">
+    <entry file="file://$PROJECT_DIR$/templates/Survey/assets_form.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="446">
-          <caret line="70" column="113" selection-start-line="70" selection-start-column="113" selection-end-line="70" selection-end-column="113" />
+          <caret line="114" column="129" selection-start-line="114" selection-start-column="129" selection-end-line="114" selection-end-column="129" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+            <element signature="e#5356#5370#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/FormsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
           <folding>
             <element signature="e#34#55#0#PHP" expanded="true" />
             <element signature="e#2252#2268#0#PHP" expanded="true" />
@@ -957,21 +968,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Survey/assets_form.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="114" column="132" selection-start-line="114" selection-start-column="101" selection-end-line="114" selection-end-column="132" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-            <element signature="e#5356#5370#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="145" column="33" lean-forward="true" selection-start-line="145" selection-start-column="33" selection-end-line="145" selection-end-column="33" />
+        <state relative-caret-position="387">
+          <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
         </state>
       </provider>
     </entry>
