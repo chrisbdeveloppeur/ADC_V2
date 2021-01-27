@@ -188,6 +188,13 @@
                 removeSelectOption(document.getElementById('other_asset_type'), ['PRP','PRT','TNR','PMA','TRD']);
             }else if (valueString.includes('REP')) {
                 console.log('REP SEUL');
+                if (valueString.includes('PHN')){
+                    removeClass(asset_as, 'disabled');
+                    makeVisible(fieldAssets);
+                }else if (valueString.includes('TRD')){
+                    removeClass(asset_ae, 'disabled');
+                    makeVisible(fieldAssets);
+                }
                 removeSelectOption(document.getElementById('other_asset_type'), ['PRT','TNR','PMA']);
             }
         }
