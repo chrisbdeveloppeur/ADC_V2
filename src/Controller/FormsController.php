@@ -58,10 +58,15 @@ class FormsController extends AbstractController
             $type = $assetForm->get('type')->getData();
             $ae = $assetForm->get('ae')->getData();
             $as = $assetForm->get('ae')->getData();
+            $urlForDelete = $this->redirectToRoute('form_asset_del',[
+                  'position' => $number,
+                ]);
 
-            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-            return $this->redirect($referer);
-//            return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as]);
+//            dd($urlForDelete);
+
+//            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+//            return $this->redirect($referer);
+            return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
         if ($form->isSubmitted()){

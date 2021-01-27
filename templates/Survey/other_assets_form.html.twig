@@ -159,39 +159,35 @@
         } ;
 
         function updateValue() {
-            let valueString = [];
-            input.forEach(element => valueString.push(element.value));
+            let values = [];
+            input.forEach(element => values.push(element.value));
             initializeAssetsForm();
-            if ( !(valueString.every((currentValue) => currentValue === '')) ) {
+            if ( !(values.every((currentValue) => currentValue === '')) ) {
                 document.getElementById('asset-btn-form').style.visibility = 'visible';
             }
-            console.log(valueString);
-            if (valueString.includes('DEM_PDT') || valueString.includes('NDO') ){
+            if (values.includes('DEM_PDT') || values.includes('NDO') ){
                 console.log('DEM_PDT ou NDO');
                 makeVisible(fieldAssets);
                 makeVisible(fieldRsdp);
                 makeVisible(fieldTpx);
                 removeClass(asset_ae, 'disabled');
                 removeSelectOption(document.getElementById('other_asset_type'), ['PRP','TNR','PMA']);
-            }else if (valueString.includes('REP_PDT')) {
-                console.log('REP_PDT seul');
+            }else if (values.includes('REP_PDT')) {
                 makeVisible(fieldAssets);
                 makeVisible(fieldRsdp);
                 makeVisible(fieldTpx);
                 removeClass(asset_as, 'disabled');
-            }else if (valueString.includes('PRT') || valueString.includes('REN')) {
-                console.log('PRT ou REN');
+            }else if (values.includes('PRT') || values.includes('REN')) {
                 makeVisible(fieldAssets);
                 makeVisible(fieldRsdp);
                 makeVisible(fieldTpx);
                 removeClass(asset_ae, 'disabled');
                 removeSelectOption(document.getElementById('other_asset_type'), ['PRP','PRT','TNR','PMA','TRD']);
-            }else if (valueString.includes('REP')) {
-                console.log('REP SEUL');
-                if (valueString.includes('PHN')){
+            }else if (values.includes('REP')) {
+                if (values.includes('PHN')){
                     removeClass(asset_as, 'disabled');
                     makeVisible(fieldAssets);
-                }else if (valueString.includes('TRD')){
+                }else if (values.includes('TRD')){
                     removeClass(asset_ae, 'disabled');
                     makeVisible(fieldAssets);
                 }

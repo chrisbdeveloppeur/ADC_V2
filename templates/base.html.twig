@@ -81,7 +81,10 @@
 
             function removeAsset(event){
                 let assetTag = event.target.parentElement.parentElement;
-                assetTag.style.display = 'none';
+                // assetTag.style.display = 'none';
+                if (assetTag.parentNode) {
+                    assetTag.parentNode.removeChild(assetTag);
+                }
                 event.preventDefault();
 
                 const url = this.href;
@@ -100,19 +103,28 @@
 
             function addAsset(event){
                 console.log(this.action);
-                // event.preventDefault();
-
+                event.preventDefault();
+                let input = document.querySelectorAll(".for-ajax");
+                let values = [];
+                // input.forEach(element => values.push(element.value) );
+                input.forEach( function (element) {
+                    if (element.value){
+                        values.push(element.value)
+                    }
+                } );
+                console.log(values);
                 const url = this.action;
                 const formData = $(this).serialize();
                 axios.post(url,formData).then(function (response) {
                     // console.log(response);
-                    // let container = document.querySelector('#asset-tags-grouped');
-                    // let datas = response.data;
-                    // let arrayDatas = [];
-                    // if (datas.action){
-                    //     let action = datas.action;
-                    //     arrayDatas.push(action);
-                    // }
+                    let container = document.querySelector('#asset-tags-grouped');
+                    let datas = response.data;
+                    let arrayDatas = [];
+
+                    if (datas.action){
+                        let action = datas.action;
+                        arrayDatas.push(action);
+                    }
                     // if (datas.type && (datas.action !== 'DEM_PDT')){
                     //     let type = datas.type;
                     //     arrayDatas.push("_" + type);
@@ -129,28 +141,38 @@
                     // }else{
                     //     arrayDatas.push('n/a');
                     // }
-                    // container.innerHTML = container.innerHTML + "<div class=\"control\">\n" +
-                    //     "                        <div class=\"tags has-addons\">\n" +
-                    //     "                            \n" +
-                    //     "                                <span class=\"tag is-light\">" + arrayDatas[0] + "</span>\n" +
-                    //     "                            \n" +
-                    //     "                                <span class=\"tag is-light\">action</span>\n" +
-                    //     "                            \n" +
-                    //     "                                <span class=\"tag is-light\">type</span>\n" +
-                    //     "                            \n" +
-                    //     "\n" +
-                    //     "                            \n" +
-                    //     "                                <span class=\"tag is-primary\">AE</span>\n" +
-                    //     "                            \n" +
-                    //     "                            \n" +
-                    //     "                                <span class=\"tag is-danger\">AS</span>\n" +
-                    //     "                            \n" +
-                    //     "                            <a class=\"tag is-delete ajax-remove-asset\" href=\"url de redirection\" title=\"Retiré cette action\"></a>\n" +
-                    //     "                        </div>\n" +
-                    //     "                    </div>";
+                    // if (datas.url_for_delete){
+                    //     let url = datas.url_for_delete;
+                    //     arrayDatas.push(url);
+                    // }else{
+                    //     arrayDatas.push('n/a');
+                    // }
+
+
+
+                    console.log(arrayDatas);
+
+                    container.innerHTML = container.innerHTML + "<div class=\"control\">\n" +
+                        "                        <div class=\"tags has-addons\">\n" +
+                        "                            \n" +
+                        "                                <span class=\"tag is-light\">"+ values[0] +"</span>\n" +
+                        "                            \n" +
+                        "                                <span class=\"tag is-light\">"+ values[1] +"</span>\n" +
+                        "                            \n" +
+                        "                                <span class=\"tag is-light\">"+ values[2] +"</span>\n" +
+                        "                            \n" +
+                        "\n" +
+                        "                            \n" +
+                        "                                <span class=\"tag is-primary\">AE</span>\n" +
+                        "                            \n" +
+                        "                            \n" +
+                        "                                <span class=\"tag is-danger\">AS</span>\n" +
+                        "                            \n" +
+                        "                            <a class=\"tag is-delete ajax-remove-asset\" href="+ arrayDatas[3] +" title=\"Retiré cette action\"></a>\n" +
+                        "                        </div>\n" +
+                        "                    </div>";
                 });
 
-                // return false;
             }
 
             let ajaxForm = document.querySelectorAll('form.ajax-add-asset');

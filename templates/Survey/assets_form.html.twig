@@ -15,7 +15,7 @@
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change'}}) }}
+                        {{ form_widget(asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change for-ajax'}}) }}
                     </span>
                 </p>
             </div>
@@ -24,7 +24,7 @@
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(asset_form.type, {'attr': {'class': 'select has-text-centered js-on-change'}}) }}
+                        {{ form_widget(asset_form.type, {'attr': {'class': 'select has-text-centered js-on-change for-ajax'}}) }}
                     </span>
                 </p>
             </div>
@@ -36,10 +36,10 @@
                 </div>
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
-                        {{ form_widget(asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset entrant'}}) }}
+                        {{ form_widget(asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered for-ajax', 'placeholder': 'Asset entrant'}}) }}
                     </p>
                     <p class="control is-expanded">
-                        {{ form_widget(asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset sortant'}}) }}
+                        {{ form_widget(asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered for-ajax', 'placeholder': 'Asset sortant'}}) }}
                     </p>
                 </div>
             </div>
@@ -159,24 +159,23 @@
         } ;
 
         function updateValue(e) {
-            let valueString = [];
-            input.forEach(element => valueString.push(element.value));
+            let values = [];
+            input.forEach(element => values.push(element.value));
             initializeAssetsForm();
-            if ( !(valueString.every((currentValue) => currentValue === '')) ) {
+            if ( !(values.every((currentValue) => currentValue === '')) ) {
                 document.getElementById('asset-btn-form').style.visibility = 'visible';
             }
-            console.log(valueString);
-            if (valueString.includes('DEM_PDT') || valueString.includes('PRT') || valueString.includes('NDO') ){
+            if (values.includes('DEM_PDT') || values.includes('PRT') || values.includes('NDO') ){
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
                 hideElement(fieldTpx);
                 removeClass(asset_ae, 'disabled');
-            }else if (valueString.includes('REP_PDT')) {
+            }else if (values.includes('REP_PDT')) {
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
                 hideElement(fieldTpx);
                 removeClass(asset_as, 'disabled');
-            }else if (valueString.includes('REN')) {
+            }else if (values.includes('REN')) {
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
                 hideElement(fieldTpx);
