@@ -30,10 +30,10 @@ class AssetType extends AbstractType
                 'required' => false,
                 'placeholder' => 'Selectionner...',
                 'choices' => [
-                    'Déménagement' => 'DEM_PDT',
+                    'Déménagement' => 'DEM',
                     'Prêt' => 'PRT',
                     'Nouvelle dotation sans reprise' => 'NDO',
-                    'Reprise sans nouvelle dotation' => 'REP_PDT',
+                    'Reprise sans nouvelle dotation' => 'REP',
                     'Nouvelle dotation + reprise (renouvellement)' => 'REN',
                     ]
                 ]

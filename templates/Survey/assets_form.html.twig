@@ -165,12 +165,12 @@
             if ( !(values.every((currentValue) => currentValue === '')) ) {
                 document.getElementById('asset-btn-form').style.visibility = 'visible';
             }
-            if (values.includes('DEM_PDT') || values.includes('PRT') || values.includes('NDO') ){
+            if (values.includes('DEM') || values.includes('PRT') || values.includes('NDO') ){
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
                 hideElement(fieldTpx);
                 removeClass(asset_ae, 'disabled');
-            }else if (values.includes('REP_PDT')) {
+            }else if (values.includes('REP')) {
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
                 hideElement(fieldTpx);

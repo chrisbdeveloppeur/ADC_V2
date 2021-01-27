@@ -41,8 +41,8 @@ class FormsController extends AbstractController
             $newAsset->setNewHostname($assetForm->get('ae')->getData());
             $newAsset->setType($assetForm->get('type')->getData());
             $newAsset->setAction($assetForm->get('action')->getData());
-            if ( ($newAsset->getAction()=="DEM_PDT") || ($newAsset->getAction()=="REP_PDT") ){
-                $newAsset->setType(null);
+            if ( ($newAsset->getAction()=="DEM") || ($newAsset->getAction()=="REP") ){
+                $newAsset->setType("PDT");
             }
             $newAsset->setRspd($assetForm->get('rspd')->getData());
             $newAsset->setDuree($assetForm->get('tpx')->getData());
@@ -54,10 +54,12 @@ class FormsController extends AbstractController
             }
             $survey->addAsset($newAsset);
 
-            $action = $assetForm->get('action')->getData();
-            $type = $assetForm->get('type')->getData();
-            $ae = $assetForm->get('ae')->getData();
-            $as = $assetForm->get('ae')->getData();
+//            dd($newAsset->getType());
+
+            $action = $newAsset->getAction();
+            $type = $newAsset->getType();
+            $ae = $newAsset->getNewHostname();
+            $as = $newAsset->getCurrentHostname();
             $urlForDelete = $this->redirectToRoute('form_asset_del',[
                   'position' => $number,
                 ]);

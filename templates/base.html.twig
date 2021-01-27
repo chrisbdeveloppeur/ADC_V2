@@ -102,58 +102,55 @@
 
 
             function addAsset(event){
-                console.log(this.action);
+
                 event.preventDefault();
-                let input = document.querySelectorAll(".for-ajax");
-                let values = [];
-                // input.forEach(element => values.push(element.value) );
-                input.forEach( function (element) {
-                    if (element.value){
-                        values.push(element.value)
-                    }
-                } );
+
                 const url = this.action;
                 const formData = $(this).serialize();
+
+
                 axios.post(url,formData).then(function (response) {
-                    // console.log(response);
                     let container = document.querySelector('#asset-tags-grouped');
                     let datas = response.data;
                     let arrayDatas = [];
-
-                    if (datas.action){
-                        let action = datas.action;
-                        arrayDatas.push(action);
+                    for (const property in datas) {
+                        // console.log(`${property}: ${datas[property]}`);
+                        if ( (datas[property] !== null) ){
+                            let action = datas[property];
+                            arrayDatas.push(action);
+                        }
                     }
 
-                    let url = datas.url_for_delete;
+                    arrayDatas.splice(arrayDatas.length-1, 1);
 
-                    console.log(values);
+                    console.log(arrayDatas);
+
+                    let urlForDelete = datas.url_for_delete;
+
                     container.innerHTML += "<div class=\"control\">\n" +
-                        "                        <div class=\"tags has-addons\">\n" +
-                        // "                            \n" +
-                        // "                                <span class=\"tag is-light\">"+ values[0] +"</span>\n" +
-                        // "                            \n" +
-                        // "                                <span class=\"tag is-light\">"+ values[1] +"</span>\n" +
-                        // "                            \n" +
-                        // "                                <span class=\"tag is-light\">"+ values[2] +"</span>\n" +
-                        // "                            \n" +
-                        // "\n" +
-                        // "                            \n" +
-                        // "                                <span class=\"tag is-primary\">AE</span>\n" +
-                        // "                            \n" +
-                        // "                            \n" +
-                        // "                                <span class=\"tag is-danger\">AS</span>\n" +
-                        // "                            \n" +
+                        "                     <div class=\"tags has-addons\">\n" +
                         "                        </div>\n" +
                         "                    </div>";
 
-                    if (values.length === 1){
-                        // values.forEach(function (element) {
-                            container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ values[0] +"</span>"
-                        // });
+                    if (arrayDatas.length === 1){
+                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ arrayDatas[0] +"</span>"
+                    }else if (arrayDatas.length === 2){
+                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ arrayDatas[0] +"_"+ arrayDatas[1] +"</span>"
+                    }else{
+                        arrayDatas.forEach(function (element, key) {
+                            if (element !== 'N/A'){
+                                if (key === 0){
+                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ arrayDatas[0] +"_"+ arrayDatas[1] +"</span>"
+                                }else if (key === 2){
+                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-primary\">"+ element +"</span>"
+                                }else if (key === 3){
+                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-danger\">"+ element +"</span>"
+                                }
+                            }
+                        });
                     }
 
-                    container.lastElementChild.lastElementChild.innerHTML += "<a class=\"tag is-delete ajax-remove-asset\" href="+ url +" title=\"Retiré cette action\"></a>"
+                    container.lastElementChild.lastElementChild.innerHTML += "<a class=\"tag is-delete ajax-remove-asset\" href="+ urlForDelete +" title=\"Retiré cette action\"></a>"
 
                 });
 
