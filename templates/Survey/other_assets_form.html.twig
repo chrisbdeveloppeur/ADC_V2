@@ -161,7 +161,11 @@
         function updateValue() {
             let valueString = '';
             input.forEach(element => valueString = valueString + element.value);
-            initializeAssetsForm(valueString);
+            initializeAssetsForm();
+            if (valueString) {
+                document.getElementById('asset-btn-form').style.visibility = 'visible';
+            }
+            console.log(valueString);
             if (valueString.includes('DEM_PDT') || valueString.includes('NDO') ){
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
@@ -179,11 +183,11 @@
                 removeClass(asset_ae, 'disabled');
                 removeClass(asset_as, 'disabled');
             }else if (valueString.includes('PRT') || valueString.includes('REN')) {
+                // console.log(valueString);
                 removeSelectOption(document.getElementById('other_asset_type'), ['PRP','PRT','TNR','PMA','TRD']);
             }else if (valueString.includes('REP')) {
                 removeSelectOption(document.getElementById('other_asset_type'), ['PRT','TNR','PMA']);
             }
-            console.log(valueString);
         }
 
 
@@ -204,15 +208,16 @@
             htmlObject.attributes.removeNamedItem(className);
         }
 
-        function initializeAssetsForm(param1) {
+        function initializeAssetsForm() {
             hiddeAllFields();
-            if (param1) {
-                document.getElementById('asset-btn-form').style.visibility = 'visible';
-            }
             asset_ae.setAttribute('disabled', true);
             asset_ae.value = null;
             asset_as.setAttribute('disabled', true);
             asset_as.value = null;
+            document.getElementById('asset-btn-form').style.visibility = 'hidden';
+            input.forEach(function (element) {
+                element.querySelectorAll('option').forEach(option => option.style.display = 'block')
+            })
         }
         function hiddeAllFields() {
             dynamicFields.forEach(element => element.classList.add('is-hidden') );

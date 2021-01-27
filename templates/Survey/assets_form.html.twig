@@ -153,20 +153,19 @@
         let fieldRsdp = document.getElementById('rspd-field');
 
         input.forEach(element => element.addEventListener('input', updateValue) );
-        // dynamicFields.forEach(element => console.log(element) );
 
         window.onload = function(){
-            // input.forEach(element => console.log(element.value) )
             updateValue();
         } ;
 
         function updateValue(e) {
-            let valueString = '';
-            input.forEach(element => valueString +=  element.value);
+            let valueString = [];
+            input.forEach(element => valueString.push(element.value));
             initializeAssetsForm();
-            if (valueString) {
+            if ( !(valueString.every((currentValue) => currentValue === '')) ) {
                 document.getElementById('asset-btn-form').style.visibility = 'visible';
             }
+            console.log(valueString);
             if (valueString.includes('DEM_PDT') || valueString.includes('PRT') || valueString.includes('NDO') ){
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
