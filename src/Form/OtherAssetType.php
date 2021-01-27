@@ -17,6 +17,7 @@ class OtherAssetType extends AbstractType
             ->add('type', ChoiceType::class,[
 //                'label' => false,
                     'required' => false,
+//                    'placeholder' => 'Type de matériel...',
                     'placeholder' => false,
                     'choices' => [
                         'Périphériques (écrans, rétroprojecteurs)' => 'PRP',
@@ -59,9 +60,9 @@ class OtherAssetType extends AbstractType
                     'choices' => [
                         'Oui' => 'oui',
                         'Non' => 'non',
-                        'Sans RDV' => 'sans_rdv',
+                        'Sans RDV' => 'N/A',
                     ],
-                    'data' => 'sans_rdv',
+                    'data' => 'N/A',
                 ]
             )
             ->add('tpx', IntegerType::class,[

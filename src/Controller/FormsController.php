@@ -143,6 +143,8 @@ class FormsController extends AbstractController
             $ae = $otherAssetForm->get('ae')->getData();
             $as = $otherAssetForm->get('ae')->getData();
 
+            dd($survey);
+
             $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
             return $this->redirect($referer);
 //            return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as]);

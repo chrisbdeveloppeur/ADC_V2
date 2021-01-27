@@ -7,7 +7,7 @@
     <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
-            <label class="label" for="last_name">Veuillez indiquer le(s) asset(s) concerné(s)</label>
+            <label class="label" for="last_name">Intervention sur poste de travail</label>
 
             {{ form_start(asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
@@ -165,19 +165,19 @@
             input.forEach(element => valueString = valueString + element.value);
             initializeAssetsForm();
             if (valueString.includes('DEM_PDT') || valueString.includes('PRT') || valueString.includes('NDO') ){
-                updateFieldsVisibility(fieldAssets);
-                updateFieldsVisibility(fieldRsdp);
-                updateFieldsVisibility(fieldTpx);
+                hideElement(fieldAssets);
+                hideElement(fieldRsdp);
+                hideElement(fieldTpx);
                 removeClass(asset_ae, 'disabled');
             }else if (valueString.includes('REP_PDT')) {
-                updateFieldsVisibility(fieldAssets);
-                updateFieldsVisibility(fieldRsdp);
-                updateFieldsVisibility(fieldTpx);
+                hideElement(fieldAssets);
+                hideElement(fieldRsdp);
+                hideElement(fieldTpx);
                 removeClass(asset_as, 'disabled');
             }else if (valueString.includes('REN')) {
-                updateFieldsVisibility(fieldAssets);
-                updateFieldsVisibility(fieldRsdp);
-                updateFieldsVisibility(fieldTpx);
+                hideElement(fieldAssets);
+                hideElement(fieldRsdp);
+                hideElement(fieldTpx);
                 removeClass(asset_ae, 'disabled');
                 removeClass(asset_as, 'disabled');
             }
@@ -190,16 +190,16 @@
             htmlObjet.attributes.removeNamedItem(className);
         }
         function initializeAssetsForm() {
-            hiddeAllFields();
+            hideAllFields();
             asset_ae.setAttribute('disabled', true);
             asset_ae.value = null;
             asset_as.setAttribute('disabled', true);
             asset_as.value = null;
         }
-        function hiddeAllFields() {
+        function hideAllFields() {
             dynamicFields.forEach(element => element.classList.add('is-hidden') );
         }
-        function updateFieldsVisibility(element) {
+        function hideElement(element) {
             element.classList.remove('is-hidden')
         }
 

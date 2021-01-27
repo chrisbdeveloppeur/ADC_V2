@@ -7,7 +7,7 @@
     <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
-            <label class="label" for="last_name">Veuillez indiquer le(s) asset(s) concerné(s)</label>
+            <label class="label" for="last_name">Intervention sur autre(s) matériel(s)</label>
 
             {{ form_start(other_asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
@@ -20,7 +20,7 @@
                 </p>
             </div>
 
-            <label class="label">Type de matériel</label>
+            <label class="label">Type de poste</label>
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
@@ -153,44 +153,57 @@
         let fieldRsdp = document.getElementById('rspd-field');
 
         input.forEach(element => element.addEventListener('input', updateValue) );
-        // dynamicFields.forEach(element => console.log(element) );
 
         window.onload = function(){
-            // input.forEach(element => console.log(element.value) )
             updateValue();
         } ;
 
-        function updateValue(e) {
+        function updateValue() {
             let valueString = '';
             input.forEach(element => valueString = valueString + element.value);
             initializeAssetsForm();
-            if (valueString.includes('DEM_PDT') || valueString.includes('PRT') || valueString.includes('NDO') ){
-                updateFieldsVisibility(fieldAssets);
-                updateFieldsVisibility(fieldRsdp);
-                updateFieldsVisibility(fieldTpx);
+            if (valueString.includes('DEM_PDT') || valueString.includes('NDO') ){
+                hideElement(fieldAssets);
+                hideElement(fieldRsdp);
+                hideElement(fieldTpx);
                 removeClass(asset_ae, 'disabled');
             }else if (valueString.includes('REP_PDT')) {
-                updateFieldsVisibility(fieldAssets);
-                updateFieldsVisibility(fieldRsdp);
-                updateFieldsVisibility(fieldTpx);
-                asset_as.attributes.removeNamedItem('disabled');
+                hideElement(fieldAssets);
+                hideElement(fieldRsdp);
+                hideElement(fieldTpx);
+                removeClass(asset_as, 'disabled');
             }else if (valueString.includes('REN')) {
-                updateFieldsVisibility(fieldAssets);
-                updateFieldsVisibility(fieldRsdp);
-                updateFieldsVisibility(fieldTpx);
-                asset_ae.attributes.removeNamedItem('disabled');
-                asset_as.attributes.removeNamedItem('disabled');
+                hideElement(fieldAssets);
+                hideElement(fieldRsdp);
+                hideElement(fieldTpx);
+                removeClass(asset_ae, 'disabled');
+                removeClass(asset_as, 'disabled');
+            }else if (valueString.includes('PRT')) {
+                removeSelectOption(document.getElementById('other_asset_type'), ['PRP','PRT','TNR','PMA','TRD']);
             }
         }
 
 
 
-        function removeClass(htmlObjet, className){
-            htmlObjet.attributes.removeNamedItem(className);
+
+        function removeSelectOption(selectObject, valueOptionToDelete) {
+            let options = selectObject.querySelectorAll('option');
+            options.forEach(function (element) {
+                let valueOption = element.value;
+                if (valueOptionToDelete.includes(valueOption)){
+                    element.style.display = "none";
+                }
+            });
+        }
+
+
+        function removeClass(htmlObject, className){
+            htmlObject.attributes.removeNamedItem(className);
         }
 
         function initializeAssetsForm() {
             hiddeAllFields();
+            document.querySelectorAll('option').forEach(option => option.style.display = 'flex');
             asset_ae.setAttribute('disabled', true);
             asset_ae.value = null;
             asset_as.setAttribute('disabled', true);
@@ -199,7 +212,7 @@
         function hiddeAllFields() {
             dynamicFields.forEach(element => element.classList.add('is-hidden') );
         }
-        function updateFieldsVisibility(element) {
+        function hideElement(element) {
             element.classList.remove('is-hidden')
         }
 
