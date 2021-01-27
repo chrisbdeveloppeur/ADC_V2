@@ -100,6 +100,11 @@ class Survey
      */
     private $assets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=OtherAsset::class, mappedBy="survey")
+     */
+    private $other_assets;
+
 
     public function __construct()
     {
@@ -110,6 +115,7 @@ class Survey
         $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->assets = new ArrayCollection();
+        $this->other_assets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -309,6 +315,36 @@ class Survey
             // set the owning side to null (unless already changed)
             if ($asset->getSurvey() === $this) {
                 $asset->setSurvey(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OtherAsset[]
+     */
+    public function getOtherAssets(): Collection
+    {
+        return $this->other_assets;
+    }
+
+    public function addOtherAsset(OtherAsset $otherAsset): self
+    {
+        if (!$this->other_assets->contains($otherAsset)) {
+            $this->other_assets[] = $otherAsset;
+            $otherAsset->setSurvey($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOtherAsset(OtherAsset $otherAsset): self
+    {
+        if ($this->other_assets->removeElement($otherAsset)) {
+            // set the owning side to null (unless already changed)
+            if ($otherAsset->getSurvey() === $this) {
+                $otherAsset->setSurvey(null);
             }
         }
 

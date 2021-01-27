@@ -1,15 +1,15 @@
 <?php
 
+
 namespace App\Entity;
 
-use App\Repository\AssetRepository;
+use App\Repository\OtherAssetRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AssetRepository::class)
- * @
+ * @ORM\Entity(repositoryClass=OtherAssetRepository::class)
  */
-class Asset
+class OtherAsset
 {
     /**
      * @ORM\Id
@@ -17,6 +17,7 @@ class Asset
      * @ORM\Column(type="integer")
      */
     private $id;
+
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -34,7 +35,7 @@ class Asset
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="assets")
+     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="other_assets")
      */
     private $survey;
 
@@ -171,3 +172,46 @@ class Asset
     }
 
 }
+
+
+
+//
+//namespace App\Entity;
+//
+//use App\Repository\OtherAssetRepository;
+//use Doctrine\ORM\Mapping as ORM;
+//
+///**
+// * @ORM\Entity(repositoryClass=OtherAssetRepository::class)
+// */
+//class OtherAsset
+//{
+//    /**
+//     * @ORM\Id
+//     * @ORM\GeneratedValue
+//     * @ORM\Column(type="integer")
+//     */
+//    private $id;
+//
+//    /**
+//     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="other_assets")
+//     */
+//    private $survey;
+//
+//    public function getId(): ?int
+//    {
+//        return $this->id;
+//    }
+//
+//    public function getSurvey(): ?Survey
+//    {
+//        return $this->survey;
+//    }
+//
+//    public function setSurvey(?Survey $survey): self
+//    {
+//        $this->survey = $survey;
+//
+//        return $this;
+//    }
+//}

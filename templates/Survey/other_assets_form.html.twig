@@ -9,13 +9,13 @@
 
             <label class="label" for="last_name">Veuillez indiquer le(s) asset(s) concerné(s)</label>
 
-            {{ form_start(asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
+            {{ form_start(other_asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
             <label class="label">Type de l'intervention</label>
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change'}}) }}
+                        {{ form_widget(other_asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change'}}) }}
                     </span>
                 </p>
             </div>
@@ -24,7 +24,7 @@
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(asset_form.type, {'attr': {'class': 'select has-text-centered js-on-change'}}) }}
+                        {{ form_widget(other_asset_form.type, {'attr': {'class': 'select has-text-centered js-on-change'}}) }}
                     </span>
                 </p>
             </div>
@@ -36,10 +36,10 @@
                 </div>
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
-                        {{ form_widget(asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset entrant'}}) }}
+                        {{ form_widget(other_asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset entrant'}}) }}
                     </p>
                     <p class="control is-expanded">
-                        {{ form_widget(asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset sortant'}}) }}
+                        {{ form_widget(other_asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset sortant'}}) }}
                     </p>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         <label class="checkbox label">
                             Rendez-vous respécté par l'utilisateur ?
                         </label>
-                            {% for child in asset_form.rspd %}
+                            {% for child in other_asset_form.rspd %}
                                 <label class="radio">
                                     {{ form_widget(child, {'attr': {'class': ''} } ) }}
                                     {{ child.vars.label }}
@@ -65,7 +65,7 @@
                 <label class="label">Durée de l'opération (facultatif)</label>
                 <div class="field has-addons is-justify-content-center">
                     <p class="control">
-                        {{ form_widget(asset_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 30'}}) }}
+                        {{ form_widget(other_asset_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 30'}}) }}
                     </p>
                     <p class="control">
                         <a class="button is-static">
@@ -76,7 +76,7 @@
             </div>
 
             <div class="control">
-                <button type="submit" class="button is-info is-normal" id="asset-btn-form">
+                <button type="submit" class="button is-info is-small" id="asset-btn-form">
                     <span>Ajouter l'action</span>
                     <span class="icon">
                         <i class="fas fa-plus"></i>
@@ -84,7 +84,7 @@
                 </button>
             </div>
 
-            {{ form_end(asset_form) }}
+            {{ form_end(other_asset_form) }}
 
             {{ form_start(form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
 
@@ -95,7 +95,7 @@
             </div>
 
             <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
-                {% for asset in survey.assets %}
+                {% for asset in survey.otherassets %}
                     <div class="control">
                         <div class="tags has-addons">
                             {% if asset.type and asset.action %}
@@ -106,10 +106,10 @@
                                 <span class="tag is-light">{{ asset.type }}</span>
                             {% endif %}
 
-                            {% if asset.newhostname != 'N/A' %}
+                            {% if asset.newhostname %}
                                 <span class="tag is-primary">{{ asset.newhostname }}</span>
                             {% endif %}
-                            {% if asset.currenthostname != 'N/A' %}
+                            {% if asset.currenthostname %}
                                 <span class="tag is-danger">{{ asset.currenthostname }}</span>
                             {% endif %}
                             <a class="tag is-delete ajax-remove-asset" href="{{ path('form_asset_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
@@ -120,7 +120,7 @@
 
 
                 <div class="control has-text-right">
-                    <button class="button is-info is-small">
+                    <button class="button is-info is-normal">
                         <span>
                             Suivant
                         </span>
@@ -146,9 +146,9 @@
         let input = document.querySelectorAll(".js-on-change");
         let dynamicFields = document.querySelectorAll(".dynamic-field");
         let fieldAssets = document.getElementById('assets-field');
-        let asset_ae = document.getElementById('asset_ae');
+        let asset_ae = document.getElementById('other_asset_ae');
         // let fieldAs = document.getElementById('as-field');
-        let asset_as = document.getElementById('asset_as');
+        let asset_as = document.getElementById('other_asset_as');
         let fieldTpx = document.getElementById('tpx-field');
         let fieldRsdp = document.getElementById('rspd-field');
 
@@ -173,22 +173,22 @@
                 updateFieldsVisibility(fieldAssets);
                 updateFieldsVisibility(fieldRsdp);
                 updateFieldsVisibility(fieldTpx);
-                removeClass(asset_as, 'disabled');
+                asset_as.attributes.removeNamedItem('disabled');
             }else if (valueString.includes('REN')) {
                 updateFieldsVisibility(fieldAssets);
                 updateFieldsVisibility(fieldRsdp);
                 updateFieldsVisibility(fieldTpx);
-                removeClass(asset_ae, 'disabled');
-                removeClass(asset_as, 'disabled');
+                asset_ae.attributes.removeNamedItem('disabled');
+                asset_as.attributes.removeNamedItem('disabled');
             }
         }
-
 
 
 
         function removeClass(htmlObjet, className){
             htmlObjet.attributes.removeNamedItem(className);
         }
+
         function initializeAssetsForm() {
             hiddeAllFields();
             asset_ae.setAttribute('disabled', true);
