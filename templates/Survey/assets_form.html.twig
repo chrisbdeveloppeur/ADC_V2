@@ -162,8 +162,11 @@
 
         function updateValue(e) {
             let valueString = '';
-            input.forEach(element => valueString = valueString + element.value);
+            input.forEach(element => valueString +=  element.value);
             initializeAssetsForm();
+            if (valueString) {
+                document.getElementById('asset-btn-form').style.visibility = 'visible';
+            }
             if (valueString.includes('DEM_PDT') || valueString.includes('PRT') || valueString.includes('NDO') ){
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
@@ -181,7 +184,6 @@
                 removeClass(asset_ae, 'disabled');
                 removeClass(asset_as, 'disabled');
             }
-            console.log(valueString);
         }
 
 
@@ -196,6 +198,7 @@
             asset_ae.value = null;
             asset_as.setAttribute('disabled', true);
             asset_as.value = null;
+            document.getElementById('asset-btn-form').style.visibility = 'hidden';
         }
         function hideAllFields() {
             dynamicFields.forEach(element => element.classList.add('is-hidden') );

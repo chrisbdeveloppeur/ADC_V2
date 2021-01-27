@@ -161,7 +161,7 @@
         function updateValue() {
             let valueString = '';
             input.forEach(element => valueString = valueString + element.value);
-            initializeAssetsForm();
+            initializeAssetsForm(valueString);
             if (valueString.includes('DEM_PDT') || valueString.includes('NDO') ){
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
@@ -204,9 +204,11 @@
             htmlObject.attributes.removeNamedItem(className);
         }
 
-        function initializeAssetsForm() {
+        function initializeAssetsForm(param1) {
             hiddeAllFields();
-            document.querySelectorAll('option').forEach(option => option.style.display = 'flex');
+            if (param1) {
+                document.getElementById('asset-btn-form').style.visibility = 'visible';
+            }
             asset_ae.setAttribute('disabled', true);
             asset_ae.value = null;
             asset_as.setAttribute('disabled', true);
