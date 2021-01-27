@@ -112,7 +112,6 @@
                         values.push(element.value)
                     }
                 } );
-                console.log(values);
                 const url = this.action;
                 const formData = $(this).serialize();
                 axios.post(url,formData).then(function (response) {
@@ -125,52 +124,37 @@
                         let action = datas.action;
                         arrayDatas.push(action);
                     }
-                    // if (datas.type && (datas.action !== 'DEM_PDT')){
-                    //     let type = datas.type;
-                    //     arrayDatas.push("_" + type);
-                    // }
-                    // if (datas.ae){
-                    //     let ae = datas.ae;
-                    //     arrayDatas.push(ae);
-                    // }else{
-                    //     arrayDatas.push('n/a');
-                    // }
-                    // if (datas.as){
-                    //     let as = datas.as;
-                    //     arrayDatas.push(as);
-                    // }else{
-                    //     arrayDatas.push('n/a');
-                    // }
-                    // if (datas.url_for_delete){
-                    //     let url = datas.url_for_delete;
-                    //     arrayDatas.push(url);
-                    // }else{
-                    //     arrayDatas.push('n/a');
-                    // }
 
+                    let url = datas.url_for_delete;
 
-
-                    console.log(arrayDatas);
-
-                    container.innerHTML = container.innerHTML + "<div class=\"control\">\n" +
+                    console.log(values);
+                    container.innerHTML += "<div class=\"control\">\n" +
                         "                        <div class=\"tags has-addons\">\n" +
-                        "                            \n" +
-                        "                                <span class=\"tag is-light\">"+ values[0] +"</span>\n" +
-                        "                            \n" +
-                        "                                <span class=\"tag is-light\">"+ values[1] +"</span>\n" +
-                        "                            \n" +
-                        "                                <span class=\"tag is-light\">"+ values[2] +"</span>\n" +
-                        "                            \n" +
-                        "\n" +
-                        "                            \n" +
-                        "                                <span class=\"tag is-primary\">AE</span>\n" +
-                        "                            \n" +
-                        "                            \n" +
-                        "                                <span class=\"tag is-danger\">AS</span>\n" +
-                        "                            \n" +
-                        "                            <a class=\"tag is-delete ajax-remove-asset\" href="+ arrayDatas[3] +" title=\"Retiré cette action\"></a>\n" +
+                        // "                            \n" +
+                        // "                                <span class=\"tag is-light\">"+ values[0] +"</span>\n" +
+                        // "                            \n" +
+                        // "                                <span class=\"tag is-light\">"+ values[1] +"</span>\n" +
+                        // "                            \n" +
+                        // "                                <span class=\"tag is-light\">"+ values[2] +"</span>\n" +
+                        // "                            \n" +
+                        // "\n" +
+                        // "                            \n" +
+                        // "                                <span class=\"tag is-primary\">AE</span>\n" +
+                        // "                            \n" +
+                        // "                            \n" +
+                        // "                                <span class=\"tag is-danger\">AS</span>\n" +
+                        // "                            \n" +
                         "                        </div>\n" +
                         "                    </div>";
+
+                    if (values.length === 1){
+                        // values.forEach(function (element) {
+                            container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ values[0] +"</span>"
+                        // });
+                    }
+
+                    container.lastElementChild.lastElementChild.innerHTML += "<a class=\"tag is-delete ajax-remove-asset\" href="+ url +" title=\"Retiré cette action\"></a>"
+
                 });
 
             }
