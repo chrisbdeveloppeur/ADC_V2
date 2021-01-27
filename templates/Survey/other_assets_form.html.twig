@@ -149,6 +149,7 @@
         let asset_ae = document.getElementById('other_asset_ae');
         // let fieldAs = document.getElementById('as-field');
         let asset_as = document.getElementById('other_asset_as');
+        let asset_type = document.getElementById('other_asset_type');
         let fieldTpx = document.getElementById('tpx-field');
         let fieldRsdp = document.getElementById('rspd-field');
 
@@ -204,6 +205,7 @@
                 let valueOption = element.value;
                 if (valueOptionToDelete.includes(valueOption)){
                     element.style.display = "none";
+                    element.selected = false;
                 }
             });
         }

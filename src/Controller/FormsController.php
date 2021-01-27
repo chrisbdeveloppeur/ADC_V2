@@ -145,14 +145,17 @@ class FormsController extends AbstractController
             }
             $survey->addOtherAsset($newAsset);
 
-            $action = $otherAssetForm->get('action')->getData();
-            $type = $otherAssetForm->get('type')->getData();
-            $ae = $otherAssetForm->get('ae')->getData();
-            $as = $otherAssetForm->get('ae')->getData();
+            $action = $newAsset->getAction();
+            $type = $newAsset->getType();
+            $ae = $newAsset->getNewHostname();
+            $as = $newAsset->getCurrentHostname();
+            $urlForDelete = $this->redirectToRoute('form_asset_del',[
+                'position' => $number,
+            ]);
 
-            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-            return $this->redirect($referer);
-//            return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as]);
+//            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+//            return $this->redirect($referer);
+            return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
         if ($form->isSubmitted()){
