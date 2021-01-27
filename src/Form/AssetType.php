@@ -51,9 +51,17 @@ class AssetType extends AbstractType
                     'required' => false,
                 ]
             )
-            ->add('rspd', CheckboxType::class,[
-//                    'label' => false,
+            ->add('rspd', ChoiceType::class,[
+//                'label' => false,
                     'required' => false,
+                    'placeholder' => false,
+                    'expanded' => true,
+                    'choices' => [
+                        'Oui' => 'oui',
+                        'Non' => 'non',
+                        'Sans RDV' => 'sans_rdv',
+                    ],
+                    'data' => 'sans_rdv',
                 ]
             )
             ->add('tpx', IntegerType::class,[

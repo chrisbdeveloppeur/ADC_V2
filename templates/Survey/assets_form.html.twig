@@ -49,8 +49,17 @@
                     <p class="control">
                         <label class="checkbox label">
                             Rendez-vous respécté par l'utilisateur ?
-                            {{ form_widget(asset_form.rspd, {'attr': {}}) }}
                         </label>
+{#                            {{ form_widget(asset_form.rspd, {'attr': {}}) }}#}
+                            {% for child in asset_form.rspd %}
+                                <label class="radio">
+{#                                    <button class="button">#}
+                                    {{ form_widget(child, {'attr': {'class': ''} } ) }}
+                                    {{ child.vars.label }}
+{#                                    </button>#}
+                                </label>
+                            {% endfor %}
+
                     </p>
                 </div>
             </div>
