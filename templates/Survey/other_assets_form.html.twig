@@ -159,33 +159,35 @@
         } ;
 
         function updateValue() {
-            let valueString = '';
-            input.forEach(element => valueString = valueString + element.value);
+            let valueString = [];
+            input.forEach(element => valueString.push(element.value));
             initializeAssetsForm();
-            if (valueString) {
+            if ( !(valueString.every((currentValue) => currentValue === '')) ) {
                 document.getElementById('asset-btn-form').style.visibility = 'visible';
             }
             console.log(valueString);
             if (valueString.includes('DEM_PDT') || valueString.includes('NDO') ){
-                hideElement(fieldAssets);
-                hideElement(fieldRsdp);
-                hideElement(fieldTpx);
+                console.log('DEM_PDT ou NDO');
+                makeVisible(fieldAssets);
+                makeVisible(fieldRsdp);
+                makeVisible(fieldTpx);
                 removeClass(asset_ae, 'disabled');
+                removeSelectOption(document.getElementById('other_asset_type'), ['PRP','TNR','PMA']);
             }else if (valueString.includes('REP_PDT')) {
-                hideElement(fieldAssets);
-                hideElement(fieldRsdp);
-                hideElement(fieldTpx);
-                removeClass(asset_as, 'disabled');
-            }else if (valueString.includes('REN')) {
-                hideElement(fieldAssets);
-                hideElement(fieldRsdp);
-                hideElement(fieldTpx);
-                removeClass(asset_ae, 'disabled');
+                console.log('REP_PDT seul');
+                makeVisible(fieldAssets);
+                makeVisible(fieldRsdp);
+                makeVisible(fieldTpx);
                 removeClass(asset_as, 'disabled');
             }else if (valueString.includes('PRT') || valueString.includes('REN')) {
-                // console.log(valueString);
+                console.log('PRT ou REN');
+                makeVisible(fieldAssets);
+                makeVisible(fieldRsdp);
+                makeVisible(fieldTpx);
+                removeClass(asset_ae, 'disabled');
                 removeSelectOption(document.getElementById('other_asset_type'), ['PRP','PRT','TNR','PMA','TRD']);
             }else if (valueString.includes('REP')) {
+                console.log('REP SEUL');
                 removeSelectOption(document.getElementById('other_asset_type'), ['PRT','TNR','PMA']);
             }
         }
@@ -222,7 +224,7 @@
         function hiddeAllFields() {
             dynamicFields.forEach(element => element.classList.add('is-hidden') );
         }
-        function hideElement(element) {
+        function makeVisible(element) {
             element.classList.remove('is-hidden')
         }
 
