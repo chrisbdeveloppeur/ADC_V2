@@ -106,13 +106,13 @@
                                 <span class="tag is-light">{{ asset.type }}</span>
                             {% endif %}
 
-                            {% if asset.newhostname %}
+                            {% if asset.newhostname != 'N/A' %}
                                 <span class="tag is-primary">{{ asset.newhostname }}</span>
                             {% endif %}
-                            {% if asset.currenthostname %}
+                            {% if asset.currenthostname != 'N/A' %}
                                 <span class="tag is-danger">{{ asset.currenthostname }}</span>
                             {% endif %}
-                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_asset_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
+                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_asset_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
                         </div>
                     </div>
                 {% endfor %}
@@ -178,9 +178,12 @@
                 hideElement(fieldTpx);
                 removeClass(asset_ae, 'disabled');
                 removeClass(asset_as, 'disabled');
-            }else if (valueString.includes('PRT')) {
+            }else if (valueString.includes('PRT') || valueString.includes('REN')) {
                 removeSelectOption(document.getElementById('other_asset_type'), ['PRP','PRT','TNR','PMA','TRD']);
+            }else if (valueString.includes('REP')) {
+                removeSelectOption(document.getElementById('other_asset_type'), ['PRT','TNR','PMA']);
             }
+            console.log(valueString);
         }
 
 

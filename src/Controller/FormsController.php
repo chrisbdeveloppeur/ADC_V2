@@ -41,7 +41,7 @@ class FormsController extends AbstractController
             $newAsset->setNewHostname($assetForm->get('ae')->getData());
             $newAsset->setType($assetForm->get('type')->getData());
             $newAsset->setAction($assetForm->get('action')->getData());
-            if ( ($newAsset->getAction()=="DEM_PDT") || ($newAsset->getAction()=="PRT_PCF") ){
+            if ( ($newAsset->getAction()=="DEM_PDT") || ($newAsset->getAction()=="REP_PDT") ){
                 $newAsset->setType(null);
             }
             $newAsset->setRspd($assetForm->get('rspd')->getData());
@@ -113,7 +113,7 @@ class FormsController extends AbstractController
         $otherAssetForm->handleRequest($request);
 
 //        Vérification du nombre d'actions déjà présentes dans le formulaire
-        for ($i=0; $i<=count($survey->getAssets()); $i++ ){
+        for ($i=0; $i<=count($survey->getOtherAssets()); $i++ ){
             $number = $i;
         }
 
@@ -143,7 +143,7 @@ class FormsController extends AbstractController
             $ae = $otherAssetForm->get('ae')->getData();
             $as = $otherAssetForm->get('ae')->getData();
 
-            dd($survey);
+            dd($newAsset);
 
             $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
             return $this->redirect($referer);
@@ -160,6 +160,24 @@ class FormsController extends AbstractController
             'other_asset_form' => $otherAssetForm->createView(),
             'survey' => $survey,
         ]);
+    }
+
+    /**
+     * @Route("/del-other-asset={position}", name="other_asset_del")
+     */
+    public function delOtherAsset($position, Request $request): Response
+    {
+        $survey = $this->get('session')->get('survey');
+        $otherAssetToDelete = $survey->getOtherAssets()[$position];
+//        dd($survey, $position, $otherAssetToDelete);
+        unset($survey->getOtherAssets()[$position]);
+        $form = $this->createForm(GlobalFormType::class);
+        $form->handleRequest($request);
+
+//        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+//        return $this->redirect($referer);
+        return $this->json('asset ' . $otherAssetToDelete . ' retiré !');
+
     }
 
 
