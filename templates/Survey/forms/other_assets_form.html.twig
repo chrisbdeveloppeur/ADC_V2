@@ -7,7 +7,7 @@
     <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
-            <label class="label" for="last_name">Intervention sur autre(s) matériel(s)</label>
+            <label class="label is-uppercase" for="last_name">Autre matériel(s)</label>
 
             {{ form_start(other_asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
@@ -15,7 +15,7 @@
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(other_asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change'}}) }}
+                        {{ form_widget(other_asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change required-for-add'}}) }}
                     </span>
                 </p>
             </div>
@@ -147,7 +147,6 @@
         let dynamicFields = document.querySelectorAll(".dynamic-field");
         let fieldAssets = document.getElementById('assets-field');
         let asset_ae = document.getElementById('other_asset_ae');
-        // let fieldAs = document.getElementById('as-field');
         let asset_as = document.getElementById('other_asset_as');
         let asset_type = document.getElementById('other_asset_type');
         let fieldTpx = document.getElementById('tpx-field');
@@ -163,37 +162,45 @@
             let values = [];
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
-            if ( !(values.every((currentValue) => currentValue === '')) ) {
-                document.getElementById('asset-btn-form').style.visibility = 'visible';
-            }
-            if (values.includes('DEM_PDT') || values.includes('NDO') ){
-                console.log('DEM_PDT ou NDO');
-                makeVisible(fieldAssets);
-                makeVisible(fieldRsdp);
-                makeVisible(fieldTpx);
-                removeClass(asset_ae, 'disabled');
-                removeSelectOption(document.getElementById('other_asset_type'), ['PRP','TNR','PMA']);
-            }else if (values.includes('REP_PDT')) {
-                makeVisible(fieldAssets);
-                makeVisible(fieldRsdp);
-                makeVisible(fieldTpx);
-                removeClass(asset_as, 'disabled');
-            }else if (values.includes('PRT') || values.includes('REN')) {
-                makeVisible(fieldAssets);
-                makeVisible(fieldRsdp);
-                makeVisible(fieldTpx);
-                removeClass(asset_ae, 'disabled');
-                removeSelectOption(document.getElementById('other_asset_type'), ['PRP','PRT','TNR','PMA','TRD']);
-            }else if (values.includes('REP')) {
-                if (values.includes('PHN')){
-                    removeClass(asset_as, 'disabled');
-                    makeVisible(fieldAssets);
-                }else if (values.includes('TRD')){
+            hideAddBtn();
+            if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
+                // console.log(values);
+                let condition1 = ['PHN','PRT','TRD'];
+                if (condition1.some( el => values.includes(el) ) ){
                     removeClass(asset_ae, 'disabled');
                     makeVisible(fieldAssets);
                 }
-                removeSelectOption(document.getElementById('other_asset_type'), ['PRT','TNR','PMA']);
+                let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
+                if (condition2.some( el => values.includes(el) ) ){
+                    makeVisible(fieldTpx);
+                }
+            }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
+                removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
+                let condition1 = ['PHN','TRD'];
+                if (condition1.some( el => values.includes(el) ) ){
+                    removeClass(asset_ae, 'disabled');
+                    makeVisible(fieldAssets);
+                }
+                makeVisible(fieldTpx);
+            }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
+                removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
+                let condition1 = ['PHN'];
+                if (condition1.some( el => values.includes(el) ) ){
+                    removeClass(asset_ae, 'disabled');
+                    removeClass(asset_as, 'disabled');
+                    makeVisible(fieldAssets);
+                    makeVisible(fieldTpx);
+                }
+            }else if (values.includes('PRT')) { //              PRET
+                removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
+                let condition1 = ['PHN'];
+                if (condition1.some( el => values.includes(el) ) ){
+                    removeClass(asset_ae, 'disabled');
+                    makeVisible(fieldAssets);
+                    makeVisible(fieldTpx);
+                }
             }
+            console.log(values);
         }
 
 
@@ -209,8 +216,14 @@
                 }
             });
         }
-
-
+        function hideAddBtn() {
+            document.querySelectorAll('select.required-for-add').forEach(function (element) {
+                let firstOption = element.firstElementChild;
+                if (!firstOption.selected){
+                    document.getElementById('asset-btn-form').style.visibility = 'visible';
+                }
+            });
+        }
         function removeClass(htmlObject, className){
             htmlObject.attributes.removeNamedItem(className);
         }

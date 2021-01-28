@@ -45,15 +45,15 @@ class InctController extends AbstractController
                     'reponse' => $reponse,
                 ]);
             } elseif ($reponse == '2') {   /* Autre intervention matérielle */
-                return $this->redirectToRoute('inct_home');
+                return $this->redirectToRoute('form_other_asset');
             } elseif ($reponse == '3') {                      /* Intervention software */
-                return $this->redirectToRoute('inct_home', [
-                    'tasktorinct' => $reponse,
-                ]);
+//                return $this->redirectToRoute('inct_home', [
+//                    'tasktorinct' => $reponse,
+//                ]);
             }
         }
 
-        return $this->render('Survey/sdp/type_inter.html.twig',[
+        return $this->render('Survey/home/type_inter.html.twig',[
             'form' => $form->createView(),
             'form_name' => $form->getName(),
         ]);

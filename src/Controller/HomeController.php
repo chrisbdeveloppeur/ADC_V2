@@ -55,7 +55,7 @@ class HomeController extends AbstractController
 
         }
 
-        return $this->render('Survey/home.html.twig', [
+        return $this->render('Survey/home/home.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -79,7 +79,7 @@ class HomeController extends AbstractController
                 return $this->redirectToRoute('inct_home');
             }
         }
-        return $this->render('Survey/sdp/type_inter.html.twig',[
+        return $this->render('Survey/home/type_inter.html.twig',[
             'form' => $form->createView(),
             'form_name' => $form->getName(),
         ]);

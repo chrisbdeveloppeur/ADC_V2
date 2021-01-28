@@ -7,7 +7,7 @@
     <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
-            <label class="label" for="last_name">Intervention sur poste de travail</label>
+            <label class="label is-uppercase" for="last_name">Poste(s) de travail</label>
 
             {{ form_start(asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
@@ -15,7 +15,7 @@
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change for-ajax'}}) }}
+                        {{ form_widget(asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change for-ajax required-for-add'}}) }}
                     </span>
                 </p>
             </div>
@@ -147,7 +147,6 @@
         let dynamicFields = document.querySelectorAll(".dynamic-field");
         let fieldAssets = document.getElementById('assets-field');
         let asset_ae = document.getElementById('asset_ae');
-        // let fieldAs = document.getElementById('as-field');
         let asset_as = document.getElementById('asset_as');
         let fieldTpx = document.getElementById('tpx-field');
         let fieldRsdp = document.getElementById('rsdp-field');
@@ -162,9 +161,7 @@
             let values = [];
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
-            if ( !(values.every((currentValue) => currentValue === '')) ) {
-                document.getElementById('asset-btn-form').style.visibility = 'visible';
-            }
+            hideAddBtn();
             if (values.includes('DEM') || values.includes('PRT') || values.includes('NDO') ){
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
@@ -187,6 +184,14 @@
 
 
 
+        function hideAddBtn() {
+            document.querySelectorAll('select.required-for-add').forEach(function (element) {
+                let firstOption = element.firstElementChild;
+                if (!firstOption.selected){
+                    document.getElementById('asset-btn-form').style.visibility = 'visible';
+                }
+            });
+        }
         function removeClass(htmlObjet, className){
             htmlObjet.attributes.removeNamedItem(className);
         }

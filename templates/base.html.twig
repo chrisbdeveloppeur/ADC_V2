@@ -112,10 +112,7 @@
                     let container = document.querySelector('#asset-tags-grouped');
                     let datas = response.data;
                     let arrayDatas = [];
-                    // let deleteBtn = document.querySelectorAll('.ajax-remove-asset');
-                    // console.log(deleteBtn);
                     for (const property in datas) {
-                        // console.log(`${property}: ${datas[property]}`);
                         if ( (datas[property] !== null) ){
                             let action = datas[property];
                             arrayDatas.push(action);

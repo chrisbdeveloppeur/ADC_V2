@@ -72,10 +72,18 @@ class FormsController extends AbstractController
         }
 
         if ($form->isSubmitted()){
-            return $this->redirectToRoute('form_other_asset');
+            if ($survey->getCas()== 'SDP_INC_1'){
+                return $this->redirectToRoute('form_other_asset');
+            }
+//            elseif ($survey->getCas()== 'SDP_INC_2'){
+//                return $this->redirectToRoute('form_other_asset');
+//            }elseif ($survey->getCas()== 'SDP_INC_3'){
+//                return $this->redirectToRoute('form_other_asset');
+//            }
+
         }
 
-        return $this->render('Survey/assets_form.html.twig',[
+        return $this->render('Survey/forms/assets_form.html.twig',[
             'form' => $form->createView(),
             'form_name' => $form->getName(),
             'asset_form' => $assetForm->createView(),
@@ -163,7 +171,7 @@ class FormsController extends AbstractController
 //            return $this->redirectToRoute();
         }
 
-        return $this->render('Survey/other_assets_form.html.twig',[
+        return $this->render('Survey/forms/other_assets_form.html.twig',[
             'form' => $form->createView(),
             'form_name' => $form->getName(),
             'other_asset_form' => $otherAssetForm->createView(),
@@ -254,7 +262,7 @@ class FormsController extends AbstractController
             return $this->redirectToRoute('form_other_asset');
         }
 
-        return $this->render('Survey/assets_form.html.twig',[
+        return $this->render('Survey/forms/assets_form.html.twig',[
             'form' => $form->createView(),
             'form_name' => $form->getName(),
             'asset_form' => $assetForm->createView(),
