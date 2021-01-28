@@ -31,8 +31,8 @@
 
             <div class="is-hidden dynamic-field mb-4" id="assets-field">
                 <div class="is-flex is-justify-content-space-around">
-                    <label class="label">Asset entrant</label>
-                    <label class="label">Asset sortant</label>
+                    <label class="label">Nouvel asset</label>
+                    <label class="label">Ancien asset</label>
                 </div>
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
@@ -178,7 +178,7 @@
                 removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
                 let condition1 = ['PHN','TRD'];
                 if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_ae, 'disabled');
+                    removeClass(asset_as, 'disabled');
                     makeVisible(fieldAssets);
                 }
                 makeVisible(fieldTpx);
