@@ -11,7 +11,7 @@
 
             {{ form_start(app_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
-            <label class="label">Type de l'intervention</label>
+            <label class="label">Méthode d'intervention</label>
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
@@ -28,9 +28,6 @@
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
                         {{ form_widget(app_form.asset, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Hostname de l\'asset'}}) }}
-                    </p>
-                    <p class="control is-expanded">
-                        {{ form_widget(app_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset sortant'}}) }}
                     </p>
                 </div>
             </div>
@@ -85,24 +82,17 @@
             </div>
 
             <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
-                {% for asset in survey.otherassets %}
+                {% for asset in survey.apps %}
                     <div class="control">
                         <div class="tags has-addons">
-                            {% if asset.type and asset.action %}
-                                <span class="tag is-light">{{ asset.action }}_{{ asset.type }}</span>
-                            {% elseif asset.action %}
+                            {% if asset.action %}
                                 <span class="tag is-light">{{ asset.action }}</span>
-                            {% elseif asset.type %}
-                                <span class="tag is-light">{{ asset.type }}</span>
                             {% endif %}
 
-                            {% if asset.newhostname != 'N/A' %}
+                            {% if asset.asset != 'N/A' %}
                                 <span class="tag is-primary">{{ asset.newhostname }}</span>
                             {% endif %}
-                            {% if asset.currenthostname != 'N/A' %}
-                                <span class="tag is-danger">{{ asset.currenthostname }}</span>
-                            {% endif %}
-                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_asset_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
+                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
                         </div>
                     </div>
                 {% endfor %}
