@@ -103,8 +103,10 @@ class Survey
 
     public function __construct()
     {
-        $this->quantity = 1;
-        $this->duration = 1;
+//        $this->quantity = 1;
+//        $this->duration = 1;
+//        $this->asset_type = "N/A";
+//        $this->proximity = "N/A";
         $this->cas = 'N/A';
         $this->service = 'N/A';
         $this->type = 'N/A';
@@ -112,8 +114,7 @@ class Survey
         $this->cas_inct = 'N/A';
         $this->cas_taskt = 'N/A';
         $this->commentaire = 'N/A';
-        $this->asset_type = "N/A";
-        $this->proximity = "N/A";
+
         $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->assets = new ArrayCollection();

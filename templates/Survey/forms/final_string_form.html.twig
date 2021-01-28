@@ -7,21 +7,22 @@
     <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
-            {{ form_start(final_string_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
+{#            {{ form_start(final_string_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}#}
             <div class="field">
                 <label class="label" for="last_name">Votre code final :</label>
 
                 <div class="is-flex">
                     <div class="control" style="flex: 1">
                         <div class="is-info is-fullwidth">
-                            {{ form_widget(final_string_form.final_string) }}
+                            <textarea id="final-string-form" class="textarea" placeholder="10 lines of textarea" rows="10">{{ final_string }}</textarea>
+{#                            {{ form_widget(final_string_form.final_string) }}#}
                         </div>
                     </div>
                 </div>
 
                 {{ include('includes/nav/end.html.twig') }}
 
-            {{ form_end(final_string_form) }}
+{#            {{ form_end(final_string_form) }}#}
 
         </div>
 
