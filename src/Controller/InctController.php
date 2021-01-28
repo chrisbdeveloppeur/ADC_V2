@@ -41,9 +41,7 @@ class InctController extends AbstractController
 //            dd($survey);
             $survey->setTypeInter($reponse);
             if ($reponse == '1') {         /* Changement de PC */
-                return $this->redirectToRoute('form_asset', [
-                    'reponse' => $reponse,
-                ]);
+                return $this->redirectToRoute('form_asset');
             } elseif ($reponse == '2') {   /* Autre intervention matérielle */
                 return $this->redirectToRoute('form_other_asset');
             } elseif ($reponse == '3') {                      /* Intervention software */

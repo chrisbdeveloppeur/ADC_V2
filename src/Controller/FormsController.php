@@ -26,7 +26,7 @@ class FormsController extends AbstractController
 {
 //////////////////////////////  ASSET FORM  //////////////////////////////
     /**
-     * @Route("/asset", name="asset")
+     * @Route("/poste-de-travail", name="asset")
      */
     public function assetForm(Request $request): Response
     {
@@ -122,7 +122,7 @@ class FormsController extends AbstractController
 
 //////////////////////////////  OTHER_ASSET FORM  //////////////////////////////
     /**
-     * @Route("/other-asset", name="other_asset")
+     * @Route("/autre-materiel", name="other_asset")
      */
     public function otherAssetForm(Request $request): Response
     {
@@ -215,7 +215,7 @@ class FormsController extends AbstractController
 
 //////////////////////////////  APP FORM  //////////////////////////////
     /**
-     * @Route("/app", name="app")
+     * @Route("/application", name="app")
      */
     public function appForm(Request $request): Response
     {
