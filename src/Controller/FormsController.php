@@ -255,7 +255,7 @@ class FormsController extends AbstractController
 
 //            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
 //            return $this->redirect($referer);
-            return $this->json(['action' => $action,'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
+            return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
         if ($form->isSubmitted()){
