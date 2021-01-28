@@ -44,13 +44,13 @@
                 </div>
             </div>
 
-            <div class="is-hidden dynamic-field mb-4" id="rspd-field">
+            <div class="is-hidden hidden-forced dynamic-field mb-4 hidden-forced" id="rsdp-field">
                 <div class="field">
                     <p class="control">
                         <label class="checkbox label">
                             Rendez-vous respécté par l'utilisateur ?
                         </label>
-                            {% for child in asset_form.rspd %}
+                            {% for child in asset_form.rsdp %}
                                 <label class="radio">
                                     {{ form_widget(child, {'attr': {'class': ''} } ) }}
                                     {{ child.vars.label }}
@@ -150,7 +150,7 @@
         // let fieldAs = document.getElementById('as-field');
         let asset_as = document.getElementById('asset_as');
         let fieldTpx = document.getElementById('tpx-field');
-        let fieldRsdp = document.getElementById('rspd-field');
+        let fieldRsdp = document.getElementById('rsdp-field');
 
         input.forEach(element => element.addEventListener('input', updateValue) );
 

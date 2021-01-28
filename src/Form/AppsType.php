@@ -9,32 +9,34 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AssetType extends AbstractType
+class AppsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('type', ChoiceType::class,[
 //                'label' => false,
-                'required' => false,
-                'placeholder' => 'Selectionner...',
-                'choices' => [
-                    'Poste fixe' => 'PCF',
-                    'Laptop + avec ou sans d\'accueil' => 'LAP',
-                    'Poste scientifique' => 'SCI',
+                    'required' => false,
+                    'placeholder' => 'Selectionner...',
+                    'choices' => [
+                        'Périphériques (écrans, rétroprojecteurs)' => 'PRP',
+                        'Imprimantes individuelles' => 'PRT',
+                        'Smartphone' => 'PHN',
+                        'Consommables imprimante' => 'TNR',
+                        'Petit matériel : piles de périphériques sans fil, souris / claviers / station d\'accueil' => 'PMA',
+                        'Clé Trend Micro' => 'TRD',
                     ]
                 ]
             )
             ->add('action', ChoiceType::class, [
 //                'label' => false,
-                'required' => false,
-                'placeholder' => 'Selectionner...',
-                'choices' => [
-                    'Déménagement' => 'DEM',
-                    'Prêt' => 'PRT',
-                    'Nouvelle dotation sans reprise' => 'NDO',
-                    'Reprise sans nouvelle dotation' => 'REP',
-                    'Nouvelle dotation + reprise (renouvellement)' => 'REN',
+                    'required' => false,
+                    'placeholder' => 'Selectionner...',
+                    'choices' => [
+                        'Prêt' => 'PRT',
+                        'Nouvelle dotation sans reprise' => 'NDO',
+                        'Reprise sans nouvelle dotation' => 'REP',
+                        'Nouvelle dotation + reprise (renouvellement)' => 'REN',
                     ]
                 ]
 
@@ -64,7 +66,7 @@ class AssetType extends AbstractType
             )
             ->add('tpx', IntegerType::class,[
 //                'label' => false,
-                'required' => false,
+                    'required' => false,
                 ]
             )
         ;
@@ -73,7 +75,7 @@ class AssetType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-//            'data_class' => Asset::class,
+            // Configure your form options here
         ]);
     }
 }

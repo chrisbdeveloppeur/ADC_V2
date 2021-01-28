@@ -51,7 +51,7 @@ class Asset
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $rspd;
+    private $rsdp;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -146,14 +146,14 @@ class Asset
         return $this;
     }
 
-    public function getRspd(): ?string
+    public function getRsdp(): ?string
     {
-        return $this->rspd;
+        return $this->rsdp;
     }
 
-    public function setRspd(?string $rspd): self
+    public function setRsdp(?string $rsdp): self
     {
-        $this->rspd = $rspd;
+        $this->rsdp = $rsdp;
 
         return $this;
     }

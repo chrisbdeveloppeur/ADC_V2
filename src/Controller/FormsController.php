@@ -44,7 +44,7 @@ class FormsController extends AbstractController
             if ( ($newAsset->getAction()=="DEM") || ($newAsset->getAction()=="REP") ){
                 $newAsset->setType("PDT");
             }
-            $newAsset->setRspd($assetForm->get('rspd')->getData());
+            $newAsset->setRsdp($assetForm->get('rsdp')->getData());
             $newAsset->setDuree($assetForm->get('tpx')->getData());
             if ($newAsset->getNewHostname()==null){
                 $newAsset->setNewHostname('N/A');
@@ -135,7 +135,7 @@ class FormsController extends AbstractController
             if ( ($newAsset->getAction()=="PRT") || ($newAsset->getAction()=="REN") ){
                 $newAsset->setType('PHN');
             }
-            $newAsset->setRspd($otherAssetForm->get('rspd')->getData());
+            $newAsset->setRsdp($otherAssetForm->get('rsdp')->getData());
             $newAsset->setDuree($otherAssetForm->get('tpx')->getData());
             if ($newAsset->getNewHostname()==null){
                 $newAsset->setNewHostname('N/A');

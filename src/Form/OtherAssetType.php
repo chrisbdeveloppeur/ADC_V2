@@ -51,7 +51,7 @@ class OtherAssetType extends AbstractType
                     'required' => false,
                 ]
             )
-            ->add('rspd', ChoiceType::class,[
+            ->add('rsdp', ChoiceType::class,[
 //                'label' => false,
                     'required' => false,
                     'placeholder' => false,

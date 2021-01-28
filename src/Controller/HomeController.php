@@ -139,7 +139,7 @@ class HomeController extends AbstractController
 //            if ( ($newAsset->getAction()=="DEM_PDT") || ($newAsset->getAction()=="PRT_PCF") ){
 //                $newAsset->setType(null);
 //            }
-//            $newAsset->setRspd($assetForm->get('rspd')->getData());
+//            $newAsset->setRsdp($assetForm->get('rspd')->getData());
 //            $newAsset->setDuree($assetForm->get('tpx')->getData());
 //            if ($newAsset->getNewHostname()==null){
 //                $newAsset->setNewHostname('N/A');
@@ -197,7 +197,7 @@ class HomeController extends AbstractController
 ////            if ( ($newAsset->getAction()=="DEM_PDT") || ($newAsset->getAction()=="PRT_PCF") ){
 ////                $newAsset->setType(null);
 ////            }
-////            $newAsset->setRspd($assetForm->get('rspd')->getData());
+////            $newAsset->setRsdp($assetForm->get('rspd')->getData());
 ////            $newAsset->setDuree($assetForm->get('tpx')->getData());
 ////            if ($newAsset->getNewHostname()==null){
 ////                $newAsset->setNewHostname('N/A');
