@@ -17,9 +17,7 @@ class FinalStringController extends AbstractController
     public function description(Request $request): Response
     {
         $survey = $this->get('session')->get('survey');
-//        $form = $this->createForm(GlobalFormType::class);
         $finalStringForm = $this->createForm(FinalStringFormType::class);
-//        $form->handleRequest($request);
         $finalStringForm->handleRequest($request);
 
         return $this->render('Survey/forms/final_string_form.html.twig',[

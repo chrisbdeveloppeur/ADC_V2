@@ -21,17 +21,7 @@
 
             </div>
 
-                <div class="is-flex is-justify-content-space-between">
-
-                    <a href="#" class="button is-info is-small js-hostname" onclick="goBack()">
-                        <i class="fas fa-chevron-left"></i>
-                    </a>
-
-                    <button class="button is-info is-small">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-
-                </div>
+            {{ include('includes/nav/prev_next.html.twig') }}
 
             {{ form_end(commentaire_form) }}
 

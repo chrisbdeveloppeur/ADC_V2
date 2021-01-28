@@ -118,20 +118,9 @@
                 {% endfor %}
             </div>
 
-
-                <div class="control has-text-right">
-                    <button class="button is-info is-normal">
-                        <span>
-                            Suivant
-                        </span>
-                        <span class="icon">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                    </button>
-                </div>
-
-
             {{ form_end(form) }}
+
+            {{ include('includes/nav/prev_next.html.twig') }}
 
         </div>
 

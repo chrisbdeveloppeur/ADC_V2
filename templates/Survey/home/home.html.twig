@@ -10,9 +10,9 @@
                     Bienvenue sur l'outil d'assistance à la fermeture de demandes [TASKT] & incidents [INCT]
                 </div>
 
-                <div class="is-flex is-justify-content-center is-align-items-end">
+                <div class="">
 
-                    {{ form_start(form) }}
+                    {{ form_start(form, {'attr': {'class':'column'}}) }}
 
                     <div class="control">
                         {% for child in form.service %}

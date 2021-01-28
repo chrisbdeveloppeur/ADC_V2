@@ -60,17 +60,14 @@ class FormsController extends AbstractController
             }
             $survey->addAsset($newAsset);
 
-//            dd($newAsset->getType());
-
             $action = $newAsset->getAction();
             $type = $newAsset->getType();
             $ae = $newAsset->getNewHostname();
             $as = $newAsset->getCurrentHostname();
             $urlForDelete = $this->redirectToRoute('form_asset_del',[
-                  'position' => $number,
-                ]);
+                'position' => $number,
+            ]);
 
-//            dd($urlForDelete);
 
 //            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
 //            return $this->redirect($referer);
@@ -245,17 +242,12 @@ class FormsController extends AbstractController
                 $app->setAsset('N/A');
             }
             $survey->addApp($app);
-//            dd($survey);
-
-//            dd($newAsset->getType());
 
             $action = $app->getAction();
             $asset = $app->getAsset();
             $urlForDelete = $this->redirectToRoute('form_app_del',[
                 'position' => $number,
             ]);
-
-//            dd($urlForDelete);
 
 //            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
 //            return $this->redirect($referer);

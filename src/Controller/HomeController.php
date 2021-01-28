@@ -251,61 +251,61 @@ class HomeController extends AbstractController
 
 
 
-    public function miseEnForm($text, $info){
-        if ( ($text == 'skipped') || ($text == '') || ($text == ' ') ){
-            return $text = null;
-        }else{
-            $text = $info . $text;
-            return $text . "\r\n";
-        }
-    }
-
-    /**
-     * @Route("/validation", name="final_string")
-     * @IsGranted("ROLE_USER")
-     */
-    public function stringGen(): Response
-    {
-        $survey = $this->getUser()->getSurvey();
-        $textDescription = $survey->getDescription();
-        $text = preg_replace('/\s\s+/', ' ', $textDescription);
-
-        $from_inct = $this->miseEnForm($survey->getFromInct(), 'Suite à incident : ');
-        $asset_type = $this->miseEnForm($survey->getAssetType(), 'Type de matériel : ');
-        $new_user = $this->miseEnForm($survey->getNewUser(),'Nouvel arrivant : ');
-        $hostname = $this->miseEnForm($survey->getHostname(),'Hostname : ');
-        $intervention = $this->miseEnForm($survey->getType(),'Type d\'intervention : ');
-        $description = $this->miseEnForm($survey->getDescription(), 'Déscription : ');
-
-        $finalString = [$from_inct, $asset_type, $new_user, $hostname, $intervention, $description] ;
-        foreach ($finalString as $key => $value){
-            if ($value == null){
-                unset($finalString[$key]);
-            }
-        }
-        $finalString = implode($finalString);
-
-        $survey = new Survey();
-//         Hashage (crc32) de la chaine final
-        $survey->setHashedString($finalString);
-        $date = $survey->getDateString();
-        $date = $date->format('d/m/Y - H:i');
-        $finalString .= "[" . $date . "]";
-        $finalString .= "\r\n[" . $survey->getHashedString() . "]";
-
-        $survey->setFinalString($finalString);
-
-        $form = $this->createForm(FinalStringFormType::class, $survey);
-        return $this->render('Survey/final_string_form.html.twig', [
-            'final_string_form' => $form->createView(),
-            'from_inct' => $from_inct,
-            'asset_type' => $asset_type,
-            'intervention' => $intervention,
-            'new_user' => $new_user,
-            'hostname' => $hostname,
-            'final_string' => $finalString,
-        ]);
-    }
+//    public function miseEnForm($text, $info){
+//        if ( ($text == 'skipped') || ($text == '') || ($text == ' ') ){
+//            return $text = null;
+//        }else{
+//            $text = $info . $text;
+//            return $text . "\r\n";
+//        }
+//    }
+//
+//    /**
+//     * @Route("/validation", name="final_string")
+//     * @IsGranted("ROLE_USER")
+//     */
+//    public function stringGen(): Response
+//    {
+//        $survey = $this->getUser()->getSurvey();
+//        $textDescription = $survey->getDescription();
+//        $text = preg_replace('/\s\s+/', ' ', $textDescription);
+//
+//        $from_inct = $this->miseEnForm($survey->getFromInct(), 'Suite à incident : ');
+//        $asset_type = $this->miseEnForm($survey->getAssetType(), 'Type de matériel : ');
+//        $new_user = $this->miseEnForm($survey->getNewUser(),'Nouvel arrivant : ');
+//        $hostname = $this->miseEnForm($survey->getHostname(),'Hostname : ');
+//        $intervention = $this->miseEnForm($survey->getType(),'Type d\'intervention : ');
+//        $description = $this->miseEnForm($survey->getDescription(), 'Déscription : ');
+//
+//        $finalString = [$from_inct, $asset_type, $new_user, $hostname, $intervention, $description] ;
+//        foreach ($finalString as $key => $value){
+//            if ($value == null){
+//                unset($finalString[$key]);
+//            }
+//        }
+//        $finalString = implode($finalString);
+//
+//        $survey = new Survey();
+////         Hashage (crc32) de la chaine final
+//        $survey->setHashedString($finalString);
+//        $date = $survey->getDateString();
+//        $date = $date->format('d/m/Y - H:i');
+//        $finalString .= "[" . $date . "]";
+//        $finalString .= "\r\n[" . $survey->getHashedString() . "]";
+//
+//        $survey->setFinalString($finalString);
+//
+//        $form = $this->createForm(FinalStringFormType::class, $survey);
+//        return $this->render('Survey/final_string_form.html.twig', [
+//            'final_string_form' => $form->createView(),
+//            'from_inct' => $from_inct,
+//            'asset_type' => $asset_type,
+//            'intervention' => $intervention,
+//            'new_user' => $new_user,
+//            'hostname' => $hostname,
+//            'final_string' => $finalString,
+//        ]);
+//    }
 
 
 

@@ -17,11 +17,9 @@
             {% endif %}
             </div>
 
-            <div class="is-flex is-justify-content-center is-align-items-end">
+            <div class="">
 
-                {{ form_start(form) }}
-
-{#                {{ form_name }}#}
+                {{ form_start(form, {'attr': {'class':'column'}}) }}
 
                 {% if form_name == 'type_inter_taskt_form' %}
                     <div class="field is-grouped">
@@ -38,7 +36,7 @@
                 {% else %}
                     <div class="control">
                         {% for child in form.type %}
-                            <label class="radio" onclick="checkRadio(this)">
+                            <label class="radio column" onclick="checkRadio(this)">
                                 <button class="button">
                                     {{ child.vars.label }}
                                     {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
@@ -50,6 +48,8 @@
                 {% endif %}
 
                 {{ form_end(form) }}
+
+                {{ include('includes/nav/prev_only.html.twig') }}
 
             </div>
 
