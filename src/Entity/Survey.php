@@ -48,22 +48,7 @@ class Survey
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantity;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $duration;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $proximity;
+    private $commentaire;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -98,16 +83,6 @@ class Survey
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $hostname;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $new_user;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $type_inter;
 
     /**
@@ -136,7 +111,7 @@ class Survey
         $this->type_inter = "N/A";
         $this->cas_inct = 'N/A';
         $this->cas_taskt = 'N/A';
-        $this->description = 'N/A';
+        $this->commentaire = 'N/A';
         $this->asset_type = "N/A";
         $this->proximity = "N/A";
         $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
@@ -163,62 +138,14 @@ class Survey
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getCommentaire(): ?string
     {
-        return $this->description;
+        return $this->commentaire;
     }
 
-    public function setDescription(?string $description): self
+    public function setCommentaire(?string $commentaire): self
     {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(int $quantity): self
-    {
-        $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    public function getDuration(): ?int
-    {
-        return $this->duration;
-    }
-
-    public function setDuration(int $duration): self
-    {
-        $this->duration = $duration;
-
-        return $this;
-    }
-
-    public function getProximity(): ?string
-    {
-        return $this->proximity;
-    }
-
-    public function setProximity(string $proximity): self
-    {
-        $this->proximity = $proximity;
-
-        return $this;
-    }
-
-    public function getMeetingRespected(): ?bool
-    {
-        return $this->meeting_respected;
-    }
-
-    public function setMeetingRespected(bool $meeting_respected): self
-    {
-        $this->meeting_respected = $meeting_respected;
+        $this->commentaire = $commentaire;
 
         return $this;
     }
@@ -279,18 +206,6 @@ class Survey
     public function setFromInct(?string $from_inct): self
     {
         $this->from_inct = $from_inct;
-
-        return $this;
-    }
-
-    public function getHostname(): ?string
-    {
-        return $this->hostname;
-    }
-
-    public function setHostname(?string $hostname): self
-    {
-        $this->hostname = $hostname;
 
         return $this;
     }

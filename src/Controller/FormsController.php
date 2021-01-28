@@ -7,8 +7,10 @@ use App\Entity\Asset;
 use App\Entity\OtherAsset;
 use App\Form\AppsType;
 use App\Form\AssetType;
+use App\Form\DescriptionFormType;
 use App\Form\GlobalFormType;
 use App\Form\OtherAssetType;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -75,7 +77,7 @@ class FormsController extends AbstractController
             return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
-        if ($form->isSubmitted()){
+        if ($form->isSubmitted() && $form->isValid()){
             if ($survey->getCas()== 'SDP_INC_1'){
                 return $this->redirectToRoute('form_other_asset');
             }
@@ -171,7 +173,7 @@ class FormsController extends AbstractController
             return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
-        if ($form->isSubmitted()){
+        if ($form->isSubmitted() && $form->isValid()){
             if ($survey->getCas()== 'SDP_INC_1'){
                 return $this->redirectToRoute('form_app');
             }
@@ -260,9 +262,8 @@ class FormsController extends AbstractController
             return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
-        if ($form->isSubmitted()){
-            dd($survey);
-            return $this->redirectToRoute('form_other_asset');
+        if ($form->isSubmitted() && $form->isValid()){
+            return $this->redirectToRoute('form_commentaire');
         }
 
         return $this->render('Survey/forms/apps_form.html.twig',[
@@ -290,6 +291,38 @@ class FormsController extends AbstractController
 
     }
 ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @Route("/commentaire", name="commentaire")
+     */
+    public function description(Request $request): Response
+    {
+        $survey = $this->get('session')->get('survey');
+//        $form = $this->createForm(GlobalFormType::class);
+        $commentaireForm = $this->createForm(DescriptionFormType::class);
+//        $form->handleRequest($request);
+        $commentaireForm->handleRequest($request);
+
+        if ($commentaireForm->isSubmitted() && $commentaireForm->isValid()){
+            $commentaire = $commentaireForm->get('commentaire')->getData();
+            $survey->setCommentaire($commentaire);
+            return $this->redirectToRoute("final_string");
+        }
+        return $this->render('Survey/forms/description_form.html.twig',[
+//            'form' => $form->createView(),
+            'commentaire_form' => $commentaireForm->createView(),
+        ]);
+    }
 
 
 

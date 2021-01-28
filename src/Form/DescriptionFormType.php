@@ -13,7 +13,7 @@ class DescriptionFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('infos', TextareaType::class,[
+            ->add('commentaire', TextareaType::class,[
                     'label' => false,
                     'required' => false,
                 ])
