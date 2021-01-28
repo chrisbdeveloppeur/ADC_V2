@@ -67,12 +67,17 @@ class HomeController extends AbstractController
     public function tasktOrInct(Request $request)
     {
         $survey = $this->get('session')->get('survey');
+        $survey->setType(null);
         $form = $this->createForm(TypeFormType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()){
-            $reponse = $form->get('tasktorinct')->getData();
+            $reponse = $form->get('type')->getData();
             $survey->setType($reponse);
-            return $this->redirectToRoute('inct_home');
+            if ($reponse == 'DEM'){
+                return $this->redirectToRoute('taskt_home');
+            }elseif ($reponse == 'INC'){
+                return $this->redirectToRoute('inct_home');
+            }
         }
         return $this->render('Survey/sdp/type_inter.html.twig',[
             'form' => $form->createView(),

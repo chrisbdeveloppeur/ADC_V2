@@ -144,12 +144,12 @@ class Survey
         return $this->id;
     }
 
-    public function getType(): ?string
+    public function getType()
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType($type): self
     {
         $this->type = $type;
 

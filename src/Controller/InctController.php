@@ -23,6 +23,8 @@ class InctController extends AbstractController
     public function typeInct(Request $request)
     {
         $survey = $this->get('session')->get('survey');
+        $survey->setCasInct(null);
+//        dd($survey);
         $type = $survey->getType();
         if ($type == "INC") {
             $form = $this->createForm(TypeInterInctForm::class);
@@ -36,7 +38,7 @@ class InctController extends AbstractController
             $survey->setCasInct($reponse);
             $cas = $survey->getService().'_'.$survey->getType().'_'.$reponse;
             $survey->setCas($cas);
-            dd($survey);
+//            dd($survey);
             $survey->setTypeInter($reponse);
             if ($reponse == '1') {         /* Changement de PC */
                 return $this->redirectToRoute('form_asset', [

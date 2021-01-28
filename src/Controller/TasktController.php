@@ -17,11 +17,11 @@ class TasktController extends AbstractController
 {
 
     /**
-     * @Route("/from-inct", name="from_inct")
+     * @Route("/type", name="home")
      */
-    public function fromInct(Request $request, EntityManagerInterface $em): Response
+    public function fromInct(Request $request): Response
     {
-        $survey = $this->getUser()->getSurvey();
+        $survey = $this->get('session')->get('survey');
         $form = $this->createForm(FromInctFormType::class);
         $form->handleRequest($request);
         $from_inct = $form->get('from_inct')->getData();
