@@ -217,23 +217,23 @@ class FormsController extends AbstractController
     public function appForm(Request $request): Response
     {
         $form = $this->createForm(GlobalFormType::class);
-        $assetForm = $this->createForm(AppsType::class);
+        $appForm = $this->createForm(AppsType::class);
         $survey = $this->get('session')->get('survey');
         $form->handleRequest($request);
-        $assetForm->handleRequest($request);
+        $appForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getApps()); $i++ ){
             $number = $i;
         }
 
 //
-        if ($assetForm->isSubmitted() && $number<=10){
+        if ($appForm->isSubmitted() && $number<=10){
             $app = new App();
             $app->setSurvey($survey);
             $app->setPosition($number);
-            $app->setAsset($assetForm->get('asset')->getData());
-            $app->setAction($assetForm->get('action')->getData());
-            $app->setRsdp($assetForm->get('rsdp')->getData());
-            $app->setTpx($assetForm->get('tpx')->getData());
+            $app->setAsset($appForm->get('asset')->getData());
+            $app->setAction($appForm->get('action')->getData());
+            $app->setRsdp($appForm->get('rsdp')->getData());
+            $app->setTpx($appForm->get('tpx')->getData());
 //            if ( ($app->getAction()=="DEM") || ($app->getAction()=="REP") ){
 //                $app->setType("PDT");
 //            }
@@ -263,10 +263,10 @@ class FormsController extends AbstractController
             return $this->redirectToRoute('form_other_asset');
         }
 
-        return $this->render('Survey/forms/assets_form.html.twig',[
+        return $this->render('Survey/forms/apps_form.html.twig',[
             'form' => $form->createView(),
             'form_name' => $form->getName(),
-            'asset_form' => $assetForm->createView(),
+            'app_form' => $appForm->createView(),
             'survey' => $survey,
         ]);
     }
@@ -277,14 +277,14 @@ class FormsController extends AbstractController
     public function delApp($position, Request $request): Response
     {
         $survey = $this->get('session')->get('survey');
-        $assetToDelete = $survey->getAssets()[$position];
+        $appToDelete = $survey->getAssets()[$position];
         unset($survey->getAssets()[$position]);
         $form = $this->createForm(GlobalFormType::class);
         $form->handleRequest($request);
 
 //        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
 //        return $this->redirect($referer);
-        return $this->json('asset ' . $assetToDelete . ' retiré !');
+        return $this->json('app ' . $appToDelete . ' retiré !');
 
     }
 ////////////////////////////////////////////////////////////////////////////////////

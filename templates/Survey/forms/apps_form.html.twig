@@ -9,37 +9,28 @@
 
             <label class="label is-uppercase" for="last_name">Applications</label>
 
-            {{ form_start(other_asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
+            {{ form_start(app_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
             <label class="label">Type de l'intervention</label>
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(other_asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change required-for-add'}}) }}
-                    </span>
-                </p>
-            </div>
-
-            <label class="label">Type de poste</label>
-            <div class="field">
-                <p class="control">
-                    <span class="select is-fullwidth">
-                        {{ form_widget(other_asset_form.type, {'attr': {'class': 'select has-text-centered js-on-change'}}) }}
+                        {{ form_widget(app_form.action, {'attr': {'class': 'select has-text-centered js-on-change required-for-add'}}) }}
                     </span>
                 </p>
             </div>
 
             <div class="is-hidden dynamic-field mb-4" id="assets-field">
                 <div class="is-flex is-justify-content-space-around">
-                    <label class="label">Nouvel asset</label>
+                    <label class="label">Asset</label>
                     <label class="label">Ancien asset</label>
                 </div>
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
-                        {{ form_widget(other_asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset entrant'}}) }}
+                        {{ form_widget(app_form.asset, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Hostname de l\'asset'}}) }}
                     </p>
                     <p class="control is-expanded">
-                        {{ form_widget(other_asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset sortant'}}) }}
+                        {{ form_widget(app_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset sortant'}}) }}
                     </p>
                 </div>
             </div>
@@ -48,15 +39,14 @@
                 <div class="field">
                     <p class="control">
                         <label class="checkbox label">
-                            Rendez-vous respécté par l'utilisateur ?
+                            Si l'opération a été déroulée sur place, aurait-elle pu être faite à distance ?
                         </label>
-                            {% for child in other_asset_form.rsdp %}
+                            {% for child in app_form.rsdp %}
                                 <label class="radio">
-                                    {{ form_widget(child, {'attr': {'class': ''} } ) }}
+                                    {{ form_widget(child) }}
                                     {{ child.vars.label }}
                                 </label>
                             {% endfor %}
-
                     </p>
                 </div>
             </div>
@@ -65,7 +55,7 @@
                 <label class="label">Durée de l'opération (facultatif)</label>
                 <div class="field has-addons is-justify-content-center">
                     <p class="control">
-                        {{ form_widget(other_asset_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 30'}}) }}
+                        {{ form_widget(app_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 30'}}) }}
                     </p>
                     <p class="control">
                         <a class="button is-static">
@@ -77,14 +67,14 @@
 
             <div class="control">
                 <button type="submit" class="button is-info is-small" id="asset-btn-form">
-                    <span>Ajouter l'action</span>
+                    <span>Ajouter</span>
                     <span class="icon">
                         <i class="fas fa-plus"></i>
                     </span>
                 </button>
             </div>
 
-            {{ form_end(other_asset_form) }}
+            {{ form_end(app_form) }}
 
             {{ form_start(form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
 
