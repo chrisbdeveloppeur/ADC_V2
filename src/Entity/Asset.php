@@ -58,6 +58,11 @@ class Asset
      */
     private $tpx;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $balise;
+
     public function __construct()
     {
         $this->setCurrentHostname('N/A');
@@ -170,6 +175,18 @@ class Asset
     public function setTpx(?int $tpx): self
     {
         $this->tpx = $tpx;
+
+        return $this;
+    }
+
+    public function getBalise(): ?string
+    {
+        return $this->balise;
+    }
+
+    public function setBalise(?string $balise): self
+    {
+        $this->balise = $balise;
 
         return $this;
     }

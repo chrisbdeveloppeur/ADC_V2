@@ -2,10 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Survey;
-use App\Form\DescriptionFormType;
-use App\Form\FinalStringFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,9 +18,46 @@ class FinalStringController extends AbstractController
     {
         $survey = $this->get('session')->get('survey');
         $finalString = '';
-        $finalString .= "[" . $survey->getService() . "]";
-        $finalString .= "[" . $survey->getCas() . "]";
-        $finalString .= "\r\n[" . $survey->getTimeStamp()->format('d/m/Y - H:i:s') ."]";
+
+        //                  Horodatage
+        $finalString .= $survey->getTimeStamp()->format('d/m/Y - H:i');
+
+        //         Hashage (crc32) de la chaine final
+        $survey->setHashedString($finalString);
+        $finalString .= " - [" . strtoupper($survey->getHashedString()) . "]\r\n";
+
+        $assets = $survey->getAssets();
+        $otherAssets = $survey->getOtherAssets();
+        $apps = $survey->getApps();
+
+        foreach ($apps as $key => $value){
+//            dump($value->getBalise());
+            $key++;
+            $app = "[" . $value->getBalise() . "(".$key.")] ";
+            $finalString .= $app;
+            dump($app);
+        }
+        foreach ($assets as $key => $value){
+//            dump($value->getBalise());
+            $key++;
+            $assets = "[" . $value->getBalise() . "(".$key.")] ";
+            $finalString .= $assets;
+            dump($assets);
+        }
+        foreach ($otherAssets as $key => $value){
+//            dump($value->getBalise());
+            $key++;
+            $otherAssets = "[" . $value->getBalise() . "(".$key.")] ";
+            $finalString .= $otherAssets;
+            dump($otherAssets);
+        }
+//dd($finalString);
+        $em->persist($survey);
+
+//        dd($survey);
+
+//        $finalString .= "[" . $survey->getService() . "]";
+//        $finalString .= "[" . $survey->getCas() . "]";
 //        $finalString .= "[".$survey->getService()."]";
 //        $finalString .= "[".$survey->getService()."]";
 //        $finalString .= "[".$survey->getService()."]";
@@ -32,9 +67,6 @@ class FinalStringController extends AbstractController
 //                      MISE EN CORELATION FUSEAU HORAIRE                   //
 //        $survey->setTimeStamp(new \DateTime('', new \DateTimeZone('Europe/Paris') ) );
 
-        //         Hashage (crc32) de la chaine final
-        $survey->setHashedString($finalString);
-        $finalString .= "\r\n[" . strtoupper($survey->getHashedString()) . "]";
 //        dump($finalString);
 //        $text = preg_replace('/\s\s+/', ' ', $finalString);
 //        $finalStringForm = $this->createForm(FinalStringFormType::class);

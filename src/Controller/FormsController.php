@@ -59,9 +59,9 @@ class FormsController extends AbstractController
                 $newAsset->setCurrentHostname('N/A');
             }
             $survey->addAsset($newAsset);
-
             $action = $newAsset->getAction();
             $type = $newAsset->getType();
+            $newAsset->setBalise($action . '_' . $type);
             $ae = $newAsset->getNewHostname();
             $as = $newAsset->getCurrentHostname();
             $urlForDelete = $this->redirectToRoute('form_asset_del',[
@@ -75,6 +75,7 @@ class FormsController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()){
+//            dd($survey);
             if ($survey->getCas()== 'SDP_INC_1'){
                 return $this->redirectToRoute('form_other_asset');
             }
@@ -159,6 +160,7 @@ class FormsController extends AbstractController
 
             $action = $newAsset->getAction();
             $type = $newAsset->getType();
+            $newAsset->setBalise($action . '_' . $type);
             $ae = $newAsset->getNewHostname();
             $as = $newAsset->getCurrentHostname();
             $urlForDelete = $this->redirectToRoute('form_asset_del',[
@@ -244,6 +246,7 @@ class FormsController extends AbstractController
             $survey->addApp($app);
 
             $action = $app->getAction();
+            $app->setBalise($action);
             $asset = $app->getAsset();
             $urlForDelete = $this->redirectToRoute('form_app_del',[
                 'position' => $number,

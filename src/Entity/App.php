@@ -47,6 +47,11 @@ class App
      */
     private $asset;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $balise;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -132,6 +137,18 @@ class App
     public function setAsset(?string $asset): self
     {
         $this->asset = $asset;
+
+        return $this;
+    }
+
+    public function getBalise(): ?string
+    {
+        return $this->balise;
+    }
+
+    public function setBalise(?string $balise): self
+    {
+        $this->balise = $balise;
 
         return $this;
     }
