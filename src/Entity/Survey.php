@@ -150,12 +150,12 @@ class Survey
         return $this;
     }
 
-    public function getTimestamp(): ?\DateTimeInterface
+    public function getTimeStamp(): ?\DateTimeInterface
     {
         return $this->timestamp;
     }
 
-    public function setTimestamp(\DateTimeInterface $timestamp): self
+    public function setTimeStamp(\DateTimeInterface $timestamp): self
     {
         $this->timestamp = $timestamp;
 

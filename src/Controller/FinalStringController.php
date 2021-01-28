@@ -17,6 +17,16 @@ class FinalStringController extends AbstractController
     public function description(Request $request): Response
     {
         $survey = $this->get('session')->get('survey');
+        $finalString = '';
+
+        //         Hashage (crc32) de la chaine final
+//        $survey->setHashedString($finalString);
+        $survey->setTimeStamp(new \DateTime('', new \DateTimeZone('Europe/Paris') ) );
+        $date = $survey->getTimestamp;
+        $finalString .= "[" . $date . "]";
+        $finalString .= "\r\n[" . $survey->getHashedString() . "]";
+
+        dd($date);
         $finalStringForm = $this->createForm(FinalStringFormType::class);
         $finalStringForm->handleRequest($request);
 
