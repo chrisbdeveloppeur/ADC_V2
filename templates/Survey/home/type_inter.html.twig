@@ -11,9 +11,9 @@
             {% if form_name == 'type_form' %}
                 <label class="label">S'agit-il d'une demande ou d'un incident ?</label>
             {% elseif form_name == 'type_inter_taskt_form' %}
-                <label class="label">Veuillez préciser la nature de la demande</label>
+                <label class="label">Veuillez selectionner la nature de la demande</label>
             {% elseif form_name == 'type_inter_inct_form' %}
-                <label class="label">Veuillez préciser la nature de l'incident</label>
+                <label class="label">Veuillez selectionner la nature de l'incident</label>
             {% endif %}
             </div>
 
@@ -37,7 +37,7 @@
                     <div class="control">
                         {% for child in form.type %}
                             <label class="radio column" onclick="checkRadio(this)">
-                                <button class="button">
+                                <button class="button" {% if child.vars.label == 'Demande' %}disabled{% endif %}>
                                     {{ child.vars.label }}
                                     {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
                                 </button>
