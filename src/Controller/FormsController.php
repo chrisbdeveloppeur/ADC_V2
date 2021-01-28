@@ -240,15 +240,14 @@ class FormsController extends AbstractController
             if ($app->getAsset()==null){
                 $app->setAsset('N/A');
             }
-            $survey->addAsset($app);
+            $survey->addApp($app);
+//            dd($survey);
 
 //            dd($newAsset->getType());
 
             $action = $app->getAction();
-            $type = $app->getType();
-            $ae = $app->getNewHostname();
-            $as = $app->getCurrentHostname();
-            $urlForDelete = $this->redirectToRoute('form_asset_del',[
+            $asset = $app->getAsset();
+            $urlForDelete = $this->redirectToRoute('form_app_del',[
                 'position' => $number,
             ]);
 
@@ -256,10 +255,11 @@ class FormsController extends AbstractController
 
 //            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
 //            return $this->redirect($referer);
-            return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
+            return $this->json(['action' => $action,'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
         if ($form->isSubmitted()){
+            dd($survey);
             return $this->redirectToRoute('form_other_asset');
         }
 
@@ -277,8 +277,8 @@ class FormsController extends AbstractController
     public function delApp($position, Request $request): Response
     {
         $survey = $this->get('session')->get('survey');
-        $appToDelete = $survey->getAssets()[$position];
-        unset($survey->getAssets()[$position]);
+        $appToDelete = $survey->getApps()[$position];
+        unset($survey->getApps()[$position]);
         $form = $this->createForm(GlobalFormType::class);
         $form->handleRequest($request);
 

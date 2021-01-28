@@ -23,7 +23,6 @@
             <div class="is-hidden dynamic-field mb-4" id="assets-field">
                 <div class="is-flex is-justify-content-space-around">
                     <label class="label">Asset</label>
-                    <label class="label">Ancien asset</label>
                 </div>
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
@@ -82,17 +81,17 @@
             </div>
 
             <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
-                {% for asset in survey.apps %}
+                {% for app in survey.apps %}
                     <div class="control">
                         <div class="tags has-addons">
-                            {% if asset.action %}
-                                <span class="tag is-light">{{ asset.action }}</span>
+                            {% if app.action %}
+                                <span class="tag is-light">{{ app.action }}</span>
                             {% endif %}
 
-                            {% if asset.asset != 'N/A' %}
-                                <span class="tag is-primary">{{ asset.newhostname }}</span>
+                            {% if app.asset != 'N/A' %}
+                                <span class="tag is-primary">{{ app.asset }}</span>
                             {% endif %}
-                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
+                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': app.position }) }}" title="Retiré cette action"></a>
                         </div>
                     </div>
                 {% endfor %}
@@ -126,9 +125,7 @@
         let input = document.querySelectorAll(".js-on-change");
         let dynamicFields = document.querySelectorAll(".dynamic-field");
         let fieldAssets = document.getElementById('assets-field');
-        let asset_ae = document.getElementById('other_asset_ae');
-        let asset_as = document.getElementById('other_asset_as');
-        let asset_type = document.getElementById('other_asset_type');
+        let app_asset = document.getElementById('apps_asset');
         let fieldTpx = document.getElementById('tpx-field');
         let fieldRsdp = document.getElementById('rsdp-field');
 
@@ -143,44 +140,49 @@
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
             hideAddBtn();
-            if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
-                // console.log(values);
-                let condition1 = ['PHN','PRT','TRD'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_ae, 'disabled');
-                    makeVisible(fieldAssets);
-                }
-                let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
-                if (condition2.some( el => values.includes(el) ) ){
-                    makeVisible(fieldTpx);
-                }
-            }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
-                removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
-                let condition1 = ['PHN','TRD'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_as, 'disabled');
-                    makeVisible(fieldAssets);
-                }
-                makeVisible(fieldTpx);
-            }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
-                removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-                let condition1 = ['PHN'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_ae, 'disabled');
-                    removeClass(asset_as, 'disabled');
-                    makeVisible(fieldAssets);
-                    makeVisible(fieldTpx);
-                }
-            }else if (values.includes('PRT')) { //              PRET
-                removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-                let condition1 = ['PHN'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_ae, 'disabled');
-                    makeVisible(fieldAssets);
-                    makeVisible(fieldTpx);
-                }
-            }
-            console.log(values);
+
+            removeClass(app_asset, 'disabled');
+            makeVisible(fieldAssets);
+            makeVisible(fieldTpx);
+
+            // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
+            //     // console.log(values);
+            //     let condition1 = ['PHN','PRT','TRD'];
+            //     if (condition1.some( el => values.includes(el) ) ){
+            //         removeClass(app_asset, 'disabled');
+            //         makeVisible(fieldAssets);
+            //     }
+            //     let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
+            //     if (condition2.some( el => values.includes(el) ) ){
+            //         makeVisible(fieldTpx);
+            //     }
+            // }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
+            //     removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
+            //     let condition1 = ['PHN','TRD'];
+            //     if (condition1.some( el => values.includes(el) ) ){
+            //         removeClass(asset_as, 'disabled');
+            //         makeVisible(fieldAssets);
+            //     }
+            //     makeVisible(fieldTpx);
+            // }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
+            //     removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
+            //     let condition1 = ['PHN'];
+            //     if (condition1.some( el => values.includes(el) ) ){
+            //         removeClass(app_asset, 'disabled');
+            //         removeClass(asset_as, 'disabled');
+            //         makeVisible(fieldAssets);
+            //         makeVisible(fieldTpx);
+            //     }
+            // }else if (values.includes('PRT')) { //              PRET
+            //     removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
+            //     let condition1 = ['PHN'];
+            //     if (condition1.some( el => values.includes(el) ) ){
+            //         removeClass(app_asset, 'disabled');
+            //         makeVisible(fieldAssets);
+            //         makeVisible(fieldTpx);
+            //     }
+            // }
+            // console.log(values);
         }
 
 
@@ -210,10 +212,8 @@
 
         function initializeAssetsForm() {
             hiddeAllFields();
-            asset_ae.setAttribute('disabled', true);
-            asset_ae.value = null;
-            asset_as.setAttribute('disabled', true);
-            asset_as.value = null;
+            app_asset.setAttribute('disabled', true);
+            app_asset.value = null;
             document.getElementById('asset-btn-form').style.visibility = 'hidden';
             input.forEach(function (element) {
                 element.querySelectorAll('option').forEach(option => option.style.display = 'block')

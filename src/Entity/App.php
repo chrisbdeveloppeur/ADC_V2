@@ -52,6 +52,18 @@ class App
         return $this->id;
     }
 
+    public function __construct()
+    {
+        $this->setAction('N/A');
+        $this->setAsset('N/A');
+        $this->setRsdp('N/A');
+    }
+
+    public function __toString()
+    {
+        return $this->getAction();
+    }
+
     public function getAction(): ?string
     {
         return $this->action;

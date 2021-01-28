@@ -19,10 +19,9 @@ class AppsType extends AbstractType
                     'required' => false,
                     'placeholder' => 'Selectionner...',
                     'choices' => [
-                        'Prêt' => 'PRT',
-                        'Nouvelle dotation sans reprise' => 'NDO',
-                        'Reprise sans nouvelle dotation' => 'REP',
-                        'Nouvelle dotation + reprise (renouvellement)' => 'REN',
+                        'Applications télédistribuées' => 'SFW_TLD',
+                        'Applications installées localement ou en PMAD, sans tentative préalable de télédistribution' => 'SFW_LOC',
+                        'Applications installées localement ou en PMAD, après un échec de télédistribution' => 'SWF_TLK',
                     ]
                 ]
 
