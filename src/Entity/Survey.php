@@ -115,7 +115,7 @@ class Survey
         $this->cas_taskt = 'N/A';
         $this->commentaire = 'N/A';
 
-        $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
+//        $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->assets = new ArrayCollection();
         $this->other_assets = new ArrayCollection();
@@ -156,8 +156,9 @@ class Survey
         return $this->timestamp;
     }
 
-    public function setTimeStamp(\DateTimeInterface $timestamp): self
+    public function setTimeStamp(): self
     {
+        $timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->timestamp = $timestamp;
 
         return $this;

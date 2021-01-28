@@ -20,7 +20,9 @@ class FinalStringController extends AbstractController
         $finalString = '';
 
         //                  Horodatage
-        $finalString .= $survey->getTimeStamp()->format('d/m/Y - H:i');
+        $survey->setTimeStamp();
+        $horodatage = $survey->getTimeStamp()->format('d/m/Y - H:i');
+        $finalString .= $horodatage;
 
         //         Hashage (crc32) de la chaine final
         $survey->setHashedString($finalString);
