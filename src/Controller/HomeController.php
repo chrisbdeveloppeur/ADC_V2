@@ -40,7 +40,7 @@ class HomeController extends AbstractController
             $survey->setService($reponse);
 //            dd($reponse);
             if ($reponse == 'HD'){
-                return $this->redirectToRoute('tasktonly',[
+                return $this->redirectToRoute('home',[
                     'service' => $reponse,
                 ]);
             }elseif ($reponse == 'SDP'){

@@ -47,9 +47,7 @@ class InctController extends AbstractController
             } elseif ($reponse == '2') {   /* Autre intervention matérielle */
                 return $this->redirectToRoute('form_other_asset');
             } elseif ($reponse == '3') {                      /* Intervention software */
-//                return $this->redirectToRoute('inct_home', [
-//                    'tasktorinct' => $reponse,
-//                ]);
+                return $this->redirectToRoute('form_app');
             }
         }
 

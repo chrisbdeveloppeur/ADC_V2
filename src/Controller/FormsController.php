@@ -258,7 +258,11 @@ class FormsController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            return $this->redirectToRoute('form_commentaire');
+            if ($survey->getCas() === 'SDP_INC_1'){
+                return $this->redirectToRoute('form_commentaire');
+            }elseif ($survey->getCas() === 'SDP_INC_3'){
+//                return $this->redirectToRoute('form_other_app');
+            }
         }
 
         return $this->render('Survey/forms/apps_form.html.twig',[
