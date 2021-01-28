@@ -110,43 +110,47 @@
 
                 axios.post(url,formData).then(function (response) {
                     let container = document.querySelector('#asset-tags-grouped');
-                    let datas = response.data;
-                    let arrayDatas = [];
-                    for (const property in datas) {
-                        if ( property === 'url_for_delete' || property === 'position' ) {
-                        }else {
-                            arrayDatas.push(datas[property]);
-                        }
-                    }
-
-                    console.log(arrayDatas);
-
-                    arrayDatas.splice(arrayDatas.length-2, 2);
-
-                    let urlForDelete = datas.url_for_delete;
-
                     container.innerHTML += "<div class=\"control\">\n" +
                         "                     <div class=\"tags has-addons\">\n" +
                         "                        </div>\n" +
                         "                    </div>";
 
-                    if (arrayDatas.length === 1){
-                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ arrayDatas[0] +"</span>"
-                    }else if (arrayDatas.length === 2){
-                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ arrayDatas[0] +"_"+ arrayDatas[1] +"</span>"
-                    }else{
-                        arrayDatas.forEach(function (element, key) {
+                    let datas = response.data;
+                    let balises1 = [];
+                    let balises2 = [];
+                    for (const property in datas) {
+                        if ( property === 'url_for_delete' || property === 'position' ) {
+                        }else if (datas[property] === null) {
+                        }else if (property === 'action' || property === 'type') {
+                            balises1.push(datas[property]);
+                        }else {
+                            balises2.push(datas[property]);
+                        }
+                    }
+
+                    console.log(balises1, balises2);
+
+                    // arrayDatas.splice(arrayDatas.length-2, 2);
+
+                    let urlForDelete = datas.url_for_delete;
+
+
+
+                    if (balises1.length === 1){
+                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ balises1[0] +"</span>"
+                    }else if (balises1.length === 2){
+                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ balises1[0] +"_"+ balises1[1] +"</span>"
+                    }
+
+                    balises2.forEach(function (element, key) {
                             if (element !== 'N/A'){
                                 if (key === 0){
-                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ arrayDatas[0] +"_"+ arrayDatas[1] +"</span>"
-                                }else if (key === 2){
                                     container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-primary\">"+ element +"</span>"
-                                }else if (key === 3){
-                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-danger\">"+ element +"</span>"
+                                }else if (key === 1){
+                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-danger\">"+ balises2[1] +"</span>"
                                 }
                             }
                         });
-                    }
 
                     container.lastElementChild.lastElementChild.innerHTML += "<a class=\"tag is-delete ajax-remove-asset new-delete-btn\" href="+ urlForDelete +" title=\"Retiré cette action\"></a>"
 
