@@ -56,12 +56,16 @@ class Asset
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $duree;
+    private $tpx;
 
     public function __construct()
     {
         $this->setCurrentHostname('N/A');
         $this->setNewHostname('N/A');
+        $this->setAction('N/A');
+        $this->setType('N/A');
+        $this->setRsdp('N/A');
+//        $this->setTpx('N/A');
     }
 
     public function __toString()
@@ -158,14 +162,14 @@ class Asset
         return $this;
     }
 
-    public function getDuree(): ?int
+    public function getTpx(): ?int
     {
-        return $this->duree;
+        return $this->tpx;
     }
 
-    public function setDuree(?int $duree): self
+    public function setTpx(?int $tpx): self
     {
-        $this->duree = $duree;
+        $this->tpx = $tpx;
 
         return $this;
     }

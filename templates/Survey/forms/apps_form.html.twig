@@ -1,0 +1,253 @@
+{% extends 'base.html.twig' %}
+
+{#{% block title %}Hello AskUserController!{% endblock %}#}
+
+{% block body %}
+
+    <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
+        <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
+
+            <label class="label is-uppercase" for="last_name">Applications</label>
+
+            {{ form_start(other_asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
+
+            <label class="label">Type de l'intervention</label>
+            <div class="field">
+                <p class="control">
+                    <span class="select is-fullwidth">
+                        {{ form_widget(other_asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change required-for-add'}}) }}
+                    </span>
+                </p>
+            </div>
+
+            <label class="label">Type de poste</label>
+            <div class="field">
+                <p class="control">
+                    <span class="select is-fullwidth">
+                        {{ form_widget(other_asset_form.type, {'attr': {'class': 'select has-text-centered js-on-change'}}) }}
+                    </span>
+                </p>
+            </div>
+
+            <div class="is-hidden dynamic-field mb-4" id="assets-field">
+                <div class="is-flex is-justify-content-space-around">
+                    <label class="label">Nouvel asset</label>
+                    <label class="label">Ancien asset</label>
+                </div>
+                <div class="field has-addons has-addons-centered">
+                    <p class="control is-expanded">
+                        {{ form_widget(other_asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset entrant'}}) }}
+                    </p>
+                    <p class="control is-expanded">
+                        {{ form_widget(other_asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset sortant'}}) }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="is-hidden hidden-forced dynamic-field mb-4" id="rsdp-field">
+                <div class="field">
+                    <p class="control">
+                        <label class="checkbox label">
+                            Rendez-vous respécté par l'utilisateur ?
+                        </label>
+                            {% for child in other_asset_form.rsdp %}
+                                <label class="radio">
+                                    {{ form_widget(child, {'attr': {'class': ''} } ) }}
+                                    {{ child.vars.label }}
+                                </label>
+                            {% endfor %}
+
+                    </p>
+                </div>
+            </div>
+
+            <div class="is-hidden dynamic-field mb-4" id="tpx-field">
+                <label class="label">Durée de l'opération (facultatif)</label>
+                <div class="field has-addons is-justify-content-center">
+                    <p class="control">
+                        {{ form_widget(other_asset_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 30'}}) }}
+                    </p>
+                    <p class="control">
+                        <a class="button is-static">
+                            Min
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="control">
+                <button type="submit" class="button is-info is-small" id="asset-btn-form">
+                    <span>Ajouter l'action</span>
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                </button>
+            </div>
+
+            {{ form_end(other_asset_form) }}
+
+            {{ form_start(form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
+
+            <div class="field">
+
+                {{ form_widget(form, {'attr': {'class': 'is-hidden'}}) }}
+
+            </div>
+
+            <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
+                {% for asset in survey.otherassets %}
+                    <div class="control">
+                        <div class="tags has-addons">
+                            {% if asset.type and asset.action %}
+                                <span class="tag is-light">{{ asset.action }}_{{ asset.type }}</span>
+                            {% elseif asset.action %}
+                                <span class="tag is-light">{{ asset.action }}</span>
+                            {% elseif asset.type %}
+                                <span class="tag is-light">{{ asset.type }}</span>
+                            {% endif %}
+
+                            {% if asset.newhostname != 'N/A' %}
+                                <span class="tag is-primary">{{ asset.newhostname }}</span>
+                            {% endif %}
+                            {% if asset.currenthostname != 'N/A' %}
+                                <span class="tag is-danger">{{ asset.currenthostname }}</span>
+                            {% endif %}
+                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_asset_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+                <div class="control has-text-right">
+                    <button class="button is-info is-normal">
+                        <span>
+                            Suivant
+                        </span>
+                        <span class="icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </button>
+                </div>
+
+
+            {{ form_end(form) }}
+
+        </div>
+
+    </div>
+
+
+
+
+    {#    JS POUR FORMULAIRE DYNAMIQUE    #}
+    <script>
+
+        let input = document.querySelectorAll(".js-on-change");
+        let dynamicFields = document.querySelectorAll(".dynamic-field");
+        let fieldAssets = document.getElementById('assets-field');
+        let asset_ae = document.getElementById('other_asset_ae');
+        let asset_as = document.getElementById('other_asset_as');
+        let asset_type = document.getElementById('other_asset_type');
+        let fieldTpx = document.getElementById('tpx-field');
+        let fieldRsdp = document.getElementById('rsdp-field');
+
+        input.forEach(element => element.addEventListener('input', updateValue) );
+
+        window.onload = function(){
+            updateValue();
+        } ;
+
+        function updateValue() {
+            let values = [];
+            input.forEach(element => values.push(element.value));
+            initializeAssetsForm();
+            hideAddBtn();
+            if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
+                // console.log(values);
+                let condition1 = ['PHN','PRT','TRD'];
+                if (condition1.some( el => values.includes(el) ) ){
+                    removeClass(asset_ae, 'disabled');
+                    makeVisible(fieldAssets);
+                }
+                let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
+                if (condition2.some( el => values.includes(el) ) ){
+                    makeVisible(fieldTpx);
+                }
+            }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
+                removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
+                let condition1 = ['PHN','TRD'];
+                if (condition1.some( el => values.includes(el) ) ){
+                    removeClass(asset_as, 'disabled');
+                    makeVisible(fieldAssets);
+                }
+                makeVisible(fieldTpx);
+            }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
+                removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
+                let condition1 = ['PHN'];
+                if (condition1.some( el => values.includes(el) ) ){
+                    removeClass(asset_ae, 'disabled');
+                    removeClass(asset_as, 'disabled');
+                    makeVisible(fieldAssets);
+                    makeVisible(fieldTpx);
+                }
+            }else if (values.includes('PRT')) { //              PRET
+                removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
+                let condition1 = ['PHN'];
+                if (condition1.some( el => values.includes(el) ) ){
+                    removeClass(asset_ae, 'disabled');
+                    makeVisible(fieldAssets);
+                    makeVisible(fieldTpx);
+                }
+            }
+            console.log(values);
+        }
+
+
+
+
+        function removeSelectOption(selectObject, valueOptionToDelete) {
+            let options = selectObject.querySelectorAll('option');
+            options.forEach(function (element) {
+                let valueOption = element.value;
+                if (valueOptionToDelete.includes(valueOption)){
+                    element.style.display = "none";
+                    element.selected = false;
+                }
+            });
+        }
+        function hideAddBtn() {
+            document.querySelectorAll('select.required-for-add').forEach(function (element) {
+                let firstOption = element.firstElementChild;
+                if (!firstOption.selected){
+                    document.getElementById('asset-btn-form').style.visibility = 'visible';
+                }
+            });
+        }
+        function removeClass(htmlObject, className){
+            htmlObject.attributes.removeNamedItem(className);
+        }
+
+        function initializeAssetsForm() {
+            hiddeAllFields();
+            asset_ae.setAttribute('disabled', true);
+            asset_ae.value = null;
+            asset_as.setAttribute('disabled', true);
+            asset_as.value = null;
+            document.getElementById('asset-btn-form').style.visibility = 'hidden';
+            input.forEach(function (element) {
+                element.querySelectorAll('option').forEach(option => option.style.display = 'block')
+            })
+        }
+        function hiddeAllFields() {
+            dynamicFields.forEach(element => element.classList.add('is-hidden') );
+        }
+        function makeVisible(element) {
+            element.classList.remove('is-hidden')
+        }
+
+    </script>
+
+{% endblock %}
+
+

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\App;
 use App\Entity\Asset;
 use App\Entity\OtherAsset;
+use App\Form\AppsType;
 use App\Form\AssetType;
 use App\Form\GlobalFormType;
 use App\Form\OtherAssetType;
@@ -45,7 +47,7 @@ class FormsController extends AbstractController
                 $newAsset->setType("PDT");
             }
             $newAsset->setRsdp($assetForm->get('rsdp')->getData());
-            $newAsset->setDuree($assetForm->get('tpx')->getData());
+            $newAsset->setTpx($assetForm->get('tpx')->getData());
             if ($newAsset->getNewHostname()==null){
                 $newAsset->setNewHostname('N/A');
             }
@@ -145,7 +147,7 @@ class FormsController extends AbstractController
                 $newAsset->setType('PHN');
             }
             $newAsset->setRsdp($otherAssetForm->get('rsdp')->getData());
-            $newAsset->setDuree($otherAssetForm->get('tpx')->getData());
+            $newAsset->setTpx($otherAssetForm->get('tpx')->getData());
             if ($newAsset->getNewHostname()==null){
                 $newAsset->setNewHostname('N/A');
             }
@@ -168,6 +170,9 @@ class FormsController extends AbstractController
         }
 
         if ($form->isSubmitted()){
+            if ($survey->getCas()== 'SDP_INC_1'){
+                return $this->redirectToRoute('form_app');
+            }
 //            return $this->redirectToRoute();
         }
 
@@ -212,41 +217,37 @@ class FormsController extends AbstractController
     public function appForm(Request $request): Response
     {
         $form = $this->createForm(GlobalFormType::class);
-        $assetForm = $this->createForm(AssetType::class);
+        $assetForm = $this->createForm(AppsType::class);
         $survey = $this->get('session')->get('survey');
         $form->handleRequest($request);
         $assetForm->handleRequest($request);
-        for ($i=0; $i<=count($survey->getAssets()); $i++ ){
+        for ($i=0; $i<=count($survey->getApps()); $i++ ){
             $number = $i;
         }
+
 //
         if ($assetForm->isSubmitted() && $number<=10){
-            $newAsset = new Asset();
-            $newAsset->setSurvey($survey);
-            $newAsset->setPosition($number);
-            $newAsset->setCurrentHostname($assetForm->get('as')->getData());
-            $newAsset->setNewHostname($assetForm->get('ae')->getData());
-            $newAsset->setType($assetForm->get('type')->getData());
-            $newAsset->setAction($assetForm->get('action')->getData());
-            if ( ($newAsset->getAction()=="DEM") || ($newAsset->getAction()=="REP") ){
-                $newAsset->setType("PDT");
+            $app = new App();
+            $app->setSurvey($survey);
+            $app->setPosition($number);
+            $app->setAsset($assetForm->get('asset')->getData());
+            $app->setAction($assetForm->get('action')->getData());
+            $app->setRsdp($assetForm->get('rsdp')->getData());
+            $app->setTpx($assetForm->get('tpx')->getData());
+//            if ( ($app->getAction()=="DEM") || ($app->getAction()=="REP") ){
+//                $app->setType("PDT");
+//            }
+            if ($app->getAsset()==null){
+                $app->setAsset('N/A');
             }
-            $newAsset->setRsdp($assetForm->get('rsdp')->getData());
-            $newAsset->setDuree($assetForm->get('tpx')->getData());
-            if ($newAsset->getNewHostname()==null){
-                $newAsset->setNewHostname('N/A');
-            }
-            if ($newAsset->getCurrentHostname()==null){
-                $newAsset->setCurrentHostname('N/A');
-            }
-            $survey->addAsset($newAsset);
+            $survey->addAsset($app);
 
 //            dd($newAsset->getType());
 
-            $action = $newAsset->getAction();
-            $type = $newAsset->getType();
-            $ae = $newAsset->getNewHostname();
-            $as = $newAsset->getCurrentHostname();
+            $action = $app->getAction();
+            $type = $app->getType();
+            $ae = $app->getNewHostname();
+            $as = $app->getCurrentHostname();
             $urlForDelete = $this->redirectToRoute('form_asset_del',[
                 'position' => $number,
             ]);

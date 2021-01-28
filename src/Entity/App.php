@@ -37,6 +37,16 @@ class App
      */
     private $survey;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $position;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $asset;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +96,30 @@ class App
     public function setSurvey(?Survey $survey): self
     {
         $this->survey = $survey;
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?int $position): self
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    public function getAsset(): ?string
+    {
+        return $this->asset;
+    }
+
+    public function setAsset(?string $asset): self
+    {
+        $this->asset = $asset;
 
         return $this;
     }

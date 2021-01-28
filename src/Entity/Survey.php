@@ -130,8 +130,15 @@ class Survey
     {
         $this->quantity = 1;
         $this->duration = 1;
-        $this->asset_type = "Non communiqué";
-        $this->proximity = "Non communiqué";
+        $this->cas = 'N/A';
+        $this->service = 'N/A';
+        $this->type = 'N/A';
+        $this->type_inter = "N/A";
+        $this->cas_inct = 'N/A';
+        $this->cas_taskt = 'N/A';
+        $this->description = 'N/A';
+        $this->asset_type = "N/A";
+        $this->proximity = "N/A";
         $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->assets = new ArrayCollection();
