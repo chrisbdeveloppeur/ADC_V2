@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FormsController extends AbstractController
 {
-
+//////////////////////////////  ASSET FORM  //////////////////////////////
     /**
      * @Route("/asset", name="asset")
      */
@@ -99,6 +99,7 @@ class FormsController extends AbstractController
         return $this->json('asset ' . $assetToDelete . ' retiré !');
 
     }
+////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -107,7 +108,7 @@ class FormsController extends AbstractController
 
 
 
-
+//////////////////////////////  OTHER_ASSET FORM  //////////////////////////////
     /**
      * @Route("/other-asset", name="other_asset")
      */
@@ -187,7 +188,97 @@ class FormsController extends AbstractController
         return $this->json('asset ' . $otherAssetToDelete . ' retiré !');
 
     }
+////////////////////////////////////////////////////////////////////////////////////
 
+
+
+
+
+
+
+
+//////////////////////////////  APP FORM  //////////////////////////////
+    /**
+     * @Route("/app", name="app")
+     */
+    public function appForm(Request $request): Response
+    {
+        $form = $this->createForm(GlobalFormType::class);
+        $assetForm = $this->createForm(AssetType::class);
+        $survey = $this->get('session')->get('survey');
+        $form->handleRequest($request);
+        $assetForm->handleRequest($request);
+        for ($i=0; $i<=count($survey->getAssets()); $i++ ){
+            $number = $i;
+        }
+//
+        if ($assetForm->isSubmitted() && $number<=10){
+            $newAsset = new Asset();
+            $newAsset->setSurvey($survey);
+            $newAsset->setPosition($number);
+            $newAsset->setCurrentHostname($assetForm->get('as')->getData());
+            $newAsset->setNewHostname($assetForm->get('ae')->getData());
+            $newAsset->setType($assetForm->get('type')->getData());
+            $newAsset->setAction($assetForm->get('action')->getData());
+            if ( ($newAsset->getAction()=="DEM") || ($newAsset->getAction()=="REP") ){
+                $newAsset->setType("PDT");
+            }
+            $newAsset->setRsdp($assetForm->get('rsdp')->getData());
+            $newAsset->setDuree($assetForm->get('tpx')->getData());
+            if ($newAsset->getNewHostname()==null){
+                $newAsset->setNewHostname('N/A');
+            }
+            if ($newAsset->getCurrentHostname()==null){
+                $newAsset->setCurrentHostname('N/A');
+            }
+            $survey->addAsset($newAsset);
+
+//            dd($newAsset->getType());
+
+            $action = $newAsset->getAction();
+            $type = $newAsset->getType();
+            $ae = $newAsset->getNewHostname();
+            $as = $newAsset->getCurrentHostname();
+            $urlForDelete = $this->redirectToRoute('form_asset_del',[
+                'position' => $number,
+            ]);
+
+//            dd($urlForDelete);
+
+//            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+//            return $this->redirect($referer);
+            return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
+        }
+
+        if ($form->isSubmitted()){
+            return $this->redirectToRoute('form_other_asset');
+        }
+
+        return $this->render('Survey/assets_form.html.twig',[
+            'form' => $form->createView(),
+            'form_name' => $form->getName(),
+            'asset_form' => $assetForm->createView(),
+            'survey' => $survey,
+        ]);
+    }
+
+    /**
+     * @Route("/del-app={position}", name="app_del")
+     */
+    public function delApp($position, Request $request): Response
+    {
+        $survey = $this->get('session')->get('survey');
+        $assetToDelete = $survey->getAssets()[$position];
+        unset($survey->getAssets()[$position]);
+        $form = $this->createForm(GlobalFormType::class);
+        $form->handleRequest($request);
+
+//        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+//        return $this->redirect($referer);
+        return $this->json('asset ' . $assetToDelete . ' retiré !');
+
+    }
+////////////////////////////////////////////////////////////////////////////////////
 
 
 

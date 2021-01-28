@@ -32,6 +32,11 @@ class App
      */
     private $tpx;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="apps")
+     */
+    private $survey;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class App
     public function setTpx(?int $tpx): self
     {
         $this->tpx = $tpx;
+
+        return $this;
+    }
+
+    public function getSurvey(): ?Survey
+    {
+        return $this->survey;
+    }
+
+    public function setSurvey(?Survey $survey): self
+    {
+        $this->survey = $survey;
 
         return $this;
     }

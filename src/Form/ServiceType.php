@@ -19,8 +19,8 @@ class ServiceType extends AbstractType
                 'expanded' => true,
 //                'choice_label' => false,
                 'choices' => [
-                    'Service de proximité' => 'sdp',
-                    'Help desk' => 'hd',
+                    'Service de proximité' => 'SDP',
+                    'Help desk' => 'HD',
                 ]
             ])
         ;

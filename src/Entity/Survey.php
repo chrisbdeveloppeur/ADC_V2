@@ -23,7 +23,27 @@ class Survey
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $service;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $type;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cas_taskt;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cas_inct;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cas;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -88,11 +108,6 @@ class Survey
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $service;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $type_inter;
 
     /**
@@ -105,6 +120,11 @@ class Survey
      */
     private $other_assets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=App::class, mappedBy="survey")
+     */
+    private $apps;
+
 
     public function __construct()
     {
@@ -116,6 +136,7 @@ class Survey
         $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->assets = new ArrayCollection();
         $this->other_assets = new ArrayCollection();
+        $this->apps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -347,6 +368,72 @@ class Survey
                 $otherAsset->setSurvey(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|App[]
+     */
+    public function getApps(): Collection
+    {
+        return $this->apps;
+    }
+
+    public function addApp(App $app): self
+    {
+        if (!$this->apps->contains($app)) {
+            $this->apps[] = $app;
+            $app->setSurvey($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApp(App $app): self
+    {
+        if ($this->apps->removeElement($app)) {
+            // set the owning side to null (unless already changed)
+            if ($app->getSurvey() === $this) {
+                $app->setSurvey(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCas(): ?string
+    {
+        return $this->cas;
+    }
+
+    public function setCas(?string $cas): self
+    {
+        $this->cas = $cas;
+
+        return $this;
+    }
+
+    public function getCasInct(): ?string
+    {
+        return $this->cas_inct;
+    }
+
+    public function setCasInct(?string $cas_inct): self
+    {
+        $this->cas_inct = $cas_inct;
+
+        return $this;
+    }
+
+    public function getCasTaskt(): ?string
+    {
+        return $this->cas_taskt;
+    }
+
+    public function setCasTaskt(?string $cas_taskt): self
+    {
+        $this->cas_taskt = $cas_taskt;
 
         return $this;
     }

@@ -16,13 +16,13 @@ class TypeInterTasktForm extends AbstractType
                 array('label' => false,
                     'required' => true,
                     'choices' => [
-                        'Fourniture, reprise et déménagement de postes de travail' => 'taskt_1',
-                        'Fourniture, reprise et déménagement de matériels hors postes de travail' => 'taskt_2',
-                        'Installation d’applications sans fourniture de matériel.' => 'taskt_3',
-                        'Autres actions matériel' => 'taskt_4',
-                        'Autres actions logiciel et accès' => 'taskt_5',
-                        'Support téléphonie' => 'taskt_6',
-                        'Actions CMDB' => 'taskt_7',
+                        'Fourniture, reprise et déménagement de postes de travail' => '1',
+                        'Fourniture, reprise et déménagement de matériels hors postes de travail' => '2',
+                        'Installation d’applications sans fourniture de matériel.' => '3',
+                        'Autres actions matériel' => '4',
+                        'Autres actions logiciel et accès' => '5',
+                        'Support téléphonie' => '6',
+                        'Actions CMDB' => '7',
                     ]
                 )
             )

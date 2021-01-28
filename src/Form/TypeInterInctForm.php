@@ -12,16 +12,16 @@ class TypeInterInctForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('choices', ChoiceType::class,
+            ->add('type', ChoiceType::class,
                 array('label' => false,
                     'required' => true,
                     'multiple' => false,
                     'expanded' => true,
 //                'choice_label' => false,
                     'choices' => [
-                        'Changement de PC' => 'inct_1',
-                        'Autre intervention matérielle' => 'inct_2',
-                        'Intervention software' => 'inct_3',
+                        'Changement de PC' => '1',
+                        'Autre intervention matérielle' => '2',
+                        'Intervention software' => '3',
                     ]
                 )
             )

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Form\FromInctFormType;
+use App\Form\TypeInterInctForm;
+use App\Form\TypeInterTasktForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,27 +18,46 @@ use Symfony\Component\Routing\Annotation\Route;
 class InctController extends AbstractController
 {
     /**
-     * @Route("/from-inct", name="")
+     * @Route("/type", name="home")
      */
-    public function fromInct(Request $request, EntityManagerInterface $em): Response
+    public function typeInct(Request $request)
     {
-        $survey = $this->getUser()->getSurvey();
-        $form = $this->createForm(FromInctFormType::class);
-        $form->handleRequest($request);
-        $from_inct = $form->get('from_inct')->getData();
-        if ($form->isSubmitted() && $form->isValid()){
-            if ($from_inct == 'Non'){
-                $survey->setFromInct('Non');
-            }else{
-                $survey->setFromInct('Oui');
-            }
-            $em->persist($survey);
-            $em->flush();
-            return $this->redirectToRoute("taskt_asset_type",  [
-            ]);
+        $survey = $this->get('session')->get('survey');
+        $type = $survey->getType();
+        if ($type == "INC") {
+            $form = $this->createForm(TypeInterInctForm::class);
+        } elseif ($type == 'DEM') {
+            $form = $this->createForm(TypeInterTasktForm::class);
         }
-        return $this->render('Survey/Taskt/from_inct_field.html.twig', [
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $reponse = $form->get('type')->getData();
+            $survey->setCasInct($reponse);
+            $cas = $survey->getService().'_'.$survey->getType().'_'.$reponse;
+            $survey->setCas($cas);
+            dd($survey);
+            $survey->setTypeInter($reponse);
+            if ($reponse == '1') {         /* Changement de PC */
+                return $this->redirectToRoute('form_asset', [
+                    'reponse' => $reponse,
+                ]);
+            } elseif ($reponse == '2') {   /* Autre intervention matérielle */
+                return $this->redirectToRoute('inct_home');
+            } elseif ($reponse == '3') {                      /* Intervention software */
+                return $this->redirectToRoute('inct_home', [
+                    'tasktorinct' => $reponse,
+                ]);
+            }
+        }
+
+        return $this->render('Survey/sdp/type_inter.html.twig',[
             'form' => $form->createView(),
+            'form_name' => $form->getName(),
         ]);
+
     }
+
+
+
 }

@@ -14,20 +14,6 @@ class AppsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', ChoiceType::class,[
-//                'label' => false,
-                    'required' => false,
-                    'placeholder' => 'Selectionner...',
-                    'choices' => [
-                        'Périphériques (écrans, rétroprojecteurs)' => 'PRP',
-                        'Imprimantes individuelles' => 'PRT',
-                        'Smartphone' => 'PHN',
-                        'Consommables imprimante' => 'TNR',
-                        'Petit matériel : piles de périphériques sans fil, souris / claviers / station d\'accueil' => 'PMA',
-                        'Clé Trend Micro' => 'TRD',
-                    ]
-                ]
-            )
             ->add('action', ChoiceType::class, [
 //                'label' => false,
                     'required' => false,
@@ -41,12 +27,7 @@ class AppsType extends AbstractType
                 ]
 
             )
-            ->add('ae', TextType::class,[
-//                    'label' => false,
-                    'required' => false,
-                ]
-            )
-            ->add('as', TextType::class,[
+            ->add('asset', TextType::class,[
 //                    'label' => false,
                     'required' => false,
                 ]
@@ -59,7 +40,6 @@ class AppsType extends AbstractType
                     'choices' => [
                         'Oui' => 'oui',
                         'Non' => 'non',
-                        'Sans RDV' => 'N/A',
                     ],
                     'data' => 'N/A',
                 ]

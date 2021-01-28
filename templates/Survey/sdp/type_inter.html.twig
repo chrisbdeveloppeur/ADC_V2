@@ -37,7 +37,7 @@
 
                 {% else %}
                     <div class="control">
-                        {% for child in form.choices %}
+                        {% for child in form.type %}
                             <label class="radio" onclick="checkRadio(this)">
                                 <button class="button">
                                     {{ child.vars.label }}

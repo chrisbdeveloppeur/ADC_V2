@@ -42,9 +42,17 @@ class HomeController extends AbstractController
         if ($form->isSubmitted()){
             $reponse = $form->get('service')->getData();
             $survey->setService($reponse);
-            return $this->redirectToRoute('q1',[
-                'service' => $reponse,
-            ]);
+//            dd($reponse);
+            if ($reponse == 'HD'){
+                return $this->redirectToRoute('tasktonly',[
+                    'service' => $reponse,
+                ]);
+            }elseif ($reponse == 'SDP'){
+                return $this->redirectToRoute('tasktorinct',[
+                    'service' => $reponse,
+                ]);
+            }
+
         }
 
         return $this->render('Survey/home.html.twig', [
@@ -54,7 +62,7 @@ class HomeController extends AbstractController
 
 
     /**
-     * @Route("/service", name="q1")
+     * @Route("/taskt-or-inct", name="tasktorinct")
      */
     public function tasktOrInct(Request $request)
     {
@@ -62,9 +70,9 @@ class HomeController extends AbstractController
         $form = $this->createForm(TypeFormType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()){
-            $reponse = $form->get('choices')->getData();
+            $reponse = $form->get('tasktorinct')->getData();
             $survey->setType($reponse);
-            return $this->redirectToRoute('q2');
+            return $this->redirectToRoute('inct_home');
         }
         return $this->render('Survey/sdp/type_inter.html.twig',[
             'form' => $form->createView(),
@@ -72,43 +80,44 @@ class HomeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/type", name="q2")
-     */
-    public function typeInter(Request $request)
-    {
-        $survey = $this->get('session')->get('survey');
-        $type = $survey->getType();
-        if ($type == "inct"){
-            $form = $this->createForm(TypeInterInctForm::class);
-        }elseif ($type == 'taskt'){
-            $form = $this->createForm(TypeInterTasktForm::class);
-        }
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted()){
-            $reponse = $form->get('choices')->getData();
-            $survey->setTypeInter($reponse);
-            if ($reponse == 'inct_1'){         /* Changement de PC */
-                return $this->redirectToRoute('form_asset',[
-                    'reponse' => $reponse,
-                ]);
-            }elseif ($reponse == 'inct_2' ){   /* Autre intervention matérielle */
-                return $this->redirectToRoute('q2');
-            }elseif($reponse == 'inct_3'){                      /* Intervention software */
-                return $this->redirectToRoute('q2',[
-                    'tasktorinct' => $reponse,
-                ]);
-            }
 
-        }
+//    /**
+//     * @Route("/type", name="inct")
+//     */
+//    public function typeInct(Request $request)
+//    {
+//        $survey = $this->get('session')->get('survey');
+//        $type = $survey->getType();
+//        if ($type == "INC"){
+//            $form = $this->createForm(TypeInterInctForm::class);
+//        }elseif ($type == 'DEM'){
+//            $form = $this->createForm(TypeInterTasktForm::class);
+//        }
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted()){
+//            $reponse = $form->get('choices')->getData();
+//            $survey->setTypeInter($reponse);
+//            if ($reponse == 'inct_1'){         /* Changement de PC */
+//                return $this->redirectToRoute('form_asset',[
+//                    'reponse' => $reponse,
+//                ]);
+//            }elseif ($reponse == 'inct_2' ){   /* Autre intervention matérielle */
+//                return $this->redirectToRoute('inct');
+//            }elseif($reponse == 'inct_3'){                      /* Intervention software */
+//                return $this->redirectToRoute('inct',[
+//                    'tasktorinct' => $reponse,
+//                ]);
+//            }
+//        }
 
-        return $this->render('Survey/sdp/type_inter.html.twig',[
-            'form' => $form->createView(),
-            'form_name' => $form->getName(),
-        ]);
-
-    }
+//        return $this->render('Survey/sdp/type_inter.html.twig',[
+//            'form' => $form->createView(),
+//            'form_name' => $form->getName(),
+//        ]);
+//
+//    }
 
 
 
