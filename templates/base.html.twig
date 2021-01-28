@@ -113,10 +113,13 @@
                     let datas = response.data;
                     let arrayDatas = [];
                     for (const property in datas) {
-                        if (datas[property]!=='N/A'){
+                        if ( property === 'url_for_delete' || property === 'position' ) {
+                        }else {
                             arrayDatas.push(datas[property]);
                         }
                     }
+
+                    console.log(arrayDatas);
 
                     arrayDatas.splice(arrayDatas.length-2, 2);
 
@@ -133,7 +136,6 @@
                         container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ arrayDatas[0] +"_"+ arrayDatas[1] +"</span>"
                     }else{
                         arrayDatas.forEach(function (element, key) {
-                            console.log(key +'=>'+ element);
                             if (element !== 'N/A'){
                                 if (key === 0){
                                     container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ arrayDatas[0] +"_"+ arrayDatas[1] +"</span>"
