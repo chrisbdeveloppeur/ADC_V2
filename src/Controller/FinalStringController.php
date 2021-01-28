@@ -30,33 +30,32 @@ class FinalStringController extends AbstractController
         $otherAssets = $survey->getOtherAssets();
         $apps = $survey->getApps();
 
-        foreach ($apps as $key => $value){
-//            dump($value->getBalise());
-            $key++;
-            $app = "[" . $value->getBalise() . "(".$key.")] ";
-            $finalString .= $app;
-            dump($app);
-        }
-        foreach ($assets as $key => $value){
-//            dump($value->getBalise());
-            $key++;
-            $assets = "[" . $value->getBalise() . "(".$key.")] ";
-            $finalString .= $assets;
-            dump($assets);
-        }
-        foreach ($otherAssets as $key => $value){
-//            dump($value->getBalise());
-            $key++;
-            $otherAssets = "[" . $value->getBalise() . "(".$key.")] ";
-            $finalString .= $otherAssets;
-            dump($otherAssets);
-        }
-//dd($finalString);
-        $em->persist($survey);
+        $finalString .= $this->miseEnForm2($assets, 'POSTE(S) DE TRAVAIL(S) : ');
+        $finalString .= $this->miseEnForm2($otherAssets, 'AUTRE(S) MATERIEL(S) : ');
+        $finalString .= $this->miseEnForm2($apps, 'APPLICATION(S) : ');
 
-//        dd($survey);
+//        $finalString .= "[ (" . count($apps) . ") INSTALLATION D'APPLICATIONS : ";
+//        foreach ($apps as $key => $value){
+//            $key++;
+//            $app = "[ " . $value->getBalise() . " (".$key.") ] ";
+//            $finalString .= $app;
+//        }
+//        $finalString .= " ]";
 
-//        $finalString .= "[" . $survey->getService() . "]";
+//        foreach ($assets as $key => $value){
+//            $key++;
+//            $assets = "[ " . $value->getBalise() . " (".$key.") ] ";
+//            $finalString .= $assets;
+//        }
+//        foreach ($otherAssets as $key => $value){
+//            $key++;
+//            $otherAssets = "[ " . $value->getBalise() . " (".$key.") ] ";
+//            $finalString .= $otherAssets;
+//        }
+
+        if ($survey->getCommentaire()){
+            $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "]";
+        }
 //        $finalString .= "[" . $survey->getCas() . "]";
 //        $finalString .= "[".$survey->getService()."]";
 //        $finalString .= "[".$survey->getService()."]";
@@ -88,5 +87,22 @@ class FinalStringController extends AbstractController
         }
     }
 
+    public function miseEnForm2($objects, $text){
+
+        $string = "[(" . count($objects) . ") " . $text;
+        foreach ($objects as $key => $value){
+            $key++;
+            if ($key < count($objects)){
+                $object = $value->getBalise() . " (".$key.") - ";
+            }else{
+                $object = $value->getBalise() . " (".$key.")";
+            }
+
+            $string .= $object;
+        }
+        $string .= "] ";
+
+        return $string;
+    }
 
 }
