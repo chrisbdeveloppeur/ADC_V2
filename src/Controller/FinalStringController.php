@@ -89,20 +89,22 @@ class FinalStringController extends AbstractController
 
     public function miseEnForm2($objects, $text){
 
-        $string = "[(" . count($objects) . ") " . $text;
-        foreach ($objects as $key => $value){
-            $key++;
-            if ($key < count($objects)){
-                $object = $value->getBalise() . " (".$key.") - ";
-            }else{
-                $object = $value->getBalise() . " (".$key.")";
+        if (count($objects) != 0){
+            $string = "[(" . count($objects) . ") " . $text;
+            foreach ($objects as $key => $value){
+                $key++;
+                if ($key < count($objects)){
+                    $object = $value->getBalise() . " (".$key.") - ";
+                }else{
+                    $object = $value->getBalise() . " (".$key.")";
+                }
+
+                $string .= $object;
             }
+            $string .= "] ";
 
-            $string .= $object;
+            return $string;
         }
-        $string .= "] ";
-
-        return $string;
     }
 
 }
