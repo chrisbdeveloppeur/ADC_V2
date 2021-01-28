@@ -31,15 +31,16 @@ class TasktController extends AbstractController
             }else{
                 $survey->setFromInct('Oui');
             }
-            $em->persist($survey);
-            $em->flush();
-            return $this->redirectToRoute("taskt_asset_type",  [
-            ]);
+//            return $this->redirectToRoute("taskt_asset_type",  [
+//            ]);
 
         }
-        return $this->render('Survey/Taskt/from_inct_field.html.twig', [
-            'form' => $form->createView(),
-        ]);
+
+        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+        return $this->redirect($referer);
+//        return $this->render('Survey/Taskt/from_inct_field.html.twig', [
+//            'form' => $form->createView(),
+//        ]);
     }
 
 
