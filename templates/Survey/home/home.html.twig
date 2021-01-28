@@ -19,7 +19,7 @@
                     <div class="control">
                         {% for child in form.service %}
                             <label class="radio column" onclick="checkRadio(this)">
-                            <button class="button" {% if child.vars.label == 'Help desk' %}disabled{% endif %}>
+                            <button class="button" {% if child.vars.label == 'Service help desk' %}disabled{% endif %}>
                                 {{ child.vars.label }}
                                 {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
                             </button>
