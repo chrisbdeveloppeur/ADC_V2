@@ -14,9 +14,9 @@
 
                     {{ form_start(form, {'attr': {'class':'column'}}) }}
 
-                    <div class="control">
+                    <div class="control is-flex-desktop">
                         {% for child in form.service %}
-                        <label class="radio" onclick="checkRadio(this)">
+                        <label class="radio column" onclick="checkRadio(this)">
                             <button class="button">
                                 {{ child.vars.label }}
                                 {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
