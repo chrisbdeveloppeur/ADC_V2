@@ -9,6 +9,7 @@ use App\Form\AppsType;
 use App\Form\AssetType;
 use App\Form\GlobalFormType;
 use App\Form\OtherAssetType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/form", name="form_")
+ *
  */
 
 class FormsController extends AbstractController

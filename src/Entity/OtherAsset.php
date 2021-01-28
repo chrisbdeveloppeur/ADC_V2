@@ -18,6 +18,10 @@ class OtherAsset
      */
     private $id;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $type;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -28,11 +32,6 @@ class OtherAsset
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $new_hostname;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $type;
 
     /**
      * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="other_assets")

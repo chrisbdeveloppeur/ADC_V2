@@ -107,7 +107,6 @@
                 const url = this.action;
                 const formData = $(this).serialize();
 
-
                 axios.post(url,formData).then(function (response) {
                     let container = document.querySelector('#asset-tags-grouped');
                     container.innerHTML += "<div class=\"control\">\n" +
@@ -128,13 +127,7 @@
                         }
                     }
 
-                    console.log(balises1, balises2);
-
-                    // arrayDatas.splice(arrayDatas.length-2, 2);
-
                     let urlForDelete = datas.url_for_delete;
-
-
 
                     if (balises1.length === 1){
                         container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ balises1[0] +"</span>"

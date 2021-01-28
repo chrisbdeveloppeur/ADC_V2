@@ -20,13 +20,13 @@ class LoginController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em): Response
     {
 
-        $superAdmin = $userRepository->findOneBy(['email' => 'cboungou@fr.scc.com']);
+        $superAdmin = $userRepository->findOneBy(['email' => 'admin@fr.scc.com']);
         if (!$superAdmin){
             $superAdmin = New User();
             $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);
             $superAdmin->setIsVerified(true);
-            $password = '121090cb.K4gur0';
-            $superAdmin->setEmail('cboungou@fr.scc.com');
+            $password = 'scc_t00l_2021';
+            $superAdmin->setEmail('admin@fr.scc.com');
             $superAdmin->setPassword(
                 $passwordEncoder->encodePassword(
                     $superAdmin,
