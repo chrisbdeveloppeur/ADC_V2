@@ -139,6 +139,17 @@ $box-background-color: rgba(255,255,255,.97);
   z-index: -100;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 
 
 @media (min-width: 769px) {

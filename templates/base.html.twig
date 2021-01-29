@@ -56,7 +56,14 @@
 </nav>
 
 <div class="column has-text-centered-mobile">
-    <a href="{{ path('home') }}" class="button">Revenir à l'acceuil</a>
+    <a href="{{ path('home') }}" class="button">
+        <span class="icon">
+            <i class="fas fa-lg fa-home"></i>
+        </span>
+        <span>
+            Revenir à l'accueil
+        </span>
+    </a>
 </div>
 
 {{ include('includes/flash_message.html.twig') }}
