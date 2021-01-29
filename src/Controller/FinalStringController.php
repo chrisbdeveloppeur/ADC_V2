@@ -18,7 +18,6 @@ class FinalStringController extends AbstractController
     {
         $survey = $this->get('session')->get('survey');
         $finalString = '';
-
         //                  Horodatage
         $survey->setTimeStamp();
         $horodatage = $survey->getTimeStamp()->format('d/m/Y - H:i');
@@ -32,28 +31,11 @@ class FinalStringController extends AbstractController
         $otherAssets = $survey->getOtherAssets();
         $apps = $survey->getApps();
 
-        $finalString .= $this->miseEnForm2($assets, 'POSTE(S) DE TRAVAIL(S) : ');
-        $finalString .= $this->miseEnForm2($otherAssets, 'AUTRE(S) MATERIEL(S) : ');
-        $finalString .= $this->miseEnForm2($apps, 'APPLICATION(S) : ');
+        $finalString .= $this->miseEnFormBalise($assets, '');
+        $finalString .= $this->miseEnFormBalise($otherAssets, '');
+        $finalString .= $this->miseEnFormBalise($apps, '');
 
-//        $finalString .= "[ (" . count($apps) . ") INSTALLATION D'APPLICATIONS : ";
-//        foreach ($apps as $key => $value){
-//            $key++;
-//            $app = "[ " . $value->getBalise() . " (".$key.") ] ";
-//            $finalString .= $app;
-//        }
-//        $finalString .= " ]";
-
-//        foreach ($assets as $key => $value){
-//            $key++;
-//            $assets = "[ " . $value->getBalise() . " (".$key.") ] ";
-//            $finalString .= $assets;
-//        }
-//        foreach ($otherAssets as $key => $value){
-//            $key++;
-//            $otherAssets = "[ " . $value->getBalise() . " (".$key.") ] ";
-//            $finalString .= $otherAssets;
-//        }
+//        die();
 
         if ($survey->getCommentaire()){
             $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "]";
@@ -62,17 +44,18 @@ class FinalStringController extends AbstractController
 //        $finalString .= "[".$survey->getService()."]";
 //        $finalString .= "[".$survey->getService()."]";
 //        $finalString .= "[".$survey->getService()."]";
-//        $finalString .= "[".$survey->getService()."]";
-//        $finalString .= "[".$survey->getService()."]";
+
 
 //                      MISE EN CORELATION FUSEAU HORAIRE                   //
 //        $survey->setTimeStamp(new \DateTime('', new \DateTimeZone('Europe/Paris') ) );
 
-//        dump($finalString);
+//                         SUPPRESSION DES CHAINES VIDE                     //
 //        $text = preg_replace('/\s\s+/', ' ', $finalString);
-//        $finalStringForm = $this->createForm(FinalStringFormType::class);
-//        $finalStringForm->handleRequest($request);
 
+        $survey->setFinalString($finalString);
+
+//        dump($survey);
+//        dd($survey->getFinalString());
         return $this->render('Survey/forms/final_string_form.html.twig',[
 //            'form' => $form->createView(),
 //            'final_string_form' => $finalStringForm->createView(),
@@ -89,24 +72,42 @@ class FinalStringController extends AbstractController
         }
     }
 
-    public function miseEnForm2($objects, $text){
+    public function miseEnFormBalise($objects, $text){
 
         if (count($objects) != 0){
-            $string = "[(" . count($objects) . ") " . $text;
-            foreach ($objects as $key => $value){
-                $key++;
-                if ($key < count($objects)){
-                    $object = $value->getBalise() . " (".$key.") - ";
-                }else{
-                    $object = $value->getBalise() . " (".$key.")";
+
+            foreach ($objects as $key => $object){
+
+                $string = "[" . $text;
+//                $key++;
+                $string .= $object->getBalise() . "_" . $object->getPosition();
+
+                if ($object == 'Asset' || $object == 'OtherAsset'){
+                        if ($object->getAe() && $object->getAe() != 'N/A' ){
+                            $string .= '<AE_' . $object->getAe() . '>';
+                        }
+                        if ($object->getAs() && $object->getAs() != 'N/A' ){
+                            $string .= '<AS_' . $object->getAs() . '>';
+                        }
+                }elseif ($object == 'App'){
+                    if ($object->getAsset() && $object->getAsset() != 'N/A' ){
+                        $string .= '<ASSET_' . $object->getAsset() . '>';
+                    }
                 }
 
-                $string .= $object;
+                $string .= "] ";
             }
-            $string .= "] ";
+
+//            dump($string);
 
             return $string;
         }
     }
+
+
+
+
+
+
 
 }

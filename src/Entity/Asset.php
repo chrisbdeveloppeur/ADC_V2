@@ -21,12 +21,17 @@ class Asset
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $current_hostname;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $new_hostname;
+    private $as;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $ae;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -63,19 +68,20 @@ class Asset
      */
     private $balise;
 
+
     public function __construct()
     {
-        $this->setCurrentHostname('N/A');
-        $this->setNewHostname('N/A');
+        $this->setAs('N/A');
+        $this->setAe('N/A');
         $this->setAction('N/A');
         $this->setType('N/A');
         $this->setRsdp('N/A');
-//        $this->setTpx('N/A');
+        $this->setName('Asset');
     }
 
     public function __toString()
     {
-        return $this->getNewHostname();
+        return $this->getName();
     }
 
     public function getId(): ?int
@@ -83,26 +89,26 @@ class Asset
         return $this->id;
     }
 
-    public function getCurrentHostname(): ?string
+    public function getAs(): ?string
     {
-        return $this->current_hostname;
+        return $this->as;
     }
 
-    public function setCurrentHostname(?string $current_hostname): self
+    public function setAs(?string $as): self
     {
-        $this->current_hostname = $current_hostname;
+        $this->as = $as;
 
         return $this;
     }
 
-    public function getNewHostname(): ?string
+    public function getAe(): ?string
     {
-        return $this->new_hostname;
+        return $this->ae;
     }
 
-    public function setNewHostname(?string $new_hostname): self
+    public function setAe(?string $ae): self
     {
-        $this->new_hostname = $new_hostname;
+        $this->ae = $ae;
 
         return $this;
     }
@@ -187,6 +193,18 @@ class Asset
     public function setBalise(?string $balise): self
     {
         $this->balise = $balise;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

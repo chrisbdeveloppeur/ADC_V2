@@ -20,6 +20,11 @@ class App
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $action;
 
     /**
@@ -62,11 +67,12 @@ class App
         $this->setAction('N/A');
         $this->setAsset('N/A');
         $this->setRsdp('N/A');
+        $this->setName('App');
     }
 
     public function __toString()
     {
-        return $this->getAction();
+        return $this->getName();
     }
 
     public function getAction(): ?string
@@ -149,6 +155,18 @@ class App
     public function setBalise(?string $balise): self
     {
         $this->balise = $balise;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

@@ -10,8 +10,6 @@ use App\Form\AssetType;
 use App\Form\DescriptionFormType;
 use App\Form\GlobalFormType;
 use App\Form\OtherAssetType;
-use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,8 +41,8 @@ class FormsController extends AbstractController
             $newAsset = new Asset();
             $newAsset->setSurvey($survey);
             $newAsset->setPosition($number);
-            $newAsset->setCurrentHostname($assetForm->get('as')->getData());
-            $newAsset->setNewHostname($assetForm->get('ae')->getData());
+            $newAsset->setAs($assetForm->get('as')->getData());
+            $newAsset->setAe($assetForm->get('ae')->getData());
             $newAsset->setType($assetForm->get('type')->getData());
             $newAsset->setAction($assetForm->get('action')->getData());
             if ( ($newAsset->getAction()=="DEM") || ($newAsset->getAction()=="REP") ){
@@ -52,18 +50,18 @@ class FormsController extends AbstractController
             }
             $newAsset->setRsdp($assetForm->get('rsdp')->getData());
             $newAsset->setTpx($assetForm->get('tpx')->getData());
-            if ($newAsset->getNewHostname()==null){
-                $newAsset->setNewHostname('N/A');
+            if ($newAsset->getAe()==null){
+                $newAsset->setAe('N/A');
             }
-            if ($newAsset->getCurrentHostname()==null){
-                $newAsset->setCurrentHostname('N/A');
+            if ($newAsset->getAs()==null){
+                $newAsset->setAs('N/A');
             }
             $survey->addAsset($newAsset);
             $action = $newAsset->getAction();
             $type = $newAsset->getType();
             $newAsset->setBalise($action . '_' . $type);
-            $ae = $newAsset->getNewHostname();
-            $as = $newAsset->getCurrentHostname();
+            $ae = $newAsset->getAe();
+            $as = $newAsset->getAs();
             $urlForDelete = $this->redirectToRoute('form_asset_del',[
                 'position' => $number,
             ]);
@@ -141,8 +139,8 @@ class FormsController extends AbstractController
             $newAsset = new OtherAsset();
             $newAsset->setSurvey($survey);
             $newAsset->setPosition($number);
-            $newAsset->setCurrentHostname($otherAssetForm->get('as')->getData());
-            $newAsset->setNewHostname($otherAssetForm->get('ae')->getData());
+            $newAsset->setAs($otherAssetForm->get('as')->getData());
+            $newAsset->setAe($otherAssetForm->get('ae')->getData());
             $newAsset->setType($otherAssetForm->get('type')->getData());
             $newAsset->setAction($otherAssetForm->get('action')->getData());
             if ( ($newAsset->getAction()=="PRT") || ($newAsset->getAction()=="REN") ){
@@ -150,19 +148,19 @@ class FormsController extends AbstractController
             }
             $newAsset->setRsdp($otherAssetForm->get('rsdp')->getData());
             $newAsset->setTpx($otherAssetForm->get('tpx')->getData());
-            if ($newAsset->getNewHostname()==null){
-                $newAsset->setNewHostname('N/A');
+            if ($newAsset->getAe()==null){
+                $newAsset->setAe('N/A');
             }
-            if ($newAsset->getCurrentHostname()==null){
-                $newAsset->setCurrentHostname('N/A');
+            if ($newAsset->getAs()==null){
+                $newAsset->setAs('N/A');
             }
             $survey->addOtherAsset($newAsset);
 
             $action = $newAsset->getAction();
             $type = $newAsset->getType();
             $newAsset->setBalise($action . '_' . $type);
-            $ae = $newAsset->getNewHostname();
-            $as = $newAsset->getCurrentHostname();
+            $ae = $newAsset->getAe();
+            $as = $newAsset->getAs();
             $urlForDelete = $this->redirectToRoute('form_asset_del',[
                 'position' => $number,
             ]);

@@ -23,6 +23,11 @@ class Survey
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $service;
 
     /**
@@ -100,13 +105,8 @@ class Survey
      */
     private $apps;
 
-
     public function __construct()
     {
-//        $this->quantity = 1;
-//        $this->duration = 1;
-//        $this->asset_type = "N/A";
-//        $this->proximity = "N/A";
         $this->cas = 'N/A';
         $this->service = 'N/A';
         $this->type = 'N/A';
@@ -114,12 +114,18 @@ class Survey
         $this->cas_inct = 'N/A';
         $this->cas_taskt = 'N/A';
         $this->commentaire = 'N/A';
+        $this->setName('Survey');
 
 //        $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->assets = new ArrayCollection();
         $this->other_assets = new ArrayCollection();
         $this->apps = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     public function getId(): ?int
@@ -358,6 +364,18 @@ class Survey
     public function setCasTaskt(?string $cas_taskt): self
     {
         $this->cas_taskt = $cas_taskt;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

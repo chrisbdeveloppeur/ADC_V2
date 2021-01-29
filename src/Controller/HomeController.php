@@ -47,7 +47,6 @@ class HomeController extends AbstractController
                     'service' => $reponse,
                 ]);
             }
-
         }
 
         return $this->render('Survey/home/home.html.twig', [
