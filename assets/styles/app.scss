@@ -112,12 +112,13 @@ $box-background-color: rgba(255,255,255,.97);
 }
 
 .safran-backgound-img{
-  position: absolute;
-  bottom: 0;
-  z-index: -50;
-  max-width: 90%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  //position: absolute;
+  //bottom: 0;
+  //z-index: -50;
+  //max-width: 90%;
+  //left: 50%;
+  //top: 50%;
+  //transform: translate(-50%, -50%);
 }
 
 #asset-btn-form{
@@ -142,8 +143,8 @@ $box-background-color: rgba(255,255,255,.97);
 
 @media (min-width: 769px) {
   .safran-backgound-img{
-    width: 30%;
-    bottom: 1rem;
+    //width: 30%;
+    //bottom: 1rem;
     //left: 1rem;
     max-width: 400px;
     min-width: 400px;

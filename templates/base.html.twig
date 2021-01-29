@@ -19,7 +19,7 @@
 </head>
 <body class="has-navbar-fixed-top is-relative">
 
-<div class="bg-layer hero is-bold is-light">
+<div class="bg-layer hero is-bold is-info">
 </div>
 
 <nav class="navbar is-light has-text-black is-fixed-top" role="navigation" aria-label="main navigation">
@@ -58,11 +58,20 @@
 {{ include('includes/flash_message.html.twig') }}
 
 <section class="is-fullheight is-flex is-justify-content-center is-align-items-center section-base-html">
-    <img class="safran-backgound-img" src="{{ asset('build/images/1200px-Safran_-_logo_2016.f3a8e511.png') }}" alt="">
+{#    <img class="safran-backgound-img" src="{{ asset('build/images/1200px-Safran_-_logo_2016.f3a8e511.png') }}" alt="">#}
     <div class="column is-flex-desktop is-align-items-center is-justify-content-center">
         {% block body %}{% endblock %}
     </div>
 </section>
+
+{% block footer %}
+    <footer class="footer">
+        <div class="content has-text-centered is-relative">
+            <img class="safran-backgound-img" src="{{ asset('build/images/1200px-Safran_-_logo_2016.f3a8e511.png') }}" alt="">
+        </div>
+    </footer>
+{% endblock %}
+
 
     <script>
         function goBack() {
