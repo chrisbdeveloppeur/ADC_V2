@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\App;
 use App\Entity\Asset;
+use App\Entity\OtherApp;
 use App\Entity\OtherAsset;
 use App\Form\AppType;
 use App\Form\AssetType;
 use App\Form\DescriptionFormType;
 use App\Form\GlobalFormType;
+use App\Form\OtherAppType;
 use App\Form\OtherAssetType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -87,7 +89,6 @@ class FormsController extends AbstractController
 
         return $this->render('Survey/forms/assets_form.html.twig',[
             'form' => $form->createView(),
-            'form_name' => $form->getName(),
             'asset_form' => $assetForm->createView(),
             'survey' => $survey,
         ]);
@@ -179,7 +180,6 @@ class FormsController extends AbstractController
 
         return $this->render('Survey/forms/other_assets_form.html.twig',[
             'form' => $form->createView(),
-            'form_name' => $form->getName(),
             'other_asset_form' => $otherAssetForm->createView(),
             'survey' => $survey,
         ]);
@@ -259,13 +259,12 @@ class FormsController extends AbstractController
             if ($survey->getCas() === 'SDP_INC_1'){
                 return $this->redirectToRoute('form_commentaire');
             }elseif ($survey->getCas() === 'SDP_INC_3'){
-//                return $this->redirectToRoute('form_other_app');
+                return $this->redirectToRoute('form_other_app');
             }
         }
 
         return $this->render('Survey/forms/apps_form.html.twig',[
             'form' => $form->createView(),
-            'form_name' => $form->getName(),
             'app_form' => $appForm->createView(),
             'survey' => $survey,
         ]);
@@ -288,6 +287,90 @@ class FormsController extends AbstractController
 
     }
 ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+//////////////////////////////  OTHER APP FORM  //////////////////////////////
+    /**
+     * @Route("/action-logiciel", name="other_app")
+     */
+    public function otherAppForm(Request $request): Response
+    {
+        $form = $this->createForm(GlobalFormType::class);
+        $otherAppForm = $this->createForm(OtherAppType::class);
+        $survey = $this->get('session')->get('survey');
+        $form->handleRequest($request);
+        $otherAppForm->handleRequest($request);
+        for ($i=0; $i<=count($survey->getOtherApps()); $i++ ){
+            $number = $i;
+        }
+
+//
+        if ($otherAppForm->isSubmitted() && $number<=10){
+            $otherApp = new OtherApp();
+            $otherApp->setSurvey($survey);
+            $otherApp->setPosition($number);
+            $otherApp->setAsset($otherAppForm->get('asset')->getData());
+            $otherApp->setAction($otherAppForm->get('action')->getData());
+            $otherApp->setRsdp($otherAppForm->get('rsdp')->getData());
+            $otherApp->setTpx($otherAppForm->get('tpx')->getData());
+//            if ( ($app->getAction()=="DEM") || ($app->getAction()=="REP") ){
+//                $app->setType("PDT");
+//            }
+            if ($otherApp->getAsset()==null){
+                $otherApp->setAsset('N/A');
+            }
+            $survey->addApp($otherApp);
+
+            $action = $otherApp->getAction();
+            $otherApp->setBalise($action);
+            $asset = $otherApp->getAsset();
+            $urlForDelete = $this->redirectToRoute('form_app_del',[
+                'position' => $number,
+            ]);
+
+//            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+//            return $this->redirect($referer);
+            return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
+        }
+
+        if ($form->isSubmitted() && $form->isValid()){
+            if ($survey->getCas() === 'SDP_INC_1'){
+                return $this->redirectToRoute('form_commentaire');
+            }elseif ($survey->getCas() === 'SDP_INC_3'){
+//                return $this->redirectToRoute('form_other_app');
+            }
+        }
+
+        return $this->render('Survey/forms/apps_form.html.twig',[
+            'form' => $form->createView(),
+            'other_app_form' => $otherAppForm->createView(),
+            'survey' => $survey,
+        ]);
+    }
+
+    /**
+     * @Route("/del-other-app={position}", name="other_app_del")
+     */
+    public function delOtherApp($position, Request $request): Response
+    {
+        $survey = $this->get('session')->get('survey');
+        $appToDelete = $survey->getOtherApps()[$position];
+        unset($survey->getOtherApps()[$position]);
+        $form = $this->createForm(GlobalFormType::class);
+        $form->handleRequest($request);
+
+//        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+//        return $this->redirect($referer);
+        return $this->json('app ' . $appToDelete . ' retiré !');
+
+    }
+////////////////////////////////////////////////////////////////////////////////////
+
 
 
 

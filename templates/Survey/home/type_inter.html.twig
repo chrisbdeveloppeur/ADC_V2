@@ -43,7 +43,7 @@
                     <div class="control">
                         {% for child in form.type %}
                             <label class="column" onclick="checkRadio(this)">
-                                <button class="button" {% if child.vars.label == 'Demande' %}disabled{% endif %}>
+                                <button class="button">
                                     {{ child.vars.label }}
                                     {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
                                 </button>

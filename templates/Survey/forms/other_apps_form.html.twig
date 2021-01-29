@@ -7,39 +7,27 @@
     <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
-            <h1 class="title is-size-1-desktop">Autre matériel(s)</h1>
+            <h1 class="title is-size-1-desktop">Action(s) logiciel(s) / Accès</h1>
+{#            <label class="label is-uppercase" for="last_name">Application(S)</label>#}
 
-            {{ form_start(other_asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
+            {{ form_start(other_app_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
-            <label class="label">Type de l'intervention</label>
+            <label class="label">Méthode d'intervention</label>
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(other_asset_form.action, {'attr': {'class': 'select has-text-centered js-on-change required-for-add'}}) }}
-                    </span>
-                </p>
-            </div>
-
-            <label class="label">Type de poste</label>
-            <div class="field">
-                <p class="control">
-                    <span class="select is-fullwidth">
-                        {{ form_widget(other_asset_form.type, {'attr': {'class': 'select has-text-centered js-on-change'}}) }}
+                        {{ form_widget(other_app_form.action, {'attr': {'class': 'select has-text-centered js-on-change required-for-add'}}) }}
                     </span>
                 </p>
             </div>
 
             <div class="is-hidden dynamic-field mb-4" id="assets-field">
                 <div class="is-flex is-justify-content-space-around">
-                    <label class="label">Nouvel asset</label>
-                    <label class="label">Ancien asset</label>
+                    <label class="label">Asset</label>
                 </div>
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
-                        {{ form_widget(other_asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset entrant'}}) }}
-                    </p>
-                    <p class="control is-expanded">
-                        {{ form_widget(other_asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Asset sortant'}}) }}
+                        {{ form_widget(other_app_form.asset, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Hostname de l\'asset'}}) }}
                     </p>
                 </div>
             </div>
@@ -48,15 +36,14 @@
                 <div class="field">
                     <p class="control">
                         <label class="checkbox label">
-                            Rendez-vous respécté par l'utilisateur ?
+                            Si l'opération a été déroulée sur place, aurait-elle pu être faite à distance ?
                         </label>
-                            {% for child in other_asset_form.rsdp %}
+                            {% for child in other_app_form.rsdp %}
                                 <label class="radio">
                                     {{ form_widget(child) }}
                                     {{ child.vars.label }}
                                 </label>
                             {% endfor %}
-
                     </p>
                 </div>
             </div>
@@ -65,7 +52,7 @@
                 <label class="label">Durée de l'opération</label>
                 <div class="field has-addons is-justify-content-center">
                     <p class="control">
-                        {{ form_widget(other_asset_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 30'}}) }}
+                        {{ form_widget(other_app_form.tpx, {'attr': {'class':'input has-text-centered', 'placeholder': 'Exemple : 30'}}) }}
                     </p>
                     <p class="control">
                         <a class="button is-static">
@@ -84,7 +71,7 @@
                 </button>
             </div>
 
-            {{ form_end(other_asset_form) }}
+            {{ form_end(other_app_form) }}
 
             {{ form_start(form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
 
@@ -95,24 +82,17 @@
             </div>
 
             <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
-                {% for asset in survey.otherassets %}
+                {% for app in survey.otherapps %}
                     <div class="control">
                         <div class="tags has-addons">
-                            {% if asset.type and asset.action %}
-                                <span class="tag is-light">{{ asset.action }}_{{ asset.type }}</span>
-                            {% elseif asset.action %}
-                                <span class="tag is-light">{{ asset.action }}</span>
-                            {% elseif asset.type %}
-                                <span class="tag is-light">{{ asset.type }}</span>
+                            {% if app.action %}
+                                <span class="tag is-light">{{ app.action }}</span>
                             {% endif %}
 
-                            {% if asset.newhostname != 'N/A' %}
-                                <span class="tag is-primary">{{ asset.newhostname }}</span>
+                            {% if app.asset != 'N/A' %}
+                                <span class="tag is-primary">{{ app.asset }}</span>
                             {% endif %}
-                            {% if asset.currenthostname != 'N/A' %}
-                                <span class="tag is-danger">{{ asset.currenthostname }}</span>
-                            {% endif %}
-                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_asset_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
+                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': app.position }) }}" title="Retiré cette action"></a>
                         </div>
                     </div>
                 {% endfor %}
@@ -135,9 +115,7 @@
         let input = document.querySelectorAll(".js-on-change");
         let dynamicFields = document.querySelectorAll(".dynamic-field");
         let fieldAssets = document.getElementById('assets-field');
-        let asset_ae = document.getElementById('other_asset_ae');
-        let asset_as = document.getElementById('other_asset_as');
-        let asset_type = document.getElementById('other_asset_type');
+        let app_asset = document.getElementById('apps_asset');
         let fieldTpx = document.getElementById('tpx-field');
         let fieldRsdp = document.getElementById('rsdp-field');
 
@@ -152,44 +130,49 @@
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
             hideAddBtn();
-            if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
-                // console.log(values);
-                let condition1 = ['PHN','PRT','TRD'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_ae, 'disabled');
-                    makeVisible(fieldAssets);
-                }
-                let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
-                if (condition2.some( el => values.includes(el) ) ){
-                    makeVisible(fieldTpx);
-                }
-            }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
-                removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
-                let condition1 = ['PHN','TRD'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_as, 'disabled');
-                    makeVisible(fieldAssets);
-                }
-                makeVisible(fieldTpx);
-            }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
-                removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-                let condition1 = ['PHN'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_ae, 'disabled');
-                    removeClass(asset_as, 'disabled');
-                    makeVisible(fieldAssets);
-                    makeVisible(fieldTpx);
-                }
-            }else if (values.includes('PRT')) { //              PRET
-                removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-                let condition1 = ['PHN'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_ae, 'disabled');
-                    makeVisible(fieldAssets);
-                    makeVisible(fieldTpx);
-                }
-            }
-            console.log(values);
+
+            removeClass(app_asset, 'disabled');
+            makeVisible(fieldAssets);
+            makeVisible(fieldTpx);
+
+            // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
+            //     // console.log(values);
+            //     let condition1 = ['PHN','PRT','TRD'];
+            //     if (condition1.some( el => values.includes(el) ) ){
+            //         removeClass(app_asset, 'disabled');
+            //         makeVisible(fieldAssets);
+            //     }
+            //     let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
+            //     if (condition2.some( el => values.includes(el) ) ){
+            //         makeVisible(fieldTpx);
+            //     }
+            // }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
+            //     removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
+            //     let condition1 = ['PHN','TRD'];
+            //     if (condition1.some( el => values.includes(el) ) ){
+            //         removeClass(asset_as, 'disabled');
+            //         makeVisible(fieldAssets);
+            //     }
+            //     makeVisible(fieldTpx);
+            // }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
+            //     removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
+            //     let condition1 = ['PHN'];
+            //     if (condition1.some( el => values.includes(el) ) ){
+            //         removeClass(app_asset, 'disabled');
+            //         removeClass(asset_as, 'disabled');
+            //         makeVisible(fieldAssets);
+            //         makeVisible(fieldTpx);
+            //     }
+            // }else if (values.includes('PRT')) { //              PRET
+            //     removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
+            //     let condition1 = ['PHN'];
+            //     if (condition1.some( el => values.includes(el) ) ){
+            //         removeClass(app_asset, 'disabled');
+            //         makeVisible(fieldAssets);
+            //         makeVisible(fieldTpx);
+            //     }
+            // }
+            // console.log(values);
         }
 
 
@@ -219,10 +202,8 @@
 
         function initializeAssetsForm() {
             hiddeAllFields();
-            asset_ae.setAttribute('disabled', true);
-            asset_ae.value = null;
-            asset_as.setAttribute('disabled', true);
-            asset_as.value = null;
+            app_asset.setAttribute('disabled', true);
+            app_asset.value = null;
             document.getElementById('asset-btn-form').style.visibility = 'hidden';
             input.forEach(function (element) {
                 element.querySelectorAll('option').forEach(option => option.style.display = 'block')
