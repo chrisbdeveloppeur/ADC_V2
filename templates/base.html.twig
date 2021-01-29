@@ -111,7 +111,7 @@
             tpxInput.forEach(function (element) {
                 element.onkeyup = function () {
                     verif_nombre(element);
-                    verif_nombre_max(element, 5)
+                    verif_nombre_max(element, 3)
                 }
             });
 
@@ -195,7 +195,7 @@
                         let onlyAsset = true;
                         let ae = '';
                         let as = '';
-                        console.log(datas);
+
                         if (datas.hasOwnProperty('ae')) {
                             onlyAsset = false;
                         }
