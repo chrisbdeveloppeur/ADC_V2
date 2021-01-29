@@ -346,7 +346,7 @@ class FormsController extends AbstractController
             }
         }
 
-        return $this->render('Survey/forms/apps_form.html.twig',[
+        return $this->render('Survey/forms/other_apps_form.html.twig',[
             'form' => $form->createView(),
             'other_app_form' => $otherAppForm->createView(),
             'survey' => $survey,

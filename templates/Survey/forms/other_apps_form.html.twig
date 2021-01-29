@@ -12,7 +12,7 @@
 
             {{ form_start(other_app_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
-            <label class="label">Méthode d'intervention</label>
+            <label class="label">Veuillez selectionner l'objet</label>
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
@@ -23,7 +23,7 @@
 
             <div class="is-hidden dynamic-field mb-4" id="assets-field">
                 <div class="is-flex is-justify-content-space-around">
-                    <label class="label">Asset</label>
+                    <label class="label">Veuillez indiquer le nom de l'Asset concerné</label>
                 </div>
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
@@ -115,7 +115,7 @@
         let input = document.querySelectorAll(".js-on-change");
         let dynamicFields = document.querySelectorAll(".dynamic-field");
         let fieldAssets = document.getElementById('assets-field');
-        let app_asset = document.getElementById('apps_asset');
+        let app_asset = document.getElementById('other_app_asset');
         let fieldTpx = document.getElementById('tpx-field');
         let fieldRsdp = document.getElementById('rsdp-field');
 
