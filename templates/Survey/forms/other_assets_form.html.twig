@@ -184,6 +184,8 @@
             }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
                 removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
                 let condition1 = ['PHN'];
+                document.getElementById('other_asset_type').value = 'PHN';
+                // console.log(document.getElementById('other_asset_type'));
                 if (condition1.some( el => values.includes(el) ) ){
                     removeClass(asset_ae, 'disabled');
                     removeClass(asset_as, 'disabled');
@@ -193,6 +195,8 @@
             }else if (values.includes('PRT')) { //              PRET
                 removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
                 let condition1 = ['PHN'];
+                document.getElementById('other_asset_type').value = 'PHN';
+                // console.log(document.getElementById('other_asset_type').value);
                 if (condition1.some( el => values.includes(el) ) ){
                     removeClass(asset_ae, 'disabled');
                     makeVisible(fieldAssets);

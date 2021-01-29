@@ -17,7 +17,7 @@ class OtherAssetType extends AbstractType
             ->add('type', ChoiceType::class,[
 //                'label' => false,
                     'required' => false,
-                    'placeholder' => 'Selectionner...',
+                    'placeholder' => false,
                     'choices' => [
                         'Périphériques (écrans, rétroprojecteurs)' => 'PRP',
                         'Imprimantes individuelles' => 'PRT',
@@ -31,7 +31,7 @@ class OtherAssetType extends AbstractType
             ->add('action', ChoiceType::class, [
 //                'label' => false,
                     'required' => false,
-                    'placeholder' => 'Selectionner...',
+                    'placeholder' => false,
                     'choices' => [
                         'Prêt' => 'PRT',
                         'Nouvelle dotation sans reprise' => 'NDO',
