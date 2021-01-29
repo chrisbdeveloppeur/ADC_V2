@@ -64,7 +64,7 @@ class OtherAssetType extends AbstractType
                     'data' => 'N/A',
                 ]
             )
-            ->add('tpx', IntegerType::class,[
+            ->add('tpx', TextType::class,[
 //                'label' => false,
                     'required' => false,
                 ]
