@@ -76,31 +76,33 @@ class FinalStringController extends AbstractController
 
         if (count($objects) != 0){
 
+            $balise = '';
+
             foreach ($objects as $key => $object){
 
-                $string = "[" . $text;
-//                $key++;
-                $string .= $object->getBalise() . "_" . $object->getPosition();
+                $balise .= "[" . $text;
+                $key++;
+                $balise .= $object->getBalise() . "_" . $key;
 
                 if ($object == 'Asset' || $object == 'OtherAsset'){
                         if ($object->getAe() && $object->getAe() != 'N/A' ){
-                            $string .= '<AE_' . $object->getAe() . '>';
+                            $balise .= '<AE_' . $object->getAe() . '>';
                         }
                         if ($object->getAs() && $object->getAs() != 'N/A' ){
-                            $string .= '<AS_' . $object->getAs() . '>';
+                            $balise .= '<AS_' . $object->getAs() . '>';
                         }
                 }elseif ($object == 'App'){
                     if ($object->getAsset() && $object->getAsset() != 'N/A' ){
-                        $string .= '<ASSET_' . $object->getAsset() . '>';
+                        $balise .= '<ASSET_' . $object->getAsset() . '>';
                     }
                 }
 
-                $string .= "] ";
+                $balise .= "] ";
             }
 
 //            dump($string);
 
-            return $string;
+            return $balise;
         }
     }
 
