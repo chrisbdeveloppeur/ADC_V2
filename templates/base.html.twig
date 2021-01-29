@@ -124,101 +124,105 @@
                 const formData = $(this).serialize();
 
                 axios.post(url,formData).then(function (response) {
-                    let container = document.querySelector('#asset-tags-grouped');
-                    container.innerHTML += "<div class=\"control\">\n" +
-                        "                     <div class=\"tags has-addons\">\n" +
-                        "                        </div>\n" +
-                        "                    </div>";
-
                     let datas = response.data;
-                    let balises1 = [];
-                    let balises2 = [];
-                    let onlyOne = true;
-                    let onlyAsset = true;
-                    let ae = '';
-                    let as = '';
-                    if (datas.hasOwnProperty('ae')) {
-                        onlyAsset = false;
-                    }
-                    for (const property in datas) {
-                        if ( property === 'url_for_delete' || property === 'position' || datas[property] === 'N/A' || datas[property] === null ) {
-                        }else if (property === 'action' || property === 'type') {
-                            balises1.push(datas[property]);
-                        }else {
-                            if (property === 'ae'){
-                                ae = datas[property];
-                            } else if (property === 'as') {
-                                as = datas[property];
-                            }
-                            balises2.push(datas[property]);
+
+                    if (datas.position <= 10){
+                        let container = document.querySelector('#asset-tags-grouped');
+
+                        container.innerHTML += "<div class=\"control\">\n" +
+                            "                     <div class=\"tags has-addons\">\n" +
+                            "                        </div>\n" +
+                            "                    </div>";
+                        let balises1 = [];
+                        let balises2 = [];
+                        let onlyOne = true;
+                        let onlyAsset = true;
+                        let ae = '';
+                        let as = '';
+                        console.log(datas);
+                        if (datas.hasOwnProperty('ae')) {
+                            onlyAsset = false;
                         }
-                    }
-
-                    balises2.forEach(function (element, key) {
-                        if (balises2.length > 1){
-                            if (element !== 'N/A') {
-                                onlyOne = false;
+                        for (const property in datas) {
+                            if ( property === 'url_for_delete' || property === 'position' || datas[property] === 'N/A' || datas[property] === null ) {
+                            }else if (property === 'action' || property === 'type') {
+                                balises1.push(datas[property]);
+                            }else {
+                                if (property === 'ae'){
+                                    ae = datas[property];
+                                } else if (property === 'as') {
+                                    as = datas[property];
+                                }
+                                balises2.push(datas[property]);
                             }
                         }
-                        return onlyOne;
-                    });
 
-                    let urlForDelete = datas.url_for_delete;
+                        balises2.forEach(function (element, key) {
+                            if (balises2.length > 1){
+                                if (element !== 'N/A') {
+                                    onlyOne = false;
+                                }
+                            }
+                            return onlyOne;
+                        });
 
-                    if (balises1.length === 1){
-                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-dark\">"+ balises1[0] +"</span>"
-                    }else if (balises1.length === 2){
-                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-dark\">"+ balises1[0] +"_"+ balises1[1] +"</span>"
-                    }
+                        let urlForDelete = datas.url_for_delete;
 
-                    balises2.forEach(function (element, key) {
+                        if (balises1.length === 1){
+                            container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-dark\">"+ balises1[0] +"</span>"
+                        }else if (balises1.length === 2){
+                            container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-dark\">"+ balises1[0] +"_"+ balises1[1] +"</span>"
+                        }
+
+                        balises2.forEach(function (element, key) {
                             if (element !== 'N/A'){
                                 if (key === 0){
-                                        if ( onlyOne && onlyAsset){
+                                    if ( onlyOne && onlyAsset){
+                                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                            "                                                           <span>"+ element +"</span>\n" +
+                                            "                                                   </span>"
+                                    }else {
+                                        if (element == ae){
                                             container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                                "                                                           <span class=\"icon is-small\">\n" +
+                                                "                                                               <i class=\"fas fa-plus-square\"></i>\n" +
+                                                "                                                           </span>\n" +
                                                 "                                                           <span>"+ element +"</span>\n" +
                                                 "                                                   </span>"
-                                        }else {
-                                            if (element == ae){
-                                                container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
-                                                    "                                                           <span class=\"icon is-small\">\n" +
-                                                    "                                                               <i class=\"fas fa-plus-square\"></i>\n" +
-                                                    "                                                           </span>\n" +
-                                                    "                                                           <span>"+ element +"</span>\n" +
-                                                    "                                                   </span>"
-                                            } else if (element == as){
-                                                container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
-                                                    "                                                           <span class=\"icon is-small\">\n" +
-                                                    "                                                               <i class=\"fas fa-minus-square\"></i>\n" +
-                                                    "                                                           </span>\n" +
-                                                    "                                                           <span>"+ element +"</span>\n" +
-                                                    "                                                   </span>"
-                                            }
-
+                                        } else if (element == as){
+                                            container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                                "                                                           <span class=\"icon is-small\">\n" +
+                                                "                                                               <i class=\"fas fa-minus-square\"></i>\n" +
+                                                "                                                           </span>\n" +
+                                                "                                                           <span>"+ element +"</span>\n" +
+                                                "                                                   </span>"
                                         }
-                                    }else if (key === 1){
-                                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
-                                            "                                                           <span class=\"icon is-small\">\n" +
-                                            "                                                               <i class=\"fas fa-minus-square\"></i>\n" +
-                                            "                                                           </span>\n" +
-                                            "                                                           <span>"+ balises2[1] +"</span>\n" +
-                                            "                                                   </span>"
+
                                     }
+                                }else if (key === 1){
+                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                        "                                                           <span class=\"icon is-small\">\n" +
+                                        "                                                               <i class=\"fas fa-minus-square\"></i>\n" +
+                                        "                                                           </span>\n" +
+                                        "                                                           <span>"+ balises2[1] +"</span>\n" +
+                                        "                                                   </span>"
+                                }
 
                             }
                         });
 
-                    container.lastElementChild.lastElementChild.innerHTML += "<a class=\"tag is-delete ajax-remove-asset new-delete-btn\" href="+ urlForDelete +" title=\"Retiré cette action\"></a>"
+                        container.lastElementChild.lastElementChild.innerHTML += "<a class=\"tag is-delete ajax-remove-asset new-delete-btn\" href="+ urlForDelete +" title=\"Retiré cette action\"></a>"
 
-                    let deleteBtn = document.querySelectorAll('.ajax-remove-asset');
-                    // console.log(deleteBtn);
-                    deleteBtn.forEach(function (element) {
-                        element.addEventListener('click' || 'touchstart', removeAsset);
-                    });
+                        let deleteBtn = document.querySelectorAll('.ajax-remove-asset');
+                        // console.log(deleteBtn);
+                        deleteBtn.forEach(function (element) {
+                            element.addEventListener('click' || 'touchstart', removeAsset);
+                        });
 
-                    let removeBtn = document.querySelectorAll('a.ajax-remove-asset').forEach(function (link){
-                        link.addEventListener('click' || 'touchstart', removeAsset);
-                    });
+                        let removeBtn = document.querySelectorAll('a.ajax-remove-asset').forEach(function (link){
+                            link.addEventListener('click' || 'touchstart', removeAsset);
+                        });
+                    }
 
                 });
 
