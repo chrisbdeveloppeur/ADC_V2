@@ -18,45 +18,50 @@
         </article>
     {% endif %}
 
-    <div class="label has-text-centered">Veuillez entrer vos identifiants</div>
 
-    <div class="field">
-        <p class="control has-icons-left has-icons-right">
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="input" placeholder="Email">
-            <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-            </span>
-        </p>
-    </div>
+    <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
-    <div class="field">
-        <p class="control has-icons-left">
-            <input type="password" name="password" id="inputPassword" class="input" placeholder="Mot de passe">
-            <span class="icon is-small is-left">
-                <i class="fas fa-lock"></i>
-            </span>
-        </p>
-    </div>
+        <div class="label has-text-centered">Veuillez entrer vos identifiants</div>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="input" placeholder="Email">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                </span>
+            </p>
+        </div>
 
-    <div class="field is-flex is-justify-content-space-between">
-        <p class="control">
-            <button class="button is-small is-info" type="submit">
-                Se connecter
-            </button>
-        </p>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input type="password" name="password" id="inputPassword" class="input" placeholder="Mot de passe">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </p>
+        </div>
 
-        <a class="button is-small is-info-custom" href="{{ path('lost_password') }}">
-            <span class="icon is-small is-left">
-                <i class="fas fa-user-lock"></i>
-            </span>
-            <span>
-                Mot de passe oublié ?
-            </span>
-        </a>
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+        <div class="field is-flex is-justify-content-space-between">
+            <p class="control">
+                <button class="button is-small is-info" type="submit">
+                    Se connecter
+                </button>
+            </p>
+
+            <a class="button is-small is-info-custom" href="{{ path('lost_password') }}">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-user-lock"></i>
+                </span>
+                <span>
+                    Mot de passe oublié ?
+                </span>
+            </a>
+        </div>
+
     </div>
 
 </form>
