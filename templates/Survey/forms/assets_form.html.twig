@@ -20,7 +20,7 @@
                 </p>
             </div>
 
-            <label class="label">Veuillez selectionner le type de matériel</label>
+            <label class="label">Veuillez selectionner le type de poste</label>
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
@@ -99,18 +99,28 @@
                     <div class="control">
                         <div class="tags has-addons">
                             {% if asset.type and asset.action %}
-                                <span class="tag is-light">{{ asset.action }}_{{ asset.type }}</span>
+                                <span class="tag is-dark">{{ asset.action }}_{{ asset.type }}</span>
                             {% elseif asset.action %}
-                                <span class="tag is-light">{{ asset.action }}</span>
+                                <span class="tag is-dark">{{ asset.action }}</span>
                             {% elseif asset.type %}
-                                <span class="tag is-light">{{ asset.type }}</span>
+                                <span class="tag is-dark">{{ asset.type }}</span>
                             {% endif %}
 
-                            {% if asset.newhostname != 'N/A' %}
-                                <span class="tag is-primary">{{ asset.newhostname }}</span>
+                            {% if asset.ae != 'N/A' %}
+                                <span class="icon-text tag is-dark">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-plus-square"></i>
+                                    </span>
+                                    <span>{{ asset.ae }}</span>
+                                </span>
                             {% endif %}
-                            {% if asset.currenthostname != 'N/A' %}
-                                <span class="tag is-danger">{{ asset.currenthostname }}</span>
+                            {% if asset.as != 'N/A' %}
+                                <span class="icon-text tag is-dark">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-minus-square"></i>
+                                    </span>
+                                    <span>{{ asset.as }}</span>
+                                </span>
                             {% endif %}
                             <a class="tag is-delete ajax-remove-asset" href="{{ path('form_asset_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
                         </div>

@@ -55,6 +55,10 @@
 
 </nav>
 
+<div class="column has-text-centered-mobile">
+    <a href="{{ path('home') }}" class="button">Revenir à l'acceuil</a>
+</div>
+
 {{ include('includes/flash_message.html.twig') }}
 
 <section class="is-fullheight is-flex is-justify-content-center is-align-items-center section-base-html">
@@ -129,31 +133,78 @@
                     let datas = response.data;
                     let balises1 = [];
                     let balises2 = [];
+                    let onlyOne = true;
+                    let onlyAsset = true;
+                    let ae = '';
+                    let as = '';
+                    if (datas.hasOwnProperty('ae')) {
+                        onlyAsset = false;
+                    }
                     for (const property in datas) {
-                        if ( property === 'url_for_delete' || property === 'position' ) {
-                        }else if (datas[property] === null) {
+                        if ( property === 'url_for_delete' || property === 'position' || datas[property] === 'N/A' || datas[property] === null ) {
                         }else if (property === 'action' || property === 'type') {
                             balises1.push(datas[property]);
                         }else {
+                            if (property === 'ae'){
+                                ae = datas[property];
+                            } else if (property === 'as') {
+                                as = datas[property];
+                            }
                             balises2.push(datas[property]);
                         }
                     }
 
+                    balises2.forEach(function (element, key) {
+                        if (balises2.length > 1){
+                            if (element !== 'N/A') {
+                                onlyOne = false;
+                            }
+                        }
+                        return onlyOne;
+                    });
+
                     let urlForDelete = datas.url_for_delete;
 
                     if (balises1.length === 1){
-                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ balises1[0] +"</span>"
+                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-dark\">"+ balises1[0] +"</span>"
                     }else if (balises1.length === 2){
-                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-light\">"+ balises1[0] +"_"+ balises1[1] +"</span>"
+                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-dark\">"+ balises1[0] +"_"+ balises1[1] +"</span>"
                     }
 
                     balises2.forEach(function (element, key) {
                             if (element !== 'N/A'){
                                 if (key === 0){
-                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-primary\">"+ element +"</span>"
-                                }else if (key === 1){
-                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"tag is-danger\">"+ balises2[1] +"</span>"
-                                }
+                                        if ( onlyOne && onlyAsset){
+                                            container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                                "                                                           <span>"+ element +"</span>\n" +
+                                                "                                                   </span>"
+                                        }else {
+                                            if (element == ae){
+                                                container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                                    "                                                           <span class=\"icon is-small\">\n" +
+                                                    "                                                               <i class=\"fas fa-plus-square\"></i>\n" +
+                                                    "                                                           </span>\n" +
+                                                    "                                                           <span>"+ element +"</span>\n" +
+                                                    "                                                   </span>"
+                                            } else if (element == as){
+                                                container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                                    "                                                           <span class=\"icon is-small\">\n" +
+                                                    "                                                               <i class=\"fas fa-minus-square\"></i>\n" +
+                                                    "                                                           </span>\n" +
+                                                    "                                                           <span>"+ element +"</span>\n" +
+                                                    "                                                   </span>"
+                                            }
+
+                                        }
+                                    }else if (key === 1){
+                                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                            "                                                           <span class=\"icon is-small\">\n" +
+                                            "                                                               <i class=\"fas fa-minus-square\"></i>\n" +
+                                            "                                                           </span>\n" +
+                                            "                                                           <span>"+ balises2[1] +"</span>\n" +
+                                            "                                                   </span>"
+                                    }
+
                             }
                         });
 

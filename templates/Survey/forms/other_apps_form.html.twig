@@ -86,11 +86,11 @@
                     <div class="control">
                         <div class="tags has-addons">
                             {% if app.action %}
-                                <span class="tag is-light">{{ app.action }}</span>
+                                <span class="tag is-dark">{{ app.action }}</span>
                             {% endif %}
 
                             {% if app.asset != 'N/A' %}
-                                <span class="tag is-primary">{{ app.asset }}</span>
+                                <span class="tag is-dark">{{ app.asset }}</span>
                             {% endif %}
                             <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': app.position }) }}" title="Retiré cette action"></a>
                         </div>
