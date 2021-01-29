@@ -82,20 +82,7 @@
             </div>
 
             <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
-                {% for app in survey.apps %}
-                    <div class="control">
-                        <div class="tags has-addons">
-                            {% if app.action %}
-                                <span class="tag is-dark">{{ app.action }}</span>
-                            {% endif %}
-
-                            {% if app.asset != 'N/A' %}
-                                <span class="icon-text tag is-dark">{{ app.asset }}</span>
-                            {% endif %}
-                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': app.position }) }}" title="Retiré cette action"></a>
-                        </div>
-                    </div>
-                {% endfor %}
+                {{ include('includes/del_objects_section.html.twig') }}
             </div>
 
             {{ include('includes/nav/prev_next.html.twig') }}

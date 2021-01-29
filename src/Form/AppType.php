@@ -17,7 +17,7 @@ class AppType extends AbstractType
             ->add('action', ChoiceType::class, [
 //                'label' => false,
                     'required' => false,
-                    'placeholder' => false,
+                    'placeholder' => 'Selectionner...',
                     'choices' => [
                         'Applications télédistribuées' => 'SFW_TLD',
                         'Applications installées localement ou en PMAD, sans tentative préalable de télédistribution' => 'SFW_LOC',

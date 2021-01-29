@@ -17,7 +17,7 @@ class OtherAppType extends AbstractType
             ->add('action', ChoiceType::class, [
 //                'label' => false,
                     'required' => false,
-                    'placeholder' => false,
+                    'placeholder' => 'Selectionner...',
                     'choices' => [
                         'Queue d\'impression' => 'SFW_QUE',
                         'Configuration d\'une imprimante' => 'SFW_CFP',

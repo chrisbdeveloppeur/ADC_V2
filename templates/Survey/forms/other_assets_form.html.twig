@@ -95,37 +95,7 @@
             </div>
 
             <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
-                {% for asset in survey.otherassets %}
-                    <div class="control">
-                        <div class="tags has-addons">
-                            {% if asset.type and asset.action %}
-                                <span class="tag is-dark">{{ asset.action }}_{{ asset.type }}</span>
-                            {% elseif asset.action %}
-                                <span class="tag is-dark">{{ asset.action }}</span>
-                            {% elseif asset.type %}
-                                <span class="tag is-dark">{{ asset.type }}</span>
-                            {% endif %}
-
-                            {% if asset.ae != 'N/A' %}
-                                <span class="icon-text tag is-dark">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-plus-square"></i>
-                                    </span>
-                                    <span>{{ asset.ae }}</span>
-                                </span>
-                            {% endif %}
-                            {% if asset.as != 'N/A' %}
-                                <span class="icon-text tag is-dark">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-minus-square"></i>
-                                    </span>
-                                    <span>{{ asset.as }}</span>
-                                </span>
-                            {% endif %}
-                            <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_asset_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
-                        </div>
-                    </div>
-                {% endfor %}
+                {{ include('includes/del_objects_section.html.twig') }}
             </div>
 
             {{ include('includes/nav/prev_next.html.twig') }}
