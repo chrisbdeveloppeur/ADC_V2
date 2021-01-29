@@ -161,7 +161,7 @@
             let values = [];
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
-            hideAddBtn();
+            // hideAddBtn();
             if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
                 // console.log(values);
                 let condition1 = ['PHN','PRT','TRD'];
@@ -236,7 +236,7 @@
             asset_ae.value = null;
             asset_as.setAttribute('disabled', true);
             asset_as.value = null;
-            document.getElementById('asset-btn-form').style.visibility = 'hidden';
+            // document.getElementById('asset-btn-form').style.visibility = 'hidden';
             input.forEach(function (element) {
                 element.querySelectorAll('option').forEach(option => option.style.display = 'block')
             })

@@ -76,7 +76,7 @@
             </div>
 
             <div class="control">
-                <button type="submit" class="button is-info is-normal" id="asset-btn-form">
+                <button type="submit" class="button is-info is-small" id="asset-btn-form">
                     <span>Ajouter</span>
                     <span class="icon">
                         <i class="fas fa-plus"></i>
@@ -160,7 +160,7 @@
             let values = [];
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
-            hideAddBtn();
+            // hideAddBtn();
             if (values.includes('DEM') || values.includes('PRT') || values.includes('NDO') ){
                 hideElement(fieldAssets);
                 hideElement(fieldRsdp);
@@ -200,7 +200,7 @@
             asset_ae.value = null;
             asset_as.setAttribute('disabled', true);
             asset_as.value = null;
-            document.getElementById('asset-btn-form').style.visibility = 'hidden';
+            // document.getElementById('asset-btn-form').style.visibility = 'hidden';
         }
         function hideAllFields() {
             dynamicFields.forEach(element => element.classList.add('is-hidden') );
