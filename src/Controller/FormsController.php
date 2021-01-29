@@ -39,37 +39,37 @@ class FormsController extends AbstractController
             $number = $i;
         }
 //
-        if ($assetForm->isSubmitted() && $number<=10){
-            $newAsset = new Asset();
-            $newAsset->setSurvey($survey);
-            $newAsset->setPosition($number);
-            $newAsset->setAs($assetForm->get('as')->getData());
-            $newAsset->setAe($assetForm->get('ae')->getData());
-            $newAsset->setType($assetForm->get('type')->getData());
-            $newAsset->setAction($assetForm->get('action')->getData());
-            if ( ($newAsset->getAction()=="DEM") || ($newAsset->getAction()=="REP") ){
-                $newAsset->setType("PDT");
-            }
-            $newAsset->setRsdp($assetForm->get('rsdp')->getData());
-            $newAsset->setTpx($assetForm->get('tpx')->getData());
-            if ($newAsset->getAe()==null){
-                $newAsset->setAe('N/A');
-            }
-            if ($newAsset->getAs()==null){
-                $newAsset->setAs('N/A');
-            }
-            $survey->addAsset($newAsset);
-            $action = $newAsset->getAction();
-            $type = $newAsset->getType();
-            $newAsset->setBalise($action . '_' . $type);
-            $ae = $newAsset->getAe();
-            $as = $newAsset->getAs();
-            $urlForDelete = $this->redirectToRoute('form_asset_del',[
-                'position' => $number,
-            ]);
+        if ( $assetForm->isSubmitted() && $number<=10 ){
 
+                $newAsset = new Asset();
+                $newAsset->setSurvey($survey);
+                $newAsset->setPosition($number);
+                $newAsset->setAs($assetForm->get('as')->getData());
+                $newAsset->setAe($assetForm->get('ae')->getData());
+                $newAsset->setType($assetForm->get('type')->getData());
+                $newAsset->setAction($assetForm->get('action')->getData());
+                if ( ($newAsset->getAction()=="DEM") || ($newAsset->getAction()=="REP") ){
+                    $newAsset->setType("PDT");
+                }
+                $newAsset->setRsdp($assetForm->get('rsdp')->getData());
+                $newAsset->setTpx($assetForm->get('tpx')->getData());
+                if ($newAsset->getAe()==null){
+                    $newAsset->setAe('N/A');
+                }
+                if ($newAsset->getAs()==null){
+                    $newAsset->setAs('N/A');
+                }
+                $survey->addAsset($newAsset);
+                $action = $newAsset->getAction();
+                $type = $newAsset->getType();
+                $newAsset->setBalise($action . '_' . $type);
+                $ae = $newAsset->getAe();
+                $as = $newAsset->getAs();
+                $urlForDelete = $this->redirectToRoute('form_asset_del',[
+                    'position' => $number,
+                ]);
 
-//            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
+            //            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
 //            return $this->redirect($referer);
             return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }

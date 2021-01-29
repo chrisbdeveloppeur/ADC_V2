@@ -147,7 +147,9 @@
                             if ( property === 'url_for_delete' || property === 'position' || datas[property] === 'N/A' || datas[property] === null ) {
                             }else if (property === 'action' || property === 'type') {
                                 balises1.push(datas[property]);
-                            }else {
+                            } else if (property === 'maximum'){
+                                console.log(datas[property])
+                            } else {
                                 if (property === 'ae'){
                                     ae = datas[property];
                                 } else if (property === 'as') {
