@@ -105,6 +105,11 @@ class Survey
      */
     private $apps;
 
+    /**
+     * @ORM\OneToMany(targetEntity=OtherApp::class, mappedBy="survey")
+     */
+    private $otherApps;
+
     public function __construct()
     {
         $this->cas = 'N/A';
@@ -121,6 +126,7 @@ class Survey
         $this->assets = new ArrayCollection();
         $this->other_assets = new ArrayCollection();
         $this->apps = new ArrayCollection();
+        $this->otherApps = new ArrayCollection();
     }
 
     public function __toString()
@@ -376,6 +382,36 @@ class Survey
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OtherApp[]
+     */
+    public function getOtherApps(): Collection
+    {
+        return $this->otherApps;
+    }
+
+    public function addOtherApp(OtherApp $otherApp): self
+    {
+        if (!$this->otherApps->contains($otherApp)) {
+            $this->otherApps[] = $otherApp;
+            $otherApp->setSurvey($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOtherApp(OtherApp $otherApp): self
+    {
+        if ($this->otherApps->removeElement($otherApp)) {
+            // set the owning side to null (unless already changed)
+            if ($otherApp->getSurvey() === $this) {
+                $otherApp->setSurvey(null);
+            }
+        }
 
         return $this;
     }

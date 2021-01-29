@@ -35,8 +35,6 @@ class FinalStringController extends AbstractController
         $finalString .= $this->miseEnFormBalise($otherAssets, '');
         $finalString .= $this->miseEnFormBalise($apps, '');
 
-//        die();
-
         if ($survey->getCommentaire()){
             $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "]";
         }
@@ -54,8 +52,6 @@ class FinalStringController extends AbstractController
 
         $survey->setFinalString($finalString);
 
-//        dump($survey);
-//        dd($survey->getFinalString());
         return $this->render('Survey/forms/final_string_form.html.twig',[
 //            'form' => $form->createView(),
 //            'final_string_form' => $finalStringForm->createView(),
@@ -99,8 +95,6 @@ class FinalStringController extends AbstractController
 
                 $balise .= "] ";
             }
-
-//            dump($string);
 
             return $balise;
         }

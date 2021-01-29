@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AppsType extends AbstractType
+class OtherAppType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,9 +19,20 @@ class AppsType extends AbstractType
                     'required' => false,
                     'placeholder' => 'Selectionner...',
                     'choices' => [
-                        'Applications télédistribuées' => 'SFW_TLD',
-                        'Applications installées localement ou en PMAD, sans tentative préalable de télédistribution' => 'SFW_LOC',
-                        'Applications installées localement ou en PMAD, après un échec de télédistribution' => 'SWF_TLK',
+                        'Queue d\'impression' => 'SFW_QUE',
+                        'Configuration d\'une imprimante' => 'SFW_CFP',
+                        'Demande de sauvegarde' => 'SFW_SAV',
+                        'Habilitation utilisateur en local' => 'SFW_HLO',
+                        'Réactivation de compte / modification des ACL traitées à distance' => 'SFW_ACL',
+                        'Création modification de 1 à 10 utilisateurs par programme, à distance' => 'SFW_TEN',
+                        'Accompagnement sur MyVisio (nombre de tranches de 20 minutes)' => 'MEP_MYV',
+                        'Accompagnement sur MyMobility (nombre de tranches de 20 minutes)' => 'MEP_SNW',
+                        'Habilitation AD traitée à distance' => 'HAB_CAD',
+                        'Compte Mymobility /  VPN' => 'SFW_MYM',
+                        'Compte Airwatch' => 'SFW_AIR',
+                        'Création de compte MFT' => 'SFW_MFT',
+                        'Compte Unix' => 'SFW_UNX',
+                        'Compte SAP' => 'SFW_SAP',
                     ]
                 ]
 

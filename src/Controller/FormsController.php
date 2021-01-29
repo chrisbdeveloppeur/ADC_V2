@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\App;
 use App\Entity\Asset;
 use App\Entity\OtherAsset;
-use App\Form\AppsType;
+use App\Form\AppType;
 use App\Form\AssetType;
 use App\Form\DescriptionFormType;
 use App\Form\GlobalFormType;
@@ -218,7 +218,7 @@ class FormsController extends AbstractController
     public function appForm(Request $request): Response
     {
         $form = $this->createForm(GlobalFormType::class);
-        $appForm = $this->createForm(AppsType::class);
+        $appForm = $this->createForm(AppType::class);
         $survey = $this->get('session')->get('survey');
         $form->handleRequest($request);
         $appForm->handleRequest($request);
