@@ -11,6 +11,7 @@ use App\Form\AppType;
 use App\Form\AssetType;
 use App\Form\DescriptionFormType;
 use App\Form\GlobalFormType;
+use App\Form\OtherActionType;
 use App\Form\OtherAppType;
 use App\Form\OtherAssetType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,6 +41,8 @@ class FormsController extends AbstractController
             $number = $i;
         }
 //
+//        $previousUrl = $this->redirectToRoute($request->attributes->get('_route'));
+//        $previousUrl = $previousUrl->getTargetUrl();
 
         if ( $assetForm->isSubmitted() && $number<=10 ){
 
@@ -241,13 +244,13 @@ class FormsController extends AbstractController
     public function otherActionForm(Request $request): Response
     {
         $form = $this->createForm(GlobalFormType::class);
-        $otherActionForm = $this->createForm(OtherAssetType::class);
+        $otherActionForm = $this->createForm(OtherActionType::class);
         $survey = $this->get('session')->get('survey');
         $form->handleRequest($request);
         $otherActionForm->handleRequest($request);
 
 //        Vérification du nombre d'actions déjà présentes dans le formulaire
-        for ($i=0; $i<=count($survey->getOtherAactions()); $i++ ){
+        for ($i=0; $i<=count($survey->getOtherActions()); $i++ ){
             $number = $i;
         }
 
@@ -289,9 +292,9 @@ class FormsController extends AbstractController
             }
         }
 
-        return $this->render('Survey/forms/other_assets_form.html.twig',[
+        return $this->render('Survey/forms/other_actions_form.html.twig',[
             'form' => $form->createView(),
-            'other_asset_form' => $otherActionForm->createView(),
+            'other_action_form' => $otherActionForm->createView(),
             'survey' => $survey,
         ]);
     }
@@ -441,7 +444,7 @@ class FormsController extends AbstractController
                 if ($otherApp->getAsset()==null){
                     $otherApp->setAsset('N/A');
                 }
-                $survey->addApp($otherApp);
+                $survey->addOtherApp($otherApp);
 
                 $action = $otherApp->getAction();
                 $otherApp->setBalise($action);
@@ -454,20 +457,20 @@ class FormsController extends AbstractController
             if ($otherAppForm->get('multiple')->getData() === true){
                 return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
-                if ($survey->getCas() === 'SDP_INC_1'){
-                    return $this->redirectToRoute('form_commentaire');
-                }elseif ($survey->getCas() === 'SDP_INC_3'){
+                return $this->redirectToRoute('form_commentaire');
+//                if ($survey->getCas() === 'SDP_INC_1'){
+//                }elseif ($survey->getCas() === 'SDP_INC_3'){
 //                return $this->redirectToRoute('form_other_app');
-                }
+//                }
             }
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            if ($survey->getCas() === 'SDP_INC_1'){
-                return $this->redirectToRoute('form_commentaire');
-            }elseif ($survey->getCas() === 'SDP_INC_3'){
+            return $this->redirectToRoute('form_commentaire');
+//            if ($survey->getCas() === 'SDP_INC_1'){
+//            }elseif ($survey->getCas() === 'SDP_INC_3'){
 //                return $this->redirectToRoute('form_other_app');
-            }
+//            }
         }
 
         return $this->render('Survey/forms/other_apps_form.html.twig',[
@@ -520,6 +523,7 @@ class FormsController extends AbstractController
         }
         return $this->render('Survey/forms/description_form.html.twig',[
             'commentaire_form' => $commentaireForm->createView(),
+            'survey' => $survey,
         ]);
     }
 

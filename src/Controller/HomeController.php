@@ -35,6 +35,8 @@ class HomeController extends AbstractController
         $form = $this->createForm(ServiceType::class);
         $form->handleRequest($request);
         $this->get('session')->set('survey', $survey);
+        $previousUrl = $this->redirectToRoute($request->attributes->get('_route'));
+        $previousUrl = $previousUrl->getTargetUrl();
         if ($form->isSubmitted()){
             $reponse = $form->get('service')->getData();
             $survey->setService($reponse);
@@ -43,10 +45,12 @@ class HomeController extends AbstractController
                 $survey->setType('DEM');
                 return $this->redirectToRoute('taskt_home',[
                     'service' => $reponse,
+                    'previous_url' => $previousUrl,
                 ]);
             }elseif ($reponse == 'SDP'){
                 return $this->redirectToRoute('tasktorinct',[
                     'service' => $reponse,
+                    'previous_url' => $previousUrl,
                 ]);
             }
         }
@@ -66,13 +70,19 @@ class HomeController extends AbstractController
         $survey->setType(null);
         $form = $this->createForm(TypeFormType::class);
         $form->handleRequest($request);
+        $previousUrl = $this->redirectToRoute($request->attributes->get('_route'));
+        $previousUrl = $previousUrl->getTargetUrl();
         if ($form->isSubmitted()){
             $reponse = $form->get('type')->getData();
             $survey->setType($reponse);
             if ($reponse == 'DEM'){
-                return $this->redirectToRoute('taskt_home');
+                return $this->redirectToRoute('taskt_home', [
+                    'previous_url' => $previousUrl,
+                ]);
             }elseif ($reponse == 'INC'){
-                return $this->redirectToRoute('inct_home');
+                return $this->redirectToRoute('inct_home', [
+                    'previous_url' => $previousUrl,
+                ]);
             }
         }
         return $this->render('Survey/home/type_inter.html.twig',[

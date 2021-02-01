@@ -23,7 +23,11 @@
 
             </div>
 
-            {{ include('includes/nav/prev_next.html.twig') }}
+            <div class="field">
+                {{ include('includes/nav/prev_next.html.twig') }}
+            </div>
+
+            {{ include('includes/del_objects_section.html.twig') }}
 
             {{ form_end(commentaire_form) }}
 

@@ -122,49 +122,12 @@
             initializeAssetsForm();
             // hideAddBtn();
 
-            removeAttributes(app_asset, 'disabled');
-            makeVisible(fieldAssets);
-            makeVisible(fieldTpx);
-            addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
-
-            // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
-            //     // console.log(values);
-            //     let condition1 = ['PHN','PRT','TRD'];
-            //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(app_asset, 'disabled');
-            //         makeVisible(fieldAssets);
-            //     }
-            //     let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
-            //     if (condition2.some( el => values.includes(el) ) ){
-            //         makeVisible(fieldTpx);
-            //     }
-            // }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
-            //     removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
-            //     let condition1 = ['PHN','TRD'];
-            //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(asset_as, 'disabled');
-            //         makeVisible(fieldAssets);
-            //     }
-            //     makeVisible(fieldTpx);
-            // }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
-            //     removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-            //     let condition1 = ['PHN'];
-            //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(app_asset, 'disabled');
-            //         removeClass(asset_as, 'disabled');
-            //         makeVisible(fieldAssets);
-            //         makeVisible(fieldTpx);
-            //     }
-            // }else if (values.includes('PRT')) { //              PRET
-            //     removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-            //     let condition1 = ['PHN'];
-            //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(app_asset, 'disabled');
-            //         makeVisible(fieldAssets);
-            //         makeVisible(fieldTpx);
-            //     }
-            // }
-            // console.log(values);
+            if (!values.includes('') ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
+                removeAttributes(app_asset, 'disabled');
+                makeVisible(fieldAssets);
+                makeVisible(fieldTpx);
+                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+            }
         }
 
 

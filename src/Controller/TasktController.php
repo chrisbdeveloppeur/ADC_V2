@@ -28,6 +28,8 @@ class TasktController extends AbstractController
         $type = $survey->getType();
         $form = $this->createForm(TypeInterTasktForm::class);
         $form->handleRequest($request);
+        $previousUrl = $this->redirectToRoute($request->attributes->get('_route'));
+        $previousUrl = $previousUrl->getTargetUrl();
         if ($form->isSubmitted()) {
             $reponse = $form->get('type')->getData();
             $survey->setCasTaskt($reponse);
