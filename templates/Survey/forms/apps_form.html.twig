@@ -122,10 +122,13 @@
             initializeAssetsForm();
             // hideAddBtn();
 
-            removeAttributes(app_asset, 'disabled');
-            makeVisible(fieldAssets);
-            makeVisible(fieldTpx);
-            addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+            if (!values.includes('') ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
+                removeAttributes(app_asset, 'disabled');
+                makeVisible(fieldAssets);
+                makeVisible(fieldTpx);
+                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+            }
+
 
             // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
             //     // console.log(values);

@@ -260,7 +260,7 @@ class FormsController extends AbstractController
                 $newAsset = new OtherAction();
                 $newAsset->setSurvey($survey);
                 $newAsset->setPosition($number);
-                $newAsset->setAsset($otherActionForm->get('as')->getData());
+                $newAsset->setAsset($otherActionForm->get('asset')->getData());
                 $newAsset->setAction($otherActionForm->get('action')->getData());
                 $newAsset->setRsdp($otherActionForm->get('rsdp')->getData());
                 $newAsset->setTpx($otherActionForm->get('tpx')->getData());
@@ -278,7 +278,7 @@ class FormsController extends AbstractController
             }
 
             if ($otherActionForm->get('multiple')->getData() === true){
-                return $this->json(['action' => $action,'ae' => $ae,'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
+                return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
                 if ($survey->getCas() == 'SDP_DEM_4' || $survey->getCas() == 'HD_DEM_4'){
                     return $this->redirectToRoute('form_commentaire');

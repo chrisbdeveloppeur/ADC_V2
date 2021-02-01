@@ -34,6 +34,19 @@
                 </p>
             </div>
         </a>
+
+        <div class="navbar-item">
+            <a href="{{ path('home') }}" class="button">
+        <span class="icon">
+            <i class="fas fa-lg fa-home"></i>
+        </span>
+                <span>
+            Revenir à l'accueil
+        </span>
+            </a>
+        </div>
+
+
     </div>
 
     {% if app.user %}
@@ -55,21 +68,20 @@
 
 </nav>
 
-<div class="column has-text-centered-mobile">
-    <a href="{{ path('home') }}" class="button">
-        <span class="icon">
-            <i class="fas fa-lg fa-home"></i>
-        </span>
-        <span>
-            Revenir à l'accueil
-        </span>
-    </a>
-</div>
+{#<div class="column has-text-centered-mobile">#}
+{#    <a href="{{ path('home') }}" class="button">#}
+{#        <span class="icon">#}
+{#            <i class="fas fa-lg fa-home"></i>#}
+{#        </span>#}
+{#        <span>#}
+{#            Revenir à l'accueil#}
+{#        </span>#}
+{#    </a>#}
+{#</div>#}
 
 {{ include('includes/flash_message.html.twig') }}
 
 <section class="is-fullheight is-flex is-justify-content-center is-align-items-center section-base-html">
-{#    <img class="safran-backgound-img" src="{{ asset('build/images/1200px-Safran_-_logo_2016.f3a8e511.png') }}" alt="">#}
     <div class="column is-flex-desktop is-align-items-center is-justify-content-center">
         {% block body %}{% endblock %}
     </div>

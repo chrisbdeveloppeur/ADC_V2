@@ -110,7 +110,7 @@
         let input = document.querySelectorAll(".js-on-change");
         let dynamicFields = document.querySelectorAll(".dynamic-field");
         let fieldAssets = document.getElementById('assets-field');
-        let app_asset = document.getElementById('other_app_asset');
+        let action_asset = document.getElementById('other_action_asset');
         let fieldTpx = document.getElementById('tpx-field');
         let fieldRsdp = document.getElementById('rsdp-field');
 
@@ -122,16 +122,19 @@
             initializeAssetsForm();
             // hideAddBtn();
 
-            removeAttributes(app_asset, 'disabled');
-            makeVisible(fieldAssets);
-            makeVisible(fieldTpx);
-            addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+            if (!values.includes('') ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
+                removeAttributes(action_asset, 'disabled');
+                makeVisible(fieldAssets);
+                makeVisible(fieldTpx);
+                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+            }
+
 
             // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
             //     // console.log(values);
             //     let condition1 = ['PHN','PRT','TRD'];
             //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(app_asset, 'disabled');
+            //         removeClass(action_asset, 'disabled');
             //         makeVisible(fieldAssets);
             //     }
             //     let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
@@ -150,7 +153,7 @@
             //     removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
             //     let condition1 = ['PHN'];
             //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(app_asset, 'disabled');
+            //         removeClass(action_asset, 'disabled');
             //         removeClass(asset_as, 'disabled');
             //         makeVisible(fieldAssets);
             //         makeVisible(fieldTpx);
@@ -159,7 +162,7 @@
             //     removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
             //     let condition1 = ['PHN'];
             //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(app_asset, 'disabled');
+            //         removeClass(action_asset, 'disabled');
             //         makeVisible(fieldAssets);
             //         makeVisible(fieldTpx);
             //     }
@@ -191,8 +194,8 @@
 
         function initializeAssetsForm() {
             hiddeAllFields();
-            app_asset.setAttribute('disabled', true);
-            app_asset.value = null;
+            action_asset.setAttribute('disabled', true);
+            action_asset.value = null;
             removeAttributes(fieldTpx.querySelector('.tpx'), 'required');
             // document.getElementById('asset-btn-form').style.visibility = 'hidden';
             input.forEach(function (element) {
