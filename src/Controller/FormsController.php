@@ -78,14 +78,13 @@ class FormsController extends AbstractController
                     'position' => $number,
                 ]);
             }
-
             if ($assetForm->get('multiple')->getData() === true){
-                    return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
+                return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
-//                if ($survey->getCas()== 'SDP_INC_1'){
-                    return $this->redirectToRoute('form_other_asset');
-//                }
+                return $this->redirectToRoute('form_other_asset');
             }
+
+
         }
 
         if ($form->isSubmitted() && $form->isValid()){

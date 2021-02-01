@@ -8,18 +8,31 @@
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
             {{ include('includes/nav_indicator.html.twig') }}
-            <h1 class="title is-size-3-desktop">Application(s)</h1>
+            {% if survey.cas == 'SDP_INC_1' %}
+                <label class=" title is-size-4-desktop">
+                    Avez-vous installé des softs / applications ?
+                    <p class="help is-info has-text-weight-normal">
+                          <span class="icon">
+                              <i class="fas fa-info-circle"></i>
+                          </span>
+                        Si non cliquez sur suivant...
+                    </p>
+                </label>
+            {% else %}
+                <label class=" title is-size-4-desktop">Softs & Applications</label>
+            {% endif %}
 
             {{ form_start(app_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
             <div class="field has-text-left">
                 <label class="checkbox">
                     {{ form_widget(app_form.multiple, {'attr': {'class': 'multiple', 'onclick':'setMultiple(this)'}}) }}
-                    Plusieur à ajouter ?
+                    Cochez pour en ajouter plusieur
                 </label>
             </div>
 
             <label class="label">Veuillez préciser la méthode d'intervention</label>
+
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
