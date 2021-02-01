@@ -24,7 +24,6 @@ class InctController extends AbstractController
     {
         $survey = $this->get('session')->get('survey');
         $survey->setCasInct(null);
-//        dd($survey);
         $type = $survey->getType();
         if ($type == "INC") {
             $form = $this->createForm(TypeInterInctForm::class);
@@ -52,6 +51,7 @@ class InctController extends AbstractController
         return $this->render('Survey/home/type_inter.html.twig',[
             'form' => $form->createView(),
             'form_name' => $form->getName(),
+            'survey' => $survey,
         ]);
 
     }

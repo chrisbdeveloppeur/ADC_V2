@@ -1,0 +1,9 @@
+<div class="icon-text is-size-4 has-text-centered has-background-dark has-text-light">
+    <span class=" has-text-left has-text-weight-bold is-uppercase">
+        {% if survey.type == 'DEM' %}
+            Demande [TASKT]
+        {% elseif survey.type == 'INC' %}
+            Incident [INCT]
+        {% endif %}
+    </span>
+</div>

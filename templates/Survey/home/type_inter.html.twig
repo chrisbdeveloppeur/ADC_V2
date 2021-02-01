@@ -10,7 +10,8 @@
             {% if form_name == 'type_form' %}
                 <h1 class="title is-size-1-desktop">Type d'intervention</h1>
             {% else %}
-                <h1 class="title is-size-1-desktop">Type d'intervention<span class="is-size-5">(2)</span></h1>
+                {{ include('includes/nav_indicator.html.twig') }}
+                <h1 class="title is-size-3-desktop">Type d'intervention<span class="is-size-5">(2)</span></h1>
             {% endif %}
 
             <div class="field">
