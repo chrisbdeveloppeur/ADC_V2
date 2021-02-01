@@ -8,9 +8,15 @@
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
             <h1 class="title is-size-1-desktop">Action(s) logiciel(s) / Accès</h1>
-{#            <label class="label is-uppercase" for="last_name">Application(S)</label>#}
 
             {{ form_start(other_app_form, {'attr': {'class': 'ajax-add-asset'}}) }}
+
+            <div class="field has-text-left">
+                <label class="checkbox">
+                    {{ form_widget(other_app_form.multiple, {'attr': {'class': 'multiple', 'onclick':'setMultiple(this)'}}) }}
+                    Plusieur à ajouter ?
+                </label>
+            </div>
 
             <label class="label">Veuillez selectionner l'objet</label>
             <div class="field">
@@ -62,8 +68,10 @@
                 </div>
             </div>
 
-            <div class="control">
-                <button type="submit" class="button is-info is-small" id="asset-btn-form">
+            {{ include('includes/nav/nav_for_only_one.html.twig') }}
+
+            <div class="control is-hidden nav-for-multiple">
+                <button type="submit" class="button is-info is-small add-btn-form" id="add-btn-form">
                     <span>Ajouter</span>
                     <span class="icon">
                         <i class="fas fa-plus"></i>
@@ -71,24 +79,21 @@
                 </button>
             </div>
 
-            Plusieur à ajouter ?
-            {{ form_widget(other_app_form.multiple, {'attr': {'class': 'multiple', 'onclick':'setMultiple(this)'}}) }}
-
             {{ form_end(other_app_form) }}
 
             {{ form_start(form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
 
             <div class="field">
 
-                {{ form_widget(form, {'attr': {'class': 'is-hidden'}}) }}
+                {{ form_widget(form.asset, {'attr': {'class': 'is-hidden'}}) }}
 
             </div>
 
-{#            <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">#}
-                {{ include('includes/del_objects_section.html.twig') }}
-{#            </div>#}
+            <div class="nav-for-multiple is-hidden field">
+                {{ include('includes/nav/prev_next.html.twig') }}
+            </div>
 
-            {{ include('includes/nav/prev_next.html.twig') }}
+            {{ include('includes/del_objects_section.html.twig') }}
 
             {{ form_end(form) }}
 

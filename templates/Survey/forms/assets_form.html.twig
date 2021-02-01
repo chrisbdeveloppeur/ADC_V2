@@ -12,10 +12,12 @@
 
             {{ form_start(asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
 
-            <label class="checkbox">
-                {{ form_widget(asset_form.multiple, {'attr': {'class': 'multiple', 'onclick':'setMultiple(this)'}}) }}
-                Plusieur à ajouter ?
-            </label>
+            <div class="field has-text-left">
+                <label class="checkbox">
+                    {{ form_widget(asset_form.multiple, {'attr': {'class': 'multiple', 'onclick':'setMultiple(this)'}}) }}
+                    Plusieur à ajouter ?
+                </label>
+            </div>
 
             <label class="label">Veuillez selectionner l'intervention</label>
             <div class="field">
