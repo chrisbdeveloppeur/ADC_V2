@@ -316,7 +316,10 @@
 
             window.onload = function(){
                 let multiple = document.querySelectorAll('.multiple');
-                multiple.forEach(element => setMultiple(element))
+                multiple.forEach(element => setMultiple(element));
+                if (typeof updateValue !== 'undefined'){
+                    updateValue();
+                }
             } ;
 
             // let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
@@ -324,6 +327,18 @@
             // ajaxForm.forEach(function (form) {
             //     form.addEventListener('submit', addAsset);
             // })
+
+            function addAttributes(htmlObjet, attributes, value){
+                htmlObjet.setAttribute(attributes, value);
+            }
+
+            function removeAttributes(htmlObjet, attributes){
+                htmlObjet.removeAttribute(attributes);
+            }
+
+            function makeVisible(element) {
+                element.classList.remove('is-hidden')
+            }
 
         </script>
         {#        FIN DU SCRIPT         #}

@@ -132,55 +132,45 @@
 
         input.forEach(element => element.addEventListener('input', updateValue) );
 
-        window.onload = function(){
-            updateValue();
-        } ;
-
         function updateValue() {
             let values = [];
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
             // hideAddBtn();
             if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
-                // console.log(values);
                 let condition1 = ['PHN','PRT','TRD'];
                 if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_ae, 'disabled');
+                    removeAttributes(asset_ae, 'disabled');
                     makeVisible(fieldAssets);
                 }
                 let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
                 if (condition2.some( el => values.includes(el) ) ){
                     makeVisible(fieldTpx);
+                    addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
                 }
             }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
                 removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
                 let condition1 = ['PHN','TRD'];
                 if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_as, 'disabled');
+                    removeAttributes(asset_as, 'disabled');
                     makeVisible(fieldAssets);
                 }
                 makeVisible(fieldTpx);
             }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
                 removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-                let condition1 = ['PHN'];
                 document.getElementById('other_asset_type').value = 'PHN';
-                // console.log(document.getElementById('other_asset_type'));
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_ae, 'disabled');
-                    removeClass(asset_as, 'disabled');
-                    makeVisible(fieldAssets);
-                    makeVisible(fieldTpx);
-                }
+                removeAttributes(asset_ae, 'disabled');
+                removeAttributes(asset_as, 'disabled');
+                makeVisible(fieldAssets);
+                makeVisible(fieldTpx);
+                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
             }else if (values.includes('PRT')) { //              PRET
                 removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-                let condition1 = ['PHN'];
                 document.getElementById('other_asset_type').value = 'PHN';
-                // console.log(document.getElementById('other_asset_type').value);
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(asset_ae, 'disabled');
-                    makeVisible(fieldAssets);
-                    makeVisible(fieldTpx);
-                }
+                removeAttributes(asset_ae, 'disabled');
+                makeVisible(fieldAssets);
+                makeVisible(fieldTpx);
+                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
             }
         }
 
@@ -205,9 +195,6 @@
                 }
             });
         }
-        function removeClass(htmlObject, className){
-            htmlObject.attributes.removeNamedItem(className);
-        }
 
         function initializeAssetsForm() {
             hiddeAllFields();
@@ -215,6 +202,7 @@
             asset_ae.value = null;
             asset_as.setAttribute('disabled', true);
             asset_as.value = null;
+            removeAttributes(fieldTpx.querySelector('.tpx'), 'required');
             // document.getElementById('asset-btn-form').style.visibility = 'hidden';
             input.forEach(function (element) {
                 element.querySelectorAll('option').forEach(option => option.style.display = 'block')
@@ -222,9 +210,6 @@
         }
         function hiddeAllFields() {
             dynamicFields.forEach(element => element.classList.add('is-hidden') );
-        }
-        function makeVisible(element) {
-            element.classList.remove('is-hidden')
         }
 
     </script>

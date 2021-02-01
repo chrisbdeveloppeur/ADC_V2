@@ -61,6 +61,9 @@ class FormsController extends AbstractController
                 if ($newAsset->getAs()==null){
                     $newAsset->setAs('N/A');
                 }
+                if ($newAsset->getType()==null){
+                    $newAsset->setType('XX');
+                }
                 $survey->addAsset($newAsset);
                 $action = $newAsset->getAction();
                 $type = $newAsset->getType();
@@ -165,6 +168,9 @@ class FormsController extends AbstractController
                 }
                 if ($newAsset->getAs()==null){
                     $newAsset->setAs('N/A');
+                }
+                if ($newAsset->getType()==null){
+                    $newAsset->setType('XX');
                 }
                 $survey->addOtherAsset($newAsset);
 

@@ -116,19 +116,16 @@
 
         input.forEach(element => element.addEventListener('input', updateValue) );
 
-        window.onload = function(){
-            updateValue();
-        } ;
-
         function updateValue() {
             let values = [];
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
             // hideAddBtn();
 
-            removeClass(app_asset, 'disabled');
+            removeAttributes(app_asset, 'disabled');
             makeVisible(fieldAssets);
             makeVisible(fieldTpx);
+            addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
 
             // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
             //     // console.log(values);
@@ -191,14 +188,12 @@
                 }
             });
         }
-        function removeClass(htmlObject, className){
-            htmlObject.attributes.removeNamedItem(className);
-        }
 
         function initializeAssetsForm() {
             hiddeAllFields();
             app_asset.setAttribute('disabled', true);
             app_asset.value = null;
+            removeAttributes(fieldTpx.querySelector('.tpx'), 'required');
             // document.getElementById('asset-btn-form').style.visibility = 'hidden';
             input.forEach(function (element) {
                 element.querySelectorAll('option').forEach(option => option.style.display = 'block')
@@ -206,9 +201,6 @@
         }
         function hiddeAllFields() {
             dynamicFields.forEach(element => element.classList.add('is-hidden') );
-        }
-        function makeVisible(element) {
-            element.classList.remove('is-hidden')
         }
 
     </script>

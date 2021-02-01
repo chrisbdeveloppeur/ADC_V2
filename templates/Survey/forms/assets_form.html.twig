@@ -132,9 +132,9 @@
 
         input.forEach(element => element.addEventListener('input', updateValue) );
 
-        window.onload = function(){
-            updateValue();
-        } ;
+        // window.onload = function(){
+        //     updateValue();
+        // } ;
 
         function updateValue(e) {
             let values = [];
@@ -142,21 +142,27 @@
             initializeAssetsForm();
             // hideAddBtn();
             if (values.includes('DEM') || values.includes('PRT') || values.includes('NDO') ){
-                hideElement(fieldAssets);
-                hideElement(fieldRsdp);
-                hideElement(fieldTpx);
-                removeClass(asset_ae, 'disabled');
+                makeVisible(fieldAssets);
+                makeVisible(fieldRsdp);
+                makeVisible(fieldTpx);
+                console.log(fieldTpx);
+                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                removeAttributes(asset_ae, 'disabled');
             }else if (values.includes('REP')) {
-                hideElement(fieldAssets);
-                hideElement(fieldRsdp);
-                hideElement(fieldTpx);
-                removeClass(asset_as, 'disabled');
+                makeVisible(fieldAssets);
+                makeVisible(fieldRsdp);
+                makeVisible(fieldTpx);
+                console.log(fieldTpx);
+                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                removeAttributes(asset_as, 'disabled');
             }else if (values.includes('REN')) {
-                hideElement(fieldAssets);
-                hideElement(fieldRsdp);
-                hideElement(fieldTpx);
-                removeClass(asset_ae, 'disabled');
-                removeClass(asset_as, 'disabled');
+                makeVisible(fieldAssets);
+                makeVisible(fieldRsdp);
+                makeVisible(fieldTpx);
+                console.log(fieldTpx);
+                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                removeAttributes(asset_ae, 'disabled');
+                removeAttributes(asset_as, 'disabled');
             }
         }
 
@@ -175,22 +181,18 @@
                 }
             });
         }
-        function removeClass(htmlObjet, className){
-            htmlObjet.attributes.removeNamedItem(className);
-        }
+
         function initializeAssetsForm() {
             hideAllFields();
             asset_ae.setAttribute('disabled', true);
             asset_ae.value = null;
             asset_as.setAttribute('disabled', true);
             asset_as.value = null;
+            removeAttributes(fieldTpx.querySelector('.tpx'), 'required');
             // document.getElementById('add-btn-form').style.visibility = 'hidden';
         }
         function hideAllFields() {
             dynamicFields.forEach(element => element.classList.add('is-hidden') );
-        }
-        function hideElement(element) {
-            element.classList.remove('is-hidden')
         }
 
     </script>

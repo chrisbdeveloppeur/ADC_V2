@@ -75,7 +75,6 @@ class FinalStringController extends AbstractController
             $balise = '';
 
             foreach ($objects as $key => $object){
-
                 $balise .= "[" . $text;
                 $key++;
                 $balise .= $object->getBalise() . "_" . $key;
