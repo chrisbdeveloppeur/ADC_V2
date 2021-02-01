@@ -9,7 +9,6 @@
 
             <h1 class="title is-size-1-desktop">Code généré</h1>
 
-{#            {{ form_start(final_string_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}#}
             <div class="field">
                 <label class="label" for="last_name">Copier/Coller le code suivant dans la rubrique X de Service Now</label>
 
@@ -17,14 +16,11 @@
                     <div class="control" style="flex: 1">
                         <div class="is-info is-fullwidth">
                             <textarea readonly id="final-string-form" class="textarea" placeholder="10 lines of textarea" rows="10">{{ final_string }}</textarea>
-{#                            {{ form_widget(final_string_form.final_string) }}#}
                         </div>
                     </div>
                 </div>
 
                 {{ include('includes/nav/end.html.twig') }}
-
-{#            {{ form_end(final_string_form) }}#}
 
         </div>
 
