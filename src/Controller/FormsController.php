@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\App;
 use App\Entity\Asset;
+use App\Entity\OtherAction;
 use App\Entity\OtherApp;
 use App\Entity\OtherAsset;
 use App\Form\AppType;
@@ -78,24 +79,21 @@ class FormsController extends AbstractController
             if ($assetForm->get('multiple')->getData() === true){
                     return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
-                if ($survey->getCas()== 'SDP_INC_1'){
+//                if ($survey->getCas()== 'SDP_INC_1'){
                     return $this->redirectToRoute('form_other_asset');
-                }
+//                }
             }
-            //            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-//            return $this->redirect($referer);
-//            return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            if ($survey->getCas()== 'SDP_INC_1'){
+//            if ($survey->getCas()== 'SDP_INC_1'){
+//                return $this->redirectToRoute('form_other_asset');
+//            }
+//            elseif ($survey->getCas()== 'SDP_INC_2'){
+//                return $this->redirectToRoute('form_other_asset');
+//            }elseif ($survey->getCas()== 'SDP_INC_3'){
                 return $this->redirectToRoute('form_other_asset');
-            }
-            elseif ($survey->getCas()== 'SDP_INC_2'){
-                return $this->redirectToRoute('form_other_asset');
-            }elseif ($survey->getCas()== 'SDP_INC_3'){
-                return $this->redirectToRoute('form_other_asset');
-            }
+//            }
 
         }
 
@@ -117,8 +115,6 @@ class FormsController extends AbstractController
         $form = $this->createForm(GlobalFormType::class);
         $form->handleRequest($request);
 
-//        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-//        return $this->redirect($referer);
         return $this->json('asset ' . $assetToDelete . ' retiré !');
 
     }
@@ -189,17 +185,17 @@ class FormsController extends AbstractController
             }else{
                 if ($survey->getCas()== 'SDP_INC_1'){
                     return $this->redirectToRoute('form_app');
+                }else{
+                    return $this->redirectToRoute('form_commentaire');
                 }
             }
-
-//            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-//            return $this->redirect($referer);
-//            return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
         if ($form->isSubmitted() && $form->isValid()){
             if ($survey->getCas()== 'SDP_INC_1'){
                 return $this->redirectToRoute('form_app');
+            }else{
+                return $this->redirectToRoute('form_commentaire');
             }
 //            return $this->redirectToRoute();
         }
@@ -218,17 +214,108 @@ class FormsController extends AbstractController
     {
         $survey = $this->get('session')->get('survey');
         $otherAssetToDelete = $survey->getOtherAssets()[$position];
-//        dd($survey, $position, $otherAssetToDelete);
         unset($survey->getOtherAssets()[$position]);
         $form = $this->createForm(GlobalFormType::class);
         $form->handleRequest($request);
 
-//        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-//        return $this->redirect($referer);
         return $this->json('asset ' . $otherAssetToDelete . ' retiré !');
 
     }
 ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////  OTHER_ACTION FORM  //////////////////////////////
+    /**
+     * @Route("/autre-action", name="other_action")
+     */
+    public function otherActionForm(Request $request): Response
+    {
+        $form = $this->createForm(GlobalFormType::class);
+        $otherActionForm = $this->createForm(OtherAssetType::class);
+        $survey = $this->get('session')->get('survey');
+        $form->handleRequest($request);
+        $otherActionForm->handleRequest($request);
+
+//        Vérification du nombre d'actions déjà présentes dans le formulaire
+        for ($i=0; $i<=count($survey->getOtherAactions()); $i++ ){
+            $number = $i;
+        }
+
+        if ($otherActionForm->isSubmitted() && $number<=10){
+
+            if ($otherActionForm->get('action')->getData()){
+                $newAsset = new OtherAction();
+                $newAsset->setSurvey($survey);
+                $newAsset->setPosition($number);
+                $newAsset->setAsset($otherActionForm->get('as')->getData());
+                $newAsset->setAction($otherActionForm->get('action')->getData());
+                $newAsset->setRsdp($otherActionForm->get('rsdp')->getData());
+                $newAsset->setTpx($otherActionForm->get('tpx')->getData());
+                if ($newAsset->getAsset()==null){
+                    $newAsset->setAsset('N/A');
+                }
+                $survey->addOtherAction($newAsset);
+
+                $action = $newAsset->getAction();
+                $newAsset->setBalise($action);
+                $asset = $newAsset->getAsset();
+                $urlForDelete = $this->redirectToRoute('form_other_action_del',[
+                    'position' => $number,
+                ]);
+            }
+
+            if ($otherActionForm->get('multiple')->getData() === true){
+                return $this->json(['action' => $action,'ae' => $ae,'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
+            }else{
+                if ($survey->getCas() == 'SDP_DEM_4' || $survey->getCas() == 'HD_DEM_4'){
+                    return $this->redirectToRoute('form_commentaire');
+                }
+            }
+        }
+
+        if ($form->isSubmitted() && $form->isValid()){
+            if ($survey->getCas() == 'SDP_DEM_4' || $survey->getCas() == 'HD_DEM_4'){
+                return $this->redirectToRoute('form_commentaire');
+            }
+        }
+
+        return $this->render('Survey/forms/other_assets_form.html.twig',[
+            'form' => $form->createView(),
+            'other_asset_form' => $otherActionForm->createView(),
+            'survey' => $survey,
+        ]);
+    }
+
+    /**
+     * @Route("/del-other-action={position}", name="other_action_del")
+     */
+    public function delOtherAction($position, Request $request): Response
+    {
+        $survey = $this->get('session')->get('survey');
+        $otherAssetToDelete = $survey->getOtherAssets()[$position];
+        unset($survey->getOtherAssets()[$position]);
+        $form = $this->createForm(GlobalFormType::class);
+        $form->handleRequest($request);
+
+        return $this->json('asset ' . $otherAssetToDelete . ' retiré !');
+
+    }
+////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
 
 
@@ -263,9 +350,6 @@ class FormsController extends AbstractController
                 $app->setAction($appForm->get('action')->getData());
                 $app->setRsdp($appForm->get('rsdp')->getData());
                 $app->setTpx($appForm->get('tpx')->getData());
-//            if ( ($app->getAction()=="DEM") || ($app->getAction()=="REP") ){
-//                $app->setType("PDT");
-//            }
                 if ($app->getAsset()==null){
                     $app->setAsset('N/A');
                 }
@@ -284,20 +368,18 @@ class FormsController extends AbstractController
             }else{
                 if ($survey->getCas() === 'SDP_INC_1'){
                     return $this->redirectToRoute('form_commentaire');
-                }elseif ($survey->getCas() === 'SDP_INC_3'){
+                }else{
                     return $this->redirectToRoute('form_other_app');
                 }
             }
-//            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-//            return $this->redirect($referer);
-//            return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            if ($survey->getCas() === 'SDP_INC_1'){
-                return $this->redirectToRoute('form_commentaire');
-            }elseif ($survey->getCas() === 'SDP_INC_3'){
+            if ($survey->getCas() === 'SDP_INC_3'){
                 return $this->redirectToRoute('form_other_app');
+
+            }else{
+                return $this->redirectToRoute('form_commentaire');
             }
         }
 
@@ -319,8 +401,6 @@ class FormsController extends AbstractController
         $form = $this->createForm(GlobalFormType::class);
         $form->handleRequest($request);
 
-//        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-//        return $this->redirect($referer);
         return $this->json('app ' . $appToDelete . ' retiré !');
 
     }
@@ -358,9 +438,6 @@ class FormsController extends AbstractController
                 $otherApp->setAction($otherAppForm->get('action')->getData());
                 $otherApp->setRsdp($otherAppForm->get('rsdp')->getData());
                 $otherApp->setTpx($otherAppForm->get('tpx')->getData());
-//            if ( ($app->getAction()=="DEM") || ($app->getAction()=="REP") ){
-//                $app->setType("PDT");
-//            }
                 if ($otherApp->getAsset()==null){
                     $otherApp->setAsset('N/A');
                 }
@@ -383,9 +460,6 @@ class FormsController extends AbstractController
 //                return $this->redirectToRoute('form_other_app');
                 }
             }
-//            $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-//            return $this->redirect($referer);
-//            return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
         }
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -414,8 +488,6 @@ class FormsController extends AbstractController
         $form = $this->createForm(GlobalFormType::class);
         $form->handleRequest($request);
 
-//        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-//        return $this->redirect($referer);
         return $this->json('app ' . $appToDelete . ' retiré !');
 
     }
@@ -438,9 +510,7 @@ class FormsController extends AbstractController
     public function description(Request $request): Response
     {
         $survey = $this->get('session')->get('survey');
-//        $form = $this->createForm(GlobalFormType::class);
         $commentaireForm = $this->createForm(DescriptionFormType::class);
-//        $form->handleRequest($request);
         $commentaireForm->handleRequest($request);
 
         if ($commentaireForm->isSubmitted() && $commentaireForm->isValid()){
@@ -449,7 +519,6 @@ class FormsController extends AbstractController
             return $this->redirectToRoute("final_string");
         }
         return $this->render('Survey/forms/description_form.html.twig',[
-//            'form' => $form->createView(),
             'commentaire_form' => $commentaireForm->createView(),
         ]);
     }

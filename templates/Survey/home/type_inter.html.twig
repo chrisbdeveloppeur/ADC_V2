@@ -28,14 +28,9 @@
                 {{ form_start(form, {'attr': {'class':'column'}}) }}
 
                 {% if form_name == 'type_inter_taskt_form' %}
-                    <div class="field is-grouped">
+                    <div class="field">
                         <div class="control">
                             {{ form_widget(form, {'attr': {'class': 'select'} } ) }}
-                        </div>
-                        <div class="control">
-                            <button class="button is-info is-normal">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
                         </div>
                     </div>
 
@@ -53,9 +48,13 @@
                     </div>
                 {% endif %}
 
+                {% if form_name == 'type_inter_taskt_form' %}
+                    {{ include('includes/nav/prev_next.html.twig') }}
+                {% else %}
+                    {{ include('includes/nav/prev_only.html.twig') }}
+                {% endif %}
                 {{ form_end(form) }}
 
-                {{ include('includes/nav/prev_only.html.twig') }}
 
             </div>
 

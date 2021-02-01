@@ -110,6 +110,11 @@ class Survey
      */
     private $otherApps;
 
+    /**
+     * @ORM\OneToMany(targetEntity=OtherAction::class, mappedBy="survey")
+     */
+    private $otherActions;
+
     public function __construct()
     {
         $this->cas = 'N/A';
@@ -127,6 +132,7 @@ class Survey
         $this->other_assets = new ArrayCollection();
         $this->apps = new ArrayCollection();
         $this->otherApps = new ArrayCollection();
+        $this->otherActions = new ArrayCollection();
     }
 
     public function __toString()
@@ -410,6 +416,36 @@ class Survey
             // set the owning side to null (unless already changed)
             if ($otherApp->getSurvey() === $this) {
                 $otherApp->setSurvey(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OtherAction[]
+     */
+    public function getOtherActions(): Collection
+    {
+        return $this->otherActions;
+    }
+
+    public function addOtherAction(OtherAction $otherAction): self
+    {
+        if (!$this->otherActions->contains($otherAction)) {
+            $this->otherActions[] = $otherAction;
+            $otherAction->setSurvey($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOtherAction(OtherAction $otherAction): self
+    {
+        if ($this->otherActions->removeElement($otherAction)) {
+            // set the owning side to null (unless already changed)
+            if ($otherAction->getSurvey() === $this) {
+                $otherAction->setSurvey(null);
             }
         }
 

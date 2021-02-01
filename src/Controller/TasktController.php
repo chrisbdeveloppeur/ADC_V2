@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Form\FromInctFormType;
+use App\Form\TypeInterInctForm;
+use App\Form\TypeInterTasktForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,25 +24,37 @@ class TasktController extends AbstractController
     public function fromInct(Request $request): Response
     {
         $survey = $this->get('session')->get('survey');
-        $form = $this->createForm(FromInctFormType::class);
+        $survey->setCasInct(null);
+        $type = $survey->getType();
+        $form = $this->createForm(TypeInterTasktForm::class);
         $form->handleRequest($request);
-        $from_inct = $form->get('from_inct')->getData();
-        if ($form->isSubmitted() && $form->isValid()){
-            if ($from_inct == 'Non'){
-                $survey->setFromInct('Non');
-            }else{
-                $survey->setFromInct('Oui');
+        if ($form->isSubmitted()) {
+            $reponse = $form->get('type')->getData();
+            $survey->setCasTaskt($reponse);
+            $cas = $survey->getService().'_'.$type.'_'.$reponse;
+            $survey->setCas($cas);
+            $survey->setTypeInter($reponse);
+            if ($reponse == '1') {         /* Fourniture, reprise et déménagement de postes de travail */
+                return $this->redirectToRoute('form_asset');
+            } elseif ($reponse == '2') {   /* Fourtinure, reprise et déménagement de matériels hors postes de travail */
+                return $this->redirectToRoute('form_other_asset');
+            } elseif ($reponse == '3') {                      /* Installaition d'applications sans fourniture de matériel */
+                return $this->redirectToRoute('form_app');
+            } elseif ($reponse == '4') {                      /* Autre actions matériel */
+                return $this->redirectToRoute('form_other_action');
+            } elseif ($reponse == '5') {                      /* Autre actions logiciel accès */
+                return $this->redirectToRoute('form_other_app');
+            } elseif ($reponse == '6') {                      /* Support téléphonie */
+                return $this->redirectToRoute('home');
+            } elseif ($reponse == '7') {                      /* CMDB et stock */
+                return $this->redirectToRoute('home');
             }
-//            return $this->redirectToRoute("taskt_asset_type",  [
-//            ]);
-
         }
 
-        $referer = $request->headers->get('referer'); ////// PREVIOUS URL ////////
-        return $this->redirect($referer);
-//        return $this->render('Survey/Taskt/from_inct_field.html.twig', [
-//            'form' => $form->createView(),
-//        ]);
+        return $this->render('Survey/home/type_inter.html.twig',[
+            'form' => $form->createView(),
+            'form_name' => $form->getName(),
+        ]);
     }
 
 

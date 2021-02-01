@@ -25,7 +25,8 @@ class FinalStringController extends AbstractController
 
         //         Hashage (crc32) de la chaine final
         $survey->setHashedString($finalString);
-        $finalString .= " - [" . strtoupper($survey->getHashedString()) . "]\r\n";
+        $finalString .= " - [" . strtoupper($survey->getHashedString()) . "]";
+        $finalString .= " [".$survey->getService()."]\r\n";
 
         $assets = $survey->getAssets();
         $otherAssets = $survey->getOtherAssets();
@@ -38,10 +39,6 @@ class FinalStringController extends AbstractController
         if ($survey->getCommentaire()){
             $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "]";
         }
-//        $finalString .= "[" . $survey->getCas() . "]";
-//        $finalString .= "[".$survey->getService()."]";
-//        $finalString .= "[".$survey->getService()."]";
-//        $finalString .= "[".$survey->getService()."]";
 
 
 //                      MISE EN CORELATION FUSEAU HORAIRE                   //

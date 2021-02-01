@@ -40,7 +40,8 @@ class HomeController extends AbstractController
             $survey->setService($reponse);
 //            dd($reponse);
             if ($reponse == 'HD'){
-                return $this->redirectToRoute('home',[
+                $survey->setType('DEM');
+                return $this->redirectToRoute('taskt_home',[
                     'service' => $reponse,
                 ]);
             }elseif ($reponse == 'SDP'){
