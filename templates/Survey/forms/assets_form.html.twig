@@ -9,7 +9,13 @@
 
             <h1 class="title is-size-1-desktop">Poste(s) de travail</h1>
 
+
             {{ form_start(asset_form, {'attr': {'class': 'ajax-add-asset'}}) }}
+
+            <label class="checkbox">
+                {{ form_widget(asset_form.multiple, {'attr': {'class': 'multiple', 'onclick':'setMultiple(this)'}}) }}
+                Plusieur à ajouter ?
+            </label>
 
             <label class="label">Veuillez selectionner l'intervention</label>
             <div class="field">
@@ -75,8 +81,10 @@
                 </div>
             </div>
 
-            <div class="control">
-                <button type="submit" class="button is-info is-small" id="asset-btn-form">
+            {{ include('includes/nav/nav_for_only_one.html.twig') }}
+
+            <div class="control is-hidden nav-for-multiple">
+                <button type="submit" class="button is-info is-small add-btn-form" id="add-btn-form">
                     <span>Ajouter</span>
                     <span class="icon">
                         <i class="fas fa-plus"></i>
@@ -90,15 +98,15 @@
 
             <div class="field">
 
-                {{ form_widget(form, {'attr': {'class': 'is-hidden'}}) }}
+                {{ form_widget(form.asset, {'attr': {'class': 'is-hidden'}}) }}
 
             </div>
 
-            <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
-                {{ include('includes/del_objects_section.html.twig') }}
+            <div class="nav-for-multiple is-hidden field">
+                {{ include('includes/nav/prev_next.html.twig') }}
             </div>
 
-            {{ include('includes/nav/prev_next.html.twig') }}
+            {{ include('includes/del_objects_section.html.twig') }}
 
             {{ form_end(form) }}
 
@@ -157,7 +165,11 @@
             document.querySelectorAll('select.required-for-add').forEach(function (element) {
                 let firstOption = element.firstElementChild;
                 if (!firstOption.selected){
-                    document.getElementById('asset-btn-form').style.visibility = 'visible';
+                    // document.getElementById('add-btn-form').style.visibility = 'visible';
+                    let addBtn = document.getElementsByClassName('add-btn-form');
+                    addBtn.forEach(function (element) {
+                        element.style.visibility = 'visible';
+                    })
                 }
             });
         }
@@ -170,7 +182,7 @@
             asset_ae.value = null;
             asset_as.setAttribute('disabled', true);
             asset_as.value = null;
-            // document.getElementById('asset-btn-form').style.visibility = 'hidden';
+            // document.getElementById('add-btn-form').style.visibility = 'hidden';
         }
         function hideAllFields() {
             dynamicFields.forEach(element => element.classList.add('is-hidden') );

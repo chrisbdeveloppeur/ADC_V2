@@ -286,11 +286,44 @@
 
             }
 
-            let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
 
-            ajaxForm.forEach(function (form) {
-                form.addEventListener('submit', addAsset);
-            })
+            function setMultiple(multipleCheckbox){
+                let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
+                let navForMultiple = document.querySelectorAll('.nav-for-multiple');
+                let navForOnlyOne = document.querySelectorAll('.nav-for-only-one');
+                if (multipleCheckbox.checked){
+                    ajaxForm.forEach(function (form) {
+                        form.addEventListener('submit', addAsset);
+                    });
+                    navForMultiple.forEach(function (element) {
+                        element.classList.remove('is-hidden')
+                    });
+                    navForOnlyOne.forEach(function (element) {
+                        element.classList.add('is-hidden')
+                    });
+                }else {
+                    ajaxForm.forEach(function (form) {
+                        form.removeEventListener('submit', addAsset);
+                    });
+                    navForMultiple.forEach(function (element) {
+                        element.classList.add('is-hidden')
+                    });
+                    navForOnlyOne.forEach(function (element) {
+                        element.classList.remove('is-hidden')
+                    })
+                }
+            }
+
+            window.onload = function(){
+                let multiple = document.querySelectorAll('.multiple');
+                multiple.forEach(element => setMultiple(element))
+            } ;
+
+            // let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
+            //
+            // ajaxForm.forEach(function (form) {
+            //     form.addEventListener('submit', addAsset);
+            // })
 
         </script>
         {#        FIN DU SCRIPT         #}

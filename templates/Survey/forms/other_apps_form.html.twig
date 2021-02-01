@@ -71,6 +71,9 @@
                 </button>
             </div>
 
+            Plusieur à ajouter ?
+            {{ form_widget(other_app_form.multiple, {'attr': {'class': 'multiple', 'onclick':'setMultiple(this)'}}) }}
+
             {{ form_end(other_app_form) }}
 
             {{ form_start(form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
@@ -81,9 +84,9 @@
 
             </div>
 
-            <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
+{#            <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">#}
                 {{ include('includes/del_objects_section.html.twig') }}
-            </div>
+{#            </div>#}
 
             {{ include('includes/nav/prev_next.html.twig') }}
 

@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Asset;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -65,6 +67,11 @@ class AssetType extends AbstractType
             ->add('tpx', IntegerType::class,[
 //                'label' => false,
                 'required' => false,
+                ]
+            )
+            ->add('multiple', CheckboxType::class,[
+//                'label' => false,
+                    'required' => false,
                 ]
             )
         ;
