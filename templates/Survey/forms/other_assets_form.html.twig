@@ -9,7 +9,7 @@
 
             {{ include('includes/nav_indicator.html.twig') }}
 
-            {% if survey.cas == 'SDP_INC_1' %}
+            {% if survey.cas == 'SDP_INC_1' or survey.cas == 'SDP_DEM_1' or survey.cas == 'HD_DEM_1' %}
                 <label class=" title is-size-4-desktop">
                     Êtes-vous intervenue sur un autre matériel ?
                     <p class="help is-info has-text-weight-normal">

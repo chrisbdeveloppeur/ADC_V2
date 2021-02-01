@@ -29,10 +29,12 @@ class FinalStringController extends AbstractController
         $finalString .= " [".$survey->getService()."]\r\n";
 
         $assets = $survey->getAssets();
+        $otherActions = $survey->getOtherActions();
         $otherAssets = $survey->getOtherAssets();
         $apps = $survey->getApps();
 
         $finalString .= $this->miseEnFormBalise($assets, '');
+        $finalString .= $this->miseEnFormBalise($otherActions, '');
         $finalString .= $this->miseEnFormBalise($otherAssets, '');
         $finalString .= $this->miseEnFormBalise($apps, '');
 

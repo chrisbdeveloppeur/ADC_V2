@@ -185,7 +185,7 @@ class FormsController extends AbstractController
             if ($otherAssetForm->get('multiple')->getData() === true){
                 return $this->json(['action' => $action,'type' => $type,'ae' => $ae,'as' => $as, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
-                if ($survey->getCas()== 'SDP_INC_1'){
+                if ($survey->getCas()== 'SDP_INC_1' || $survey->getCas()== 'SDP_DEM_1' || $survey->getCas()== 'HD_DEM_1'){
                     return $this->redirectToRoute('form_app');
                 }else{
                     return $this->redirectToRoute('form_commentaire');
@@ -194,7 +194,7 @@ class FormsController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            if ($survey->getCas()== 'SDP_INC_1'){
+            if ($survey->getCas()== 'SDP_INC_1' || $survey->getCas()== 'SDP_DEM_1' || $survey->getCas()== 'HD_DEM_1'){
                 return $this->redirectToRoute('form_app');
             }else{
                 return $this->redirectToRoute('form_commentaire');
@@ -304,8 +304,8 @@ class FormsController extends AbstractController
     public function delOtherAction($position, Request $request): Response
     {
         $survey = $this->get('session')->get('survey');
-        $otherAssetToDelete = $survey->getOtherAssets()[$position];
-        unset($survey->getOtherAssets()[$position]);
+        $otherAssetToDelete = $survey->getOtherActions()[$position];
+        unset($survey->getOtherActions()[$position]);
         $form = $this->createForm(GlobalFormType::class);
         $form->handleRequest($request);
 
@@ -368,10 +368,10 @@ class FormsController extends AbstractController
             if ($appForm->get('multiple')->getData() === true){
                 return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
-                if ($survey->getCas() === 'SDP_INC_1'){
-                    return $this->redirectToRoute('form_commentaire');
-                }else{
+                if ($survey->getCas() === 'SDP_INC_3'){
                     return $this->redirectToRoute('form_other_app');
+                }else{
+                    return $this->redirectToRoute('form_commentaire');
                 }
             }
         }
@@ -379,7 +379,6 @@ class FormsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             if ($survey->getCas() === 'SDP_INC_3'){
                 return $this->redirectToRoute('form_other_app');
-
             }else{
                 return $this->redirectToRoute('form_commentaire');
             }

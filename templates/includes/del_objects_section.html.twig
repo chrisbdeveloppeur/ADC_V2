@@ -73,6 +73,21 @@
             </div>
         {% endfor %}
 
+        {% for otheraction in survey.otheractions %}
+            <div class="control">
+                <div class="tags has-addons">
+                    {% if otheraction.action %}
+                        <span class="tag is-dark">{{ otheraction.action }}</span>
+                    {% endif %}
+
+                    {% if otheraction.asset != 'N/A' %}
+                        <span class="icon-text tag is-dark">{{ otheraction.asset }}</span>
+                    {% endif %}
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_action_del', {'position': otheraction.position }) }}" title="Retiré cette action"></a>
+                </div>
+            </div>
+        {% endfor %}
+
         {% for app in survey.apps %}
             <div class="control">
                 <div class="tags has-addons">

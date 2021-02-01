@@ -108,12 +108,12 @@ class Survey
     /**
      * @ORM\OneToMany(targetEntity=OtherApp::class, mappedBy="survey")
      */
-    private $otherApps;
+    private $other_apps;
 
     /**
      * @ORM\OneToMany(targetEntity=OtherAction::class, mappedBy="survey")
      */
-    private $otherActions;
+    private $other_actions;
 
     public function __construct()
     {
@@ -131,8 +131,8 @@ class Survey
         $this->assets = new ArrayCollection();
         $this->other_assets = new ArrayCollection();
         $this->apps = new ArrayCollection();
-        $this->otherApps = new ArrayCollection();
-        $this->otherActions = new ArrayCollection();
+        $this->other_apps = new ArrayCollection();
+        $this->other_actions = new ArrayCollection();
     }
 
     public function __toString()
@@ -292,22 +292,22 @@ class Survey
         return $this->other_assets;
     }
 
-    public function addOtherAsset(OtherAsset $otherAsset): self
+    public function addOtherAsset(OtherAsset $other_assets): self
     {
-        if (!$this->other_assets->contains($otherAsset)) {
-            $this->other_assets[] = $otherAsset;
-            $otherAsset->setSurvey($this);
+        if (!$this->other_assets->contains($other_assets)) {
+            $this->other_assets[] = $other_assets;
+            $other_assets->setSurvey($this);
         }
 
         return $this;
     }
 
-    public function removeOtherAsset(OtherAsset $otherAsset): self
+    public function removeOtherAsset(OtherAsset $other_assets): self
     {
-        if ($this->other_assets->removeElement($otherAsset)) {
+        if ($this->other_assets->removeElement($other_assets)) {
             // set the owning side to null (unless already changed)
-            if ($otherAsset->getSurvey() === $this) {
-                $otherAsset->setSurvey(null);
+            if ($other_assets->getSurvey() === $this) {
+                $other_assets->setSurvey(null);
             }
         }
 
@@ -397,25 +397,25 @@ class Survey
      */
     public function getOtherApps(): Collection
     {
-        return $this->otherApps;
+        return $this->other_apps;
     }
 
-    public function addOtherApp(OtherApp $otherApp): self
+    public function addOtherApp(OtherApp $other_apps): self
     {
-        if (!$this->otherApps->contains($otherApp)) {
-            $this->otherApps[] = $otherApp;
-            $otherApp->setSurvey($this);
+        if (!$this->other_apps->contains($other_apps)) {
+            $this->other_apps[] = $other_apps;
+            $other_apps->setSurvey($this);
         }
 
         return $this;
     }
 
-    public function removeOtherApp(OtherApp $otherApp): self
+    public function removeOtherApp(OtherApp $other_apps): self
     {
-        if ($this->otherApps->removeElement($otherApp)) {
+        if ($this->other_apps->removeElement($other_apps)) {
             // set the owning side to null (unless already changed)
-            if ($otherApp->getSurvey() === $this) {
-                $otherApp->setSurvey(null);
+            if ($other_apps->getSurvey() === $this) {
+                $other_apps->setSurvey(null);
             }
         }
 
@@ -427,25 +427,25 @@ class Survey
      */
     public function getOtherActions(): Collection
     {
-        return $this->otherActions;
+        return $this->other_actions;
     }
 
-    public function addOtherAction(OtherAction $otherAction): self
+    public function addOtherAction(OtherAction $other_actions): self
     {
-        if (!$this->otherActions->contains($otherAction)) {
-            $this->otherActions[] = $otherAction;
-            $otherAction->setSurvey($this);
+        if (!$this->other_actions->contains($other_actions)) {
+            $this->other_actions[] = $other_actions;
+            $other_actions->setSurvey($this);
         }
 
         return $this;
     }
 
-    public function removeOtherAction(OtherAction $otherAction): self
+    public function removeOtherAction(OtherAction $other_actions): self
     {
-        if ($this->otherActions->removeElement($otherAction)) {
+        if ($this->other_actions->removeElement($other_actions)) {
             // set the owning side to null (unless already changed)
-            if ($otherAction->getSurvey() === $this) {
-                $otherAction->setSurvey(null);
+            if ($other_actions->getSurvey() === $this) {
+                $other_actions->setSurvey(null);
             }
         }
 
