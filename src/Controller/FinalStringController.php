@@ -32,11 +32,13 @@ class FinalStringController extends AbstractController
         $otherActions = $survey->getOtherActions();
         $otherAssets = $survey->getOtherAssets();
         $apps = $survey->getApps();
+        $otherApps = $survey->getOtherApps();
 
         $finalString .= $this->miseEnFormBalise($assets, '');
         $finalString .= $this->miseEnFormBalise($otherActions, '');
         $finalString .= $this->miseEnFormBalise($otherAssets, '');
         $finalString .= $this->miseEnFormBalise($apps, '');
+        $finalString .= $this->miseEnFormBalise($otherApps, '');
 
         if ($survey->getCommentaire()){
             $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "]";
@@ -74,18 +76,19 @@ class FinalStringController extends AbstractController
             $balise = '';
 
             foreach ($objects as $key => $object){
+
                 $balise .= "[" . $text;
                 $key++;
                 $balise .= $object->getBalise() . "_" . $key;
 
                 if ($object == 'Asset' || $object == 'OtherAsset'){
-                        if ($object->getAe() && $object->getAe() != 'N/A' ){
-                            $balise .= '<AE_' . $object->getAe() . '>';
-                        }
-                        if ($object->getAs() && $object->getAs() != 'N/A' ){
-                            $balise .= '<AS_' . $object->getAs() . '>';
-                        }
-                }elseif ($object == 'App'){
+                    if ($object->getAe() && $object->getAe() != 'N/A' ){
+                        $balise .= '<AE_' . $object->getAe() . '>';
+                    }
+                    if ($object->getAs() && $object->getAs() != 'N/A' ){
+                        $balise .= '<AS_' . $object->getAs() . '>';
+                    }
+                }elseif ($object == 'App' || $object == 'OtherApp' || $object == 'OtherAction'){
                     if ($object->getAsset() && $object->getAsset() != 'N/A' ){
                         $balise .= '<ASSET_' . $object->getAsset() . '>';
                     }
@@ -93,7 +96,6 @@ class FinalStringController extends AbstractController
 
                 $balise .= "] ";
             }
-
             return $balise;
         }
     }

@@ -62,6 +62,19 @@ class OtherApp
         return $this->id;
     }
 
+    public function __construct()
+    {
+        $this->setAsset('N/A');
+        $this->setAction('N/A');
+        $this->setRsdp('N/A');
+        $this->setName('OtherApp');
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     public function getName(): ?string
     {
         return $this->name;
