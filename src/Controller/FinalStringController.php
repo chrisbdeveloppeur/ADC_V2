@@ -33,12 +33,18 @@ class FinalStringController extends AbstractController
         $otherAssets = $survey->getOtherAssets();
         $apps = $survey->getApps();
         $otherApps = $survey->getOtherApps();
+        $phones = $survey->getPhones();
+        $cmdbs = $survey->getCmdbs();
+        $rdvs = $survey->getRdvs();
 
-        $finalString .= $this->miseEnFormBalise($assets, '');
-        $finalString .= $this->miseEnFormBalise($otherActions, '');
-        $finalString .= $this->miseEnFormBalise($otherAssets, '');
-        $finalString .= $this->miseEnFormBalise($apps, '');
-        $finalString .= $this->miseEnFormBalise($otherApps, '');
+        $finalString .= $this->miseEnFormBalise($assets);
+        $finalString .= $this->miseEnFormBalise($otherActions);
+        $finalString .= $this->miseEnFormBalise($otherAssets);
+        $finalString .= $this->miseEnFormBalise($apps);
+        $finalString .= $this->miseEnFormBalise($otherApps);
+        $finalString .= $this->miseEnFormBalise($phones);
+        $finalString .= $this->miseEnFormBalise($cmdbs);
+        $finalString .= $this->miseEnFormBalise($rdvs);
 
         if ($survey->getCommentaire()){
             $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "]";
@@ -69,7 +75,7 @@ class FinalStringController extends AbstractController
         }
     }
 
-    public function miseEnFormBalise($objects, $text){
+    public function miseEnFormBalise($objects){
 
         if (count($objects) != 0){
 
@@ -77,7 +83,7 @@ class FinalStringController extends AbstractController
 
             foreach ($objects as $key => $object){
 
-                $balise .= "[" . $text;
+                $balise .= "[";
                 $key++;
                 $balise .= $object->getBalise() . "_" . $key;
 

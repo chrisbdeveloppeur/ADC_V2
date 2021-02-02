@@ -175,7 +175,7 @@ class FormsController extends AbstractController
                 $newAsset->setBalise($action . '_' . $type);
                 $ae = $newAsset->getAe();
                 $as = $newAsset->getAs();
-                $urlForDelete = $this->redirectToRoute('form_asset_del',[
+                $urlForDelete = $this->redirectToRoute('form_other_asset_del',[
                     'position' => $number,
                 ]);
             }
@@ -186,7 +186,7 @@ class FormsController extends AbstractController
                 if ($survey->getCas()== 'SDP_INC_1' || $survey->getCas()== 'SDP_DEM_1' || $survey->getCas()== 'HD_DEM_1'){
                     return $this->redirectToRoute('form_app');
                 }else{
-                    return $this->redirectToRoute('form_commentaire');
+                    return $this->redirectToRoute('form_rdv');
                 }
             }
         }
@@ -195,7 +195,7 @@ class FormsController extends AbstractController
             if ($survey->getCas()== 'SDP_INC_1' || $survey->getCas()== 'SDP_DEM_1' || $survey->getCas()== 'HD_DEM_1'){
                 return $this->redirectToRoute('form_app');
             }else{
-                return $this->redirectToRoute('form_commentaire');
+                return $this->redirectToRoute('form_rdv');
             }
         }
 
@@ -277,14 +277,14 @@ class FormsController extends AbstractController
                 return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
                 if ($survey->getCas() == 'SDP_DEM_4' || $survey->getCas() == 'HD_DEM_4'){
-                    return $this->redirectToRoute('form_commentaire');
+                    return $this->redirectToRoute('form_rdv');
                 }
             }
         }
 
         if ($form->isSubmitted() && $form->isValid()){
             if ($survey->getCas() == 'SDP_DEM_4' || $survey->getCas() == 'HD_DEM_4'){
-                return $this->redirectToRoute('form_commentaire');
+                return $this->redirectToRoute('form_rdv');
             }
         }
 
@@ -368,7 +368,7 @@ class FormsController extends AbstractController
                 if ($survey->getCas() === 'SDP_INC_3'){
                     return $this->redirectToRoute('form_other_app');
                 }else{
-                    return $this->redirectToRoute('form_commentaire');
+                    return $this->redirectToRoute('form_rdv');
                 }
             }
         }
@@ -377,7 +377,7 @@ class FormsController extends AbstractController
             if ($survey->getCas() === 'SDP_INC_3'){
                 return $this->redirectToRoute('form_other_app');
             }else{
-                return $this->redirectToRoute('form_commentaire');
+                return $this->redirectToRoute('form_rdv');
             }
         }
 
@@ -446,7 +446,7 @@ class FormsController extends AbstractController
                 $action = $otherApp->getAction();
                 $otherApp->setBalise($action);
                 $asset = $otherApp->getAsset();
-                $urlForDelete = $this->redirectToRoute('form_app_del',[
+                $urlForDelete = $this->redirectToRoute('form_other_app_del',[
                     'position' => $number,
                 ]);
             }
@@ -454,12 +454,12 @@ class FormsController extends AbstractController
             if ($otherAppForm->get('multiple')->getData() === true){
                 return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
-                return $this->redirectToRoute('form_commentaire');
+                return $this->redirectToRoute('form_rdv');
             }
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            return $this->redirectToRoute('form_commentaire');
+            return $this->redirectToRoute('form_rdv');
         }
 
         return $this->render('Survey/forms/other_apps_form.html.twig',[
@@ -617,12 +617,12 @@ class FormsController extends AbstractController
             if ($cmdbForm->get('multiple')->getData() === true){
                 return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
-                return $this->redirectToRoute('form_commentaire');
+                return $this->redirectToRoute('form_rdv');
             }
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            return $this->redirectToRoute('form_commentaire');
+            return $this->redirectToRoute('form_rdv');
         }
 
         return $this->render('Survey/forms/cmdb_form.html.twig',[
@@ -667,10 +667,14 @@ class FormsController extends AbstractController
         $rdvForm->handleRequest($request);
 
         if ($rdvForm->isSubmitted() && $rdvForm->isValid()){
-            $rdv = new Rdv();
             $rdvTotal = $rdvForm->get('rdv_total')->getData();
             $rdvKoScc = $rdvForm->get('rdv_ko_scc')->getData();
             $rdvKoSafran = $rdvForm->get('rdv_ko_safran')->getData();
+            $rdv = $survey->getRdvs();
+            if (count($rdv) >= 1 ){
+                $survey->getRdvs()->clear();
+            }
+            $rdv = new Rdv();
             $rdv->setRdvTotal($rdvTotal);
             $rdv->setRdvKoScc($rdvKoScc);
             $rdv->setRdvKoSafran($rdvKoSafran);
