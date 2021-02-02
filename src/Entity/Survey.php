@@ -115,6 +115,21 @@ class Survey
      */
     private $other_actions;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Phone::class, mappedBy="survey")
+     */
+    private $phones;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Cmdb::class, mappedBy="survey")
+     */
+    private $cmdbs;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Rdv::class, mappedBy="survey")
+     */
+    private $rdvs;
+
     public function __construct()
     {
         $this->cas = 'N/A';
@@ -133,6 +148,9 @@ class Survey
         $this->apps = new ArrayCollection();
         $this->other_apps = new ArrayCollection();
         $this->other_actions = new ArrayCollection();
+        $this->phones = new ArrayCollection();
+        $this->cmdbs = new ArrayCollection();
+        $this->rdvs = new ArrayCollection();
     }
 
     public function __toString()
@@ -446,6 +464,96 @@ class Survey
             // set the owning side to null (unless already changed)
             if ($other_actions->getSurvey() === $this) {
                 $other_actions->setSurvey(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Phone[]
+     */
+    public function getPhones(): Collection
+    {
+        return $this->phones;
+    }
+
+    public function addPhone(Phone $phone): self
+    {
+        if (!$this->phones->contains($phone)) {
+            $this->phones[] = $phone;
+            $phone->setSurvey($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhone(Phone $phone): self
+    {
+        if ($this->phones->removeElement($phone)) {
+            // set the owning side to null (unless already changed)
+            if ($phone->getSurvey() === $this) {
+                $phone->setSurvey(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Cmdb[]
+     */
+    public function getCmdbs(): Collection
+    {
+        return $this->cmdbs;
+    }
+
+    public function addCmdb(Cmdb $cmdb): self
+    {
+        if (!$this->cmdbs->contains($cmdb)) {
+            $this->cmdbs[] = $cmdb;
+            $cmdb->setSurvey($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCmdb(Cmdb $cmdb): self
+    {
+        if ($this->cmdbs->removeElement($cmdb)) {
+            // set the owning side to null (unless already changed)
+            if ($cmdb->getSurvey() === $this) {
+                $cmdb->setSurvey(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Rdv[]
+     */
+    public function getRdvs(): Collection
+    {
+        return $this->rdvs;
+    }
+
+    public function addRdv(Rdv $rdv): self
+    {
+        if (!$this->rdvs->contains($rdv)) {
+            $this->rdvs[] = $rdv;
+            $rdv->setSurvey($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRdv(Rdv $rdv): self
+    {
+        if ($this->rdvs->removeElement($rdv)) {
+            // set the owning side to null (unless already changed)
+            if ($rdv->getSurvey() === $this) {
+                $rdv->setSurvey(null);
             }
         }
 

@@ -4,16 +4,22 @@ namespace App\Controller;
 
 use App\Entity\App;
 use App\Entity\Asset;
+use App\Entity\Cmdb;
 use App\Entity\OtherAction;
 use App\Entity\OtherApp;
 use App\Entity\OtherAsset;
+use App\Entity\Phone;
+use App\Entity\Rdv;
 use App\Form\AppType;
 use App\Form\AssetType;
+use App\Form\CmdbType;
 use App\Form\DescriptionFormType;
 use App\Form\GlobalFormType;
 use App\Form\OtherActionType;
 use App\Form\OtherAppType;
 use App\Form\OtherAssetType;
+use App\Form\PhoneType;
+use App\Form\RdvType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,10 +66,10 @@ class FormsController extends AbstractController
                 $newAsset->setRsdp($assetForm->get('rsdp')->getData());
                 $newAsset->setTpx($assetForm->get('tpx')->getData());
                 if ($newAsset->getAe()==null){
-                    $newAsset->setAe('N/A');
+                    $newAsset->setAe('XX');
                 }
                 if ($newAsset->getAs()==null){
-                    $newAsset->setAs('N/A');
+                    $newAsset->setAs('XX');
                 }
                 if ($newAsset->getType()==null){
                     $newAsset->setType('XX');
@@ -88,15 +94,7 @@ class FormsController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-//            if ($survey->getCas()== 'SDP_INC_1'){
-//                return $this->redirectToRoute('form_other_asset');
-//            }
-//            elseif ($survey->getCas()== 'SDP_INC_2'){
-//                return $this->redirectToRoute('form_other_asset');
-//            }elseif ($survey->getCas()== 'SDP_INC_3'){
                 return $this->redirectToRoute('form_other_asset');
-//            }
-
         }
 
         return $this->render('Survey/forms/assets_form.html.twig',[
@@ -162,10 +160,10 @@ class FormsController extends AbstractController
                 $newAsset->setRsdp($otherAssetForm->get('rsdp')->getData());
                 $newAsset->setTpx($otherAssetForm->get('tpx')->getData());
                 if ($newAsset->getAe()==null){
-                    $newAsset->setAe('N/A');
+                    $newAsset->setAe('XX');
                 }
                 if ($newAsset->getAs()==null){
-                    $newAsset->setAs('N/A');
+                    $newAsset->setAs('XX');
                 }
                 if ($newAsset->getType()==null){
                     $newAsset->setType('XX');
@@ -199,7 +197,6 @@ class FormsController extends AbstractController
             }else{
                 return $this->redirectToRoute('form_commentaire');
             }
-//            return $this->redirectToRoute();
         }
 
         return $this->render('Survey/forms/other_assets_form.html.twig',[
@@ -264,7 +261,7 @@ class FormsController extends AbstractController
                 $newAsset->setRsdp($otherActionForm->get('rsdp')->getData());
                 $newAsset->setTpx($otherActionForm->get('tpx')->getData());
                 if ($newAsset->getAsset()==null){
-                    $newAsset->setAsset('N/A');
+                    $newAsset->setAsset('XX');
                 }
                 $survey->addOtherAction($newAsset);
 
@@ -309,7 +306,7 @@ class FormsController extends AbstractController
         $form = $this->createForm(GlobalFormType::class);
         $form->handleRequest($request);
 
-        return $this->json('asset ' . $otherAssetToDelete . ' retiré !');
+        return $this->json('OtherAsset ' . $otherAssetToDelete . ' retiré !');
 
     }
 ////////////////////////////////////////////////////////////////////////////////////
@@ -353,7 +350,7 @@ class FormsController extends AbstractController
                 $app->setRsdp($appForm->get('rsdp')->getData());
                 $app->setTpx($appForm->get('tpx')->getData());
                 if ($app->getAsset()==null){
-                    $app->setAsset('N/A');
+                    $app->setAsset('XX');
                 }
                 $survey->addApp($app);
 
@@ -413,6 +410,8 @@ class FormsController extends AbstractController
 
 
 
+
+
 //////////////////////////////  OTHER APP FORM  //////////////////////////////
     /**
      * @Route("/action-logiciel", name="other_app")
@@ -440,7 +439,7 @@ class FormsController extends AbstractController
                 $otherApp->setRsdp($otherAppForm->get('rsdp')->getData());
                 $otherApp->setTpx($otherAppForm->get('tpx')->getData());
                 if ($otherApp->getAsset()==null){
-                    $otherApp->setAsset('N/A');
+                    $otherApp->setAsset('XX');
                 }
                 $survey->addOtherApp($otherApp);
 
@@ -456,19 +455,11 @@ class FormsController extends AbstractController
                 return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
                 return $this->redirectToRoute('form_commentaire');
-//                if ($survey->getCas() === 'SDP_INC_1'){
-//                }elseif ($survey->getCas() === 'SDP_INC_3'){
-//                return $this->redirectToRoute('form_other_app');
-//                }
             }
         }
 
         if ($form->isSubmitted() && $form->isValid()){
             return $this->redirectToRoute('form_commentaire');
-//            if ($survey->getCas() === 'SDP_INC_1'){
-//            }elseif ($survey->getCas() === 'SDP_INC_3'){
-//                return $this->redirectToRoute('form_other_app');
-//            }
         }
 
         return $this->render('Survey/forms/other_apps_form.html.twig',[
@@ -484,17 +475,213 @@ class FormsController extends AbstractController
     public function delOtherApp($position, Request $request): Response
     {
         $survey = $this->get('session')->get('survey');
-        $appToDelete = $survey->getOtherApps()[$position];
+        $otherAppToDelete = $survey->getOtherApps()[$position];
         unset($survey->getOtherApps()[$position]);
         $form = $this->createForm(GlobalFormType::class);
         $form->handleRequest($request);
 
-        return $this->json('app ' . $appToDelete . ' retiré !');
+        return $this->json('OtherApp ' . $otherAppToDelete . ' retiré !');
 
     }
 ////////////////////////////////////////////////////////////////////////////////////
 
 
+
+
+
+
+
+
+
+//////////////////////////////  PHONE FORM  //////////////////////////////
+    /**
+     * @Route("/phone", name="phone")
+     */
+    public function phoneForm(Request $request): Response
+    {
+        $form = $this->createForm(GlobalFormType::class);
+        $phoneForm = $this->createForm(PhoneType::class);
+        $survey = $this->get('session')->get('survey');
+        $form->handleRequest($request);
+        $phoneForm->handleRequest($request);
+        for ($i=0; $i<=count($survey->getPhone()); $i++ ){
+            $number = $i;
+        }
+
+//
+        if ($phoneForm->isSubmitted() && $number<=10){
+
+            if ($phoneForm->get('action')->getData()){
+                $phone = new Phone();
+                $phone->setSurvey($survey);
+                $phone->setPosition($number);
+                $phone->setAsset($phoneForm->get('asset')->getData());
+                $phone->setAction($phoneForm->get('action')->getData());
+                $phone->setRsdp($phoneForm->get('rsdp')->getData());
+                $phone->setTpx($phoneForm->get('tpx')->getData());
+                if ($phone->getAsset()==null){
+                    $phone->setAsset('XX');
+                }
+                $survey->addPhone($phone);
+
+                $action = $phone->getAction();
+                $phone->setBalise($action);
+                $asset = $phone->getAsset();
+                $urlForDelete = $this->redirectToRoute('form_phone_del',[
+                    'position' => $number,
+                ]);
+            }
+
+            if ($phoneForm->get('multiple')->getData() === true){
+                return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
+            }else{
+                return $this->redirectToRoute('form_commentaire');
+            }
+        }
+
+        if ($form->isSubmitted() && $form->isValid()){
+            return $this->redirectToRoute('form_commentaire');
+        }
+
+        return $this->render('Survey/forms/phone_form.html.twig',[
+            'form' => $form->createView(),
+            'phone_form' => $phoneForm->createView(),
+            'survey' => $survey,
+        ]);
+    }
+
+    /**
+     * @Route("/del-phone={position}", name="phone_del")
+     */
+    public function delPhone($position, Request $request): Response
+    {
+        $survey = $this->get('session')->get('survey');
+        $phoneToDelete = $survey->getPhones()[$position];
+        unset($survey->getPhones()[$position]);
+        $form = $this->createForm(GlobalFormType::class);
+        $form->handleRequest($request);
+
+        return $this->json('phone ' . $phoneToDelete . ' retiré !');
+
+    }
+////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+//////////////////////////////  CMDB FORM  //////////////////////////////
+    /**
+     * @Route("/cmdb", name="cmdb")
+     */
+    public function cmdbForm(Request $request): Response
+    {
+        $form = $this->createForm(GlobalFormType::class);
+        $cmdbForm = $this->createForm(CmdbType::class);
+        $survey = $this->get('session')->get('survey');
+        $form->handleRequest($request);
+        $cmdbForm->handleRequest($request);
+        for ($i=0; $i<=count($survey->getCmdb()); $i++ ){
+            $number = $i;
+        }
+
+//
+        if ($cmdbForm->isSubmitted() && $number<=10){
+
+            if ($cmdbForm->get('action')->getData()){
+                $cmdb = new Cmdb();
+                $cmdb->setSurvey($survey);
+                $cmdb->setPosition($number);
+                $cmdb->setAsset($cmdbForm->get('asset')->getData());
+                $cmdb->setAction($cmdbForm->get('action')->getData());
+                $cmdb->setNbAction($cmdbForm->get('nb_action')->getData());
+                $cmdb->setRsdp($cmdbForm->get('rsdp')->getData());
+                $cmdb->setTpx($cmdbForm->get('tpx')->getData());
+                $action = $cmdb->getAction();
+                $cmdb->setBalise($action);
+                if ($cmdb->getAsset()==null){
+                    $cmdb->setAsset('XX');
+                }
+                $survey->addCmdb($cmdb);
+
+                $asset = $cmdb->getAsset();
+                $urlForDelete = $this->redirectToRoute('form_cmdb_del',[
+                    'position' => $number,
+                ]);
+            }
+
+            if ($cmdbForm->get('multiple')->getData() === true){
+                return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
+            }else{
+                return $this->redirectToRoute('form_commentaire');
+            }
+        }
+
+        if ($form->isSubmitted() && $form->isValid()){
+            return $this->redirectToRoute('form_commentaire');
+        }
+
+        return $this->render('Survey/forms/cmdb_form.html.twig',[
+            'form' => $form->createView(),
+            'cmdb_form' => $cmdbForm->createView(),
+            'survey' => $survey,
+        ]);
+    }
+
+    /**
+     * @Route("/del-cmdb={position}", name="cmdb_del")
+     */
+    public function delCmdb($position, Request $request): Response
+    {
+        $survey = $this->get('session')->get('survey');
+        $cmdbToDelete = $survey->getCmdbs()[$position];
+        unset($survey->getCmdbs()[$position]);
+        $form = $this->createForm(GlobalFormType::class);
+        $form->handleRequest($request);
+
+        return $this->json('cmdb ' . $cmdbToDelete . ' retiré !');
+
+    }
+////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @Route("/rdv", name="rdv")
+     */
+    public function rdv(Request $request): Response
+    {
+        $survey = $this->get('session')->get('survey');
+        $rdvForm = $this->createForm(RdvType::class);
+        $rdvForm->handleRequest($request);
+
+        if ($rdvForm->isSubmitted() && $rdvForm->isValid()){
+            $rdv = new Rdv();
+            $rdvTotal = $rdvForm->get('rdv_total')->getData();
+            $rdvKoScc = $rdvForm->get('rdv_ko_scc')->getData();
+            $rdvKoSafran = $rdvForm->get('rdv_ko_safran')->getData();
+            $rdv->setRdvTotal($rdvTotal);
+            $rdv->setRdvKoScc($rdvKoScc);
+            $rdv->setRdvKoSafran($rdvKoSafran);
+            $survey->setRdv($rdv);
+            return $this->redirectToRoute("form_commentaire");
+        }
+        return $this->render('Survey/forms/rdv_form.html.twig',[
+            'rdv_form' => $rdvForm->createView(),
+            'survey' => $survey,
+        ]);
+    }
 
 
 
@@ -519,7 +706,7 @@ class FormsController extends AbstractController
             $survey->setCommentaire($commentaire);
             return $this->redirectToRoute("final_string");
         }
-        return $this->render('Survey/forms/description_form.html.twig',[
+        return $this->render('Survey/forms/commentaire_form.html.twig',[
             'commentaire_form' => $commentaireForm->createView(),
             'survey' => $survey,
         ]);
