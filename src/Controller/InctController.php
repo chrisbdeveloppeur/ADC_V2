@@ -20,7 +20,7 @@ class InctController extends AbstractController
     /**
      * @Route("/type", name="home")
      */
-    public function typeInct(Request $request)
+    public function typeInct(Request $request, CheminController $cheminController)
     {
         $survey = $this->get('session')->get('survey');
         $survey->setCasInct(null);
@@ -48,10 +48,13 @@ class InctController extends AbstractController
             }
         }
 
+        $referer = $request->headers->get('referer');
+        $cheminController->setChemins($request);
         return $this->render('Survey/home/type_inter.html.twig',[
             'form' => $form->createView(),
             'form_name' => $form->getName(),
             'survey' => $survey,
+            'referer' => $referer,
         ]);
 
     }

@@ -130,6 +130,11 @@ class Survey
      */
     private $rdvs;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $chemin = [];
+
     public function __construct()
     {
         $this->cas = 'N/A';
@@ -558,6 +563,32 @@ class Survey
         }
 
         return $this;
+    }
+
+    public function getChemin(): ?array
+    {
+        return $this->chemin;
+    }
+
+    public function setChemin(?array $chemin): self
+    {
+        $this->chemin = $chemin;
+
+        return $this;
+    }
+
+    public function addUrl($url)
+    {
+        $this->chemin[] = $url;
+
+        return $this;
+    }
+
+    public function searchUrl($url)
+    {
+        $response = in_array($url, $this->chemin);
+
+        return $response;
     }
 
 }

@@ -71,7 +71,11 @@
 {{ include('includes/flash_message.html.twig') }}
 
 <section class="is-fullheight is-flex is-justify-content-center is-align-items-center section-base-html">
+
     <div class="column is-flex-desktop is-align-items-center is-justify-content-center is-flex-direction-column">
+
+        {{ include('includes/nav/nav_breacrumbs.html.twig') }}
+
         {% block body %}{% endblock %}
     </div>
 </section>

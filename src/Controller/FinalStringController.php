@@ -14,7 +14,7 @@ class FinalStringController extends AbstractController
     /**
      * @Route("/final-string", name="final_string")
      */
-    public function description(Request $request, EntityManagerInterface $em): Response
+    public function description(Request $request, EntityManagerInterface $em, CheminController $cheminController): Response
     {
         $survey = $this->get('session')->get('survey');
         $finalString = '';
@@ -58,11 +58,12 @@ class FinalStringController extends AbstractController
 //        $text = preg_replace('/\s\s+/', ' ', $finalString);
 
         $survey->setFinalString($finalString);
-
+        $referer = $request->headers->get('referer');
+        $cheminController->setChemins($request);
         return $this->render('Survey/forms/final_string_form.html.twig',[
-//            'form' => $form->createView(),
-//            'final_string_form' => $finalStringForm->createView(),
+            'referer' => $referer,
             'final_string' => $finalString,
+            'survey' => $survey,
         ]);
     }
 
@@ -105,13 +106,13 @@ class FinalStringController extends AbstractController
                     }
                 }elseif ($object == 'Rdv'){
                     if ($object->getRdvTotal()){
-                        $balise .= '<RDV_TOTAL_' . $object->getRdvTotal() . '>';
+                        $balise .= '<NB_RDV_' . $object->getRdvTotal() . '>';
                     }
                     if ($object->getRdvKoScc()){
-                        $balise .= '<RDV_KO_SCC_' . $object->getRdvKoScc() . '>';
+                        $balise .= '<NB_RDV_KOSCC_' . $object->getRdvKoScc() . '>';
                     }
                     if ($object->getRdvKoSafran()){
-                        $balise .= '<RDV_KO_SAFRAN_' . $object->getRdvKoSafran() . '>';
+                        $balise .= '<NB_RDV_KOSF_' . $object->getRdvKoSafran() . '>';
                     }
                 }
 

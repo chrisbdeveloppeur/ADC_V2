@@ -25,10 +25,10 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(Request $request): Response
+    public function home(Request $request, CheminController $cheminController): Response
     {
         $survey = new Survey();
-
+        $survey->setChemin(['/']);
         $form = $this->createForm(ServiceType::class);
         $form->handleRequest($request);
         $this->get('session')->set('survey', $survey);
@@ -47,8 +47,11 @@ class HomeController extends AbstractController
             }
         }
 
+        $cheminController->setChemins($request);
+
         return $this->render('Survey/home/home.html.twig', [
             'form' => $form->createView(),
+            'survey' => $survey,
         ]);
     }
 
@@ -56,7 +59,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/taskt-or-inct", name="tasktorinct")
      */
-    public function tasktOrInct(Request $request)
+    public function tasktOrInct(Request $request, CheminController $cheminController)
     {
         $survey = $this->get('session')->get('survey');
         $survey->setType(null);
@@ -73,6 +76,8 @@ class HomeController extends AbstractController
                 ]);
             }
         }
+
+        $cheminController->setChemins($request);
         return $this->render('Survey/home/type_inter.html.twig',[
             'form' => $form->createView(),
             'form_name' => $form->getName(),

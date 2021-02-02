@@ -21,7 +21,7 @@ class TasktController extends AbstractController
     /**
      * @Route("/type", name="home")
      */
-    public function fromInct(Request $request): Response
+    public function fromInct(Request $request, CheminController $cheminController): Response
     {
         $survey = $this->get('session')->get('survey');
         $survey->setCasInct(null);
@@ -50,6 +50,8 @@ class TasktController extends AbstractController
                 return $this->redirectToRoute('form_cmdb');
             }
         }
+
+        $cheminController->setChemins($request);
 
         return $this->render('Survey/home/type_inter.html.twig',[
             'form' => $form->createView(),
