@@ -88,11 +88,12 @@ class FinalStringController extends AbstractController
 
                 $balise .= "[";
                 $key++;
-                if ($object != 'Rdv'){
-                    $balise .= $object->getBalise() . "_" . $key;
-                }else{
+                if ( $object == 'Rdv' || $object == 'Cmdb' ){
                     $balise .= $object->getBalise();
+                }else{
+                    $balise .= $object->getBalise() . "_" . $key;
                 }
+
 
 
                 if ($object == 'Asset' || $object == 'OtherAsset'){
@@ -115,6 +116,13 @@ class FinalStringController extends AbstractController
                     }
                     if ($object->getRdvKoSafran()){
                         $balise .= '<NB_RDV_KOSF_' . $object->getRdvKoSafran() . '>';
+                    }
+                }elseif ($object == 'Cmdb'){
+                    if ($object->getNbAction()){
+                        $balise .= '<NB_' . $object->getNbAction() . '>';
+                    }
+                    if ($object->getAsset() && $object->getAsset() != 'N/A' ){
+                        $balise .= '<ASSET_' . $object->getAsset() . '>';
                     }
                 }
 

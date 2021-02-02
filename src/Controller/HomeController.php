@@ -47,6 +47,7 @@ class HomeController extends AbstractController
 
         return $this->render('Survey/home/home.html.twig', [
             'form' => $form->createView(),
+            'form_name' => $form->getName(),
             'survey' => $survey,
         ]);
     }
@@ -76,6 +77,7 @@ class HomeController extends AbstractController
         $cheminController->setChemins($request);
         return $this->render('Survey/home/type_inter.html.twig',[
             'form' => $form->createView(),
+            'form_name' => $form->getName(),
             'survey' => $survey,
         ]);
     }

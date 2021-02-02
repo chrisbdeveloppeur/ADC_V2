@@ -35,7 +35,7 @@
                                     <span>{{ object.as }}</span>
                                 </span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_asset_del', {'position': object.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('asset_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
@@ -68,7 +68,7 @@
                     <span>{{ object.as }}</span>
                 </span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_asset_del', {'position': object.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('other_asset_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
@@ -83,7 +83,7 @@
                     {% if object.asset != null %}
                         <span class="icon-text tag is-dark">{{ object.asset }}</span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_action_del', {'position': object.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('other_action_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
@@ -98,7 +98,7 @@
                     {% if object.asset != null %}
                         <span class="icon-text tag is-dark">{{ object.asset }}</span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
@@ -113,7 +113,7 @@
                     {% if object.asset != null %}
                         <span class="tag is-dark">{{ object.asset }}</span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
@@ -129,7 +129,7 @@
                 {% if object.asset != null %}
                     <span class="tag is-dark">{{ object.asset }}</span>
                 {% endif %}
-                <a class="tag is-delete ajax-remove-asset" href="{{ path('form_phone_del', {'position': object.position }) }}" title="Retiré cette action"></a>
+                <a class="tag is-delete ajax-remove-asset" href="{{ path('phone_del', {'position': object.position }) }}" title="Retiré cette action"></a>
             </div>
         </div>
     {% endfor %}
@@ -144,7 +144,7 @@
                 {% if object.asset != null %}
                     <span class="tag is-dark">{{ object.asset }}</span>
                 {% endif %}
-                <a class="tag is-delete ajax-remove-asset" href="{{ path('form_cmdb_del', {'position': object.position }) }}" title="Retiré cette action"></a>
+                <a class="tag is-delete ajax-remove-asset" href="{{ path('cmdb_del', {'position': object.position }) }}" title="Retiré cette action"></a>
             </div>
         </div>
     {% endfor %}
@@ -155,7 +155,7 @@
                 {% if object.rdvtotal %}
                     <span class="tag is-dark">NB_RDV_{{ object.rdvtotal }}</span>
                 {% endif %}
-                <a class="tag is-delete ajax-remove-asset" href="{{ path('form_rdv_del') }}" title="Retiré cette action"></a>
+                <a class="tag is-delete ajax-remove-asset" href="{{ path('rdv_del') }}" title="Retiré cette action"></a>
             </div>
         </div>
     {% endfor %}
