@@ -1,30 +1,18 @@
 <div class="is-flex mt-3 is-justify-content-space-between is-align-items-center">
 
     <div class="control has-text-left">
-        <button class="button is-info is-small" onclick="goBack()">
+        <a href="{{ survey.chemin[survey.chemin|length - 2] }}" class="button is-info is-small">
             <span class="icon">
                 <i class="fas fa-chevron-left"></i>
             </span>
             <span>
                 Précédent
             </span>
-        </button>
-{#        <a href="{{ referer }}" class="button is-info is-small">#}
-{#            <span class="icon">#}
-{#                <i class="fas fa-chevron-left"></i>#}
-{#            </span>#}
-{#            <span>#}
-{#                Précédent#}
-{#            </span>#}
-{#        </a>#}
+        </a>
     </div>
 
     <a class="button is-info" id="copy-btn" onclick="CopyToClipboard('final-string-form')">
         <i class="fas fa-clone"></i>
     </a>
-
-{#    <a class="button is-info" id="copy-btn" onclick="CopyToClipboard('final_string_form_final_string')">#}
-{#        <i class="fas fa-clone"></i>#}
-{#    </a>#}
 
 </div>

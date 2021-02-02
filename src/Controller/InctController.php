@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/inct", name="inct_")
+ * @Route("/INC", name="inct_")
  */
 class InctController extends AbstractController
 {

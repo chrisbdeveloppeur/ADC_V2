@@ -34,7 +34,7 @@ class FormsController extends AbstractController
 {
 //////////////////////////////  ASSET FORM  //////////////////////////////
     /**
-     * @Route("/poste-de-travail", name="asset")
+     * @Route("/ASSET-1", name="asset")
      */
     public function assetForm(Request $request, CheminController $cheminController): Response
     {
@@ -129,7 +129,7 @@ class FormsController extends AbstractController
 
 //////////////////////////////  OTHER_ASSET FORM  //////////////////////////////
     /**
-     * @Route("/autre-materiel", name="other_asset")
+     * @Route("/ASSET-2", name="other_asset")
      */
     public function otherAssetForm(Request $request, CheminController $cheminController): Response
     {
@@ -238,7 +238,7 @@ class FormsController extends AbstractController
 
 //////////////////////////////  OTHER_ACTION FORM  //////////////////////////////
     /**
-     * @Route("/autre-action", name="other_action")
+     * @Route("/AUTRE-ACTION-MATERIEL", name="other_action")
      */
     public function otherActionForm(Request $request, CheminController $cheminController): Response
     {
@@ -331,7 +331,7 @@ class FormsController extends AbstractController
 
 //////////////////////////////  APP FORM  //////////////////////////////
     /**
-     * @Route("/application", name="app")
+     * @Route("/LOGICIEL", name="app")
      */
     public function appForm(Request $request, CheminController $cheminController): Response
     {
@@ -423,7 +423,7 @@ class FormsController extends AbstractController
 
 //////////////////////////////  OTHER APP FORM  //////////////////////////////
     /**
-     * @Route("/action-logiciel", name="other_app")
+     * @Route("/LOGICIEL-2", name="other_app")
      */
     public function otherAppForm(Request $request, CheminController $cheminController): Response
     {
@@ -507,7 +507,7 @@ class FormsController extends AbstractController
 
 //////////////////////////////  PHONE FORM  //////////////////////////////
     /**
-     * @Route("/phone", name="phone")
+     * @Route("/TELEPHONIE", name="phone")
      */
     public function phoneForm(Request $request, CheminController $cheminController): Response
     {
@@ -591,7 +591,7 @@ class FormsController extends AbstractController
 
 //////////////////////////////  CMDB FORM  //////////////////////////////
     /**
-     * @Route("/cmdb", name="cmdb")
+     * @Route("/CMDB", name="cmdb")
      */
     public function cmdbForm(Request $request, CheminController $cheminController): Response
     {
@@ -600,7 +600,7 @@ class FormsController extends AbstractController
         $survey = $this->get('session')->get('survey');
         $form->handleRequest($request);
         $cmdbForm->handleRequest($request);
-        for ($i=0; $i<=count($survey->getCmdb()); $i++ ){
+        for ($i=0; $i<=count($survey->getCmdbs()); $i++ ){
             $number = $i;
         }
 
@@ -676,7 +676,7 @@ class FormsController extends AbstractController
 
 
     /**
-     * @Route("/rdv", name="rdv")
+     * @Route("/RDV", name="rdv")
      */
     public function rdv(Request $request, CheminController $cheminController): Response
     {
@@ -736,7 +736,7 @@ class FormsController extends AbstractController
 
 
     /**
-     * @Route("/commentaire", name="commentaire")
+     * @Route("/COMMENTAIRE", name="commentaire")
      */
     public function description(Request $request, CheminController $cheminController): Response
     {

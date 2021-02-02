@@ -134,6 +134,21 @@
         </div>
     {% endfor %}
 
+    {% for object in survey.cmdbs %}
+        <div class="control">
+            <div class="tags has-addons">
+                {% if object.action %}
+                    <span class="tag is-dark">{{ object.action }}</span>
+                {% endif %}
+
+                {% if object.asset != null %}
+                    <span class="tag is-dark">{{ object.asset }}</span>
+                {% endif %}
+                <a class="tag is-delete ajax-remove-asset" href="{{ path('form_cmdb_del', {'position': object.position }) }}" title="Retiré cette action"></a>
+            </div>
+        </div>
+    {% endfor %}
+
     {% for object in survey.rdvs %}
         <div class="control">
             <div class="tags has-addons">

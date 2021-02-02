@@ -1,5 +1,5 @@
 {% if (survey.chemin is not empty) and (survey.chemin|length > 1) %}
-    <div class="box">
+    <div class="box is-hidden-desktop">
         <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
             <ul>
                 {% for url in survey.chemin %}
@@ -12,6 +12,8 @@
                                 <span>Accueil</span>
                             </a>
                         </li>
+                    {% elseif loop.index == (survey.chemin|length) %}
+                        <li><a href="#">?</a></li>
                     {% else %}
                         <li><a href="{{ url }}">{{ url }}</a></li>
                     {% endif %}
