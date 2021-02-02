@@ -18,17 +18,14 @@ class RdvType extends AbstractType
         $builder
             ->add('rdv_total', NumberType::class, [
                     'required' => false,
-                    'placeholder' => 'Exemple : 3',
                 ]
             )
             ->add('rdv_ko_scc', NumberType::class, [
                     'required' => false,
-                    'placeholder' => 'Exemple : 1',
                 ]
             )
             ->add('rdv_ko_safran', NumberType::class, [
                     'required' => false,
-                    'placeholder' => 'Exemple : 2',
                 ]
             )
         ;

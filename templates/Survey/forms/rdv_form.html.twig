@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{#{% block title %}Hello AskUserController!{% endblock %}#}
+
+{% block body %}
+
+    <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
+        <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
+
+            {{ include('includes/nav_indicator.html.twig') }}
+            <h1 class="title is-size-3-desktop">Rendez-vous(s)</h1>
+
+            {{ form_start(rdv_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
+            <div class="field">
+                <label class="label" for="last_name">Veuillez indiquer les informations des rendez-vous</label>
+
+                <div class="field has-addons">
+                    <p class="control">
+                        <a class="button is-static">
+                            Nombre total de rendez-vous programmés
+                        </a>
+                    </p>
+                    <p class="control is-expanded">
+                        {{ form_widget(rdv_form.rdv_total, {'attr' : {'class' : 'input', 'onkeyup': 'verif_nombre(this),verif_nombre_max(this,2)'} }) }}
+                    </p>
+                </div>
+
+                <div class="field has-addons">
+                    <p class="control">
+                        <a class="button is-static">
+                            Nombre d'echec rendez-vous (SCC)
+                        </a>
+                    </p>
+                    <p class="control is-expanded">
+                        {{ form_widget(rdv_form.rdv_ko_scc, {'attr' : {'class' : 'input', 'onkeyup': 'verif_nombre(this),verif_nombre_max(this,2)'} }) }}
+                    </p>
+                </div>
+
+                <div class="field has-addons">
+                    <p class="control">
+                        <a class="button is-static">
+                            Nombre d'echec rendez-vous (SAFRAN)
+                        </a>
+                    </p>
+                    <p class="control is-expanded">
+                        {{ form_widget(rdv_form.rdv_ko_safran, {'attr' : {'class' : 'input', 'onkeyup': 'verif_nombre(this),verif_nombre_max(this,2)'} }) }}
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="field">
+                {{ include('includes/nav/prev_next.html.twig') }}
+            </div>
+
+            {{ include('includes/del_objects_section.html.twig') }}
+
+            {{ form_end(rdv_form) }}
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <script>
+
+        let copyBtn = document.getElementById('copy-btn');
+
+        function CopyToClipboard(containerid) {
+            let textArea = document.getElementById(containerid);
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); /* For mobile devices */
+            document.execCommand('copy');
+        }
+
+    </script>
+
+{% endblock %}
+
+
+

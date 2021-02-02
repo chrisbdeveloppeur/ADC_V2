@@ -8,51 +8,51 @@
 </div>
 
 <div class="field is-grouped is-grouped-multiline" id="asset-tags-grouped">
-        {% for asset in survey.assets %}
+        {% for object in survey.assets %}
             <div class="control">
                 <div class="tags has-addons">
-                    {% if asset.type and asset.action %}
-                        <span class="tag is-dark">{{ asset.action }}_{{ asset.type }}</span>
-                    {% elseif asset.action %}
-                        <span class="tag is-dark">{{ asset.action }}</span>
-                    {% elseif asset.type %}
-                        <span class="tag is-dark">{{ asset.type }}</span>
+                    {% if object.type and object.action %}
+                        <span class="tag is-dark">{{ object.action }}_{{ object.type }}</span>
+                    {% elseif object.action %}
+                        <span class="tag is-dark">{{ object.action }}</span>
+                    {% elseif object.type %}
+                        <span class="tag is-dark">{{ object.type }}</span>
                     {% endif %}
 
-                    {% if asset.ae != 'N/A' %}
+                    {% if object.ae != null %}
                         <span class="icon-text tag is-dark">
                                     <span class="icon is-small">
                                         <i class="fas fa-plus-square"></i>
                                     </span>
-                                    <span>{{ asset.ae }}</span>
+                                    <span>{{ object.ae }}</span>
                                 </span>
                     {% endif %}
-                    {% if asset.as != 'N/A' %}
+                    {% if object.as != null %}
                         <span class="icon-text tag is-dark">
                                     <span class="icon is-small">
                                         <i class="fas fa-minus-square"></i>
                                     </span>
-                                    <span>{{ asset.as }}</span>
+                                    <span>{{ object.as }}</span>
                                 </span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_asset_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_asset_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
 
 
-        {% for asset in survey.otherassets %}
+        {% for object in survey.otherassets %}
             <div class="control">
                 <div class="tags has-addons">
-                    {% if asset.type and asset.action %}
-                        <span class="tag is-dark">{{ asset.action }}_{{ asset.type }}</span>
-                    {% elseif asset.action %}
-                        <span class="tag is-dark">{{ asset.action }}</span>
-                    {% elseif asset.type %}
-                        <span class="tag is-dark">{{ asset.type }}</span>
+                    {% if object.type and object.action %}
+                        <span class="tag is-dark">{{ object.action }}_{{ object.type }}</span>
+                    {% elseif object.action %}
+                        <span class="tag is-dark">{{ object.action }}</span>
+                    {% elseif object.type %}
+                        <span class="tag is-dark">{{ object.type }}</span>
                     {% endif %}
 
-                    {% if asset.ae != 'N/A' %}
+                    {% if object.ae != null %}
                         <span class="icon-text tag is-dark">
                     <span class="icon is-small">
                         <i class="fas fa-plus-square"></i>
@@ -60,61 +60,80 @@
                     <span>{{ asset.ae }}</span>
                 </span>
                     {% endif %}
-                    {% if asset.as != 'N/A' %}
+                    {% if object.as != null %}
                         <span class="icon-text tag is-dark">
                     <span class="icon is-small">
                         <i class="fas fa-minus-square"></i>
                     </span>
-                    <span>{{ asset.as }}</span>
+                    <span>{{ object.as }}</span>
                 </span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_asset_del', {'position': asset.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_asset_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
 
-        {% for otheraction in survey.otheractions %}
+        {% for object in survey.otheractions %}
             <div class="control">
                 <div class="tags has-addons">
-                    {% if otheraction.action %}
-                        <span class="tag is-dark">{{ otheraction.action }}</span>
+                    {% if object.action %}
+                        <span class="tag is-dark">{{ object.action }}</span>
                     {% endif %}
 
-                    {% if otheraction.asset != 'N/A' %}
-                        <span class="icon-text tag is-dark">{{ otheraction.asset }}</span>
+                    {% if object.asset != null %}
+                        <span class="icon-text tag is-dark">{{ object.asset }}</span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_action_del', {'position': otheraction.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_other_action_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
 
-        {% for app in survey.apps %}
+        {% for object in survey.apps %}
             <div class="control">
                 <div class="tags has-addons">
-                    {% if app.action %}
-                        <span class="tag is-dark">{{ app.action }}</span>
+                    {% if object.action %}
+                        <span class="tag is-dark">{{ object.action }}</span>
                     {% endif %}
 
-                    {% if app.asset != 'N/A' %}
-                        <span class="icon-text tag is-dark">{{ app.asset }}</span>
+                    {% if object.asset != null %}
+                        <span class="icon-text tag is-dark">{{ object.asset }}</span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': app.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
 
-        {% for app in survey.otherapps %}
+        {% for object in survey.otherapps %}
             <div class="control">
                 <div class="tags has-addons">
-                    {% if app.action %}
-                        <span class="tag is-dark">{{ app.action }}</span>
+                    {% if object.action %}
+                        <span class="tag is-dark">{{ object.action }}</span>
                     {% endif %}
 
-                    {% if app.asset != 'N/A' %}
-                        <span class="tag is-dark">{{ app.asset }}</span>
+                    {% if object.asset != null %}
+                        <span class="tag is-dark">{{ object.asset }}</span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': app.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('form_app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
+
+
+    {% for object in survey.phones %}
+        <div class="control">
+            <div class="tags has-addons">
+                {% if object.action %}
+                    <span class="tag is-dark">{{ object.action }}</span>
+                {% endif %}
+
+                {% if object.asset != null %}
+                    <span class="tag is-dark">{{ object.asset }}</span>
+                {% endif %}
+                <a class="tag is-delete ajax-remove-asset" href="{{ path('form_phone_del', {'position': object.position }) }}" title="Retiré cette action"></a>
+            </div>
+        </div>
+    {% endfor %}
+
+
+
 </div>

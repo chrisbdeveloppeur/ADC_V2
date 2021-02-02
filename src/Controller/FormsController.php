@@ -504,7 +504,7 @@ class FormsController extends AbstractController
         $survey = $this->get('session')->get('survey');
         $form->handleRequest($request);
         $phoneForm->handleRequest($request);
-        for ($i=0; $i<=count($survey->getPhone()); $i++ ){
+        for ($i=0; $i<=count($survey->getPhones()); $i++ ){
             $number = $i;
         }
 
@@ -535,12 +535,12 @@ class FormsController extends AbstractController
             if ($phoneForm->get('multiple')->getData() === true){
                 return $this->json(['action' => $action, 'asset' => $asset, 'position' => $number, 'url_for_delete' => $urlForDelete->getTargetUrl()]);
             }else{
-                return $this->redirectToRoute('form_commentaire');
+                return $this->redirectToRoute('form_rdv');
             }
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            return $this->redirectToRoute('form_commentaire');
+            return $this->redirectToRoute('form_rdv');
         }
 
         return $this->render('Survey/forms/phone_form.html.twig',[
@@ -674,7 +674,7 @@ class FormsController extends AbstractController
             $rdv->setRdvTotal($rdvTotal);
             $rdv->setRdvKoScc($rdvKoScc);
             $rdv->setRdvKoSafran($rdvKoSafran);
-            $survey->setRdv($rdv);
+            $survey->addRdv($rdv);
             return $this->redirectToRoute("form_commentaire");
         }
         return $this->render('Survey/forms/rdv_form.html.twig',[

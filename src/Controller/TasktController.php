@@ -45,9 +45,9 @@ class TasktController extends AbstractController
             } elseif ($reponse == '5') {                      /* Autre actions logiciel accès */
                 return $this->redirectToRoute('form_other_app');
             } elseif ($reponse == '6') {                      /* Support téléphonie */
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('form_phone');
             } elseif ($reponse == '7') {                      /* CMDB et stock */
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('form_cmdb');
             }
         }
 
