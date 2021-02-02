@@ -85,7 +85,12 @@ class FinalStringController extends AbstractController
 
                 $balise .= "[";
                 $key++;
-                $balise .= $object->getBalise() . "_" . $key;
+                if ($object != 'Rdv'){
+                    $balise .= $object->getBalise() . "_" . $key;
+                }else{
+                    $balise .= $object->getBalise();
+                }
+
 
                 if ($object == 'Asset' || $object == 'OtherAsset'){
                     if ($object->getAe() && $object->getAe() != 'N/A' ){
@@ -97,6 +102,16 @@ class FinalStringController extends AbstractController
                 }elseif ($object == 'App' || $object == 'OtherApp' || $object == 'OtherAction'){
                     if ($object->getAsset() && $object->getAsset() != 'N/A' ){
                         $balise .= '<ASSET_' . $object->getAsset() . '>';
+                    }
+                }elseif ($object == 'Rdv'){
+                    if ($object->getRdvTotal()){
+                        $balise .= '<RDV_TOTAL_' . $object->getRdvTotal() . '>';
+                    }
+                    if ($object->getRdvKoScc()){
+                        $balise .= '<RDV_KO_SCC_' . $object->getRdvKoScc() . '>';
+                    }
+                    if ($object->getRdvKoSafran()){
+                        $balise .= '<RDV_KO_SAFRAN_' . $object->getRdvKoSafran() . '>';
                     }
                 }
 

@@ -678,7 +678,10 @@ class FormsController extends AbstractController
             $rdv->setRdvTotal($rdvTotal);
             $rdv->setRdvKoScc($rdvKoScc);
             $rdv->setRdvKoSafran($rdvKoSafran);
-            $survey->addRdv($rdv);
+            $rdv->setBalise('RENDEZ_VOUS');
+            if ($rdvTotal != null || $rdvKoScc != null || $rdvKoSafran != null){
+                $survey->addRdv($rdv);
+            }
             return $this->redirectToRoute("form_commentaire");
         }
         return $this->render('Survey/forms/rdv_form.html.twig',[
