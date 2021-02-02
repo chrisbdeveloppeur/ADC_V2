@@ -25,10 +25,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/form", name="form_")
- *
- */
+///**
+// * @Route("/form", name="")
+// */
 
 class FormsController extends AbstractController
 {
@@ -77,7 +76,7 @@ class FormsController extends AbstractController
                 $newAsset->setBalise($action . '_' . $type);
                 $ae = $newAsset->getAe();
                 $as = $newAsset->getAs();
-                $urlForDelete = $this->redirectToRoute('form_asset_del',[
+                $urlForDelete = $this->redirectToRoute('asset_del',[
                     'position' => $number,
                 ]);
 
@@ -86,21 +85,20 @@ class FormsController extends AbstractController
                 }
             }
 
-            return $this->redirectToRoute('form_other_asset');
+            return $this->redirectToRoute('other_asset');
 
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-                return $this->redirectToRoute('form_other_asset');
+                return $this->redirectToRoute('other_asset');
         }
 
-        $referer = $request->headers->get('referer');
+
         $cheminController->setChemins($request);
         return $this->render('Survey/forms/assets_form.html.twig',[
             'form' => $form->createView(),
             'asset_form' => $assetForm->createView(),
             'survey' => $survey,
-            'referer' => $referer,
         ]);
     }
 
@@ -175,7 +173,7 @@ class FormsController extends AbstractController
                 $newAsset->setBalise($action . '_' . $type);
                 $ae = $newAsset->getAe();
                 $as = $newAsset->getAs();
-                $urlForDelete = $this->redirectToRoute('form_other_asset_del',[
+                $urlForDelete = $this->redirectToRoute('other_asset_del',[
                     'position' => $number,
                 ]);
                 if ($otherAssetForm->get('multiple')->getData() === true){
@@ -184,28 +182,27 @@ class FormsController extends AbstractController
             }
 
             if ($survey->getCas()== 'SDP_INC_1' || $survey->getCas()== 'SDP_DEM_1' || $survey->getCas()== 'HD_DEM_1'){
-                return $this->redirectToRoute('form_app');
+                return $this->redirectToRoute('app');
             }else{
-                return $this->redirectToRoute('form_rdv');
+                return $this->redirectToRoute('rdv');
             }
 
         }
 
         if ($form->isSubmitted() && $form->isValid()){
             if ($survey->getCas()== 'SDP_INC_1' || $survey->getCas()== 'SDP_DEM_1' || $survey->getCas()== 'HD_DEM_1'){
-                return $this->redirectToRoute('form_app');
+                return $this->redirectToRoute('app');
             }else{
-                return $this->redirectToRoute('form_rdv');
+                return $this->redirectToRoute('rdv');
             }
         }
 
-        $referer = $request->headers->get('referer');
+
         $cheminController->setChemins($request);
         return $this->render('Survey/forms/other_assets_form.html.twig',[
             'form' => $form->createView(),
             'other_asset_form' => $otherAssetForm->createView(),
             'survey' => $survey,
-            'referer' => $referer,
         ]);
     }
 
@@ -271,7 +268,7 @@ class FormsController extends AbstractController
                 $action = $newAsset->getAction();
                 $newAsset->setBalise($action);
                 $asset = $newAsset->getAsset();
-                $urlForDelete = $this->redirectToRoute('form_other_action_del',[
+                $urlForDelete = $this->redirectToRoute('other_action_del',[
                     'position' => $number,
                 ]);
                 if ($otherActionForm->get('multiple')->getData() === true){
@@ -280,24 +277,23 @@ class FormsController extends AbstractController
             }
 
             if ($survey->getCas() == 'SDP_DEM_4' || $survey->getCas() == 'HD_DEM_4'){
-                return $this->redirectToRoute('form_rdv');
+                return $this->redirectToRoute('rdv');
             }
 
         }
 
         if ($form->isSubmitted() && $form->isValid()){
             if ($survey->getCas() == 'SDP_DEM_4' || $survey->getCas() == 'HD_DEM_4'){
-                return $this->redirectToRoute('form_rdv');
+                return $this->redirectToRoute('rdv');
             }
         }
 
-        $referer = $request->headers->get('referer');
+
         $cheminController->setChemins($request);
         return $this->render('Survey/forms/other_actions_form.html.twig',[
             'form' => $form->createView(),
             'other_action_form' => $otherActionForm->createView(),
             'survey' => $survey,
-            'referer' => $referer,
         ]);
     }
 
@@ -363,7 +359,7 @@ class FormsController extends AbstractController
                 $action = $app->getAction();
                 $app->setBalise($action);
                 $asset = $app->getAsset();
-                $urlForDelete = $this->redirectToRoute('form_app_del',[
+                $urlForDelete = $this->redirectToRoute('app_del',[
                     'position' => $number,
                 ]);
                 if ($appForm->get('multiple')->getData() === true){
@@ -372,28 +368,27 @@ class FormsController extends AbstractController
             }
 
             if ($survey->getCas() === 'SDP_INC_3'){
-                return $this->redirectToRoute('form_other_app');
+                return $this->redirectToRoute('other_app');
             }else{
-                return $this->redirectToRoute('form_rdv');
+                return $this->redirectToRoute('rdv');
             }
 
         }
 
         if ($form->isSubmitted() && $form->isValid()){
             if ($survey->getCas() === 'SDP_INC_3'){
-                return $this->redirectToRoute('form_other_app');
+                return $this->redirectToRoute('other_app');
             }else{
-                return $this->redirectToRoute('form_rdv');
+                return $this->redirectToRoute('rdv');
             }
         }
 
-        $referer = $request->headers->get('referer');
+
         $cheminController->setChemins($request);
         return $this->render('Survey/forms/apps_form.html.twig',[
             'form' => $form->createView(),
             'app_form' => $appForm->createView(),
             'survey' => $survey,
-            'referer' => $referer,
         ]);
     }
 
@@ -455,7 +450,7 @@ class FormsController extends AbstractController
                 $action = $otherApp->getAction();
                 $otherApp->setBalise($action);
                 $asset = $otherApp->getAsset();
-                $urlForDelete = $this->redirectToRoute('form_other_app_del',[
+                $urlForDelete = $this->redirectToRoute('other_app_del',[
                     'position' => $number,
                 ]);
                 if ($otherAppForm->get('multiple')->getData() === true){
@@ -463,21 +458,20 @@ class FormsController extends AbstractController
                 }
             }
 
-            return $this->redirectToRoute('form_rdv');
+            return $this->redirectToRoute('rdv');
 
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            return $this->redirectToRoute('form_rdv');
+            return $this->redirectToRoute('rdv');
         }
 
-        $referer = $request->headers->get('referer');
+
         $cheminController->setChemins($request);
         return $this->render('Survey/forms/other_apps_form.html.twig',[
             'form' => $form->createView(),
             'other_app_form' => $otherAppForm->createView(),
             'survey' => $survey,
-            'referer' => $referer,
         ]);
     }
 
@@ -539,7 +533,7 @@ class FormsController extends AbstractController
                 $action = $phone->getAction();
                 $phone->setBalise($action);
                 $asset = $phone->getAsset();
-                $urlForDelete = $this->redirectToRoute('form_phone_del',[
+                $urlForDelete = $this->redirectToRoute('phone_del',[
                     'position' => $number,
                 ]);
                 if ($phoneForm->get('multiple')->getData() === true){
@@ -547,21 +541,20 @@ class FormsController extends AbstractController
                 }
             }
 
-            return $this->redirectToRoute('form_rdv');
+            return $this->redirectToRoute('rdv');
 
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            return $this->redirectToRoute('form_rdv');
+            return $this->redirectToRoute('rdv');
         }
 
-        $referer = $request->headers->get('referer');
+
         $cheminController->setChemins($request);
         return $this->render('Survey/forms/phone_form.html.twig',[
             'form' => $form->createView(),
             'phone_form' => $phoneForm->createView(),
             'survey' => $survey,
-            'referer' => $referer,
         ]);
     }
 
@@ -603,7 +596,6 @@ class FormsController extends AbstractController
         for ($i=0; $i<=count($survey->getCmdbs()); $i++ ){
             $number = $i;
         }
-
 //
         if ($cmdbForm->isSubmitted() && $number<=10){
 
@@ -624,7 +616,7 @@ class FormsController extends AbstractController
                 $survey->addCmdb($cmdb);
 
                 $asset = $cmdb->getAsset();
-                $urlForDelete = $this->redirectToRoute('form_cmdb_del',[
+                $urlForDelete = $this->redirectToRoute('cmdb_del',[
                     'position' => $number,
                 ]);
                 if ($cmdbForm->get('multiple')->getData() === true){
@@ -632,21 +624,20 @@ class FormsController extends AbstractController
                 }
             }
 
-            return $this->redirectToRoute('form_rdv');
+            return $this->redirectToRoute('rdv');
 
         }
 
         if ($form->isSubmitted() && $form->isValid()){
-            return $this->redirectToRoute('form_rdv');
+            return $this->redirectToRoute('rdv');
         }
 
-        $referer = $request->headers->get('referer');
+
         $cheminController->setChemins($request);
         return $this->render('Survey/forms/cmdb_form.html.twig',[
             'form' => $form->createView(),
             'cmdb_form' => $cmdbForm->createView(),
             'survey' => $survey,
-            'referer' => $referer,
         ]);
     }
 
@@ -701,14 +692,13 @@ class FormsController extends AbstractController
                 $survey->addRdv($rdv);
             }
 
-            return $this->redirectToRoute("form_commentaire");
+            return $this->redirectToRoute("commentaire");
         }
-        $referer = $request->headers->get('referer');
+
         $cheminController->setChemins($request);
         return $this->render('Survey/forms/rdv_form.html.twig',[
             'rdv_form' => $rdvForm->createView(),
             'survey' => $survey,
-            'referer' => $referer,
         ]);
     }
     /**
@@ -749,12 +739,11 @@ class FormsController extends AbstractController
             $survey->setCommentaire($commentaire);
             return $this->redirectToRoute("final_string");
         }
-        $referer = $this->redirectToRoute('form_rdv');
+
         $cheminController->setChemins($request);
         return $this->render('Survey/forms/commentaire_form.html.twig',[
             'commentaire_form' => $commentaireForm->createView(),
             'survey' => $survey,
-            'referer' => $referer,
         ]);
     }
 

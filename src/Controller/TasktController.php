@@ -2,10 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\FromInctFormType;
-use App\Form\TypeInterInctForm;
 use App\Form\TypeInterTasktForm;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,19 +32,19 @@ class TasktController extends AbstractController
             $survey->setCas($cas);
             $survey->setTypeInter($reponse);
             if ($reponse == '1') {         /* Fourniture, reprise et déménagement de postes de travail */
-                return $this->redirectToRoute('form_asset');
+                return $this->redirectToRoute('asset');
             } elseif ($reponse == '2') {   /* Fourtinure, reprise et déménagement de matériels hors postes de travail */
-                return $this->redirectToRoute('form_other_asset');
+                return $this->redirectToRoute('other_asset');
             } elseif ($reponse == '3') {                      /* Installaition d'applications sans fourniture de matériel */
-                return $this->redirectToRoute('form_app');
+                return $this->redirectToRoute('app');
             } elseif ($reponse == '4') {                      /* Autre actions matériel */
-                return $this->redirectToRoute('form_other_action');
+                return $this->redirectToRoute('other_action');
             } elseif ($reponse == '5') {                      /* Autre actions logiciel accès */
-                return $this->redirectToRoute('form_other_app');
+                return $this->redirectToRoute('other_app');
             } elseif ($reponse == '6') {                      /* Support téléphonie */
-                return $this->redirectToRoute('form_phone');
+                return $this->redirectToRoute('phone');
             } elseif ($reponse == '7') {                      /* CMDB et stock */
-                return $this->redirectToRoute('form_cmdb');
+                return $this->redirectToRoute('cmdb');
             }
         }
 
@@ -55,7 +52,6 @@ class TasktController extends AbstractController
 
         return $this->render('Survey/home/type_inter.html.twig',[
             'form' => $form->createView(),
-            'form_name' => $form->getName(),
             'survey' => $survey,
         ]);
     }

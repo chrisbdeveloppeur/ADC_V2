@@ -12,7 +12,7 @@
                                 <span>Accueil</span>
                             </a>
                         </li>
-                    {% elseif loop.index == (survey.chemin|length) %}
+                    {% elseif loop.index == (survey.chemin|length) and url != '/CODE-FINAL' %}
                         <li><a href="#">?</a></li>
                     {% else %}
                         <li><a href="{{ url }}">{{ url }}</a></li>

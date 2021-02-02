@@ -18,15 +18,6 @@ class FinalStringController extends AbstractController
     {
         $survey = $this->get('session')->get('survey');
         $finalString = '';
-        //                  Horodatage
-        $survey->setTimeStamp();
-        $horodatage = $survey->getTimeStamp()->format('d/m/Y - H:i');
-        $finalString .= $horodatage;
-
-        //         Hashage (crc32) de la chaine final
-        $survey->setHashedString($finalString);
-        $finalString .= " - [" . strtoupper($survey->getHashedString()) . "]";
-        $finalString .= " [".$survey->getService()."]\r\n";
 
         $assets = $survey->getAssets();
         $otherActions = $survey->getOtherActions();
@@ -45,11 +36,23 @@ class FinalStringController extends AbstractController
         $finalString .= $this->miseEnFormBalise($phones);
         $finalString .= $this->miseEnFormBalise($cmdbs);
         $finalString .= $this->miseEnFormBalise($rdvs);
+        $stringToHash = $finalString;
 
         if ($survey->getCommentaire()){
             $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "]";
         }
 
+        //                  Horodatage
+        $survey->setTimeStamp();
+        $horodatage = $survey->getTimeStamp()->format('d/m/Y - H:i');
+        $finalString .= "\r\n" . $horodatage;
+
+        //                  Balise du service concerné (HD/SDP)
+        $finalString .= " [".$survey->getService()."]";
+
+        //         Hashage (crc32) de la chaine final
+        $survey->setHashedString($stringToHash);
+        $finalString .= " - [" . strtoupper($survey->getHashedString()) . "]";
 
 //                      MISE EN CORELATION FUSEAU HORAIRE                   //
 //        $survey->setTimeStamp(new \DateTime('', new \DateTimeZone('Europe/Paris') ) );
@@ -58,10 +61,9 @@ class FinalStringController extends AbstractController
 //        $text = preg_replace('/\s\s+/', ' ', $finalString);
 
         $survey->setFinalString($finalString);
-        $referer = $request->headers->get('referer');
+
         $cheminController->setChemins($request);
         return $this->render('Survey/forms/final_string_form.html.twig',[
-            'referer' => $referer,
             'final_string' => $finalString,
             'survey' => $survey,
         ]);
