@@ -37,13 +37,9 @@ class HomeController extends AbstractController
             $survey->setService($reponse);
             if ($reponse == 'HD'){
                 $survey->setType('DEM');
-                return $this->redirectToRoute('taskt_home',[
-                    'service' => $reponse,
-                ]);
+                return $this->redirectToRoute('taskt_home');
             }elseif ($reponse == 'SDP'){
-                return $this->redirectToRoute('tasktorinct',[
-                    'service' => $reponse,
-                ]);
+                return $this->redirectToRoute('tasktorinct');
             }
         }
 
@@ -57,7 +53,7 @@ class HomeController extends AbstractController
 
 
     /**
-     * @Route("/taskt-or-inct", name="tasktorinct")
+     * @Route("/type", name="tasktorinct")
      */
     public function tasktOrInct(Request $request, CheminController $cheminController)
     {

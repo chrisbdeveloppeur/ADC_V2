@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/taskt", name="taskt_")
+ * @Route("/DEM", name="taskt_")
  */
 class TasktController extends AbstractController
 {

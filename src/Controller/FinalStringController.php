@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FinalStringController extends AbstractController
 {
     /**
-     * @Route("/final-string", name="final_string")
+     * @Route("/CODE-FINAL", name="final_string")
      */
     public function description(Request $request, EntityManagerInterface $em, CheminController $cheminController): Response
     {
