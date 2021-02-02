@@ -54,6 +54,9 @@ class FinalStringController extends AbstractController
         $survey->setHashedString($stringToHash);
         $finalString .= " - [" . strtoupper($survey->getHashedString()) . "]";
 
+        $version = 2;
+        $finalString .= ' [ARBRE_DE_CLOTURE v.' . $version . "]" ;
+
 //                      MISE EN CORELATION FUSEAU HORAIRE                   //
 //        $survey->setTimeStamp(new \DateTime('', new \DateTimeZone('Europe/Paris') ) );
 

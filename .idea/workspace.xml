@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a5ed598-3b44-447a-9f79-e12ffb334f49" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/FinalStringController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FinalStringController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/InctController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InctController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TasktController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TasktController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/forms/cmdb_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/forms/cmdb_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/del_objects_section.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/del_objects_section.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/nav_indicator.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/nav_indicator.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig" afterDir="false" />
     </list>
     <ignored path="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\public\build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,8 +54,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Controller/FinalStringController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="123" column="44" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
+            <state relative-caret-position="460">
+              <caret line="59" column="48" lean-forward="true" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="511">
+              <caret line="55" column="46" lean-forward="true" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -190,8 +203,6 @@
         <option value="$PROJECT_DIR$/templates/includes/nav/end.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/nav/prev_only.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/CmdbType.php" />
-        <option value="$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/FormsController.php" />
         <option value="$PROJECT_DIR$/src/Controller/HomeController.php" />
         <option value="$PROJECT_DIR$/src/Controller/TasktController.php" />
@@ -199,6 +210,8 @@
         <option value="$PROJECT_DIR$/templates/includes/nav_indicator.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/forms/cmdb_form.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/del_objects_section.html.twig" />
+        <option value="$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/FinalStringController.php" />
       </list>
     </option>
@@ -501,12 +514,12 @@
       <workItem from="1611909850333" duration="35821000" />
       <workItem from="1612122858890" duration="4637000" />
       <workItem from="1612165734784" duration="39276000" />
-      <workItem from="1612253677832" duration="30430000" />
+      <workItem from="1612253677832" duration="31240000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="488545000" />
+    <option name="totallyTimeSpent" value="489355000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -534,7 +547,7 @@
       <window_info anchor="right" id="Database" order="3" weight="0.32995737" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -548,7 +561,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.22860238" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.22860238" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -837,13 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/CheminController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -858,13 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="55" column="78" selection-start-line="55" selection-start-column="78" selection-end-line="55" selection-end-column="78" />
         </state>
       </provider>
     </entry>
@@ -992,10 +991,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="55" column="46" lean-forward="true" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/FinalStringController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="123" column="44" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
+        <state relative-caret-position="460">
+          <caret line="59" column="48" lean-forward="true" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
         </state>
       </provider>
     </entry>
