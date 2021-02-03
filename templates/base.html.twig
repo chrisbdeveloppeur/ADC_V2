@@ -19,7 +19,7 @@
 </head>
 <body class="is-relative has-navbar-fixed-top-desktop">
 
-<div class="bg-layer hero is-bold is-info">
+<div class="bg-layer hero is-bold is-dark">
 </div>
 
 <nav class="navbar is-fixed-top-desktop is-light has-text-black" role="navigation" aria-label="main navigation">
@@ -43,6 +43,9 @@
                         {{ app.user.username }}
                     </span>
                     <a href="{{ path('app_logout') }}" class="tag button is-danger is-medium ">
+                        <span>
+                            Déconnexion
+                        </span>
                         <span class="icon">
                             <i class="fas fa-door-open"></i>
                         </span>
