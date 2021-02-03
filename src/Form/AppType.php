@@ -22,7 +22,7 @@ class AppType extends AbstractType
                     'choices' => [
                         'Applications télédistribuées' => 'SFW_TLD',
                         'Applications installées localement ou en PMAD, sans tentative préalable de télédistribution' => 'SFW_LOC',
-                        'Applications installées localement ou en PMAD, après un échec de télédistribution' => 'SWF_TLK',
+                        'Applications installées localement ou en PMAD, après un échec de télédistribution' => 'SFW_TLK',
                     ]
                 ]
 

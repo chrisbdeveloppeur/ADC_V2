@@ -151,41 +151,40 @@
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
             // hideAddBtn();
-            if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
-                let condition1 = ['PHN','PRT','TRD'];
-                if (condition1.some( el => values.includes(el) ) ){
+            if (!values.includes('') ){
+                makeVisible(fieldTpx);
+                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
+                    let condition1 = ['PHN','PRT','TRD','PRP'];
+                    if (condition1.some( el => values.includes(el) ) ){
+                        removeAttributes(asset_ae, 'disabled');
+                        makeVisible(fieldAssets);
+                    }
+                }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
+                    removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
+                    removeAttributes(asset_as, 'disabled');
+                    makeVisible(fieldAssets);
+                    // let condition1 = ['PHN','TRD','PRP'];
+                    // if (condition1.some( el => values.includes(el) ) ){
+                    //     removeAttributes(asset_as, 'disabled');
+                    //     makeVisible(fieldAssets);
+                    // }
+                    makeVisible(fieldTpx);
+                }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
+                    removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
+                    document.getElementById('other_asset_type').value = 'PHN';
+                    removeAttributes(asset_ae, 'disabled');
+                    removeAttributes(asset_as, 'disabled');
+                    makeVisible(fieldAssets);
+                }else if (values.includes('PRT')) { //              PRET
+                    removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
+                    document.getElementById('other_asset_type').value = 'PHN';
                     removeAttributes(asset_ae, 'disabled');
                     makeVisible(fieldAssets);
                 }
-                let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
-                if (condition2.some( el => values.includes(el) ) ){
-                    makeVisible(fieldTpx);
-                    addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
-                }
-            }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
-                removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
-                let condition1 = ['PHN','TRD'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeAttributes(asset_as, 'disabled');
-                    makeVisible(fieldAssets);
-                }
-                makeVisible(fieldTpx);
-            }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
-                removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-                document.getElementById('other_asset_type').value = 'PHN';
-                removeAttributes(asset_ae, 'disabled');
-                removeAttributes(asset_as, 'disabled');
-                makeVisible(fieldAssets);
-                makeVisible(fieldTpx);
-                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
-            }else if (values.includes('PRT')) { //              PRET
-                removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-                document.getElementById('other_asset_type').value = 'PHN';
-                removeAttributes(asset_ae, 'disabled');
-                makeVisible(fieldAssets);
-                makeVisible(fieldTpx);
-                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
             }
+
+
         }
 
 

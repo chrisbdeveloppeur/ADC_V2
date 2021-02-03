@@ -1,22 +1,14 @@
 <div class="is-flex is-justify-content-space-between nav-for-only-one">
 
     <div class="control has-text-left">
-        <button class="button is-info is-small" onclick="goBack()">
+        <a href="{{ survey.chemin[survey.chemin|length - 2] }}" class="button is-info is-small">
             <span class="icon">
                 <i class="fas fa-chevron-left"></i>
             </span>
             <span>
                 Précédent
             </span>
-        </button>
-{#        <a href="{{ referer }}" class="button is-info is-small">#}
-{#            <span class="icon">#}
-{#                <i class="fas fa-chevron-left"></i>#}
-{#            </span>#}
-{#            <span>#}
-{#                Précédent#}
-{#            </span>#}
-{#        </a>#}
+        </a>
     </div>
 
     <div class="control has-text-right">
