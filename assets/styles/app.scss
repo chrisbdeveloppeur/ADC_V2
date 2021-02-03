@@ -147,6 +147,11 @@ $box-background-color: rgba(255,255,255,.97);
   background: rgba(0, 89, 166, 0.44);
 }
 
+.hostnames:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

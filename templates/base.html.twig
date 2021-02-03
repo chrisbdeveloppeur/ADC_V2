@@ -199,7 +199,6 @@
                             }else if (property === 'action' || property === 'type') {
                                 balises1.push(datas[property]);
                             } else if (property === 'maximum'){
-                                console.log(datas[property])
                             } else {
                                 if (property === 'ae'){
                                     ae = datas[property];
@@ -231,19 +230,19 @@
                             if (element !== 'N/A'){
                                 if (key === 0){
                                     if ( onlyOne && onlyAsset){
-                                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                        container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark hostnames\">\n" +
                                             "                                                           <span>"+ element +"</span>\n" +
                                             "                                                   </span>"
                                     }else {
                                         if (element == ae){
-                                            container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                            container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark hostnames\">\n" +
                                                 "                                                           <span class=\"icon is-small\">\n" +
                                                 "                                                               <i class=\"fas fa-plus-square\"></i>\n" +
                                                 "                                                           </span>\n" +
                                                 "                                                           <span>"+ element +"</span>\n" +
                                                 "                                                   </span>"
                                         } else if (element == as){
-                                            container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                            container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark hostnames\">\n" +
                                                 "                                                           <span class=\"icon is-small\">\n" +
                                                 "                                                               <i class=\"fas fa-minus-square\"></i>\n" +
                                                 "                                                           </span>\n" +
@@ -253,7 +252,7 @@
 
                                     }
                                 }else if (key === 1){
-                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark\">\n" +
+                                    container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark hostnames\">\n" +
                                         "                                                           <span class=\"icon is-small\">\n" +
                                         "                                                               <i class=\"fas fa-minus-square\"></i>\n" +
                                         "                                                           </span>\n" +
@@ -275,6 +274,9 @@
                         let removeBtn = document.querySelectorAll('a.ajax-remove-asset').forEach(function (link){
                             link.addEventListener('click' || 'touchstart', removeAsset);
                         });
+
+                        autoFilledAssetsFields();
+
                     }
 
                 });
@@ -316,6 +318,32 @@
                     updateValue();
                 }
             } ;
+
+
+            autoFilledAssetsFields();
+
+            function autoFilledAssetsFields(){
+                let hostnames = document.querySelectorAll('.hostnames');
+                let field_selected;
+                let hostnames_field = document.getElementById('assets-field');
+                if (hostnames_field !== null){
+                    hostnames_field = hostnames_field.querySelectorAll('input');
+                    hostnames_field.forEach(field => field.addEventListener('focus', event2 =>{
+                            field_selected = field;
+                            return field_selected;
+                        })
+                    );
+                }
+
+                hostnames.forEach(element => element.addEventListener('click', event => {
+                        if (hostnames_field){
+                            if (field_selected !== undefined){
+                                field_selected.value = element.innerText;
+                            }
+                        }
+                    })
+                );
+            }
 
             // let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
             //

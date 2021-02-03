@@ -20,20 +20,20 @@
                     {% endif %}
 
                     {% if object.ae != null %}
-                        <span class="icon-text tag is-dark">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-plus-square"></i>
-                                    </span>
-                                    <span>{{ object.ae }}</span>
-                                </span>
+                        <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">
+                            <span class="icon is-small">
+                                <i class="fas fa-plus-square"></i>
+                            </span>
+                            <span>{{ object.ae }}</span>
+                        </span>
                     {% endif %}
                     {% if object.as != null %}
-                        <span class="icon-text tag is-dark">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-minus-square"></i>
-                                    </span>
-                                    <span>{{ object.as }}</span>
-                                </span>
+                        <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">
+                            <span class="icon is-small">
+                                <i class="fas fa-minus-square"></i>
+                            </span>
+                            <span>{{ object.as }}</span>
+                        </span>
                     {% endif %}
                     <a class="tag is-delete ajax-remove-asset" href="{{ path('asset_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
@@ -53,20 +53,20 @@
                     {% endif %}
 
                     {% if object.ae != null %}
-                        <span class="icon-text tag is-dark">
-                    <span class="icon is-small">
-                        <i class="fas fa-plus-square"></i>
-                    </span>
-                    <span>{{ object.ae }}</span>
-                </span>
+                        <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">
+                            <span class="icon is-small">
+                                <i class="fas fa-plus-square"></i>
+                            </span>
+                            <span>{{ object.ae }}</span>
+                        </span>
                     {% endif %}
                     {% if object.as != null %}
-                        <span class="icon-text tag is-dark">
-                    <span class="icon is-small">
-                        <i class="fas fa-minus-square"></i>
-                    </span>
-                    <span>{{ object.as }}</span>
-                </span>
+                        <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">
+                            <span class="icon is-small">
+                                <i class="fas fa-minus-square"></i>
+                            </span>
+                            <span>{{ object.as }}</span>
+                        </span>
                     {% endif %}
                     <a class="tag is-delete ajax-remove-asset" href="{{ path('other_asset_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
@@ -81,7 +81,7 @@
                     {% endif %}
 
                     {% if object.asset != null %}
-                        <span class="icon-text tag is-dark">{{ object.asset }}</span>
+                        <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">{{ object.asset }}</span>
                     {% endif %}
                     <a class="tag is-delete ajax-remove-asset" href="{{ path('other_action_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
@@ -96,7 +96,7 @@
                     {% endif %}
 
                     {% if object.asset != null %}
-                        <span class="icon-text tag is-dark">{{ object.asset }}</span>
+                        <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">{{ object.asset }}</span>
                     {% endif %}
                     <a class="tag is-delete ajax-remove-asset" href="{{ path('app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
@@ -111,7 +111,7 @@
                     {% endif %}
 
                     {% if object.asset != null %}
-                        <span class="tag is-dark">{{ object.asset }}</span>
+                        <span class="tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">{{ object.asset }}</span>
                     {% endif %}
                     <a class="tag is-delete ajax-remove-asset" href="{{ path('app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
@@ -127,7 +127,7 @@
                 {% endif %}
 
                 {% if object.asset != null %}
-                    <span class="tag is-dark">{{ object.asset }}</span>
+                    <span class="tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">{{ object.asset }}</span>
                 {% endif %}
                 <a class="tag is-delete ajax-remove-asset" href="{{ path('phone_del', {'position': object.position }) }}" title="Retiré cette action"></a>
             </div>
@@ -142,7 +142,7 @@
                 {% endif %}
 
                 {% if object.asset != null %}
-                    <span class="tag is-dark">{{ object.asset }}</span>
+                    <span class="tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">{{ object.asset }}</span>
                 {% endif %}
                 <a class="tag is-delete ajax-remove-asset" href="{{ path('cmdb_del', {'position': object.position }) }}" title="Retiré cette action"></a>
             </div>
