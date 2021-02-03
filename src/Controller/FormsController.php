@@ -33,7 +33,7 @@ class FormsController extends AbstractController
 {
 //////////////////////////////  ASSET FORM  //////////////////////////////
     /**
-     * @Route("/ASSET-1", name="asset")
+     * @Route("/ASSET", name="asset")
      */
     public function assetForm(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {

@@ -8,7 +8,7 @@
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-home" aria-hidden="true"></i>
+                                        <i class="fas fa-lg fa-home" aria-hidden="true"></i>
                                     </span>
                                     <span>Accueil (Services)</span>
                                 </a>
@@ -17,34 +17,34 @@
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-map-signs"></i>
+                                        <i class="fas fa-lg fa-map-signs"></i>
                                     </span>
                                     <span>Task / Inct</span>
                                 </a>
                             </li>
-                        {% elseif url == 'DEM/type'  %}
+                        {% elseif url == '/DEM/type'  %}
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-map-signs"></i>
+                                        <i class="fas fa-lg fa-tasks"></i>
                                     </span>
-                                    <span>Type DEM</span>
+                                    <span>Type de demande</span>
                                 </a>
                             </li>
-                        {% elseif url == 'INC/type'  %}
+                        {% elseif url == '/INC/type'  %}
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-map-signs"></i>
+                                        <i class="fas fa-lg fa-tools"></i>
                                     </span>
-                                    <span>Type INC</span>
+                                    <span>Type d'incident</span>
                                 </a>
                             </li>
-                        {% elseif url == '/ASSET-1'  %}
+                        {% elseif url == '/ASSET'  %}
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-desktop"></i>
+                                        <i class="fas fa-lg fa-desktop"></i>
                                     </span>
                                     <span>Poste de travail</span>
                                 </a>
@@ -53,7 +53,7 @@
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-print"></i>
+                                        <i class="fas fa-lg fa-print"></i>
                                     </span>
                                     <span>Autre périphérique</span>
                                 </a>
@@ -62,7 +62,7 @@
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-server"></i>
+                                        <i class="fas fa-lg fa-server"></i>
                                     </span>
                                     <span>Autre périphérique</span>
                                 </a>
@@ -71,16 +71,25 @@
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-window-restore"></i>
+                                        <i class="fab fa-lg fa-microsoft"></i>
                                     </span>
                                     <span>Logiciel</span>
+                                </a>
+                            </li>
+                        {% elseif url == '/LOGICIEL-2'  %}
+                            <li>
+                                <a href="{{ url }}">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-lg fa-window-restore"></i>
+                                    </span>
+                                    <span>Autre logiciel & Accès</span>
                                 </a>
                             </li>
                         {% elseif url == '/RDV'  %}
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-calendar-alt"></i>
+                                        <i class="fas fa-lg fa-calendar-alt"></i>
                                     </span>
                                     <span>Rendez-vous</span>
                                 </a>
@@ -89,7 +98,7 @@
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-comment-dots"></i>
+                                        <i class="fas fa-lg fa-comment-dots"></i>
                                     </span>
                                     <span>Commentaire</span>
                                 </a>
@@ -98,13 +107,13 @@
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-tag"></i>
+                                        <i class="fas fa-lg fa-tag"></i>
                                     </span>
                                     <span>Code final</span>
                                 </a>
                             </li>
                         {% elseif loop.index == (survey.chemin|length) and url != '/CODE-FINAL'  %}
-                            <li><a href="#">?</a></li>
+                            <li><a href="#">{{ url }}</a></li>
                         {% else %}
                             <li><a href="{{ url }}">{{ url }}</a></li>
                         {% endif %}
