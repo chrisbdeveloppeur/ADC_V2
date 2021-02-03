@@ -266,7 +266,6 @@
                         container.lastElementChild.lastElementChild.innerHTML += "<a class=\"tag is-delete ajax-remove-asset new-delete-btn\" href="+ urlForDelete +" title=\"Retiré cette action\"></a>"
 
                         let deleteBtn = document.querySelectorAll('.ajax-remove-asset');
-                        // console.log(deleteBtn);
                         deleteBtn.forEach(function (element) {
                             element.addEventListener('click' || 'touchstart', removeAsset);
                         });
