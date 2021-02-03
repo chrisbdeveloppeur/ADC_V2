@@ -39,24 +39,30 @@ class FinalStringController extends AbstractController
         $finalString .= $this->miseEnFormBalise($rdvs);
         $stringToHash = $finalString;
 
+
+//        die();
+
         if ($survey->getCommentaire()){
-            $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "]";
+            $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "] ";
         }
 
         //                  Horodatage
         $survey->setTimeStamp();
-        $horodatage = $survey->getTimeStamp()->format('d/m/Y - H:i');
+        $horodatage = "[" . $survey->getTimeStamp()->format('d/m/Y - H:i') . "] ";
         $finalString .= "\r\n" . $horodatage;
-
-        //                  Balise du service concerné (HD/SDP)
-        $finalString .= " [".$survey->getService()."]";
 
         //         Hashage (crc32) de la chaine final
         $survey->setHashedString($stringToHash);
-        $finalString .= " - [" . strtoupper($survey->getHashedString()) . "]";
+        $finalString .= "[" . strtoupper($survey->getHashedString()) . "] ";
+
+        //                  Balise du INC ou DEM
+        $finalString .= "[".$survey->getType()."] ";
+
+        //                  Balise du service concerné (HD/SDP)
+        $finalString .= "[".$survey->getService()."] ";
 
         $version = 2;
-        $finalString .= ' [ARBRE_DE_CLOTURE v.' . $version . "]" ;
+        $finalString .= '[ARBRE_DE_CLOTURE v.' . $version . "] " ;
 
 //                      MISE EN CORELATION FUSEAU HORAIRE                   //
 //        $survey->setTimeStamp(new \DateTime('', new \DateTimeZone('Europe/Paris') ) );
@@ -86,9 +92,11 @@ class FinalStringController extends AbstractController
 
         if (count($objects) != 0){
 
+
             $balise = '';
 
             foreach ($objects as $key => $object){
+                dump($object);
 
                 $balise .= "[";
                 $key++;
@@ -130,10 +138,22 @@ class FinalStringController extends AbstractController
                     }
                 }
 
+                if ($object != 'Rdv'){
+                    if ($object->getTpx()){
+                        $balise .= '<TPX_' . $object->getTpx() . '>';
+                    }
+                    if ($object->getRsdp()){
+                        $balise .= '<RSDP_' . $object->getRsdp() . '>';
+                    }
+                }
+
+
+
                 $balise .= "] ";
             }
             return $balise;
         }
+
     }
 
 
