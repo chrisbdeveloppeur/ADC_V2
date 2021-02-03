@@ -1,10 +1,26 @@
 <div class="icon-text is-size-4 has-text-centered has-background-dark has-text-light has-border-rounded mb-3">
     <span class=" has-text-left has-text-weight-bold is-uppercase">
         {% if survey.type == 'DEM' %}
-            Demande
+            <span class="mx-3">
+                Demande
+            </span>
         {% elseif survey.type == 'INC' %}
-            Incident
+            <span class=" mx-3">
+                Incident
+            </span>
         {% endif %}
-        {{ survey.service }}
+
+        {% if survey.service == 'HD' %}
+            <span class="icon is-normal">
+                <i class="fas fa-headset"></i>
+            </span>
+        {% elseif survey.service == 'SDP' %}
+            <span class="icon is-normal">
+                <i class="fas fa-toolbox"></i>
+            </span>
+        {% endif %}
+        <span class="">
+            {{ survey.service }}
+        </span>
     </span>
 </div>
