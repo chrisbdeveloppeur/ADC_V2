@@ -125,6 +125,20 @@
                                     <span>Autre logiciel & Accès</span>
                                 </a>
                             </li>
+                        {% elseif url == '/TELEPHONIE'  %}
+                            {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                <a href="#">
+                            {% else %}
+                                <li>
+                                <a href="{{ url }}">
+                            {% endif %}
+                            <span class="icon is-small">
+                                <i class="fas fa-lg fa-phone-alt"></i>
+                            </span>
+                            <span>Téléphonie</span>
+                            </a>
+                            </li>
                         {% elseif url == '/RDV'  %}
                                 {% if loop.index == (survey.chemin|length) %}
                                 <li class="is-active" title="Vous vous trouvé actuellement ici">

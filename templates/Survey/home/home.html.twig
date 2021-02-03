@@ -22,6 +22,15 @@
                         {% for child in form.service %}
                             <label class="column" onclick="checkRadio(this)">
                             <button class="button">
+                                {% if child.vars.value == 'HD' %}
+                                    <span class="icon is-small">
+                                        <i class="fas fa-lg fa-headset"></i>
+                                    </span>
+                                {% elseif child.vars.value == 'SDP' %}
+                                    <span class="icon is-small">
+                                        <i class="fas fa-lg fa-toolbox"></i>
+                                    </span>
+                                {% endif %}
                                 {{ child.vars.label }}
                                 {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
                             </button>
