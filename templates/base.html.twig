@@ -34,7 +34,7 @@
         <b>Arbre de clôture | v2</b>
     </p>
 
-    {{ include('includes/nav/nav_breacrumbs.html.twig') }}
+    {{ include('includes/nav/nav_breadcrumbs.html.twig') }}
 
     {% if app.user %}
     <div class="navbar-end has-text-centered">
@@ -67,20 +67,9 @@
     </div>
 </section>
 
-{#{% block footer %}#}
-{#    <footer class="footer">#}
-{#        <div class="content has-text-centered is-relative">#}
-{#            <img class="safran-backgound-img" src="" alt="">#}
-{#        </div>#}
-{#    </footer>#}
-{#{% endblock %}#}
 
 
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+
 
     {% block javascripts %}
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -92,7 +81,11 @@
         </script>
 
 
-
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
 
 
 
@@ -143,26 +136,9 @@
         {#               SCRIPT POUR AJAX                   #}
         <script>
 
-            function removeAsset(event){
-                let assetTag = event.target.parentElement.parentElement;
-                if (assetTag.parentNode) {
-                    assetTag.parentNode.removeChild(assetTag);
-                }
-                event.preventDefault();
-
-                const url = this.href;
-
-                axios.get(url).then(function (response) {
-
-                })
-            }
-
             let removeBtn = document.querySelectorAll('a.ajax-remove-asset').forEach(function (link){
                 link.addEventListener('click' || 'touchstart', removeAsset);
             });
-
-
-
 
             function addAsset(event){
 
@@ -279,6 +255,32 @@
 
             }
 
+            function removeAsset(event){
+                let assetTag = event.target.parentElement.parentElement;
+                if (assetTag.parentNode) {
+                    assetTag.parentNode.removeChild(assetTag);
+                }
+                event.preventDefault();
+
+                const url = this.href;
+
+                axios.get(url).then(function (response) {
+
+                })
+            }
+
+            // let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
+            //
+            // ajaxForm.forEach(function (form) {
+            //     form.addEventListener('submit', addAsset);
+            // })
+
+        </script>
+        {#        FIN DU SCRIPT         #}
+
+
+        {#              LES FONCTIONS                   #}
+        <script>
 
             function setMultiple(multipleCheckbox){
                 let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
@@ -315,7 +317,6 @@
                 }
             } ;
 
-
             autoFilledAssetsFields();
 
             function autoFilledAssetsFields(){
@@ -341,12 +342,6 @@
                 );
             }
 
-            // let ajaxForm = document.querySelectorAll('form.ajax-add-asset');
-            //
-            // ajaxForm.forEach(function (form) {
-            //     form.addEventListener('submit', addAsset);
-            // })
-
             function addAttributes(htmlObjet, attributes, value){
                 htmlObjet.setAttribute(attributes, value);
             }
@@ -360,7 +355,7 @@
             }
 
         </script>
-        {#        FIN DU SCRIPT         #}
+        {#        FIN          #}
 
     {% endblock %}
 </body>
