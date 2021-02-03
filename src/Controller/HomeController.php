@@ -53,9 +53,10 @@ class HomeController extends AbstractController
     /**
      * @Route("/type", name="tasktorinct")
      */
-    public function tasktOrInct(Request $request, CheminController $cheminController)
+    public function tasktOrInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
-        $survey = $this->get('session')->get('survey');
+        $survey = $surveySessionController->checkSurveySession();
+
         $survey->setType(null);
         $form = $this->createForm(TypeFormType::class);
         $form->handleRequest($request);

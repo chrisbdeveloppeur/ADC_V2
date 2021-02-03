@@ -17,9 +17,10 @@ class InctController extends AbstractController
     /**
      * @Route("/type", name="home")
      */
-    public function typeInct(Request $request, CheminController $cheminController)
+    public function typeInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
-        $survey = $this->get('session')->get('survey');
+        $survey = $surveySessionController->checkSurveySession();
+
         $survey->setCasInct(null);
         $type = $survey->getType();
         if ($type == "INC") {

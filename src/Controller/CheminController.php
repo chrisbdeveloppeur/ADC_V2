@@ -19,12 +19,8 @@ class CheminController extends AbstractController
             $survey->addUrl($referer);
         }
         $array = $survey->getChemin();
-//        if (end($array) != $referer){
-//            array_pop($array);
-//            $survey->setChemin($array);
-//        }
+
         foreach ($array as $key => $value){
-            dump($key .'=>'. $value);
             if ($value != $referer){
                 $newArray[] = $value;
             }elseif ($value == $referer){
@@ -33,7 +29,6 @@ class CheminController extends AbstractController
             }
         }
         $survey->setChemin($newArray);
-        dump($survey);
     }
 
 }

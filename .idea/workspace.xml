@@ -2,11 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a5ed598-3b44-447a-9f79-e12ffb334f49" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CheminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CheminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FinalStringController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FinalStringController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/FormsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FormsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/InctController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InctController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TasktController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TasktController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Survey/hd/taskt/asset_type_field.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Survey/hd/taskt/from_inct_field.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Survey/hd/taskt/new_user.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Survey/hd/taskt/type_field.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Survey/sdp/taskt/asset_type_field.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Survey/sdp/taskt/from_inct_field.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Survey/sdp/taskt/new_user.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Survey/sdp/taskt/type_field.html.twig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig" afterDir="false" />
     </list>
     <ignored path="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\public\build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,8 +68,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+            <state relative-caret-position="187">
+              <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -65,8 +77,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+            <state relative-caret-position="476">
+              <caret line="38" column="58" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/FormsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1513">
+              <caret line="110" column="57" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
+              <folding>
+                <element signature="e#3300#3313#1#PHP" expanded="true" />
+                <element signature="e#3429#3442#1#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,8 +99,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/FinalStringController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1037">
-              <caret line="66" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="527">
+              <caret line="36" column="57" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -127,7 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/registration/register.html.twig" />
         <option value="$PROJECT_DIR$/templates/security/lost_password.html.twig" />
         <option value="$PROJECT_DIR$/templates/security/reset_password.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/App.php" />
@@ -160,23 +193,24 @@
         <option value="$PROJECT_DIR$/templates/Survey/forms/rdv_form.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/nav/nav_for_only_one.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/Survey.php" />
-        <option value="$PROJECT_DIR$/src/Controller/CheminController.php" />
         <option value="$PROJECT_DIR$/templates/Survey/forms/final_string_form.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/nav/prev_next.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/nav/end.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/nav/prev_only.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/CmdbType.php" />
-        <option value="$PROJECT_DIR$/src/Controller/FormsController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/TasktController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/InctController.php" />
         <option value="$PROJECT_DIR$/templates/includes/nav_indicator.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/forms/cmdb_form.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/del_objects_section.html.twig" />
-        <option value="$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/FinalStringController.php" />
         <option value="$PROJECT_DIR$/assets/app.js" />
-        <option value="$PROJECT_DIR$/src/Controller/HomeController.php" />
         <option value="$PROJECT_DIR$/assets/styles/app.scss" />
+        <option value="$PROJECT_DIR$/src/Controller/CheminController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/SurveySessionController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/HomeController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/FinalStringController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/TasktController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/InctController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/FormsController.php" />
+        <option value="$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
       </list>
     </option>
@@ -314,24 +348,40 @@
             <path>
               <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
               <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Form" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
               <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+              <item name="nav" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="Survey" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="Survey" type="462c0819:PsiDirectoryNode" />
+              <item name="forms" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="Survey" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -344,26 +394,26 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/Survey/forms" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Controller" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\Survey\forms" />
-      <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\includes\nav" />
-      <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\includes" />
-      <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\Survey" />
-      <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\src\Form" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\includes\nav" />
       <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\Survey\forms" />
       <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\Survey\home" />
       <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\Survey\sdp" />
       <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\Survey\sdp\taskt" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\src\Controller" />
+      <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\Survey\forms" />
+      <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\includes\nav" />
+      <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\includes" />
+      <recent name="D:\JetBrains\PhpstormProjects\outil_tracage_SCC\templates\Survey" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -429,15 +479,15 @@
       <workItem from="1612122858890" duration="4637000" />
       <workItem from="1612165734784" duration="39276000" />
       <workItem from="1612253677832" duration="34157000" />
-      <workItem from="1612339644355" duration="2474000" />
+      <workItem from="1612339644355" duration="6020000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="494746000" />
+    <option name="totallyTimeSpent" value="498292000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1684435" />
@@ -454,7 +504,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.21910696" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.22860238" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -488,41 +538,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Controller/LoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Survey/home/home.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="71" selection-start-line="18" selection-start-column="71" selection-end-line="18" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Survey/forms/other_assets_form.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Survey/forms/apps_form.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Survey/forms/other_apps_form.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="33" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/forms/other_actions_form.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -534,16 +549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="56" column="9" selection-start-line="16" selection-start-column="7" selection-end-line="56" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/RegistrationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="35" column="47" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
-          <folding>
-            <element signature="e#34#54#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -731,16 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/CheminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
-          <folding>
-            <element signature="e#36#101#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/includes/nav_indicator.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -754,71 +749,6 @@
           <caret line="589" selection-start-line="589" selection-end-line="589" />
           <folding>
             <element signature="e#30#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/InctController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding>
-            <element signature="e#35#66#0#PHP" expanded="true" />
-            <element signature="e#1416#1423#1#PHP" expanded="true" />
-            <element signature="e#1551#1564#1#PHP" expanded="true" />
-            <element signature="e#1703#1708#1#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/TasktController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="54" column="44" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
-          <folding>
-            <element signature="e#35#67#0#PHP" expanded="true" />
-            <element signature="e#1284#1291#1#PHP" expanded="true" />
-            <element signature="e#1461#1474#1#PHP" expanded="true" />
-            <element signature="e#1648#1653#1#PHP" expanded="true" />
-            <element signature="e#1793#1807#1#PHP" expanded="true" />
-            <element signature="e#1953#1964#1#PHP" expanded="true" />
-            <element signature="e#2100#2107#1#PHP" expanded="true" />
-            <element signature="e#2238#2244#1#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/FormsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="549" column="9" selection-start-line="549" selection-start-column="9" selection-end-line="549" selection-end-column="9" />
-          <folding>
-            <element signature="e#2880#2891#0#PHP" expanded="true" />
-            <element signature="e#3275#3288#1#PHP" expanded="true" />
-            <element signature="e#3404#3417#1#PHP" expanded="true" />
-            <element signature="e#6617#6634#0#PHP" expanded="true" />
-            <element signature="e#7150#7155#1#PHP" expanded="true" />
-            <element signature="e#7223#7228#1#PHP" expanded="true" />
-            <element signature="e#7477#7482#1#PHP" expanded="true" />
-            <element signature="e#7550#7555#1#PHP" expanded="true" />
-            <element signature="e#10244#10262#0#PHP" expanded="true" />
-            <element signature="e#10725#10730#1#PHP" expanded="true" />
-            <element signature="e#10946#10951#1#PHP" expanded="true" />
-            <element signature="e#13379#13388#0#PHP" expanded="true" />
-            <element signature="e#13809#13820#1#PHP" expanded="true" />
-            <element signature="e#13888#13893#1#PHP" expanded="true" />
-            <element signature="e#14075#14086#1#PHP" expanded="true" />
-            <element signature="e#14154#14159#1#PHP" expanded="true" />
-            <element signature="e#16638#16653#0#PHP" expanded="true" />
-            <element signature="e#17023#17028#1#PHP" expanded="true" />
-            <element signature="e#17140#17145#1#PHP" expanded="true" />
-            <element signature="e#19583#19594#0#PHP" expanded="true" />
-            <element signature="e#19961#19966#1#PHP" expanded="true" />
-            <element signature="e#20078#20083#1#PHP" expanded="true" />
-            <element signature="e#22524#22534#0#PHP" expanded="true" />
-            <element signature="e#22900#22905#1#PHP" expanded="true" />
-            <element signature="e#23017#23022#1#PHP" expanded="true" />
-            <element signature="e#25053#25066#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -837,13 +767,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -868,13 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/FinalStringController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/4730af6c-1c21-4ac7-91bc-93b02ff26978/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -888,17 +804,118 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/RegistrationController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="140" />
+          <folding>
+            <element signature="e#34#54#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/SurveySessionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding>
+            <element signature="e#518#524#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Security/LoginAuthenticator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="77" column="9" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="48" column="28" lean-forward="true" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+        <state relative-caret-position="476">
+          <caret line="38" column="58" selection-start-line="38" selection-start-column="58" selection-end-line="38" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/CheminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+          <folding>
+            <element signature="e#36#101#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/FormsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1513">
+          <caret line="110" column="57" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
+          <folding>
+            <element signature="e#3300#3313#1#PHP" expanded="true" />
+            <element signature="e#3429#3442#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/InctController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/TasktController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Survey/sdp/taskt/asset_type_field.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Survey/sdp/taskt/type_field.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/FinalStringController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="36" column="57" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="6" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+        <state relative-caret-position="187">
+          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
         </state>
       </provider>
     </entry>

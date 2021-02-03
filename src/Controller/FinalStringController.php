@@ -14,9 +14,10 @@ class FinalStringController extends AbstractController
     /**
      * @Route("/CODE-FINAL", name="final_string")
      */
-    public function description(Request $request, EntityManagerInterface $em, CheminController $cheminController): Response
+    public function description(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
-        $survey = $this->get('session')->get('survey');
+        $survey = $surveySessionController->checkSurveySession();
+
         $finalString = '';
 
         $assets = $survey->getAssets();

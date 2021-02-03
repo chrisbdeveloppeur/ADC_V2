@@ -33,32 +33,7 @@
         <b>Arbre de clôture | v2</b>
     </p>
 
-    <div class="navbar-item is-hidden-touch">
-        {% if survey is defined %}
-            {% if (survey.chemin is not empty) and (survey.chemin|length > 1) %}
-                <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
-                    <ul>
-                        {% for url in survey.chemin %}
-                            {% if loop.index == 1 %}
-                                <li>
-                                    <a href="{{ url }}">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-lg fa-home" aria-hidden="true"></i>
-                                    </span>
-                                        <span>Accueil</span>
-                                    </a>
-                                </li>
-                            {% elseif loop.index == (survey.chemin|length) and url != '/CODE-FINAL'  %}
-                                <li><a href="#">?</a></li>
-                            {% else %}
-                                <li><a href="{{ url }}">{{ url }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </nav>
-            {% endif %}
-        {% endif %}
-    </div>
+    {{ include('includes/nav/nav_breacrumbs.html.twig') }}
 
     {% if app.user %}
     <div class="navbar-end has-text-centered">
@@ -85,21 +60,19 @@
 
     <div class="column is-flex-desktop is-align-items-center is-justify-content-center is-flex-direction-column">
 
-
+{#        {{ include('includes/nav/nav_breacrumbs.html.twig') }}#}
 
         {% block body %}{% endblock %}
     </div>
 </section>
 
-{{ include('includes/nav/nav_breacrumbs.html.twig') }}
-
-{% block footer %}
-    <footer class="footer">
-        <div class="content has-text-centered is-relative">
-            <img class="safran-backgound-img" src="{{ asset('build/images/1200px-Safran_-_logo_2016.f3a8e511.png') }}" alt="">
-        </div>
-    </footer>
-{% endblock %}
+{#{% block footer %}#}
+{#    <footer class="footer">#}
+{#        <div class="content has-text-centered is-relative">#}
+{#            <img class="safran-backgound-img" src="" alt="">#}
+{#        </div>#}
+{#    </footer>#}
+{#{% endblock %}#}
 
 
     <script>

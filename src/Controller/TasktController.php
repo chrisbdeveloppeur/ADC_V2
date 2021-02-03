@@ -18,9 +18,11 @@ class TasktController extends AbstractController
     /**
      * @Route("/type", name="home")
      */
-    public function fromInct(Request $request, CheminController $cheminController): Response
+    public function fromInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
-        $survey = $this->get('session')->get('survey');
+
+        $survey = $surveySessionController->checkSurveySession();
+
         $survey->setCasInct(null);
         $type = $survey->getType();
         $form = $this->createForm(TypeInterTasktForm::class);

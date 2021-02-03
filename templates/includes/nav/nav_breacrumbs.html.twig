@@ -1,6 +1,6 @@
-{% if survey is defined %}
-    {% if (survey.chemin is not empty) and (survey.chemin|length > 1) %}
-        <div class="box is-hidden-desktop">
+<div class="is-flex is-align-items-center px-4 py-4">
+    {% if survey is defined %}
+        {% if (survey.chemin is not empty) and (survey.chemin|length > 1) %}
             <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
                 <ul>
                     {% for url in survey.chemin %}
@@ -8,12 +8,12 @@
                             <li>
                                 <a href="{{ url }}">
                                     <span class="icon is-small">
-                                        <i class="fas fa-home" aria-hidden="true"></i>
+                                        <i class="fas fa-lg fa-home" aria-hidden="true"></i>
                                     </span>
-                                    <span>Accueil</span>
+                                    <span>Accueil (Services)</span>
                                 </a>
                             </li>
-                        {% elseif loop.index == (survey.chemin|length) and url != '/CODE-FINAL' %}
+                        {% elseif loop.index == (survey.chemin|length) and url != '/CODE-FINAL'  %}
                             <li><a href="#">?</a></li>
                         {% else %}
                             <li><a href="{{ url }}">{{ url }}</a></li>
@@ -21,6 +21,6 @@
                     {% endfor %}
                 </ul>
             </nav>
-        </div>
+        {% endif %}
     {% endif %}
-{% endif %}
+</div>
