@@ -15,4 +15,5 @@ const $ = require('jquery');
 const logo_SCC = require('../images/Logo_SCC.svg');
 const logo_SCC_2 = require('../images/logo_scc.png');
 const img_bg = require('../images/bg_B&W.png');
+const img_bg_2 = require('../images/bg_smoke.jpg');
 

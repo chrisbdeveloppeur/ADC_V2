@@ -19,7 +19,7 @@
 </head>
 <body class="is-relative has-navbar-fixed-top-desktop">
 
-<div class="bg-img" style="background: url({{ asset('build/images/bg_B&W.85cc0d6e.png') }})">
+<div class="bg-img" style="background: url({{ asset('build/images/bg_smoke.3c11092c.jpg') }})">
     <div class="bg-layer"></div>
 </div>
 
@@ -63,9 +63,6 @@
 <section class="is-fullheight is-flex is-justify-content-center is-align-items-center section-base-html">
 
     <div class="column is-flex-desktop is-align-items-center is-justify-content-center is-flex-direction-column">
-
-{#        {{ include('includes/nav/nav_breacrumbs.html.twig') }}#}
-
         {% block body %}{% endblock %}
     </div>
 </section>
@@ -195,7 +192,7 @@
                             onlyAsset = false;
                         }
                         for (const property in datas) {
-                            if ( property === 'url_for_delete' || property === 'position' || datas[property] === 'N/A' || datas[property] === null ) {
+                            if ( property === 'url_for_delete' || property === 'position' || datas[property] === 'XX' || datas[property] === null ) {
                             }else if (property === 'action' || property === 'type') {
                                 balises1.push(datas[property]);
                             } else if (property === 'maximum'){
@@ -211,7 +208,7 @@
 
                         balises2.forEach(function (element, key) {
                             if (balises2.length > 1){
-                                if (element !== 'N/A') {
+                                if (element !== 'XX') {
                                     onlyOne = false;
                                 }
                             }
@@ -227,7 +224,7 @@
                         }
 
                         balises2.forEach(function (element, key) {
-                            if (element !== 'N/A'){
+                            if (element !== 'XX'){
                                 if (key === 0){
                                     if ( onlyOne && onlyAsset){
                                         container.lastElementChild.firstElementChild.innerHTML += "<span class=\"icon-text tag is-dark hostnames\">\n" +

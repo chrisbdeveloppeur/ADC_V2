@@ -109,14 +109,14 @@ class FinalStringController extends AbstractController
 
 
                 if ($object == 'Asset' || $object == 'OtherAsset'){
-                    if ($object->getAe() && $object->getAe() != 'N/A' ){
+                    if ($object->getAe() && $object->getAe() != 'XX' ){
                         $balise .= '<AE_' . $object->getAe() . '>';
                     }
-                    if ($object->getAs() && $object->getAs() != 'N/A' ){
+                    if ($object->getAs() && $object->getAs() != 'XX' ){
                         $balise .= '<AS_' . $object->getAs() . '>';
                     }
                 }elseif ($object == 'App' || $object == 'OtherApp' || $object == 'OtherAction'){
-                    if ($object->getAsset() && $object->getAsset() != 'N/A' ){
+                    if ($object->getAsset() && $object->getAsset() != 'XX' ){
                         $balise .= '<ASSET_' . $object->getAsset() . '>';
                     }
                 }elseif ($object == 'Rdv'){
@@ -133,7 +133,7 @@ class FinalStringController extends AbstractController
                     if ($object->getNbAction()){
                         $balise .= '<NB_' . $object->getNbAction() . '>';
                     }
-                    if ($object->getAsset() && $object->getAsset() != 'N/A' ){
+                    if ($object->getAsset() && $object->getAsset() != 'XX' ){
                         $balise .= '<ASSET_' . $object->getAsset() . '>';
                     }
                 }
@@ -142,7 +142,7 @@ class FinalStringController extends AbstractController
                     if ($object->getTpx()){
                         $balise .= '<TPX_' . $object->getTpx() . '>';
                     }
-                    if ($object->getRsdp()){
+                    if ($object->getRsdp() && $object->getRsdp() != 'N/A' ){
                         $balise .= '<RSDP_' . $object->getRsdp() . '>';
                     }
                 }
