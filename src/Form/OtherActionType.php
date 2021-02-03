@@ -45,7 +45,7 @@ class OtherActionType extends AbstractType
                     'choices' => [
                         'Oui' => 'oui',
                         'Non' => 'non',
-                        'Sans RDV' => 'N/A',
+//                        'Sans RDV' => 'N/A',
                     ],
                     'data' => 'N/A',
                 ]

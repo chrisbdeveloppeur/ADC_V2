@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="is-hidden hidden-forced dynamic-field mb-4" id="rsdp-field">
+            <div class="is-hidden dynamic-field mb-4" id="rsdp-field">
                 <div class="field">
                     <p class="control">
                         <label class="checkbox label">
@@ -124,10 +124,17 @@
             // hideAddBtn();
 
             if (!values.includes('') ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
-                removeAttributes(action_asset, 'disabled');
-                makeVisible(fieldAssets);
                 makeVisible(fieldTpx);
                 addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                let condition1 = ['STK_TRF','MAT_AUT'];
+                if (condition1.some( el => values.includes(el) ) ){
+                    makeVisible(fieldRsdp);
+                }
+                let condition2 = ['NWK_BRS','MAS_CMD','SPP_MAS_NOC','INS_PRT','INS_PMA'];
+                if (condition2.some( el => values.includes(el) ) ){
+                    removeAttributes(action_asset, 'disabled');
+                    makeVisible(fieldAssets);
+                }
             }
 
 
@@ -138,37 +145,7 @@
             //         removeClass(action_asset, 'disabled');
             //         makeVisible(fieldAssets);
             //     }
-            //     let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
-            //     if (condition2.some( el => values.includes(el) ) ){
-            //         makeVisible(fieldTpx);
-            //     }
-            // }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
-            //     removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
-            //     let condition1 = ['PHN','TRD'];
-            //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(asset_as, 'disabled');
-            //         makeVisible(fieldAssets);
-            //     }
-            //     makeVisible(fieldTpx);
-            // }else if (values.includes('REN')) { // DOTATION + REPRISE (RENOUVELLEMENT)
-            //     removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-            //     let condition1 = ['PHN'];
-            //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(action_asset, 'disabled');
-            //         removeClass(asset_as, 'disabled');
-            //         makeVisible(fieldAssets);
-            //         makeVisible(fieldTpx);
-            //     }
-            // }else if (values.includes('PRT')) { //              PRET
-            //     removeSelectOption(document.getElementById('other_asset_type'), ['TRD','PMA','TNR','PRT','PRP']);
-            //     let condition1 = ['PHN'];
-            //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(action_asset, 'disabled');
-            //         makeVisible(fieldAssets);
-            //         makeVisible(fieldTpx);
-            //     }
             // }
-            // console.log(values);
         }
 
 
