@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <div class="is-hidden hidden-forced dynamic-field mb-4" id="rsdp-field">
+            <div class="is-hidden dynamic-field mb-4" id="rsdp-field">
                 <div class="field">
                     <p class="control">
                         <label class="checkbox label">
@@ -136,11 +136,30 @@
             initializeAssetsForm();
             // hideAddBtn();
 
+            console.log(values);
+
             if (!values.includes('') ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
-                removeAttributes(app_asset, 'disabled');
-                makeVisible(fieldAssets);
                 makeVisible(fieldTpx);
                 addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+
+                let condition1 = ['SFW_ACL','SFW_CFP','SFW_HLO','SFW_SAV','SFW_QUE'];
+                if (condition1.some( el => values.includes(el) ) ){
+                    makeVisible(fieldRsdp);
+                }
+
+                let condition2 = ['MEP_MYV','MEP_SNW','HAB_CAD'];
+                if (!condition2.some( el => values.includes(el) ) ){
+                    removeAttributes(app_asset, 'disabled');
+                    makeVisible(fieldAssets);
+                }
+                // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
+                //     // console.log(values);
+                //     let condition1 = ['PHN','PRT','TRD'];
+                //     if (condition1.some( el => values.includes(el) ) ){
+                //         removeClass(action_asset, 'disabled');
+                //         makeVisible(fieldAssets);
+                //     }
+                // }
             }
         }
 
