@@ -14,8 +14,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/type'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-map-signs"></i>
                                     </span>
@@ -23,8 +28,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/DEM/type'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-tasks"></i>
                                     </span>
@@ -32,8 +42,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/INC/type'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-tools"></i>
                                     </span>
@@ -41,8 +56,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/ASSET'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-desktop"></i>
                                     </span>
@@ -50,8 +70,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/ASSET-2'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-print"></i>
                                     </span>
@@ -59,8 +84,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/AUTRE-ACTION-MATERIEL'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-server"></i>
                                     </span>
@@ -68,8 +98,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/LOGICIEL'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fab fa-lg fa-microsoft"></i>
                                     </span>
@@ -77,8 +112,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/LOGICIEL-2'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-window-restore"></i>
                                     </span>
@@ -86,8 +126,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/RDV'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-calendar-alt"></i>
                                     </span>
@@ -95,8 +140,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/COMMENTAIRE'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-comment-dots"></i>
                                     </span>
@@ -104,8 +154,13 @@
                                 </a>
                             </li>
                         {% elseif url == '/CODE-FINAL'  %}
-                            <li>
-                                <a href="{{ url }}">
+                                {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                <li>
+                                    <a href="{{ url }}">
+                                {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-tag"></i>
                                     </span>

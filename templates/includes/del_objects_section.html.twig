@@ -19,7 +19,7 @@
                         <span class="tag is-dark">{{ object.type }}</span>
                     {% endif %}
 
-                    {% if object.ae != null %}
+                    {% if (object.ae != null) and (object.ae != "XX") %}
                         <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">
                             <span class="icon is-small">
                                 <i class="fas fa-plus-square"></i>
@@ -27,7 +27,7 @@
                             <span>{{ object.ae }}</span>
                         </span>
                     {% endif %}
-                    {% if object.as != null %}
+                    {% if (object.as != null) and (object.as != "XX") %}
                         <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">
                             <span class="icon is-small">
                                 <i class="fas fa-minus-square"></i>
@@ -52,7 +52,7 @@
                         <span class="tag is-dark">{{ object.type }}</span>
                     {% endif %}
 
-                    {% if object.ae != null %}
+                    {% if (object.ae != null) and (object.ae != "XX") %}
                         <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">
                             <span class="icon is-small">
                                 <i class="fas fa-plus-square"></i>
@@ -60,7 +60,7 @@
                             <span>{{ object.ae }}</span>
                         </span>
                     {% endif %}
-                    {% if object.as != null %}
+                    {% if (object.as != null) and (object.as != "XX") %}
                         <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">
                             <span class="icon is-small">
                                 <i class="fas fa-minus-square"></i>

@@ -1,10 +1,10 @@
-<div class="icon-text is-size-4 has-text-centered has-background-dark has-text-light">
+<div class="icon-text is-size-4 has-text-centered has-background-dark has-text-light has-border-rounded mb-3">
     <span class=" has-text-left has-text-weight-bold is-uppercase">
         {% if survey.type == 'DEM' %}
-            Demande [TASKT]
+            Demande
         {% elseif survey.type == 'INC' %}
-            Incident [INCT]
+            Incident
         {% endif %}
-        [{{ survey.service }}]
+        {{ survey.service }}
     </span>
 </div>

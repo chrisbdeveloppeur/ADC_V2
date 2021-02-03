@@ -8,6 +8,7 @@ $link-hover : $info;
 $link-focus : $info;
 $link-focus-border: $info;
 $link-active-border: $info;
+$breadcrumb-item-active-color: $info;
 
 //$navbar-height: 5rem;
 
@@ -157,6 +158,10 @@ $link-active-border: $info;
 .hostnames:hover{
   cursor: pointer;
   text-decoration: underline;
+}
+
+.has-border-rounded{
+  border-radius: 6px;
 }
 
 input::-webkit-outer-spin-button,
