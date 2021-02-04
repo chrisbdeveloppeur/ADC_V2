@@ -676,21 +676,25 @@ class FormsController extends AbstractController
         $rdvForm->handleRequest($request);
 
         if ($rdvForm->isSubmitted() && $rdvForm->isValid()){
-            $rdvTotal = $rdvForm->get('rdv_total')->getData();
-            $rdvKoScc = $rdvForm->get('rdv_ko_scc')->getData();
-            $rdvKoSafran = $rdvForm->get('rdv_ko_safran')->getData();
+
+            $balise = $rdvForm->get('balise')->getData();
+            $reponse = $rdvForm->get('rdv')->getData();
             $rdv = $survey->getRdvs();
-            if ($rdvTotal != null || $rdvKoScc != null || $rdvKoSafran != null){
-                if ( count($rdv) >= 1 ){
-                    $survey->getRdvs()->clear();
-                }
+            if ( count($rdv) >= 1 ){
+                $survey->getRdvs()->clear();
+            }
+            if ($reponse == 'oui'){
                 $rdv = new Rdv();
-                $rdv->setRdvTotal($rdvTotal);
-                $rdv->setRdvKoScc($rdvKoScc);
-                $rdv->setRdvKoSafran($rdvKoSafran);
-                $rdv->setBalise('');
+                $rdv->setBalise($balise);
                 $survey->addRdv($rdv);
             }
+
+//            dump($rdvForm->get('rdv')->getData());
+//            dump($balise);
+//
+//
+//
+//            dd($survey);
 
             return $this->redirectToRoute("commentaire");
         }

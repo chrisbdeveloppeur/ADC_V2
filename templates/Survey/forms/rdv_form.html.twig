@@ -12,61 +12,63 @@
 
             {{ form_start(rdv_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
             <div class="field">
-                <label class="label" for="last_name">Veuillez indiquer les informations des rendez-vous</label>
+                <label class="label" for="last_name">
+                    Un rendez-vous a-t-il fait l'objet de l'intervention ?
+                </label>
 
-                <div class="field has-addons">
-                    <p class="control">
-                        <a class="button is-static">
-                            <span class="icon-text icon is-small is-left">
-                                <i class="fas fa-calendar-alt"></i>
-                            </span>
-                            <span>
-                                Total
-                            </span>
-                        </a>
-                    </p>
-                    <p class="control is-expanded">
-                        {{ form_widget(rdv_form.rdv_total, {'attr' : {'class' : 'input', 'onkeyup': 'verif_nombre(this),verif_nombre_max(this,2)'} }) }}
-                    </p>
+                <div class="field">
+
+                    <div class="control">
+                        {% for child in rdv_form.rdv %}
+                            {% if child.vars.label == 'Oui' %}
+                                <label class="" onclick="checkRadio(this);rdvYesSelected()">
+                                    <a href="#" class="button">
+                                        <span class="icon">
+                                            <i class="fas fa-calendar-check"></i>
+                                        </span>
+                                        <span>
+                                            {{ child.vars.label }}
+                                            {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                                        </span>
+                                    </a>
+                                </label>
+                            {% elseif child.vars.label == 'Non' %}
+                                <label class="" onclick="checkRadio(this);rdvNoSelected()">
+                                    <button type="submit" class="button">
+                                        <span class="icon">
+                                            <i class="fas fa-calendar-times"></i>
+                                        </span>
+                                        <span>
+                                            {{ child.vars.label }}
+                                            {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                                        </span>
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </span>
+                                    </button>
+                                </label>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
                 </div>
 
-                <div class="field has-addons">
-                    <p class="control">
-                        <a class="button is-static">
-                            <span class="icon-text icon is-small is-left">
-                                <i class="fas fa-calendar-times"></i>
-                            </span>
-                            <span>
-                                SCC
-                            </span>
-                        </a>
-                    </p>
-                    <p class="control is-expanded">
-                        {{ form_widget(rdv_form.rdv_ko_scc, {'attr' : {'class' : 'input', 'onkeyup': 'verif_nombre(this),verif_nombre_max(this,2)'} }) }}
-                    </p>
-                </div>
-
-
-                <div class="field has-addons">
-                    <p class="control">
-                        <a class="button is-static">
-                            <span class="icon-text icon is-small is-left">
-                                <i class="fas fa-calendar-times"></i>
-                            </span>
-                            <span>
-                                Safran
-                            </span>
-                        </a>
-                    </p>
-                    <p class="control is-expanded">
-                        {{ form_widget(rdv_form.rdv_ko_safran, {'attr' : {'class' : 'input', 'onkeyup': 'verif_nombre(this),verif_nombre_max(this,2)'} }) }}
-                    </p>
+                <div class="field is-hidden rdv-field">
+                    <label class="label">
+                        Si oui, veuillez selectionner un des cas ci-dessous :
+                    </label>
+                    <div class="control select">
+                        {{ form_widget(rdv_form.balise, {'attr': {'class': 'has-text-centered'} } ) }}
+                    </div>
                 </div>
 
             </div>
 
-            <div class="field">
+            <div class="field is-hidden rdv-field">
                 {{ include('includes/nav/prev_next.html.twig') }}
+            </div>
+            <div class="field" id="prevOnly">
+                {{ include('includes/nav/prev_only.html.twig') }}
             </div>
 
             {{ include('includes/del_objects_section.html.twig') }}
@@ -83,13 +85,28 @@
 
     <script>
 
-        let copyBtn = document.getElementById('copy-btn');
+        let rdvField = document.querySelectorAll('.rdv-field');
+        let prevOnly = document.getElementById('prevOnly');
 
-        function CopyToClipboard(containerid) {
-            let textArea = document.getElementById(containerid);
-            textArea.select();
-            textArea.setSelectionRange(0, 99999); /* For mobile devices */
-            document.execCommand('copy');
+        function rdvYesSelected() {
+            prevOnly.classList.add('is-hidden');
+            rdvField.forEach(function (el) {
+               el.classList.remove('is-hidden');
+               var select = el.querySelector('select');
+               if (select){
+                   select.selectedIndex = 0;
+               }
+            });
+        }
+        function rdvNoSelected() {
+            prevOnly.classList.remove('is-hidden');
+            rdvField.forEach(function (el) {
+                el.classList.add('is-hidden');
+                var select = el.querySelector('select');
+                if (select){
+                    select.value = '';
+                }
+            });
         }
 
     </script>
