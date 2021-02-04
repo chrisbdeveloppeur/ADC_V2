@@ -45,6 +45,11 @@ class FinalStringController extends AbstractController
             $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "] ";
         }
 
+        //                  SI ANNULEE
+        if ($survey->getCanceled() == true){
+            $finalString .= "[ANNULE] ";
+        }
+
         //                  Horodatage
         $survey->setTimeStamp();
         $horodatage = "[" . $survey->getTimeStamp()->format('d/m/Y - H:i') . "] ";

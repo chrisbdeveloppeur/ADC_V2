@@ -56,11 +56,6 @@ class Survey
     private $commentaire;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $meeting_respected;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $timestamp;
@@ -135,6 +130,11 @@ class Survey
      */
     private $chemin = [];
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $canceled;
+
     public function __construct()
     {
         $this->cas = 'N/A';
@@ -145,6 +145,7 @@ class Survey
         $this->cas_taskt = 'N/A';
         $this->commentaire = 'N/A';
         $this->setName('Survey');
+        $this->setCanceled(false);
 
 //        $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
@@ -589,6 +590,18 @@ class Survey
         $response = in_array($url, $this->chemin);
 
         return $response;
+    }
+
+    public function getCanceled(): ?bool
+    {
+        return $this->canceled;
+    }
+
+    public function setCanceled(?bool $canceled): self
+    {
+        $this->canceled = $canceled;
+
+        return $this;
     }
 
 }

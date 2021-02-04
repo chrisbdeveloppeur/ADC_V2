@@ -6,7 +6,7 @@
                     {% for url in survey.chemin %}
                         {% if loop.index == 1 %}
                             <li>
-                                <a href="{{ url }}">
+                                <a href="{{ url }}" title="Cliquer pour revenir ici">
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-home" aria-hidden="true"></i>
                                     </span>
@@ -19,7 +19,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-map-signs"></i>
@@ -33,7 +33,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-tasks"></i>
@@ -47,7 +47,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-tools"></i>
@@ -61,7 +61,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-desktop"></i>
@@ -75,7 +75,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-print"></i>
@@ -89,7 +89,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-server"></i>
@@ -103,7 +103,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fab fa-lg fa-microsoft"></i>
@@ -117,7 +117,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-window-restore"></i>
@@ -131,7 +131,7 @@
                                 <a href="#">
                             {% else %}
                                 <li>
-                                <a href="{{ url }}">
+                                <a href="{{ url }}" title="Cliquer pour revenir ici">
                             {% endif %}
                             <span class="icon is-small">
                                 <i class="fas fa-lg fa-phone-alt"></i>
@@ -145,7 +145,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-calendar-alt"></i>
@@ -159,7 +159,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-comment-dots"></i>
@@ -173,7 +173,7 @@
                                     <a href="#">
                                 {% else %}
                                 <li>
-                                    <a href="{{ url }}">
+                                    <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-tag"></i>
@@ -184,7 +184,7 @@
                         {% elseif loop.index == (survey.chemin|length) and url != '/CODE-FINAL'  %}
                             <li><a href="#">{{ url }}</a></li>
                         {% else %}
-                            <li><a href="{{ url }}">{{ url }}</a></li>
+                            <li><a href="{{ url }}" title="Cliquer pour revenir ici">{{ url }}</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>

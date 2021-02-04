@@ -753,4 +753,22 @@ class FormsController extends AbstractController
 
 
 
+
+
+
+    /**
+     * @Route("/ANULEE", name="canceled")
+     */
+    public function canceled(Request $request, SurveySessionController $surveySessionController): Response
+    {
+        $survey = $surveySessionController->checkSurveySession();
+
+        $survey->setCanceled(true);
+
+//        $cheminController->setChemins($request);
+        return $this->redirectToRoute('final_string');
+    }
+
+
+
 }
