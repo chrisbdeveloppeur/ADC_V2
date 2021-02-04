@@ -37,6 +37,7 @@ class FormsController extends AbstractController
      */
     public function assetForm(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
+//        dd($request);
         $form = $this->createForm(GlobalFormType::class);
         $assetForm = $this->createForm(AssetType::class);
         $survey = $surveySessionController->checkSurveySession();
@@ -45,7 +46,6 @@ class FormsController extends AbstractController
         for ($i=0; $i<=count($survey->getAssets()); $i++ ){
             $number = $i;
         }
-
         if ( $assetForm->isSubmitted() && $number<=10 ){
 
             if ($assetForm->get('action')->getData()){

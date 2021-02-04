@@ -13,14 +13,14 @@ class GlobalFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('asset', EntityType::class,[
-//                'label' => false,
-                    'required' => true,
-                    'class' => Asset::class
-                ]
-            )
-        ;
+//        $builder
+////            ->add('asset', EntityType::class,[
+//////                'label' => false,
+////                    'required' => true,
+////                    'class' => Asset::class
+////                ]
+////            )
+//        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
