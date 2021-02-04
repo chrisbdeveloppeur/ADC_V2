@@ -39,7 +39,6 @@ class FinalStringController extends AbstractController
         $finalString .= $this->miseEnFormBalise($rdvs);
         $stringToHash = $finalString;
 
-
 //        die();
 
         if ($survey->getCommentaire()){
@@ -92,19 +91,44 @@ class FinalStringController extends AbstractController
 
         if (count($objects) != 0){
 
+            $objects = $objects->toArray();
+            sort($objects);
+            dump($objects);
+
+//            $tab = $objects->toArray();
+//            dd($tab);
+//            $tab2 = [];
+//            foreach ($tab as $k => $val){
+//                $val = (array) $val;
+//                dump($val);
+//            }
+//            die();
+//            foreach ($tab as $k => $val){
+//                array_push($tab2,$val->getBalise());
+//            }
+//            $array = array_count_values($tab2);
+//            dump($array);
+//
+//
+//            foreach ($array as $k => $val){
+//
+//            }
 
             $balise = '';
+            $nb = 0;
 
             foreach ($objects as $key => $object){
                 $balise .= "[";
-
-                if ($objects[$key - 1]){
+                if (isset($objects[$key - 1])){
                     if ($object->getBalise() != $objects[$key - 1]->getBalise()){
-                        $key = 0;
+                        $nb = 0;
+                    }else{
+                        $nb++;
                     }
+                    $key = $nb;
                 }
-                dump($key);
                 $key++;
+                dump($key);
                 if ( $object == 'Rdv' || $object == 'Cmdb' ){
                     $balise .= $object->getBalise();
                 }else{
