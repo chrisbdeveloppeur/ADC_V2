@@ -152,8 +152,8 @@
     {% for object in survey.rdvs %}
         <div class="control">
             <div class="tags has-addons">
-                {% if object.rdvtotal %}
-                    <span class="tag is-dark">NB_RDV_{{ object.rdvtotal }}</span>
+                {% if object.balise %}
+                    <span class="tag is-dark">{{ object.balise }}</span>
                 {% endif %}
                 <a class="tag is-delete ajax-remove-asset" href="{{ path('rdv_del') }}" title="Retiré cette action"></a>
             </div>

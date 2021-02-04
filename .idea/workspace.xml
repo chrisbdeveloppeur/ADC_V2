@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a5ed598-3b44-447a-9f79-e12ffb334f49" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Controller/FormsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/FormsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RdvType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RdvType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Survey/forms/rdv_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/forms/rdv_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/includes/del_objects_section.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/del_objects_section.html.twig" afterDir="false" />
     </list>
     <ignored path="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\public\build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,15 +61,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/FormsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="707" column="14" lean-forward="true" selection-start-line="707" selection-start-column="14" selection-end-line="707" selection-end-column="14" />
+            <state relative-caret-position="120">
+              <caret line="678" selection-start-line="678" selection-end-line="678" />
               <folding>
                 <element signature="e#34#53#0#PHP" expanded="true" />
                 <element signature="e#25463#25496#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/includes/del_objects_section.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="162" lean-forward="true" selection-start-line="162" selection-end-line="162" />
             </state>
           </provider>
         </entry>
@@ -208,7 +215,6 @@
         <option value="$PROJECT_DIR$/assets/app.js" />
         <option value="$PROJECT_DIR$/templates/Survey/forms/final_string_form.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/FinalStringController.php" />
-        <option value="$PROJECT_DIR$/templates/includes/del_objects_section.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/nav/nav_breacrumbs.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/home/type_inter.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/AssetType.php" />
@@ -240,6 +246,7 @@
         <option value="$PROJECT_DIR$/src/Form/RdvType.php" />
         <option value="$PROJECT_DIR$/templates/Survey/forms/rdv_form.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/FormsController.php" />
+        <option value="$PROJECT_DIR$/templates/includes/del_objects_section.html.twig" />
       </list>
     </option>
   </component>
@@ -406,21 +413,7 @@
               <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
               <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Survey" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Survey" type="462c0819:PsiDirectoryNode" />
-              <item name="forms" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="outil_tracage_SCC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="outil_tracage_SCC" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="Survey" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -520,12 +513,12 @@
       <workItem from="1612339644355" duration="27381000" />
       <workItem from="1612371583746" duration="2050000" />
       <workItem from="1612373963960" duration="1954000" />
-      <workItem from="1612427176819" duration="11123000" />
+      <workItem from="1612427176819" duration="11378000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="534780000" />
+    <option name="totallyTimeSpent" value="535035000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -580,16 +573,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Controller/CheminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-          <folding>
-            <element signature="e#36#101#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/SurveySessionController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -987,12 +970,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/FormsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="707" column="14" lean-forward="true" selection-start-line="707" selection-start-column="14" selection-end-line="707" selection-end-column="14" />
+        <state relative-caret-position="120">
+          <caret line="678" selection-start-line="678" selection-end-line="678" />
           <folding>
             <element signature="e#34#53#0#PHP" expanded="true" />
             <element signature="e#25463#25496#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/includes/del_objects_section.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="162" lean-forward="true" selection-start-line="162" selection-end-line="162" />
         </state>
       </provider>
     </entry>
