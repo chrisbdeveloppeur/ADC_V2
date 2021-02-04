@@ -1,8 +1,9 @@
-{% if survey.chemin|length > 2 %}
-    {% if (survey.chemin[survey.chemin|length-1] != '/DEM/type') and (survey.chemin[survey.chemin|length-1] != '/CODE-FINAL') %}
-        <div class="column">
-            <article class="message is-warning is-small">
-                <div class="message-body has-text-centered">
+{% if survey is defined %}
+    {% if survey.chemin|length > 2 %}
+        {% if (survey.chemin[survey.chemin|length-1] != '/DEM/type') and (survey.chemin[survey.chemin|length-1] != '/CODE-FINAL') %}
+            <div class="column">
+                <article class="message is-warning is-small">
+                    <div class="message-body has-text-centered">
             <span class="icon-text is-flex is-align-items-center is-justify-content-center">
                 <span class="icon is-normal">
                     <i class="fas fa-lg fa-info-circle"></i>
@@ -10,8 +11,9 @@
                 <span>Faite suite à une demande ou un incident annulé(e) :</span>
                 <a href="{{ path('canceled') }}" class="button mx-3 is-small">Cliquez ici</a>
             </span>
-                </div>
-            </article>
-        </div>
+                    </div>
+                </article>
+            </div>
+        {% endif %}
     {% endif %}
 {% endif %}
