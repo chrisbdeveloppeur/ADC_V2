@@ -23,21 +23,6 @@ class Rdv
     private $name;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $rdv_total;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $rdv_ko_scc;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $rdv_ko_safran;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $balise;
@@ -54,9 +39,6 @@ class Rdv
 
     public function __construct()
     {
-        $this->setRdvTotal(0);
-        $this->setRdvKoScc(0);
-        $this->setRdvKoSafran(0);
         $this->setName('Rdv');
     }
 
@@ -73,42 +55,6 @@ class Rdv
     public function setName(?string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getRdvTotal(): ?int
-    {
-        return $this->rdv_total;
-    }
-
-    public function setRdvTotal(?int $rdv_total): self
-    {
-        $this->rdv_total = $rdv_total;
-
-        return $this;
-    }
-
-    public function getRdvKoScc(): ?int
-    {
-        return $this->rdv_ko_scc;
-    }
-
-    public function setRdvKoScc(?int $rdv_ko_scc): self
-    {
-        $this->rdv_ko_scc = $rdv_ko_scc;
-
-        return $this;
-    }
-
-    public function getRdvKoSafran(): ?int
-    {
-        return $this->rdv_ko_safran;
-    }
-
-    public function setRdvKoSafran(?int $rdv_ko_safran): self
-    {
-        $this->rdv_ko_safran = $rdv_ko_safran;
 
         return $this;
     }
