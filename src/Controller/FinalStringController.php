@@ -96,14 +96,23 @@ class FinalStringController extends AbstractController
             $balise = '';
 
             foreach ($objects as $key => $object){
-                dump($object);
-
                 $balise .= "[";
+
+                if ($objects[$key - 1]){
+                    if ($object->getBalise() != $objects[$key - 1]->getBalise()){
+                        $key = 0;
+                    }
+                }
+                dump($key);
                 $key++;
                 if ( $object == 'Rdv' || $object == 'Cmdb' ){
                     $balise .= $object->getBalise();
                 }else{
-                    $balise .= $object->getBalise() . "_" . $key;
+                    if ($key == 1){
+                        $balise .= $object->getBalise();
+                    }else{
+                        $balise .= $object->getBalise() . "_" . $key;
+                    }
                 }
 
 
@@ -118,16 +127,6 @@ class FinalStringController extends AbstractController
                 }elseif ($object == 'App' || $object == 'OtherApp' || $object == 'OtherAction'){
                     if ($object->getAsset() && $object->getAsset() != 'XX' ){
                         $balise .= '<ASSET_' . $object->getAsset() . '>';
-                    }
-                }elseif ($object == 'Rdv'){
-                    if ($object->getRdvTotal()){
-                        $balise .= '<NB_RDV_' . $object->getRdvTotal() . '>';
-                    }
-                    if ($object->getRdvKoScc()){
-                        $balise .= '<NB_RDV_KOSCC_' . $object->getRdvKoScc() . '>';
-                    }
-                    if ($object->getRdvKoSafran()){
-                        $balise .= '<NB_RDV_KOSF_' . $object->getRdvKoSafran() . '>';
                     }
                 }elseif ($object == 'Cmdb'){
                     if ($object->getNbAction()){
