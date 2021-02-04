@@ -93,26 +93,6 @@ class FinalStringController extends AbstractController
 
             $objects = $objects->toArray();
             sort($objects);
-            dump($objects);
-
-//            $tab = $objects->toArray();
-//            dd($tab);
-//            $tab2 = [];
-//            foreach ($tab as $k => $val){
-//                $val = (array) $val;
-//                dump($val);
-//            }
-//            die();
-//            foreach ($tab as $k => $val){
-//                array_push($tab2,$val->getBalise());
-//            }
-//            $array = array_count_values($tab2);
-//            dump($array);
-//
-//
-//            foreach ($array as $k => $val){
-//
-//            }
 
             $balise = '';
             $nb = 0;

@@ -152,6 +152,7 @@
             initializeAssetsForm();
             // hideAddBtn();
             if (!values.includes('') ){
+                console.log(values);
                 makeVisible(fieldTpx);
                 addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
                 if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
@@ -183,7 +184,6 @@
                     makeVisible(fieldAssets);
                 }
             }
-
 
         }
 
