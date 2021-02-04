@@ -47,7 +47,7 @@ class FinalStringController extends AbstractController
 
         //                  SI ANNULEE
         if ($survey->getCanceled() == true){
-            $finalString .= "[ANNULE] ";
+            $finalString = "[ANNULE] ";
         }
 
         //                  Horodatage
