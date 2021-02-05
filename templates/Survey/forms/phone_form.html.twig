@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="is-hidden dynamic-field mb-4" id="rsdp-field">
+            <div class="is-hidden dynamic-field mb-4 {% if survey.service == 'HD' %}hidden-forced{% endif %}" id="rsdp-field">
                 <div class="field">
                     <p class="control">
                         <label class="checkbox label">
@@ -124,30 +124,30 @@
             initializeAssetsForm();
             // hideAddBtn();
 
-            if (!values.includes('') ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
-                let condition1 = ['TEL_CRE'];
-                if ( !condition1.some( el => values.includes(el) ) ){
-                    removeAttributes(phone_asset, 'disabled');
-                    makeVisible(fieldAssets);
+            requiredForAdd.forEach(function (element) {
+                if (element.value){
+                    typeField.forEach(element => addAttributes(element,'required', true));
+                    let condition1 = ['TEL_CRE'];
+                    if ( !condition1.some( el => values.includes(el) ) ){
+                        removeAttributes(phone_asset, 'disabled');
+                        addAttributes(phone_asset, 'required', true);
+                        makeVisible(fieldAssets);
+                    }
+                    let condition2 = ['TEL_SCR'];
+                    if ( !condition2.some( el => values.includes(el) ) ){
+                        removeAttributes(phone_asset, 'required');
+                        makeVisible(fieldRsdp);
+                    }
+                    makeVisible(fieldTpx);
+                    addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                }else {
+                    typeField.forEach(function(element){
+                        element.value = '';
+                        removeAttributes(element, 'required');
+                        removeAttributes(phone_asset, 'required');
+                    });
                 }
-                let condition2 = ['TEL_SCR'];
-                if ( !condition2.some( el => values.includes(el) ) ){
-                    makeVisible(fieldRsdp);
-                }
-
-                makeVisible(fieldTpx);
-                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
-            }
-
-
-            // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
-            //     // console.log(values);
-            //     let condition1 = ['PHN','PRT','TRD'];
-            //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(phone_asset, 'disabled');
-            //         makeVisible(fieldAssets);
-            //     }
-            // }
+            });
         }
 
 

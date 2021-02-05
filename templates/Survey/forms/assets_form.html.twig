@@ -32,7 +32,7 @@
             <div class="field">
                 <p class="control">
                     <span class="select is-fullwidth">
-                        {{ form_widget(asset_form.type, {'attr': {'class': 'select has-text-centered js-on-change for-ajax'}}) }}
+                        {{ form_widget(asset_form.type, {'attr': {'class': 'select has-text-centered js-on-change for-ajax type-field'}}) }}
                     </span>
                 </p>
             </div>
@@ -130,37 +130,61 @@
         let fieldTpx = document.getElementById('tpx-field');
         let fieldRsdp = document.getElementById('rsdp-field');
 
+
         input.forEach(element => element.addEventListener('input', updateValue) );
+
+
 
         // window.onload = function(){
         //     updateValue();
         // } ;
 
         function updateValue(e) {
+
             let values = [];
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
             // hideAddBtn();
-            if (values.includes('DEM') || values.includes('PRT') || values.includes('NDO') ){
-                makeVisible(fieldAssets);
-                makeVisible(fieldRsdp);
-                makeVisible(fieldTpx);
-                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
-                removeAttributes(asset_ae, 'disabled');
-            }else if (values.includes('REP')) {
-                makeVisible(fieldAssets);
-                makeVisible(fieldRsdp);
-                makeVisible(fieldTpx);
-                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
-                removeAttributes(asset_as, 'disabled');
-            }else if (values.includes('REN')) {
-                makeVisible(fieldAssets);
-                makeVisible(fieldRsdp);
-                makeVisible(fieldTpx);
-                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
-                removeAttributes(asset_ae, 'disabled');
-                removeAttributes(asset_as, 'disabled');
-            }
+            requiredForAdd.forEach(function (element) {
+                if (element.value){
+                    typeField.forEach(element => addAttributes(element,'required', true));
+                    if (values.includes('DEM') || values.includes('PRT') || values.includes('NDO') ){
+                        makeVisible(fieldAssets);
+                        makeVisible(fieldRsdp);
+                        makeVisible(fieldTpx);
+                        addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                        removeAttributes(asset_ae, 'disabled');
+                        addAttributes(asset_ae, 'required', true);
+                        removeAttributes(asset_as, 'required');
+                    }else if (values.includes('REP')) {
+                        makeVisible(fieldAssets);
+                        makeVisible(fieldRsdp);
+                        makeVisible(fieldTpx);
+                        addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                        removeAttributes(asset_as, 'disabled');
+                        addAttributes(asset_as, 'required', true);
+                        removeAttributes(asset_ae, 'required');
+                    }else if (values.includes('REN')) {
+                        makeVisible(fieldAssets);
+                        makeVisible(fieldRsdp);
+                        makeVisible(fieldTpx);
+                        addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                        removeAttributes(asset_ae, 'disabled');
+                        removeAttributes(asset_as, 'disabled');
+                        addAttributes(asset_ae, 'required', true);
+                        addAttributes(asset_as, 'required', true);
+                    }
+                }else {
+                    typeField.forEach(function(element){
+                        element.value = '';
+                        removeAttributes(element, 'required');
+                        removeAttributes(asset_ae, 'required');
+                        removeAttributes(asset_as, 'required');
+                    });
+
+                }
+            });
+
         }
 
 

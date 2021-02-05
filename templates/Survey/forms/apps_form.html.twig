@@ -62,7 +62,8 @@
                 </div>
             </div>
 
-            <div class="is-hidden dynamic-field mb-4" id="rsdp-field">
+
+            <div class="is-hidden {% if survey.service == 'HD' %}hidden-forced{% endif %} dynamic-field mb-4" id="rsdp-field">
                 <div class="field">
                     <p class="control">
                         <label class="checkbox label">
