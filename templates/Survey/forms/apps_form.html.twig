@@ -147,17 +147,36 @@
             initializeAssetsForm();
             // hideAddBtn();
 
-            if (!values.includes('') ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
-                console.log(values);
-                removeAttributes(app_asset, 'disabled');
-                makeVisible(fieldAssets);
-                makeVisible(fieldTpx);
-                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
-                let condition1 = ['SFW_LOC','SFW_TLK'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    makeVisible(fieldRsdp);
+            requiredForAdd.forEach(function (element) {
+                if (element.value){
+                    removeAttributes(app_asset, 'disabled');
+                    addAttributes(app_asset, 'required', true);
+                    makeVisible(fieldAssets);
+                    makeVisible(fieldTpx);
+                    addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                    let condition1 = ['SFW_LOC','SFW_TLK'];
+                    if (condition1.some( el => values.includes(el) ) ){
+                        makeVisible(fieldRsdp);
+                    }
+                }else {
+                    removeAttributes(app_asset, 'required');
                 }
-            }
+            });
+            //
+            // if (values.value ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
+            //     console.log(values);
+            //     removeAttributes(app_asset, 'disabled');
+            //     addAttributes(app_asset, 'required', true);
+            //     makeVisible(fieldAssets);
+            //     makeVisible(fieldTpx);
+            //     addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+            //     let condition1 = ['SFW_LOC','SFW_TLK'];
+            //     if (condition1.some( el => values.includes(el) ) ){
+            //         makeVisible(fieldRsdp);
+            //     }
+            // }else {
+            //     removeAttributes(app_asset, 'required');
+            // }
 
 
             // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE

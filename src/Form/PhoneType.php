@@ -41,7 +41,7 @@ class PhoneType extends AbstractType
                         'Oui' => 'oui',
                         'Non' => 'non',
                     ],
-                    'data' => 'N/A',
+                    'data' => 'oui',
                 ]
             )
             ->add('tpx', IntegerType::class,[

@@ -61,7 +61,7 @@ class AssetType extends AbstractType
                         'Non' => 'non',
                         'Sans RDV' => 'N/A',
                     ],
-                    'data' => 'N/A',
+                    'data' => 'oui',
                 ]
             )
             ->add('tpx', IntegerType::class,[

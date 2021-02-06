@@ -136,43 +136,35 @@
             initializeAssetsForm();
             // hideAddBtn();
 
-            if (!values.includes('') ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
-                let condition1 = ['SDP_SFW_INV'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeAttributes(cmdb_asset, 'disabled');
-                    makeVisible(fieldAssets);
-                }
-                makeVisible(fieldTpx);
-                makeVisible(fieldRsdp);
-                makeVisible(fieldNbAction);
-                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
-            }
-
-            if (values.includes('SDP_SFW_INV') ){ // NOUVELLE DOTATION SANS REPRISE
-                // console.log(values);
-                let condition1 = ['PHN','PRT','TRD'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    removeClass(cmdb_asset, 'disabled');
-                    makeVisible(fieldAssets);
-                }
-                let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
-                if (condition2.some( el => values.includes(el) ) ){
+            requiredForAdd.forEach(function (element) {
+                if (element.value){
+                    typeField.forEach(element => addAttributes(element,'required', true));
+                    let condition1 = ['SDP_SFW_INV'];
+                    if (condition1.some( el => values.includes(el) ) ){
+                        removeAttributes(cmdb_asset, 'disabled');
+                        addAttributes(cmdb_asset, 'required', true);
+                        makeVisible(fieldAssets);
+                    }
                     makeVisible(fieldTpx);
+                    makeVisible(fieldRsdp);
+                    makeVisible(fieldNbAction);
+                    addAttributes(fieldNbAction.querySelector('input'), 'required', true);
+                    addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                }else {
+                    typeField.forEach(function(element){
+                        element.value = '';
+                        removeAttributes(element, 'required');
+                        removeAttributes(cmdb_asset, 'required');
+                        removeSelectOption(fieldNbAction.querySelector('input'), 'required');
+                    });
                 }
+            });
+
+            if (!values.includes('') ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
+
             }
 
-            // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
-            //     // console.log(values);
-            //     let condition1 = ['PHN','PRT','TRD'];
-            //     if (condition1.some( el => values.includes(el) ) ){
-            //         removeClass(cmdb_asset, 'disabled');
-            //         makeVisible(fieldAssets);
-            //     }
-            //     let condition2 = ['TNR','PRT','TRD','PMA','PRP'];
-            //     if (condition2.some( el => values.includes(el) ) ){
-            //         makeVisible(fieldTpx);
-            //     }
-            // }
+
         }
 
 

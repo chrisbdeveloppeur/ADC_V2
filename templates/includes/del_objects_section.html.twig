@@ -80,7 +80,7 @@
                         <span class="tag is-dark">{{ object.action }}</span>
                     {% endif %}
 
-                    {% if object.asset != null %}
+                    {% if (object.asset != null) and (object.asset != "XX") %}
                         <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">{{ object.asset }}</span>
                     {% endif %}
                     <a class="tag is-delete ajax-remove-asset" href="{{ path('other_action_del', {'position': object.position }) }}" title="Retiré cette action"></a>
@@ -95,7 +95,7 @@
                         <span class="tag is-dark">{{ object.action }}</span>
                     {% endif %}
 
-                    {% if object.asset != null %}
+                    {% if (object.asset != null) and (object.asset != "XX") %}
                         <span class="icon-text tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">{{ object.asset }}</span>
                     {% endif %}
                     <a class="tag is-delete ajax-remove-asset" href="{{ path('app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
@@ -110,10 +110,10 @@
                         <span class="tag is-dark">{{ object.action }}</span>
                     {% endif %}
 
-                    {% if object.asset != null %}
+                    {% if (object.asset != null) and (object.asset != "XX") %}
                         <span class="tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">{{ object.asset }}</span>
                     {% endif %}
-                    <a class="tag is-delete ajax-remove-asset" href="{{ path('app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
+                    <a class="tag is-delete ajax-remove-asset" href="{{ path('other_app_del', {'position': object.position }) }}" title="Retiré cette action"></a>
                 </div>
             </div>
         {% endfor %}
@@ -126,7 +126,7 @@
                     <span class="tag is-dark">{{ object.action }}</span>
                 {% endif %}
 
-                {% if object.asset != null %}
+                {% if (object.asset != null) and (object.asset != "XX") %}
                     <span class="tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">{{ object.asset }}</span>
                 {% endif %}
                 <a class="tag is-delete ajax-remove-asset" href="{{ path('phone_del', {'position': object.position }) }}" title="Retiré cette action"></a>
@@ -141,7 +141,7 @@
                     <span class="tag is-dark">{{ object.action }}</span>
                 {% endif %}
 
-                {% if object.asset != null %}
+                {% if (object.asset != null) and (object.asset != "XX") %}
                     <span class="tag is-dark hostnames" title="Selectionnez un des champs 'Asset' et cliquer pour ajouter ce Hostname">{{ object.asset }}</span>
                 {% endif %}
                 <a class="tag is-delete ajax-remove-asset" href="{{ path('cmdb_del', {'position': object.position }) }}" title="Retiré cette action"></a>

@@ -136,31 +136,26 @@
             initializeAssetsForm();
             // hideAddBtn();
 
-            console.log(values);
+            requiredForAdd.forEach(function (element) {
+                if (element.value){
+                    makeVisible(fieldTpx);
+                    addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                    let condition1 = ['SFW_ACL','SFW_CFP','SFW_HLO','SFW_SAV','SFW_QUE'];
+                    if (condition1.some( el => values.includes(el) ) ){
+                        makeVisible(fieldRsdp);
+                    }
 
-            if (!values.includes('') ){ // SI AU MOINS UN OBJET EST SELECTIONNEE
-                makeVisible(fieldTpx);
-                addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
-
-                let condition1 = ['SFW_ACL','SFW_CFP','SFW_HLO','SFW_SAV','SFW_QUE'];
-                if (condition1.some( el => values.includes(el) ) ){
-                    makeVisible(fieldRsdp);
+                    let condition2 = ['MEP_MYV','MEP_SNW','HAB_CAD'];
+                    if (!condition2.some( el => values.includes(el) ) ){
+                        removeAttributes(app_asset, 'disabled');
+                        addAttributes(app_asset, 'required', true);
+                        makeVisible(fieldAssets);
+                    }
+                }else {
+                    removeAttributes(app_asset, 'required');
                 }
+            });
 
-                let condition2 = ['MEP_MYV','MEP_SNW','HAB_CAD'];
-                if (!condition2.some( el => values.includes(el) ) ){
-                    removeAttributes(app_asset, 'disabled');
-                    makeVisible(fieldAssets);
-                }
-                // if (values.includes('NDO') ){ // NOUVELLE DOTATION SANS REPRISE
-                //     // console.log(values);
-                //     let condition1 = ['PHN','PRT','TRD'];
-                //     if (condition1.some( el => values.includes(el) ) ){
-                //         removeClass(action_asset, 'disabled');
-                //         makeVisible(fieldAssets);
-                //     }
-                // }
-            }
         }
 
 

@@ -135,7 +135,6 @@
                     }
                     let condition2 = ['TEL_SCR'];
                     if ( !condition2.some( el => values.includes(el) ) ){
-                        removeAttributes(phone_asset, 'required');
                         makeVisible(fieldRsdp);
                     }
                     makeVisible(fieldTpx);
