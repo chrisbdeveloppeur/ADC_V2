@@ -113,7 +113,6 @@ class FinalStringController extends AbstractController
                     $key = $nb;
                 }
                 $key++;
-                dump($key);
                 if ( $object == 'Rdv' || $object == 'Cmdb' ){
                     $balise .= $object->getBalise();
                 }else{
