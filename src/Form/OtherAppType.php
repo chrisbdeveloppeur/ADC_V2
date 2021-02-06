@@ -51,8 +51,9 @@ class OtherAppType extends AbstractType
                     'choices' => [
                         'Oui' => 'oui',
                         'Non' => 'non',
+                        'Fait à distance' => 'N/A',
                     ],
-                    'data' => 'oui',
+                    'data' => 'N/A',
                 ]
             )
             ->add('tpx', IntegerType::class,[

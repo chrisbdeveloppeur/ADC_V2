@@ -58,12 +58,15 @@
                         <label class="checkbox label">
                             Rendez-vous respécté par l'utilisateur ?
                         </label>
-                            {% for child in asset_form.rsdp %}
-                                <label class="radio">
-                                    {{ form_widget(child) }}
-                                    {{ child.vars.label }}
-                                </label>
-                            {% endfor %}
+
+                    <div class="column is-flex is-justify-content-space-evenly">
+                        {% for child in asset_form.rsdp %}
+                            <label class="radio">
+                                {{ form_widget(child) }}
+                                {{ child.vars.label }}
+                            </label>
+                        {% endfor %}
+                    </div>
 
                     </p>
                 </div>
@@ -148,38 +151,31 @@
             requiredForAdd.forEach(function (element) {
                 if (element.value){
                     typeField.forEach(element => addAttributes(element,'required', true));
+                    addAttributes(fieldRsdp.querySelector('input'), 'required', true);
+                    addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
+                    makeVisible(fieldAssets);
+                    makeVisible(fieldTpx);
                     if (values.includes('DEM') || values.includes('PRT') || values.includes('NDO') ){
-                        makeVisible(fieldAssets);
-                        makeVisible(fieldRsdp);
-                        makeVisible(fieldTpx);
-                        addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
                         removeAttributes(asset_ae, 'disabled');
                         addAttributes(asset_ae, 'required', true);
                         removeAttributes(asset_as, 'required');
                     }else if (values.includes('REP')) {
-                        makeVisible(fieldAssets);
-                        makeVisible(fieldRsdp);
-                        makeVisible(fieldTpx);
-                        addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
                         removeAttributes(asset_as, 'disabled');
                         addAttributes(asset_as, 'required', true);
                         removeAttributes(asset_ae, 'required');
                     }else if (values.includes('REN')) {
-                        makeVisible(fieldAssets);
-                        makeVisible(fieldRsdp);
-                        makeVisible(fieldTpx);
-                        addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
                         removeAttributes(asset_ae, 'disabled');
                         removeAttributes(asset_as, 'disabled');
                         addAttributes(asset_ae, 'required', true);
                         addAttributes(asset_as, 'required', true);
                     }
                 }else {
+                    removeAttributes(fieldRsdp.querySelector('input'), 'required');
+                    removeAttributes(asset_ae, 'required');
+                    removeAttributes(asset_as, 'required');
                     typeField.forEach(function(element){
                         element.value = '';
                         removeAttributes(element, 'required');
-                        removeAttributes(asset_ae, 'required');
-                        removeAttributes(asset_as, 'required');
                     });
 
                 }

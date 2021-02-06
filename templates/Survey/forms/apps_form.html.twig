@@ -69,12 +69,16 @@
                         <label class="checkbox label">
                             Si l'opération a été déroulée sur place, aurait-elle pu être faite à distance ?
                         </label>
+
+                        <div class="column is-flex is-justify-content-space-evenly">
                             {% for child in app_form.rsdp %}
                                 <label class="radio">
                                     {{ form_widget(child) }}
                                     {{ child.vars.label }}
                                 </label>
                             {% endfor %}
+                        </div>
+
                     </p>
                 </div>
             </div>
@@ -150,6 +154,7 @@
             requiredForAdd.forEach(function (element) {
                 if (element.value){
                     removeAttributes(app_asset, 'disabled');
+                    removeAttributes(fieldRsdp.querySelector('input'), 'required');
                     addAttributes(app_asset, 'required', true);
                     makeVisible(fieldAssets);
                     makeVisible(fieldTpx);
@@ -157,6 +162,7 @@
                     let condition1 = ['SFW_LOC','SFW_TLK'];
                     if (condition1.some( el => values.includes(el) ) ){
                         makeVisible(fieldRsdp);
+                        addAttributes(fieldRsdp.querySelector('input'), 'required', true);
                     }
                 }else {
                     removeAttributes(app_asset, 'required');

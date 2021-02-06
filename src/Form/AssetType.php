@@ -59,9 +59,9 @@ class AssetType extends AbstractType
                     'choices' => [
                         'Oui' => 'oui',
                         'Non' => 'non',
-                        'Sans RDV' => 'N/A',
+                        'Sans rendez-vous' => 'N/A',
                     ],
-                    'data' => 'oui',
+                    'data' => 'N/A',
                 ]
             )
             ->add('tpx', IntegerType::class,[

@@ -58,12 +58,16 @@
                         <label class="checkbox label">
                             Si l'opération a été déroulée sur place, aurait-elle pu être faite à distance ?
                         </label>
+
+                        <div class="column is-flex is-justify-content-space-evenly">
                             {% for child in other_app_form.rsdp %}
                                 <label class="radio">
                                     {{ form_widget(child) }}
                                     {{ child.vars.label }}
                                 </label>
                             {% endfor %}
+                        </div>
+
                     </p>
                 </div>
             </div>

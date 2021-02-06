@@ -32,11 +32,11 @@
             <div class="is-hidden dynamic-field field has-addons" id="nb-action-field">
                 <p class="control">
                     <a class="button is-static">
-                        Nombre d'objets concernés
+                        Nombre de tranches de 100
                     </a>
                 </p>
                 <p class="control is-expanded">
-                    {{ form_widget(cmdb_form.nb_action, {'attr' : {'class' : 'input', 'onkeyup': 'verif_nombre(this),verif_nombre_max(this,5)'} }) }}
+                    {{ form_widget(cmdb_form.nb_action, {'attr' : {'class' : 'input', 'onkeyup': 'verif_nombre(this),verif_nombre_max(this,3)'} }) }}
                 </p>
             </div>
 
@@ -57,12 +57,16 @@
                         <label class="checkbox label">
                             Si l'opération a été déroulée sur place, aurait-elle pu être faite à distance ?
                         </label>
-                        {% for child in cmdb_form.rsdp %}
-                            <label class="radio">
-                                {{ form_widget(child) }}
-                                {{ child.vars.label }}
-                            </label>
-                        {% endfor %}
+
+                        <div class="column is-flex is-justify-content-space-evenly">
+                            {% for child in cmdb_form.rsdp %}
+                                <label class="radio">
+                                    {{ form_widget(child) }}
+                                    {{ child.vars.label }}
+                                </label>
+                            {% endfor %}
+                        </div>
+
                     </p>
                 </div>
             </div>
@@ -147,15 +151,17 @@
                     }
                     makeVisible(fieldTpx);
                     makeVisible(fieldRsdp);
+                    addAttributes(fieldRsdp.querySelector('input'), 'required', true);
                     makeVisible(fieldNbAction);
                     addAttributes(fieldNbAction.querySelector('input'), 'required', true);
                     addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
                 }else {
+                    removeAttributes(cmdb_asset, 'required');
+                    removeSelectOption(fieldNbAction.querySelector('input'), 'required');
+                    removeAttributes(fieldRsdp.querySelector('input'), 'required');
                     typeField.forEach(function(element){
                         element.value = '';
                         removeAttributes(element, 'required');
-                        removeAttributes(cmdb_asset, 'required');
-                        removeSelectOption(fieldNbAction.querySelector('input'), 'required');
                     });
                 }
             });

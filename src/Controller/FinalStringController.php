@@ -57,7 +57,7 @@ class FinalStringController extends AbstractController
 
         //         Hashage (crc32) de la chaine final
         $survey->setHashedString($stringToHash);
-        $finalString .= "[" . strtoupper($survey->getHashedString()) . "] ";
+        $finalString .= "[" . $survey->getHashedString() . "] ";
 
         //                  Balise du INC ou DEM
         $finalString .= "[".$survey->getType()."] ";

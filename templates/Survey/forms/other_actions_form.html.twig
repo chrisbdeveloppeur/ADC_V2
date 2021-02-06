@@ -45,12 +45,16 @@
                         <label class="checkbox label">
                             Si l'opération a été déroulée sur place, aurait-elle pu être faite à distance ?
                         </label>
+
+                        <div class="column is-flex is-justify-content-space-evenly">
                             {% for child in other_action_form.rsdp %}
                                 <label class="radio">
                                     {{ form_widget(child) }}
                                     {{ child.vars.label }}
                                 </label>
                             {% endfor %}
+                        </div>
+
                     </p>
                 </div>
             </div>
@@ -129,6 +133,7 @@
                     let condition1 = ['STK_TRF','MAT_AUT'];
                     if (condition1.some( el => values.includes(el) ) ){
                         makeVisible(fieldRsdp);
+                        addAttributes(fieldRsdp.querySelector('input'), 'required', true);
                     }
                     let condition2 = ['NWK_BRS','MAS_CMD','SPP_MAS_NOC','INS_PRT','INS_PMA'];
                     if (condition2.some( el => values.includes(el) ) ){
@@ -136,12 +141,6 @@
                         addAttributes(action_asset, 'required', true);
                         makeVisible(fieldAssets);
                     }
-                }else {
-                    typeField.forEach(function(element){
-                        element.value = '';
-                        removeAttributes(element, 'required');
-                        removeAttributes(action_asset, 'required');
-                    });
                 }
             });
         }
@@ -172,7 +171,13 @@
             hiddeAllFields();
             action_asset.setAttribute('disabled', true);
             action_asset.value = null;
+            removeAttributes(fieldRsdp.querySelector('input'), 'required');
+            removeAttributes(action_asset, 'required');
             removeAttributes(fieldTpx.querySelector('.tpx'), 'required');
+            typeField.forEach(function(element){
+                element.value = '';
+                removeAttributes(element, 'required');
+            });
             // document.getElementById('asset-btn-form').style.visibility = 'hidden';
             input.forEach(function (element) {
                 element.querySelectorAll('option').forEach(option => option.style.display = 'block')

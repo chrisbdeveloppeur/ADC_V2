@@ -60,7 +60,7 @@ class OtherAssetType extends AbstractType
                     'choices' => [
                         'Oui' => 'oui',
                         'Non' => 'non',
-                        'Sans RDV' => 'oui',
+                        'Sans rendez-vous' => 'N/A',
                     ],
                     'data' => 'N/A',
                 ]
