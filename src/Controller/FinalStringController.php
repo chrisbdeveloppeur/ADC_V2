@@ -74,6 +74,7 @@ class FinalStringController extends AbstractController
 //                         SUPPRESSION DES CHAINES VIDE                     //
 //        $text = preg_replace('/\s\s+/', ' ', $finalString);
 
+        $finalString = strtoupper($finalString);
         $survey->setFinalString($finalString);
 
         $cheminController->setChemins($request);
