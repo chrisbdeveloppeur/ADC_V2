@@ -31,19 +31,38 @@
                 {% if form_name == 'type_inter_taskt_form' %}
                     <div class="field">
                         <div class="control">
-                            {{ form_widget(form, {'attr': {'class': 'select'} } ) }}
+                            {{ form_widget(form, {'attr': {'class': 'select is-fullwidth'} } ) }}
                         </div>
                     </div>
-
                 {% else %}
                     <div class="control">
                         {% for child in form.type %}
                             <label class="column" onclick="checkRadio(this)">
                                 <button class="button">
+                                    {% if child.vars.value == 'INC' %}
+                                        <span class="icon is-small">
+                                            <i class="fas fa-lg fa-tools"></i>
+                                        </span>
+                                    {% elseif child.vars.value == 'DEM' %}
+                                        <span class="icon is-small">
+                                            <i class="fas fa-lg fa-tasks"></i>
+                                        </span>
+                                    {% elseif child.vars.value == 1 %}
+                                        <span class="icon is-small">
+                                            <i class="fas fa-lg fa-laptop"></i>
+                                        </span>
+                                    {% elseif child.vars.value == 2 %}
+                                        <span class="icon is-small">
+                                            <i class="fas fa-lg fa-desktop"></i>
+                                        </span>
+                                    {% elseif child.vars.value == 3 %}
+                                        <span class="icon is-small">
+                                            <i class="fab fa-lg fa-microsoft"></i>
+                                        </span>
+                                    {% endif %}
                                     {{ child.vars.label }}
                                     {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
                                 </button>
-
                             </label>
                         {% endfor %}
                     </div>

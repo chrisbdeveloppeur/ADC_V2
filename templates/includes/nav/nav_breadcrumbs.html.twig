@@ -10,7 +10,7 @@
                                     <span class="icon is-small">
                                         <i class="fas fa-lg fa-home" aria-hidden="true"></i>
                                     </span>
-                                    <span>Accueil (Services)</span>
+                                    <span>Services</span>
                                 </a>
                             </li>
                         {% elseif url == '/type'  %}
@@ -64,7 +64,7 @@
                                     <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
-                                        <i class="fas fa-lg fa-desktop"></i>
+                                        <i class="fas fa-lg fa-laptop"></i>
                                     </span>
                                     <span>Poste de travail</span>
                                 </a>
@@ -78,7 +78,7 @@
                                     <a href="{{ url }}" title="Cliquer pour revenir ici">
                                 {% endif %}
                                     <span class="icon is-small">
-                                        <i class="fas fa-lg fa-print"></i>
+                                        <i class="fas fa-lg fa-desktop"></i>
                                     </span>
                                     <span>Autre périphérique</span>
                                 </a>
@@ -137,6 +137,20 @@
                                 <i class="fas fa-lg fa-phone-alt"></i>
                             </span>
                             <span>Téléphonie</span>
+                            </a>
+                            </li>
+                        {% elseif url == '/CMDB'  %}
+                            {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                <a href="#">
+                            {% else %}
+                                <li>
+                                <a href="{{ url }}" title="Cliquer pour revenir ici">
+                            {% endif %}
+                            <span class="icon is-small">
+                                <i class="fas fa-lg fa-layer-group"></i>
+                            </span>
+                            <span>CMDB</span>
                             </a>
                             </li>
                         {% elseif url == '/RDV'  %}

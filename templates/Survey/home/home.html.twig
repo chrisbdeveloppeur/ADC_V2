@@ -10,8 +10,6 @@
                     <h1 class="title is-size-4-mobile">Bienvenue sur l'outil d'assistance à la fermeture de demandes [TASKT] & incidents [INCT]</h1>
                 </div>
 
-{#                <h1 class="title is-size-1-desktop">Bienvenue sur l'outil d'assistance à la fermeture de demandes [TASKT] & incidents [INCT]</h1>#}
-
                 <label class="label">Veuillez selectionner le service concerné</label>
 
                 <div class="">
@@ -21,21 +19,20 @@
                     <div class="control">
                         {% for child in form.service %}
                             <label class="column" onclick="checkRadio(this)">
-                            <button class="button">
-                                {% if child.vars.value == 'HD' %}
-                                    <span class="icon is-small">
-                                        <i class="fas fa-lg fa-headset"></i>
-                                    </span>
-                                {% elseif child.vars.value == 'SDP' %}
-                                    <span class="icon is-small">
-                                        <i class="fas fa-lg fa-toolbox"></i>
-                                    </span>
-                                {% endif %}
-                                {{ child.vars.label }}
-                                {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
-                            </button>
-
-                        </label>
+                                <button class="button">
+                                    {% if child.vars.value == 'HD' %}
+                                        <span class="icon is-small">
+                                            <i class="fas fa-lg fa-headset"></i>
+                                        </span>
+                                    {% elseif child.vars.value == 'SDP' %}
+                                        <span class="icon is-small">
+                                            <i class="fas fa-lg fa-toolbox"></i>
+                                        </span>
+                                    {% endif %}
+                                    {{ child.vars.label }}
+                                    {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                                </button>
+                            </label>
                         {% endfor %}
                     </div>
 
