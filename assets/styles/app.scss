@@ -173,6 +173,20 @@ $notification-padding-rtl: .2rem .2rem .2rem .2rem;
 .help-pointer-hover:hover{
   cursor: help !important;
 }
+.help-pointer-hover:hover::after {
+  position: absolute;
+  font-weight: normal;
+  font-size: small;
+  font-family: 'Oxygen', sans-serif;
+  content: attr(data-tooltip);
+  bottom: 100%;
+  left: 0;
+  background-color: #363636;
+  color: white;
+  padding: .25em .5em;
+  border-radius: 3px;
+  text-align: left;
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
