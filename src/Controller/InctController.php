@@ -19,8 +19,11 @@ class InctController extends AbstractController
      */
     public function typeInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
-        $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $survey->setCasInct(null);
         $type = $survey->getType();

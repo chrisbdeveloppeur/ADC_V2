@@ -57,8 +57,11 @@ class HomeController extends AbstractController
      */
     public function method(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
-        $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $form = $this->createForm(ResolveMethodType::class);
         $form->handleRequest($request);
@@ -90,8 +93,11 @@ class HomeController extends AbstractController
      */
     public function tasktOrInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
-        $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $survey->setType(null);
         $form = $this->createForm(TypeFormType::class);

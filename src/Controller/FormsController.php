@@ -40,8 +40,11 @@ class FormsController extends AbstractController
 //        dd($request);
         $form = $this->createForm(GlobalFormType::class);
         $assetForm = $this->createForm(AssetType::class);
-        $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $form->handleRequest($request);
         $assetForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getAssets()); $i++ ){
@@ -108,8 +111,11 @@ class FormsController extends AbstractController
      */
     public function delAsset($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-        $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $assetToDelete = $survey->getAssets()[$position];
         unset($survey->getAssets()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -133,10 +139,13 @@ class FormsController extends AbstractController
      */
     public function otherAssetForm(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $form = $this->createForm(GlobalFormType::class);
         $otherAssetForm = $this->createForm(OtherAssetType::class);
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
         $form->handleRequest($request);
         $otherAssetForm->handleRequest($request);
 
@@ -214,8 +223,11 @@ class FormsController extends AbstractController
      */
     public function delOtherAsset($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $otherAssetToDelete = $survey->getOtherAssets()[$position];
         unset($survey->getOtherAssets()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -245,8 +257,11 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $otherActionForm = $this->createForm(OtherActionType::class);
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $form->handleRequest($request);
         $otherActionForm->handleRequest($request);
 
@@ -307,8 +322,11 @@ class FormsController extends AbstractController
      */
     public function delOtherAction($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $otherAssetToDelete = $survey->getOtherActions()[$position];
         unset($survey->getOtherActions()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -339,8 +357,11 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $appForm = $this->createForm(AppType::class);
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $form->handleRequest($request);
         $appForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getApps()); $i++ ){
@@ -404,8 +425,11 @@ class FormsController extends AbstractController
      */
     public function delApp($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $appToDelete = $survey->getApps()[$position];
         unset($survey->getApps()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -432,8 +456,11 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $otherAppForm = $this->createForm(OtherAppType::class);
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $form->handleRequest($request);
         $otherAppForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getOtherApps()); $i++ ){
@@ -489,8 +516,11 @@ class FormsController extends AbstractController
      */
     public function delOtherApp($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $otherAppToDelete = $survey->getOtherApps()[$position];
         unset($survey->getOtherApps()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -517,8 +547,11 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $phoneForm = $this->createForm(PhoneType::class);
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $form->handleRequest($request);
         $phoneForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getPhones()); $i++ ){
@@ -574,8 +607,11 @@ class FormsController extends AbstractController
      */
     public function delPhone($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $phoneToDelete = $survey->getPhones()[$position];
         unset($survey->getPhones()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -602,8 +638,11 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $cmdbForm = $this->createForm(CmdbType::class);
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $form->handleRequest($request);
         $cmdbForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getCmdbs()); $i++ ){
@@ -659,8 +698,11 @@ class FormsController extends AbstractController
      */
     public function delCmdb($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $cmdbToDelete = $survey->getCmdbs()[$position];
         unset($survey->getCmdbs()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -685,8 +727,11 @@ class FormsController extends AbstractController
      */
     public function rdv(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $rdvForm = $this->createForm(RdvType::class);
         $rdvForm->handleRequest($request);
 
@@ -725,8 +770,11 @@ class FormsController extends AbstractController
      */
     public function delRdv(Request $request, SurveySessionController $surveySessionController): Response
     {
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $rdvToDelete = $survey->getRdvs()[0];
         unset($survey->getRdvs()[0]);
         $form = $this->createForm(GlobalFormType::class);
@@ -750,8 +798,11 @@ class FormsController extends AbstractController
      */
     public function description(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
         $commentaireForm = $this->createForm(DescriptionFormType::class);
         $commentaireForm->handleRequest($request);
 
@@ -778,8 +829,11 @@ class FormsController extends AbstractController
      */
     public function canceled(Request $request, SurveySessionController $surveySessionController): Response
     {
-                $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $survey->setCanceled(true);
 

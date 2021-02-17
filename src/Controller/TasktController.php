@@ -21,8 +21,11 @@ class TasktController extends AbstractController
     public function fromInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
 
-        $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $survey->setCasInct(null);
         $type = $survey->getType();

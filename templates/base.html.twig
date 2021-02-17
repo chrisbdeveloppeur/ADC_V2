@@ -371,8 +371,6 @@
                 let checkbox = document.querySelectorAll('.checkbox-unknow-hostname');
                 // checkbox.nextElementSibling.style.textDecoration = 'underline dotted';
                 checkbox.forEach(function (check) {
-                    console.log(check.parentElement.querySelector('span'));
-                    check.parentElement.querySelector('span').style.textDecoration = 'underline dotted';
                     if (check !== undefined){
                         if (check.checked === true){
                             let assetsFields = document.getElementById('assets-field');

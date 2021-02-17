@@ -13,6 +13,20 @@
                                     <span>Services</span>
                                 </a>
                             </li>
+                        {% elseif url == '/methode'  %}
+                            {% if loop.index == (survey.chemin|length) %}
+                                <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                <a href="#">
+                            {% else %}
+                                <li>
+                                <a href="{{ url }}" title="Cliquer pour revenir ici">
+                            {% endif %}
+                            <span class="icon is-small">
+                                        <i class="fas fa-lg fa-map-signs"></i>
+                                    </span>
+                            <span>Méthode</span>
+                            </a>
+                            </li>
                         {% elseif url == '/type'  %}
                                 {% if loop.index == (survey.chemin|length) %}
                                 <li class="is-active" title="Vous vous trouvé actuellement ici">

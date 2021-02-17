@@ -17,8 +17,11 @@ class FinalStringController extends AbstractController
     public function description(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
         $version = 2;
-        $survey = $this->get('session')->get('survey');
-        $surveySessionController->checkSurveySession($survey);
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $finalString = '';
 
