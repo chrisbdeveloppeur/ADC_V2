@@ -34,12 +34,6 @@ class HomeController extends AbstractController
             $reponse = $form->get('service')->getData();
             $survey->setService($reponse);
             return $this->redirectToRoute('method');
-//            if ($reponse == 'HD'){
-//                $survey->setType('DEM');
-//                return $this->redirectToRoute('taskt_home');
-//            }elseif ($reponse == 'SDP'){
-//                return $this->redirectToRoute('tasktorinct');
-//            }
         }
 
         $cheminController->setChemins($request);
@@ -58,6 +52,7 @@ class HomeController extends AbstractController
     public function method(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
         $survey =  $surveySessionController->checkSurveySession();
+        $survey->setResolveMethod(null);
         if ($survey == null){
             $this->addFlash('danger', 'Votre session à expiré !');
             return $this->redirectToRoute('home');
@@ -109,8 +104,12 @@ class HomeController extends AbstractController
                 return $this->redirectToRoute('taskt_home', [
                 ]);
             }elseif ($reponse == 'INC'){
-                return $this->redirectToRoute('inct_home', [
-                ]);
+                if ($survey->getResolveMethod() == 'PMAD'){
+                    return $this->redirectToRoute('rdv');
+                }else{
+                    return $this->redirectToRoute('inct_home', [
+                    ]);
+                }
             }
         }
 

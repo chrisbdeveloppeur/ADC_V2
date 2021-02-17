@@ -22,6 +22,7 @@ class TypeInterTasktForm extends AbstractType
         $survey = $this->survey;
         $service = $survey->getService();
         $methode = $survey->getResolveMethod();
+
         if ($service == 'HD' || $methode == 'PMAD'){
             $builder
                 ->add('type', ChoiceType::class,
@@ -29,7 +30,6 @@ class TypeInterTasktForm extends AbstractType
                         'required' => true,
                         'choices' => [
                             'Installation d’applications sans fourniture de matériel' => '3',
-                            'Autres actions matériel' => '4',
                             'Autres actions logiciel et accès' => '5',
                             'Support téléphonie' => '6',
                             'Actions CMDB' => '7',
