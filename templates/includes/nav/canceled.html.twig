@@ -1,5 +1,5 @@
 {% if survey is defined %}
-    {% if survey.chemin|length > 2 %}
+    {% if survey.chemin|length > 3 %}
         {% if (survey.chemin[survey.chemin|length-1] != '/DEM/type') and (survey.chemin[survey.chemin|length-1] != '/CODE-FINAL') %}
             <div class="column">
                 <article class="message is-warning is-small">
