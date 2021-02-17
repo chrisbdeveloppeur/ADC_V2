@@ -19,9 +19,10 @@ class TypeInterTasktForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-//        dd($this->survey->getService());
-        $service = $this->survey->getService();
-        if ($service == 'HD'){
+        $survey = $this->survey;
+        $service = $survey->getService();
+        $methode = $survey->getResolveMethod();
+        if ($service == 'HD' || $methode == 'PMAD'){
             $builder
                 ->add('type', ChoiceType::class,
                     array('label' => false,
