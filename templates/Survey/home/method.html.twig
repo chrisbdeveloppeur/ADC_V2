@@ -41,7 +41,7 @@
                                         </button>
                                     </label>
                                 {% elseif child.vars.value == 'PLATEAU' %}
-                                    <label class="column" onclick="checkRadio(this)">
+                                    <label class="column {% if survey.service == 'HD' %}is-hidden{% endif %}" onclick="checkRadio(this)">
                                         <button style="text-decoration: underline dotted" class="button help-pointer-hover" title="Intérvention réalisée au sur place, ex : bureau utilisateur">
                                             {{ child.vars.label }}
                                             {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
@@ -51,6 +51,8 @@
 
                     {% endfor %}
                 </div>
+
+                {{ include('includes/nav/prev_only.html.twig') }}
 
                 {{ form_end(form) }}
 
