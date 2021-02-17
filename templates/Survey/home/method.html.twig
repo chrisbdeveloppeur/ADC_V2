@@ -21,28 +21,28 @@
 
                                 {% if child.vars.value == 'AUTRE' %}
                                     <label style="position: relative" class="column help-pointer-hover help-pointer-hover" data-tooltip="Ex : appel téléphonique, mail, incident résolu sans intervention, faire rebooter un PC ou dans le cadre d'u smartphone, communiquer un code PUK" onclick="checkRadio(this)">
-                                        <button style="text-decoration: underline dotted" class="button ">
+                                        <button class="button ">
                                             {{ child.vars.label }}
                                             {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
                                         </button>
                                     </label>
                                 {% elseif child.vars.value == 'GUICHET' %}
                                     <label style="position: relative" class="column help-pointer-hover {% if survey.service == 'HD' %}is-hidden{% endif %}" data-tooltip="Intérvention réalisée au guichet informatique" onclick="checkRadio(this)">
-                                        <button style="text-decoration: underline dotted" class="button" >
+                                        <button class="button" >
                                             {{ child.vars.label }}
                                             {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
                                         </button>
                                     </label>
                                 {% elseif child.vars.value == 'PMAD' %}
                                     <label style="position: relative" class="column help-pointer-hover" data-tooltip="Intérvention réalisée à distance (Prise en main à distance)" onclick="checkRadio(this)">
-                                        <button style="text-decoration: underline dotted" class="button">
+                                        <button class="button">
                                             {{ child.vars.label }}
                                             {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
                                         </button>
                                     </label>
                                 {% elseif child.vars.value == 'PLATEAU' %}
                                     <label style="position: relative" class="column help-pointer-hover {% if survey.service == 'HD' %}is-hidden{% endif %}" data-tooltip="Intérvention réalisée au sur place, ex : bureau utilisateur" onclick="checkRadio(this)">
-                                        <button style="text-decoration: underline dotted" class="button">
+                                        <button class="button">
                                             {{ child.vars.label }}
                                             {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
                                         </button>

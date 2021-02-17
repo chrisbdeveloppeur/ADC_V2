@@ -103,11 +103,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/Survey/home/method.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="27" column="44" lean-forward="true" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
+            <state relative-caret-position="357">
+              <caret line="36" column="177" selection-start-line="36" selection-start-column="177" selection-end-line="36" selection-end-column="177" />
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="true" />
+                <element signature="e#911#937#0#HTML" expanded="true" />
                 <element signature="e#1002#1043#0#HTML" expanded="true" />
+                <element signature="e#1683#1709#0#HTML" expanded="true" />
+                <element signature="e#2387#2413#0#HTML" expanded="true" />
+                <element signature="e#3054#3080#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,8 +120,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/styles/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
-              <caret line="185" column="22" selection-start-line="185" selection-start-column="22" selection-end-line="185" selection-end-column="22" />
+            <state relative-caret-position="572">
+              <caret line="188" column="25" selection-start-line="188" selection-start-column="25" selection-end-line="188" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -247,8 +251,8 @@
         <option value="$PROJECT_DIR$/templates/Survey/forms/other_apps_form.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/forms/other_assets_form.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/forms/phone_form.html.twig" />
-        <option value="$PROJECT_DIR$/assets/styles/app.scss" />
         <option value="$PROJECT_DIR$/templates/includes/del_objects_section.html.twig" />
+        <option value="$PROJECT_DIR$/assets/styles/app.scss" />
         <option value="$PROJECT_DIR$/templates/Survey/home/method.html.twig" />
       </list>
     </option>
@@ -568,16 +572,15 @@
       <workItem from="1613219131035" duration="1677000" />
       <workItem from="1613237575106" duration="615000" />
       <workItem from="1613549043310" duration="2263000" />
-      <workItem from="1613564684752" duration="22986000" />
+      <workItem from="1613564684752" duration="23261000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="603342000" />
+    <option name="totallyTimeSpent" value="603617000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1003,13 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/styles/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="185" column="22" selection-start-line="185" selection-start-column="22" selection-end-line="185" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/forms/apps_form.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="501">
@@ -1027,13 +1023,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/styles/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="188" column="25" selection-start-line="188" selection-start-column="25" selection-end-line="188" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/home/method.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="27" column="44" lean-forward="true" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
+        <state relative-caret-position="357">
+          <caret line="36" column="177" selection-start-line="36" selection-start-column="177" selection-end-line="36" selection-end-column="177" />
           <folding>
             <element signature="e#12#26#0#Twig" expanded="true" />
+            <element signature="e#911#937#0#HTML" expanded="true" />
             <element signature="e#1002#1043#0#HTML" expanded="true" />
+            <element signature="e#1683#1709#0#HTML" expanded="true" />
+            <element signature="e#2387#2413#0#HTML" expanded="true" />
+            <element signature="e#3054#3080#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
