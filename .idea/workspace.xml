@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a5ed598-3b44-447a-9f79-e12ffb334f49" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/Survey/home/method.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/home/method.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Survey/home/type_inter.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Survey/home/type_inter.html.twig" afterDir="false" />
     </list>
     <ignored path="C:\Users\K4gur0\PhpstormProjects\outil_tracage_SCC\public\build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,11 +49,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Survey/home/method.html.twig">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="823">
+              <caret line="57" selection-start-line="57" selection-end-line="57" />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/Survey/home/type_inter.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="476">
-              <caret line="43" column="57" selection-start-line="43" selection-start-column="57" selection-end-line="43" selection-end-column="57" />
+              <caret line="85" column="55" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="true" />
               </folding>
@@ -126,7 +138,6 @@
         <option value="$PROJECT_DIR$/templates/includes/nav/end.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/forms/commentaire_form.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/forms/rdv_form.html.twig" />
-        <option value="$PROJECT_DIR$/templates/Survey/home/type_inter.html.twig" />
         <option value="$PROJECT_DIR$/templates/includes/nav/canceled.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/HostnameFormType.php" />
         <option value="$PROJECT_DIR$/src/Form/OtherAssetType.php" />
@@ -159,6 +170,7 @@
         <option value="$PROJECT_DIR$/assets/styles/app.scss" />
         <option value="$PROJECT_DIR$/templates/Survey/home/home.html.twig" />
         <option value="$PROJECT_DIR$/templates/Survey/home/method.html.twig" />
+        <option value="$PROJECT_DIR$/templates/Survey/home/type_inter.html.twig" />
       </list>
     </option>
   </component>
@@ -471,12 +483,12 @@
       <workItem from="1613219131035" duration="1677000" />
       <workItem from="1613237575106" duration="615000" />
       <workItem from="1613549043310" duration="2263000" />
-      <workItem from="1613564684752" duration="16464000" />
+      <workItem from="1613564684752" duration="18364000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="596820000" />
+    <option name="totallyTimeSpent" value="598720000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -677,16 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Survey/home/type_inter.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="76" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -928,8 +930,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Survey/home/method.html.twig">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="823">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Survey/home/type_inter.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
-          <caret line="43" column="57" selection-start-line="43" selection-start-column="57" selection-end-line="43" selection-end-column="57" />
+          <caret line="85" column="55" selection-start-line="85" selection-start-column="55" selection-end-line="85" selection-end-column="55" />
           <folding>
             <element signature="e#12#26#0#Twig" expanded="true" />
           </folding>
