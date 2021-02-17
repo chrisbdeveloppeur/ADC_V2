@@ -21,7 +21,7 @@
                 <label class="label">Veuillez précicer la nature de la demande</label>
             {% elseif form_name == 'type_inter_inct_form' %}
 {#                <label class="label">Veuillez précicer la nature de l'intervention</label>#}
-                <label class="label">Avez-vous procéder àun changement de poste ?</label>
+                <label class="label">Avez-vous procédé un changement de poste ?</label>
             {% endif %}
             </div>
 
@@ -81,7 +81,7 @@
                             </label>
                         {% endfor %}
                         <label class="column">
-                            <a class="button">
+                            <a href="{{ path('rdv') }}" class="button">
                                 <span class="icon is-small">
                                     <i class="far fa-lg fa-times-circle"></i>
                                 </span>
