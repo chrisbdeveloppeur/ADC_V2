@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Survey;
+use App\Form\ResolveMethodType;
 use App\Form\ServiceType;
 use App\Form\TypeFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -32,12 +33,13 @@ class HomeController extends AbstractController
         if ($form->isSubmitted()){
             $reponse = $form->get('service')->getData();
             $survey->setService($reponse);
-            if ($reponse == 'HD'){
-                $survey->setType('DEM');
-                return $this->redirectToRoute('taskt_home');
-            }elseif ($reponse == 'SDP'){
-                return $this->redirectToRoute('tasktorinct');
-            }
+            return $this->redirectToRoute('method');
+//            if ($reponse == 'HD'){
+//                $survey->setType('DEM');
+//                return $this->redirectToRoute('taskt_home');
+//            }elseif ($reponse == 'SDP'){
+//                return $this->redirectToRoute('tasktorinct');
+//            }
         }
 
         $cheminController->setChemins($request);
@@ -51,11 +53,45 @@ class HomeController extends AbstractController
 
 
     /**
+     * @Route("/methode", name="method")
+     */
+    public function method(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
+    {
+        $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
+
+        $form = $this->createForm(ResolveMethodType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $method = $form->get('method')->getData();
+            $survey->setResolveMethod($method);
+            $service = $survey->getService();
+            if ($service == 'HD'){
+                $survey->setType('DEM');
+                return $this->redirectToRoute('taskt_home');
+            }elseif ($service == 'SDP'){
+                return $this->redirectToRoute('tasktorinct');
+            }
+        }
+
+        $cheminController->setChemins($request);
+        return $this->render('Survey/home/method.html.twig',[
+            'form' => $form->createView(),
+            'form_name' => $form->getName(),
+            'survey' => $survey,
+        ]);
+    }
+
+
+
+
+    /**
      * @Route("/type", name="tasktorinct")
      */
     public function tasktOrInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
-        $survey = $surveySessionController->checkSurveySession();
+        $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
 
         $survey->setType(null);
         $form = $this->createForm(TypeFormType::class);

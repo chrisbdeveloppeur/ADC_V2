@@ -16,7 +16,9 @@ class FinalStringController extends AbstractController
      */
     public function description(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+        $version = 2;
+        $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
 
         $finalString = '';
 
@@ -27,7 +29,7 @@ class FinalStringController extends AbstractController
         $otherApps = $survey->getOtherApps();
         $phones = $survey->getPhones();
         $cmdbs = $survey->getCmdbs();
-        $rdvs = $survey->getRdvs();
+
 
         $finalString .= $this->miseEnFormBalise($assets);
         $finalString .= $this->miseEnFormBalise($otherActions);
@@ -36,10 +38,11 @@ class FinalStringController extends AbstractController
         $finalString .= $this->miseEnFormBalise($otherApps);
         $finalString .= $this->miseEnFormBalise($phones);
         $finalString .= $this->miseEnFormBalise($cmdbs);
-        $finalString .= $this->miseEnFormBalise($rdvs);
         $stringToHash = $finalString;
 
 //        die();
+
+        $finalString = strtoupper($finalString);
 
         if ($survey->getCommentaire()){
             $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "] ";
@@ -57,15 +60,17 @@ class FinalStringController extends AbstractController
 
         //         Hashage (crc32) de la chaine final
         $survey->setHashedString($stringToHash);
-        $finalString .= "[" . $survey->getHashedString() . "] ";
+        $finalString .= "[" . strtoupper($survey->getHashedString()) . "] ";
 
         //                  Balise du INC ou DEM
         $finalString .= "[".$survey->getType()."] ";
 
+        //                  Balise de la méthode intervention
+        $finalString .= "[".$survey->getResolveMethod()."] ";
+
         //                  Balise du service concerné (HD/SDP)
         $finalString .= "[".$survey->getService()."] ";
 
-        $version = 2;
         $finalString .= '[ARBRE_DE_CLOTURE v.' . $version . "] " ;
 
 //                      MISE EN CORELATION FUSEAU HORAIRE                   //
@@ -74,7 +79,6 @@ class FinalStringController extends AbstractController
 //                         SUPPRESSION DES CHAINES VIDE                     //
 //        $text = preg_replace('/\s\s+/', ' ', $finalString);
 
-        $finalString = strtoupper($finalString);
         $survey->setFinalString($finalString);
 
         $cheminController->setChemins($request);
@@ -127,21 +131,21 @@ class FinalStringController extends AbstractController
 
 
                 if ($object == 'Asset' || $object == 'OtherAsset'){
-                    if ($object->getAe() && $object->getAe() != 'XX' ){
+                    if ($object->getAe() ){
                         $balise .= '<AE_' . $object->getAe() . '>';
                     }
-                    if ($object->getAs() && $object->getAs() != 'XX' ){
+                    if ($object->getAs() ){
                         $balise .= '<AS_' . $object->getAs() . '>';
                     }
                 }elseif ($object == 'App' || $object == 'OtherApp' || $object == 'OtherAction'){
-                    if ($object->getAsset() && $object->getAsset() != 'XX' ){
+                    if ($object->getAsset() ){
                         $balise .= '<ASSET_' . $object->getAsset() . '>';
                     }
                 }elseif ($object == 'Cmdb'){
                     if ($object->getNbAction()){
                         $balise .= '<NB_' . $object->getNbAction() . '>';
                     }
-                    if ($object->getAsset() && $object->getAsset() != 'XX' ){
+                    if ($object->getAsset() ){
                         $balise .= '<ASSET_' . $object->getAsset() . '>';
                     }
                 }

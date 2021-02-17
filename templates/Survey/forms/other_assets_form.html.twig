@@ -51,10 +51,12 @@
             </div>
 
             <div class="is-hidden dynamic-field mb-4" id="assets-field">
+
                 <div class="is-flex is-justify-content-space-around">
                     <label class="label">Nouvel asset</label>
                     <label class="label">Ancien asset</label>
                 </div>
+
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
                         {{ form_widget(other_asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Hostname entrant'}}) }}
@@ -63,6 +65,12 @@
                         {{ form_widget(other_asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Hostname sortant'}}) }}
                     </p>
                 </div>
+
+                <label class="checkbox" >
+                    <input type="checkbox" class="checkbox-unknow-hostname" onchange="setUnknowHostname(this)">
+                    Hostname inconnu
+                </label>
+
             </div>
 
             <div class="is-hidden hidden-forced dynamic-field mb-4 {% if survey.service == 'HD' %}hidden-forced{% endif %}" id="rsdp-field">
@@ -153,10 +161,8 @@
             let values = [];
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
-            // hideAddBtn();
 
             requiredForAdd.forEach(function (element) {
-                // console.log(element.value);
                 if (element.value){
                     typeField.forEach(element => addAttributes(element,'required', true));
                     makeVisible(fieldAssets);
@@ -171,7 +177,7 @@
                             removeAttributes(asset_as, 'required');
                         }
                     }else if (values.includes('REP')) { // REPRISE SANS NOUVELLE DOTATION
-                        removeSelectOption(document.getElementById('other_asset_type'), ['TNR','PMA','PRT']);
+                        removeSelectOption(document.getElementById('other_asset_type'), ['TNR']);
                         makeVisible(fieldTpx);
                         removeAttributes(asset_as, 'disabled');
                         addAttributes(asset_as, 'required', true);
@@ -200,6 +206,8 @@
 
                 }
             });
+
+            setUnknowHostname();
 
         }
 

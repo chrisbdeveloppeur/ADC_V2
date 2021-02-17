@@ -38,10 +38,12 @@
             </div>
 
             <div class="is-hidden dynamic-field mb-4" id="assets-field">
+
                 <div class="is-flex is-justify-content-space-around">
                     <label class="label">Nouvel asset</label>
                     <label class="label">Ancien asset</label>
                 </div>
+
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
                         {{ form_widget(asset_form.ae, {'disabled':'true', 'attr': {'class':'input has-text-centered for-ajax', 'placeholder': 'Hostname entrant'}}) }}
@@ -50,6 +52,17 @@
                         {{ form_widget(asset_form.as, {'disabled':'true', 'attr': {'class':'input has-text-centered for-ajax', 'placeholder': 'Hostname sortant'}}) }}
                     </p>
                 </div>
+
+                <label class="checkbox" title="Cochez pour les cas suivant :
+- Matériel emballé
+- Matériel sans n° d'asset
+- Intervention HD sans n° d'asset">
+                    <input type="checkbox" class="checkbox-unknow-hostname" onchange="setUnknowHostname(this)">
+                    <span class="help-pointer-hover">
+                        Hostname inconnu
+                    </span>
+                </label>
+
             </div>
 
             <div class="is-hidden hidden-forced dynamic-field mb-4 hidden-forced" id="rsdp-field">
@@ -136,18 +149,12 @@
 
         input.forEach(element => element.addEventListener('input', updateValue) );
 
-
-
-        // window.onload = function(){
-        //     updateValue();
-        // } ;
-
         function updateValue(e) {
 
             let values = [];
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
-            // hideAddBtn();
+
             requiredForAdd.forEach(function (element) {
                 if (element.value){
                     typeField.forEach(element => addAttributes(element,'required', true));
@@ -181,6 +188,7 @@
                 }
             });
 
+            setUnknowHostname();
         }
 
 

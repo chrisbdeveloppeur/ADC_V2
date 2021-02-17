@@ -365,6 +365,38 @@
                 element.classList.remove('is-hidden')
             }
 
+
+
+            function setUnknowHostname() {
+                let checkbox = document.querySelectorAll('.checkbox-unknow-hostname');
+                // checkbox.nextElementSibling.style.textDecoration = 'underline dotted';
+                checkbox.forEach(function (check) {
+                    console.log(check.parentElement.querySelector('span'));
+                    check.parentElement.querySelector('span').style.textDecoration = 'underline dotted';
+                    if (check !== undefined){
+                        if (check.checked === true){
+                            let assetsFields = document.getElementById('assets-field');
+                            assetsFields.querySelectorAll("input.input").forEach(function (element) {
+                                if (!element.getAttribute('disabled')){
+                                    element.value = 'XX';
+                                    element.setAttribute('readonly', true);
+                                }
+                            })
+                        }else if (check.checked === false) {
+                            let assetsFields = document.getElementById('assets-field');
+                            assetsFields.querySelectorAll("input.input").forEach(function (element) {
+                                if (!element.getAttribute('disabled')){
+                                    element.value = '';
+                                    element.removeAttribute('readonly');
+                                }
+                            })
+                        }
+                    }
+                });
+            }
+
+
+            
         </script>
         {#        FIN          #}
 

@@ -19,7 +19,8 @@ class InctController extends AbstractController
      */
     public function typeInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
-        $survey = $surveySessionController->checkSurveySession();
+        $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
 
         $survey->setCasInct(null);
         $type = $survey->getType();

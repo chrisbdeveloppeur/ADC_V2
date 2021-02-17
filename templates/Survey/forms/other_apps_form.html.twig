@@ -42,14 +42,22 @@
             </div>
 
             <div class="is-hidden dynamic-field mb-4" id="assets-field">
+
                 <div class="is-flex is-justify-content-space-around">
                     <label class="label">Veuillez indiquer le nom de l'Asset concerné</label>
                 </div>
+
                 <div class="field has-addons has-addons-centered">
                     <p class="control is-expanded">
                         {{ form_widget(other_app_form.asset, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Hostname'}}) }}
                     </p>
                 </div>
+
+                <label class="checkbox" >
+                    <input type="checkbox" class="checkbox-unknow-hostname" onchange="setUnknowHostname(this)">
+                    Hostname inconnu
+                </label>
+
             </div>
 
             <div class="is-hidden dynamic-field mb-4 {% if survey.service == 'HD' %}hidden-forced{% endif %}" id="rsdp-field">
@@ -138,7 +146,6 @@
             let values = [];
             input.forEach(element => values.push(element.value));
             initializeAssetsForm();
-            // hideAddBtn();
 
             requiredForAdd.forEach(function (element) {
                 if (element.value){
@@ -159,6 +166,8 @@
                     removeAttributes(app_asset, 'required');
                 }
             });
+
+            setUnknowHostname();
 
         }
 

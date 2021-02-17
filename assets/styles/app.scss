@@ -167,6 +167,10 @@ $danger: #d00e00;
   border-radius: 6px;
 }
 
+.help-pointer-hover:hover{
+  cursor: help !important;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

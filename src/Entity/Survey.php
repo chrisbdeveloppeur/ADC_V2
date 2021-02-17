@@ -135,6 +135,11 @@ class Survey
      */
     private $canceled;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resolve_method;
+
     public function __construct()
     {
         $this->cas = 'N/A';
@@ -146,6 +151,7 @@ class Survey
         $this->commentaire = 'N/A';
         $this->setName('Survey');
         $this->setCanceled(false);
+        $this->setResolveMethod('AUTRE');
 
 //        $this->timestamp = new \DateTime('', new \DateTimeZone('Europe/Paris'));
         $this->date_string = new \DateTime('', new \DateTimeZone('Europe/Paris'));
@@ -600,6 +606,18 @@ class Survey
     public function setCanceled(?bool $canceled): self
     {
         $this->canceled = $canceled;
+
+        return $this;
+    }
+
+    public function getResolveMethod(): ?string
+    {
+        return $this->resolve_method;
+    }
+
+    public function setResolveMethod(?string $resolve_method): self
+    {
+        $this->resolve_method = $resolve_method;
 
         return $this;
     }

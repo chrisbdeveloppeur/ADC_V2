@@ -40,7 +40,8 @@ class FormsController extends AbstractController
 //        dd($request);
         $form = $this->createForm(GlobalFormType::class);
         $assetForm = $this->createForm(AssetType::class);
-        $survey = $surveySessionController->checkSurveySession();
+        $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $form->handleRequest($request);
         $assetForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getAssets()); $i++ ){
@@ -61,15 +62,15 @@ class FormsController extends AbstractController
                 }
                 $newAsset->setRsdp($assetForm->get('rsdp')->getData());
                 $newAsset->setTpx($assetForm->get('tpx')->getData());
-                if ($newAsset->getAe()==null){
-                    $newAsset->setAe('XX');
-                }
-                if ($newAsset->getAs()==null){
-                    $newAsset->setAs('XX');
-                }
-                if ($newAsset->getType()==null){
-                    $newAsset->setType('XX');
-                }
+//                if ($newAsset->getAe()==null){
+//                    $newAsset->setAe('XX');
+//                }
+//                if ($newAsset->getAs()==null){
+//                    $newAsset->setAs('XX');
+//                }
+//                if ($newAsset->getType()==null){
+//                    $newAsset->setType('XX');
+//                }
                 $survey->addAsset($newAsset);
                 $action = $newAsset->getAction();
                 $type = $newAsset->getType();
@@ -107,7 +108,8 @@ class FormsController extends AbstractController
      */
     public function delAsset($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+        $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $assetToDelete = $survey->getAssets()[$position];
         unset($survey->getAssets()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -133,7 +135,8 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $otherAssetForm = $this->createForm(OtherAssetType::class);
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $form->handleRequest($request);
         $otherAssetForm->handleRequest($request);
 
@@ -157,15 +160,15 @@ class FormsController extends AbstractController
                 }
                 $newAsset->setRsdp($otherAssetForm->get('rsdp')->getData());
                 $newAsset->setTpx($otherAssetForm->get('tpx')->getData());
-                if ($newAsset->getAe()==null){
-                    $newAsset->setAe('XX');
-                }
-                if ($newAsset->getAs()==null){
-                    $newAsset->setAs('XX');
-                }
-                if ($newAsset->getType()==null){
-                    $newAsset->setType('XX');
-                }
+//                if ($newAsset->getAe()==null){
+//                    $newAsset->setAe('XX');
+//                }
+//                if ($newAsset->getAs()==null){
+//                    $newAsset->setAs('XX');
+//                }
+//                if ($newAsset->getType()==null){
+//                    $newAsset->setType('XX');
+//                }
                 $survey->addOtherAsset($newAsset);
 
                 $action = $newAsset->getAction();
@@ -211,7 +214,8 @@ class FormsController extends AbstractController
      */
     public function delOtherAsset($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $otherAssetToDelete = $survey->getOtherAssets()[$position];
         unset($survey->getOtherAssets()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -241,7 +245,8 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $otherActionForm = $this->createForm(OtherActionType::class);
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $form->handleRequest($request);
         $otherActionForm->handleRequest($request);
 
@@ -260,9 +265,9 @@ class FormsController extends AbstractController
                 $newAsset->setAction($otherActionForm->get('action')->getData());
                 $newAsset->setRsdp($otherActionForm->get('rsdp')->getData());
                 $newAsset->setTpx($otherActionForm->get('tpx')->getData());
-                if ($newAsset->getAsset()==null){
-                    $newAsset->setAsset('XX');
-                }
+//                if ($newAsset->getAsset()==null){
+//                    $newAsset->setAsset('XX');
+//                }
                 $survey->addOtherAction($newAsset);
 
                 $action = $newAsset->getAction();
@@ -302,7 +307,8 @@ class FormsController extends AbstractController
      */
     public function delOtherAction($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $otherAssetToDelete = $survey->getOtherActions()[$position];
         unset($survey->getOtherActions()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -333,7 +339,8 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $appForm = $this->createForm(AppType::class);
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $form->handleRequest($request);
         $appForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getApps()); $i++ ){
@@ -351,9 +358,9 @@ class FormsController extends AbstractController
                 $app->setAction($appForm->get('action')->getData());
                 $app->setRsdp($appForm->get('rsdp')->getData());
                 $app->setTpx($appForm->get('tpx')->getData());
-                if ($app->getAsset()==null){
-                    $app->setAsset('XX');
-                }
+//                if ($app->getAsset()==null){
+//                    $app->setAsset('XX');
+//                }
                 $survey->addApp($app);
 
                 $action = $app->getAction();
@@ -397,7 +404,8 @@ class FormsController extends AbstractController
      */
     public function delApp($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $appToDelete = $survey->getApps()[$position];
         unset($survey->getApps()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -424,7 +432,8 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $otherAppForm = $this->createForm(OtherAppType::class);
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $form->handleRequest($request);
         $otherAppForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getOtherApps()); $i++ ){
@@ -442,9 +451,9 @@ class FormsController extends AbstractController
                 $otherApp->setAction($otherAppForm->get('action')->getData());
                 $otherApp->setRsdp($otherAppForm->get('rsdp')->getData());
                 $otherApp->setTpx($otherAppForm->get('tpx')->getData());
-                if ($otherApp->getAsset()==null){
-                    $otherApp->setAsset('XX');
-                }
+//                if ($otherApp->getAsset()==null){
+//                    $otherApp->setAsset('XX');
+//                }
                 $survey->addOtherApp($otherApp);
 
                 $action = $otherApp->getAction();
@@ -480,7 +489,8 @@ class FormsController extends AbstractController
      */
     public function delOtherApp($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $otherAppToDelete = $survey->getOtherApps()[$position];
         unset($survey->getOtherApps()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -507,7 +517,8 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $phoneForm = $this->createForm(PhoneType::class);
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $form->handleRequest($request);
         $phoneForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getPhones()); $i++ ){
@@ -525,9 +536,9 @@ class FormsController extends AbstractController
                 $phone->setAction($phoneForm->get('action')->getData());
                 $phone->setRsdp($phoneForm->get('rsdp')->getData());
                 $phone->setTpx($phoneForm->get('tpx')->getData());
-                if ($phone->getAsset()==null){
-                    $phone->setAsset('XX');
-                }
+//                if ($phone->getAsset()==null){
+//                    $phone->setAsset('XX');
+//                }
                 $survey->addPhone($phone);
 
                 $action = $phone->getAction();
@@ -563,7 +574,8 @@ class FormsController extends AbstractController
      */
     public function delPhone($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $phoneToDelete = $survey->getPhones()[$position];
         unset($survey->getPhones()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -590,7 +602,8 @@ class FormsController extends AbstractController
     {
         $form = $this->createForm(GlobalFormType::class);
         $cmdbForm = $this->createForm(CmdbType::class);
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $form->handleRequest($request);
         $cmdbForm->handleRequest($request);
         for ($i=0; $i<=count($survey->getCmdbs()); $i++ ){
@@ -610,9 +623,9 @@ class FormsController extends AbstractController
                 $cmdb->setTpx($cmdbForm->get('tpx')->getData());
                 $action = $cmdb->getAction();
                 $cmdb->setBalise($action);
-                if ($cmdb->getAsset()==null){
-                    $cmdb->setAsset('XX');
-                }
+//                if ($cmdb->getAsset()==null){
+//                    $cmdb->setAsset('XX');
+//                }
                 $survey->addCmdb($cmdb);
 
                 $asset = $cmdb->getAsset();
@@ -646,7 +659,8 @@ class FormsController extends AbstractController
      */
     public function delCmdb($position, Request $request, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $cmdbToDelete = $survey->getCmdbs()[$position];
         unset($survey->getCmdbs()[$position]);
         $form = $this->createForm(GlobalFormType::class);
@@ -671,7 +685,8 @@ class FormsController extends AbstractController
      */
     public function rdv(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $rdvForm = $this->createForm(RdvType::class);
         $rdvForm->handleRequest($request);
 
@@ -710,7 +725,8 @@ class FormsController extends AbstractController
      */
     public function delRdv(Request $request, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $rdvToDelete = $survey->getRdvs()[0];
         unset($survey->getRdvs()[0]);
         $form = $this->createForm(GlobalFormType::class);
@@ -734,7 +750,8 @@ class FormsController extends AbstractController
      */
     public function description(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
         $commentaireForm = $this->createForm(DescriptionFormType::class);
         $commentaireForm->handleRequest($request);
 
@@ -761,7 +778,8 @@ class FormsController extends AbstractController
      */
     public function canceled(Request $request, SurveySessionController $surveySessionController): Response
     {
-        $survey = $surveySessionController->checkSurveySession();
+                $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
 
         $survey->setCanceled(true);
 

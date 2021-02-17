@@ -21,7 +21,8 @@ class TasktController extends AbstractController
     public function fromInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
 
-        $survey = $surveySessionController->checkSurveySession();
+        $survey = $this->get('session')->get('survey');
+        $surveySessionController->checkSurveySession($survey);
 
         $survey->setCasInct(null);
         $type = $survey->getType();

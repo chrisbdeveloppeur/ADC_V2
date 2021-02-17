@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{#{% block title %}Hello AskUserController!{% endblock %}#}
+
+{% block body %}
+
+    <div class="column is-flex is-align-items-center is-justify-content-center  is-two-thirds-desktop is-two-fifths-widescreen">
+        <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
+            <div class="column">
+                <h1 class="title is-size-1-desktop">Méthode d'intervention</h1>
+            </div>
+
+            <label class="label">Veuillez selectionner la méthode d'intervention</label>
+
+            <div class="">
+
+                {{ form_start(form, {'attr': {'class':'column'}}) }}
+
+                <div class="control is-flex-desktop is-flex-direction-row">
+                    {% for child in form.method %}
+
+                                {% if child.vars.value == 'AUTRE' %}
+                                    <label class="column" onclick="checkRadio(this)">
+                                        <button style="text-decoration: underline dotted" class="button help-pointer-hover" title="Ex : appel téléphonique, mail, incident résolu sans intervention, faire rebooter un PC ou dans le cadre d'u smartphone, communiquer un code PUK">
+                                            {{ child.vars.label }}
+                                            {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                                        </button>
+                                    </label>
+                                {% elseif child.vars.value == 'GUICHET' %}
+                                    <label class="column" onclick="checkRadio(this)">
+                                        <button style="text-decoration: underline dotted" class="button help-pointer-hover" title="Intérvention réalisée au guichet informatique">
+                                            {{ child.vars.label }}
+                                            {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                                        </button>
+                                    </label>
+                                {% elseif child.vars.value == 'PMAD' %}
+                                    <label class="column" onclick="checkRadio(this)">
+                                        <button style="text-decoration: underline dotted" class="button help-pointer-hover" title="Intérvention réalisée à distance (Prise en main à distance">
+                                            {{ child.vars.label }}
+                                            {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                                        </button>
+                                    </label>
+                                {% elseif child.vars.value == 'PLATEAU' %}
+                                    <label class="column" onclick="checkRadio(this)">
+                                        <button style="text-decoration: underline dotted" class="button help-pointer-hover" title="Intérvention réalisée au sur place, ex : bureau utilisateur">
+                                            {{ child.vars.label }}
+                                            {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                                        </button>
+                                    </label>
+                                {% endif %}
+
+                    {% endfor %}
+                </div>
+
+                {{ form_end(form) }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
