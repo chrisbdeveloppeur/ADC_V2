@@ -36,10 +36,10 @@ class RdvType extends AbstractType
                         'expanded' => true,
                         'placeholder' => false,
                         'choices' => [
-                            'Non' => 'non',
-                            'Oui' => 'oui',
+                            'Non' => 'NON',
+                            'Oui' => 'OUI',
                         ],
-                        'data' => 'non',
+                        'data' => 'NON',
                     )
                 )
                 ->add('balise', ChoiceType::class,
