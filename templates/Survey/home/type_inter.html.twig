@@ -40,7 +40,7 @@
                     <div class="control is-flex-desktop">
                         {% for child in form.type %}
                             <label class="column" onclick="checkRadio(this)">
-                                <button class="button is-dark is-outlined">
+                                <button class="button is-fullwidth is-dark is-outlined">
                                     {% if child.vars.value == 'INC' %}
                                         <span class="icon is-small">
                                             <i class="fas fa-lg fa-tools"></i>
@@ -59,7 +59,7 @@
                 {% elseif form_name == 'type_inter_inct_form' %}
                     <div class="control is-flex-desktop">
                         <label class="column">
-                            <a href="{{ path('rdv') }}" class="button is-dark is-outlined">
+                            <a href="{{ path('rdv') }}" class="button is-fullwidth is-dark is-outlined">
                                 <span class="icon is-small">
                                     <i class="far fa-lg fa-times-circle"></i>
                                 </span>
@@ -70,7 +70,7 @@
                         </label>
                         {% for child in form.type %}
                             <label class="column {% if ((child.vars.value == 2) or (child.vars.value == 3)) %}is-hidden{% endif %}" onclick="checkRadio(this)">
-                                <button class="button is-dark is-outlined">
+                                <button class="button is-fullwidth is-dark is-outlined">
 {#                                    {% if child.vars.value == 1 %}#}
 {#                                        <span class="icon is-small">#}
 {#                                            <i class="fas fa-lg fa-laptop"></i>#}

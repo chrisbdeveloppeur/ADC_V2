@@ -40,17 +40,11 @@
                     </p>
                 </div>
 
-                <label class="checkbox">
-                    <input type="checkbox" class="checkbox-unknow-hostname" onchange="setUnknowHostname(this)">
-                    Hostname inconnu
-                    <span class="has-text-info">
-                        <i class="fas fa-info-circle help-pointer-hover" data-tooltip="Cochez pour les cas suivant : Matériel emballé, Matériel sans n° d'asset, Intervention HD sans n° d'asset"></i>
-                    </span>
-                </label>
+                {{ include('includes/unknow_hostname.html.twig') }}
 
             </div>
 
-            <div class="is-hidden dynamic-field mb-4 {% if survey.service == 'HD' %}hidden-forced{% endif %}" id="rsdp-field">
+            <div class="is-hidden hidden-forced dynamic-field mb-4 {% if survey.service == 'HD' %}hidden-forced{% endif %}" id="rsdp-field">
                 <div class="field">
                     <p class="control">
                         <label class="checkbox label">

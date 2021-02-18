@@ -22,7 +22,7 @@
                         {% for child in rdv_form.rdv %}
                             {% if child.vars.label == 'Oui' %}
                                 <label class="column" onclick="checkRadio(this);rdvYesSelected()">
-                                    <a href="#" class="button is-dark is-outlined">
+                                    <a href="#" class="button is-fullwidth is-dark is-outlined">
                                         <span class="icon">
                                             <i class="fas fa-calendar-check"></i>
                                         </span>
@@ -34,7 +34,7 @@
                                 </label>
                             {% elseif child.vars.label == 'Non' %}
                                 <label style="position: relative" class="column help-pointer-hover" data-tooltip="Aucun rendez-vous plannifiés ? Passez à l'étape suivante" onclick="checkRadio(this);rdvNoSelected()">
-                                    <button type="submit" class="button is-dark is-outlined">
+                                    <button type="submit" class="button is-fullwidth is-dark is-outlined">
                                         <span class="icon">
                                             <i class="fas fa-calendar-times"></i>
                                         </span>
@@ -59,6 +59,26 @@
                     </label>
                     <div class="control select">
                         {{ form_widget(rdv_form.balise, {'attr': {'class': 'has-text-centered'} } ) }}
+                    </div>
+                </div>
+
+                <div class="dynamic-field mb-4 {% if survey.resolvemethod == 'PMAD' or survey.service == 'HD' %}hidden-forced{% endif %}" id="rsdp-field">
+                    <div class="field">
+                        <p class="control">
+                            <label class="checkbox label">
+                                Si l'opération a été déroulée sur place, aurait-elle pu être faite à distance ?
+                            </label>
+
+                        <div class="column is-flex is-justify-content-space-evenly">
+                            {% for child in rdv_form.rsdp %}
+                                <label class="radio">
+                                    {{ form_widget(child) }}
+                                    {{ child.vars.label }}
+                                </label>
+                            {% endfor %}
+                        </div>
+
+                        </p>
                     </div>
                 </div>
 

@@ -33,6 +33,11 @@ class Survey
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $resolve_method;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $type;
 
     /**
@@ -138,7 +143,8 @@ class Survey
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $resolve_method;
+    private $rsdp;
+
 
     public function __construct()
     {
@@ -618,6 +624,18 @@ class Survey
     public function setResolveMethod(?string $resolve_method): self
     {
         $this->resolve_method = $resolve_method;
+
+        return $this;
+    }
+
+    public function getRsdp(): ?string
+    {
+        return $this->rsdp;
+    }
+
+    public function setRsdp(?string $rsdp): self
+    {
+        $this->rsdp = $rsdp;
 
         return $this;
     }

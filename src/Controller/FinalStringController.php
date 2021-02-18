@@ -32,7 +32,7 @@ class FinalStringController extends AbstractController
         $otherApps = $survey->getOtherApps();
         $phones = $survey->getPhones();
         $cmdbs = $survey->getCmdbs();
-
+        $rsdp = $survey->getRsdp();
 
         $finalString .= $this->miseEnFormBalise($assets);
         $finalString .= $this->miseEnFormBalise($otherActions);
@@ -41,6 +41,9 @@ class FinalStringController extends AbstractController
         $finalString .= $this->miseEnFormBalise($otherApps);
         $finalString .= $this->miseEnFormBalise($phones);
         $finalString .= $this->miseEnFormBalise($cmdbs);
+        if ($rsdp == 'OUI' || $rsdp == 'NON'){
+            $finalString .= "[RSDP_" . $rsdp . "] ";
+        }
         $stringToHash = $finalString;
 
 //        die();

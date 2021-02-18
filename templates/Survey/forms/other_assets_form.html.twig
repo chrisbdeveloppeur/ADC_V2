@@ -66,13 +66,7 @@
                     </p>
                 </div>
 
-                <label class="checkbox">
-                    <input type="checkbox" class="checkbox-unknow-hostname" onchange="setUnknowHostname(this)">
-                    Hostname inconnu
-                    <span class="has-text-info">
-                        <i class="fas fa-info-circle help-pointer-hover" data-tooltip="Cochez pour les cas suivant : Matériel emballé, Matériel sans n° d'asset, Intervention HD sans n° d'asset"></i>
-                    </span>
-                </label>
+                {{ include('includes/unknow_hostname.html.twig') }}
 
             </div>
 

@@ -740,6 +740,8 @@ class FormsController extends AbstractController
             $balise = $rdvForm->get('balise')->getData();
             $reponse = $rdvForm->get('rdv')->getData();
             $rdv = $survey->getRdvs();
+            $rsdp = $rdvForm->get('rsdp')->getData();
+            $survey->setRsdp($rsdp);
             if ( count($rdv) >= 1 ){
                 $survey->getRdvs()->clear();
             }
@@ -748,13 +750,6 @@ class FormsController extends AbstractController
                 $rdv->setBalise($balise);
                 $survey->addRdv($rdv);
             }
-
-//            dump($rdvForm->get('rdv')->getData());
-//            dump($balise);
-//
-//
-//
-//            dd($survey);
 
             return $this->redirectToRoute("commentaire");
         }
