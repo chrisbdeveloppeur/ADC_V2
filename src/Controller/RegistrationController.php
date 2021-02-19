@@ -34,7 +34,7 @@ class RegistrationController extends AbstractController
 
     /**
      * @Route("/register", name="app_register")
-     * @IsGranted("ROLE_USER")
+//     * @IsGranted("ROLE_USER")
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $authenticator, NotifMessage $notifMessage): Response
     {
