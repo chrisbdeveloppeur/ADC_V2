@@ -17,11 +17,11 @@
 
                 {{ form_start(form, {'attr': {'class':'column'}}) }}
 
-                <div class="control is-flex-desktop is-flex-direction-row">
+                <div class="control is-flex-desktop">
                     {% for child in form.method %}
 
                                 {% if child.vars.value == 'AUTRE' %}
-                                    <label style="position: relative" class="column help-pointer-hover help-pointer-hover" data-tooltip="Ex : appel téléphonique, mail, incident résolu sans intervention, faire rebooter un PC ou dans le cadre d'u smartphone, communiquer un code PUK" onclick="checkRadio(this)">
+                                    <label style="position: relative" class="column help-pointer-hover" data-tooltip="Ex : appel téléphonique, mail, incident résolu sans intervention, faire rebooter un PC ou dans le cadre d'u smartphone, communiquer un code PUK" onclick="checkRadio(this)">
                                         <button class="button is-fullwidth is-dark is-outlined ">
                                             {{ child.vars.label }}
                                             {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
