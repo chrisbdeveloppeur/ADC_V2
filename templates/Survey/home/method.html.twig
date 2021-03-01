@@ -42,7 +42,7 @@
                                         </button>
                                     </label>
                                 {% elseif child.vars.value == 'PLATEAU' %}
-                                    <label style="position: relative" class="column help-pointer-hover {% if survey.service == 'HD' %}is-hidden{% endif %}" data-tooltip="Intérvention réalisée au sur place, ex : bureau utilisateur" onclick="checkRadio(this)">
+                                    <label style="position: relative" class="column help-pointer-hover {% if survey.service == 'HD' %}is-hidden{% endif %}" data-tooltip="Intérvention réalisée sur place, ex : bureau utilisateur" onclick="checkRadio(this)">
                                         <button class="button is-fullwidth is-dark is-outlined">
                                             {{ child.vars.label }}
                                             {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
