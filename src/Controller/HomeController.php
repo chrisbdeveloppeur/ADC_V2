@@ -67,7 +67,7 @@ class HomeController extends AbstractController
             $service = $survey->getService();
             if ($service == 'HD'){
                 $survey->setType('DEM');
-                return $this->redirectToRoute('taskt_home');
+                return $this->redirectToRoute('user_cmdb_dif');
             }elseif ($service == 'SDP'){
                 return $this->redirectToRoute('tasktorinct');
             }
@@ -144,16 +144,16 @@ class HomeController extends AbstractController
             $reponse = $form->get('user_cmdb_dif')->getData();
             $survey->setUserCmdbDif($reponse);
 //            dd($survey);
-            if ($survey->getType() == 'DEM'){
-                return $this->redirectToRoute('taskt_home', [
-                ]);
-            }elseif ($survey->getType() == 'INC'){
+            if ($survey->getType() == 'INC'){
                 if ($survey->getResolveMethod() == 'PMAD'){
                     return $this->redirectToRoute('rdv');
                 }else{
                     return $this->redirectToRoute('inct_home', [
                     ]);
                 }
+            }else{
+                return $this->redirectToRoute('taskt_home', [
+                ]);
             }
         }
 

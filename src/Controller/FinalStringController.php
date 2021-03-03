@@ -46,8 +46,6 @@ class FinalStringController extends AbstractController
         }
         $stringToHash = $finalString;
 
-//        die();
-
         $finalString = strtoupper($finalString);
 
         if ($survey->getCommentaire()){
@@ -71,13 +69,17 @@ class FinalStringController extends AbstractController
         //                  Balise du INC ou DEM
         $finalString .= "[".$survey->getType()."] ";
 
+        //                  Balise USER_CMDB_DIF
+
+        $finalString .= "[USER_CMDB_DIF_".$survey->getUserCmdbDif()."] ";
+
         //                  Balise de la méthode intervention
         $finalString .= "[".$survey->getResolveMethod()."] ";
 
         //                  Balise du service concerné (HD/SDP)
         $finalString .= "[".$survey->getService()."] ";
 
-        $finalString .= '[ARBRE_DE_CLOTURE v.' . $version . "] " ;
+        $finalString .= '[ARBRE_DE_CLOTURE_V.' . $version . "] " ;
 
 //                      MISE EN CORELATION FUSEAU HORAIRE                   //
 //        $survey->setTimeStamp(new \DateTime('', new \DateTimeZone('Europe/Paris') ) );
