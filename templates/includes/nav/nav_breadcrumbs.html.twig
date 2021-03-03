@@ -70,6 +70,26 @@
                                         <span>Type d'incident</span>
                                     </a>
                                 </li>
+                            {% elseif url == '/user-cmdb-dif'  %}
+                                {% if loop.index == (survey.chemin|length) %}
+                                    <li class="is-active" title="Vous vous trouvé actuellement ici">
+                                    <a href="#">
+                                {% else %}
+                                    <li>
+                                        <a href="{{ url }}" title="Cliquer pour revenir ici">
+                                {% endif %}
+                                            <div class="icon-text">
+                                                <span>
+                                                    <i class="fas fa-user"></i>
+                                                </span>
+                                                <span>=</span>
+                                                <span>
+                                                    <i class="fas fa-user-tag"></i>
+                                                </span>
+                                                <span>?</span>
+                                            </div>
+                                        </a>
+                                    </li>
                             {% elseif url == '/ASSET'  %}
                                     {% if loop.index == (survey.chemin|length) %}
                                     <li class="is-active" title="Vous vous trouvé actuellement ici">

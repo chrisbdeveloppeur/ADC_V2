@@ -27,13 +27,13 @@
                         {% for child in form.user_cmdb_dif %}
                             <label class="column" onclick="checkRadio(this)">
                                 <button class="button is-fullwidth is-dark is-outlined">
-                                    {% if child.vars.value == 'INC' %}
+                                    {% if child.vars.value == 'OUI' %}
                                         <span class="icon is-small">
-                                            <i class="fas fa-lg fa-tools"></i>
+                                            <i class="fas fa-lg fa-user-check"></i>
                                         </span>
-                                    {% elseif child.vars.value == 'DEM' %}
+                                    {% elseif child.vars.value == 'NON' %}
                                         <span class="icon is-small">
-                                            <i class="fas fa-lg fa-tasks"></i>
+                                            <i class="fas fa-lg fa-not-equal"></i>
                                         </span>
                                     {% endif %}
                                     {{ child.vars.label }}

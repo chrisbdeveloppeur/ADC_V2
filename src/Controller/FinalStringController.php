@@ -57,10 +57,15 @@ class FinalStringController extends AbstractController
             $finalString = "[ANNULE] ";
         }
 
+        $finalString .= "\r\n";
+
+        //                  Balise version ADC
+        $finalString .= '[ARBRE_DE_CLOTURE_V.' . $version . "] " ;
+
         //                  Horodatage
         $survey->setTimeStamp();
         $horodatage = "[" . $survey->getTimeStamp()->format('d/m/Y - H:i') . "] ";
-        $finalString .= "\r\n" . $horodatage;
+        $finalString .= $horodatage;
 
         //         Hashage (crc32) de la chaine final
         $survey->setHashedString($stringToHash);
@@ -78,8 +83,6 @@ class FinalStringController extends AbstractController
 
         //                  Balise du service concerné (HD/SDP)
         $finalString .= "[".$survey->getService()."] ";
-
-        $finalString .= '[ARBRE_DE_CLOTURE_V.' . $version . "] " ;
 
 //                      MISE EN CORELATION FUSEAU HORAIRE                   //
 //        $survey->setTimeStamp(new \DateTime('', new \DateTimeZone('Europe/Paris') ) );
