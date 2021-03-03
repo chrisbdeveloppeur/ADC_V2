@@ -6,6 +6,7 @@ use App\Entity\Survey;
 use App\Form\ResolveMethodType;
 use App\Form\ServiceType;
 use App\Form\TypeFormType;
+use App\Form\UserCmdbDifType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -100,10 +101,53 @@ class HomeController extends AbstractController
         if ($form->isSubmitted()){
             $reponse = $form->get('type')->getData();
             $survey->setType($reponse);
-            if ($reponse == 'DEM'){
+            return $this->redirectToRoute('user_cmdb_dif');
+//            if ($reponse == 'DEM'){
+//                return $this->redirectToRoute('taskt_home', [
+//                ]);
+//            }elseif ($reponse == 'INC'){
+//                if ($survey->getResolveMethod() == 'PMAD'){
+//                    return $this->redirectToRoute('rdv');
+//                }else{
+//                    return $this->redirectToRoute('inct_home', [
+//                    ]);
+//                }
+//            }
+        }
+
+        $cheminController->setChemins($request);
+        return $this->render('Survey/home/type_inter.html.twig',[
+            'form' => $form->createView(),
+            'form_name' => $form->getName(),
+            'survey' => $survey,
+        ]);
+    }
+
+
+
+
+    /**
+     * @Route("/user-cmdb-dif", name="user_cmdb_dif")
+     */
+    public function userCmdbDif(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
+    {
+        $survey =  $surveySessionController->checkSurveySession();
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
+
+        $form = $this->createForm(UserCmdbDifType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()){
+            $reponse = $form->get('user_cmdb_dif')->getData();
+            $survey->setUserCmdbDif($reponse);
+//            dd($survey);
+            if ($survey->getType() == 'DEM'){
                 return $this->redirectToRoute('taskt_home', [
                 ]);
-            }elseif ($reponse == 'INC'){
+            }elseif ($survey->getType() == 'INC'){
                 if ($survey->getResolveMethod() == 'PMAD'){
                     return $this->redirectToRoute('rdv');
                 }else{
@@ -114,7 +158,7 @@ class HomeController extends AbstractController
         }
 
         $cheminController->setChemins($request);
-        return $this->render('Survey/home/type_inter.html.twig',[
+        return $this->render('Survey/home/user_cmdb_dif.html.twig',[
             'form' => $form->createView(),
             'form_name' => $form->getName(),
             'survey' => $survey,

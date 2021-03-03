@@ -43,6 +43,11 @@ class Survey
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $user_cmdb_dif;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $cas_taskt;
 
     /**
@@ -636,6 +641,18 @@ class Survey
     public function setRsdp(?string $rsdp): self
     {
         $this->rsdp = $rsdp;
+
+        return $this;
+    }
+
+    public function getUserCmdbDif(): ?string
+    {
+        return $this->user_cmdb_dif;
+    }
+
+    public function setUserCmdbDif(?string $user_cmdb_dif): self
+    {
+        $this->user_cmdb_dif = $user_cmdb_dif;
 
         return $this;
     }

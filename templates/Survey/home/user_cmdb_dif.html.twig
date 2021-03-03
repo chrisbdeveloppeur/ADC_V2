@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{#{% block title %}Hello AskUserController!{% endblock %}#}
+
+{% block body %}
+
+    <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
+        <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
+
+            {{ include('includes/nav_indicator.html.twig') }}
+{#            <h1 class="title is-size-3-desktop">Type d'intervention<span class="is-size-5">(2)</span></h1>#}
+
+
+            <div class="field">
+                {% if survey.type == 'DEM' %}
+                    <label class="label">Le propriétaire de la machine est-il bien la personne désignée dans le champ "requested for" ? </label>
+                {% elseif survey.type == 'INC' %}
+                    <label class="label">Le propriétaire de la machine est-il bien la personne désignée dans le champ "caller" ?</label>
+                {% endif %}
+            </div>
+
+            <div class="">
+
+                {{ form_start(form, {'attr': {'class':'column'}}) }}
+
+                    <div class="control is-flex-desktop">
+                        {% for child in form.user_cmdb_dif %}
+                            <label class="column" onclick="checkRadio(this)">
+                                <button class="button is-fullwidth is-dark is-outlined">
+                                    {% if child.vars.value == 'INC' %}
+                                        <span class="icon is-small">
+                                            <i class="fas fa-lg fa-tools"></i>
+                                        </span>
+                                    {% elseif child.vars.value == 'DEM' %}
+                                        <span class="icon is-small">
+                                            <i class="fas fa-lg fa-tasks"></i>
+                                        </span>
+                                    {% endif %}
+                                    {{ child.vars.label }}
+                                    {{ form_widget(child, {'attr': {'class': 'radio-select is-hidden'} } ) }}
+                                </button>
+                            </label>
+                        {% endfor %}
+                    </div>
+
+                    {{ include('includes/nav/prev_only.html.twig') }}
+
+                {{ form_end(form) }}
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
