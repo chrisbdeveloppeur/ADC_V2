@@ -19,8 +19,8 @@ class UserCmdbDifType extends AbstractType
                 'expanded' => true,
 //                'choice_label' => false,
                 'choices' => [
-                    'Oui' => 'OUI',
                     'Non' => 'NON',
+                    'Oui' => 'OUI',
                 ]
             ])
         ;
