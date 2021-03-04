@@ -4,21 +4,22 @@
 
 {% block body %}
 
-    <div class="column is-flex is-align-items-center is-justify-content-center is-four-fifths-desktop is-three-fifths-widescreen">
+    <div class="column is-flex is-align-items-center is-justify-content-center is-two-thirds-desktop is-two-fifths-widescreen">
         <div class="box is-flex is-flex-direction-column has-text-centered" style="height: 100%;width: 100%">
 
             {{ include('includes/nav_indicator.html.twig') }}
             <h1 class="title is-size-3-desktop">Rendez-vous(s)</h1>
 
-            {{ form_start(rdv_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}
-            <div class="field">
+{#            {{ form_start(rdv_form, {'attr' : {'class' : 'is-fullheight-percent is-flex is-justify-content-space-between is-flex-direction-column'} }) }}#}
+            {{ form_start(rdv_form, {'attr' : {'class' : 'column'} }) }}
+{#            <div class="field">#}
                 <label class="label" for="last_name">
                     Un rendez-vous a-t-il fait l'objet de l'intervention ?
                 </label>
 
-                <div class="field">
+{#                <div class="field">#}
 
-                    <div class="control is-flex">
+                    <div class="control is-flex-desktop">
                         {% for child in rdv_form.rdv %}
                             {% if child.vars.label == 'Oui' %}
                                 <label class="column" onclick="checkRadio(this);rdvYesSelected()">
@@ -51,7 +52,7 @@
                         {% endfor %}
                     </div>
 
-                </div>
+{#                </div>#}
 
                 <div class="field is-hidden rdv-field">
                     <label class="label">
@@ -82,7 +83,7 @@
                     </div>
                 </div>
 
-            </div>
+{#            </div>#}
 
             <div class="field is-hidden rdv-field">
                 {{ include('includes/nav/prev_next.html.twig') }}

@@ -76,7 +76,9 @@ class FinalStringController extends AbstractController
 
         //                  Balise USER_CMDB_DIF
 
-        $finalString .= "[USER_CMDB_DIF_".$survey->getUserCmdbDif()."] ";
+        if ($survey->getUserCmdbDif() == 'OUI' || 'NON'){
+            $finalString .= "[USER_CMDB_DIF_".$survey->getUserCmdbDif()."] ";
+        }
 
         //                  Balise de la méthode intervention
         $finalString .= "[".$survey->getResolveMethod()."] ";
