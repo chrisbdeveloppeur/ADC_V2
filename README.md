@@ -9,19 +9,26 @@ Code source de l'application web Arbre de clôture V2
  **- Node.js 12.14.1**
  <hr>
 
- 
+_Toutes les commandes ont été executées via un invite de commande de type **git bash**._<br>
+_Des connaissance en **PHP - Symfony** ainsi que **Twig** sont necessaire pour toute compréhension & modification de l'outil._<br>
+_La Framework **Bulma** à été utiliser pour le rendu des templates._
 ## Procédure d'installation / lancement :
-#### < ! > Toutes les commandes ont été executées via un invite de commande de type **git bash** < ! >
 
-#### Se rendre à la racine du dossier "ADC_V2" exécuter les commandes suivante :
+#### Récupération du repository :
+###### Placez-vous à l'emplacement cible pour la récupération du dossier ADC_V2 et executer la commande suivante
+`git clone https://github.com/chrisbdeveloppeur/ADC_V2.git`
+
+#### Installation :
+###### Se rendre à la racine du dossier "ADC_V2" exécuter les commandes suivante
  `composer install`
  <br>
  `yarn install`
 
 #### Lancement du serveur (Symfony) :
+###### Toujours à la racine du dossier "ADC_V2" exécuter les commandes suivante
  `yarn encore dev`<br>
  `symfony server:start`<br>
-##### _Vous avez aussi la possibiliter de lancer directement le script :_
+###### _Vous avez aussi la possibiliter de lancer directement le script présent dans le dossier ADC_V2 :_
 `start.sh`
 
 #### Ouverture de l'app via une page web :
@@ -43,7 +50,10 @@ Code source de l'application web Arbre de clôture V2
  - ###### APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear = Vide le cache de symfony (corrige certains problèmes)
 
 #### Liens vers les documentations utiles :
-- https://git-scm.com/docs
-- https://symfony.com/doc/current/index.html
+- **GIT** : https://git-scm.com/docs
+- **Symfony** : https://symfony.com/doc/current/index.html
+- **Composer** : https://getcomposer.org/doc/
+- **Twig** : https://twig.symfony.com/doc/3.x/
+- **Bulma** : https://bulma.io/documentation/
 
 
