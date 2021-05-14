@@ -50,8 +50,8 @@ _La Framework **Bulma** à été utiliser pour le rendu des templates._
 #### Commandes :
 
  - ###### `composer install` = installation des dépendances
- - ###### `yarn install` = installation du moteur de style (scss) pour les templates
- - ###### `yarn encore dev` = compilation des éléments de style
+ - ###### `yarn install` = installation du gestionaire de package
+ - ###### `yarn encore dev` = chargement des packages .scss/.css et .js
  - ###### `symfony server:start` = lancement du serveur symfony
  - ###### `symfony server:start -d` = lancement du serveur symfony en tâche de fond
  - ###### `symfony server:stop` = arrêt du serveur symfony
