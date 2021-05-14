@@ -19,19 +19,19 @@ _La Framework **Bulma** à été utiliser pour le rendu des templates._
 `git clone https://github.com/chrisbdeveloppeur/ADC_V2.git`
 
 #### Installation :
-###### Se rendre à la racine du dossier "ADC_V2" exécuter les commandes suivante
+###### Se rendre à la racine du dossier "ADC_V2" et exécuter les commandes suivantes
  `composer install`
  <br>
  `yarn install`
 
 #### Lancement du serveur (Symfony) :
-###### Toujours à la racine du dossier "ADC_V2" exécuter les commandes suivante
+###### Toujours à la racine du dossier "ADC_V2" et exécuter les commandes suivantes
  `yarn encore dev`<br>
  `symfony server:start`<br>
 ###### _Vous avez aussi la possibiliter de lancer directement le script présent dans le dossier ADC_V2 :_
 `start.sh`
 
-#### Ouverture de l'app via une page web :
+###### Ouverture de l'app via une page web (après que le serveur symfony soit lancé)' :
  `symfony open:local`
 
 <hr>
