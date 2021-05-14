@@ -40,7 +40,7 @@ Code source de l'application web Arbre de clôture V2
  - ###### symfony server:stop = arrêt du serveur symfony
  - ###### symfony server:log = Voir le dernier message des logs
  - ###### symfony open:local = ouvre l'outil via une page web
- - ###### APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear = Vider le cache de symfony (corrige certain problèmes)
+ - ###### APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear = Vide le cache de symfony (corrige certains problèmes)
 
 #### Liens vers les documentations utiles :
 - https://git-scm.com/docs
