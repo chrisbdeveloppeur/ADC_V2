@@ -32,14 +32,15 @@ Code source de l'application web Arbre de clôture V2
 ## Annexes :
 #### Commandes :
 
- - ###### composer install = installation des dépendences
- - ###### yarn install = installation du moteur de style (front-end)
+ - ###### composer install = installation des dépendances
+ - ###### yarn install = installation du moteur de style (scss) pour les templates
  - ###### yarn encore dev = compilation des éléments de style
  - ###### symfony server:start = lancement du serveur symfony
  - ###### symfony server:start -d = lancement du serveur symfony en tâche de fond
  - ###### symfony server:stop = arrêt du serveur symfony
  - ###### symfony server:log = Voir le dernier message des logs
  - ###### symfony open:local = ouvre l'outil via une page web
+ - ###### APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear = Vider le cache de symfony (corrige certain problèmes)
 
 #### Liens vers les documentations utiles :
 - https://git-scm.com/docs
