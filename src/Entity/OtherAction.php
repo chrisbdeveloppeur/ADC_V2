@@ -5,56 +5,56 @@ namespace App\Entity;
 use App\Repository\OtherActionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=OtherActionRepository::class)
- */
+///**
+// * @ORM\Entity(repositoryClass=OtherActionRepository::class)
+// */
 class OtherAction
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+//    /**
+//     * @ORM\Id
+//     * @ORM\GeneratedValue
+//     * @ORM\Column(type="integer")
+//     */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $action;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $rsdp;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="integer", nullable=true)
+//     */
     private $tpx;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="integer", nullable=true)
+//     */
     private $position;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $asset;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="otherActions")
-     */
+//    /**
+//     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="otherActions")
+//     */
     private $survey;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $balise;
 
     public function __construct()

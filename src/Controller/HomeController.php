@@ -16,7 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class HomeController
  * @package App\Controller
- * @IsGranted("ROLE_USER")
  */
 
 class HomeController extends AbstractController

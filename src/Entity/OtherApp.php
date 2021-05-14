@@ -5,56 +5,56 @@ namespace App\Entity;
 use App\Repository\OtherAppRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=OtherAppRepository::class)
- */
+///**
+// * @ORM\Entity(repositoryClass=OtherAppRepository::class)
+// */
 class OtherApp
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+//    /**
+//     * @ORM\Id
+//     * @ORM\GeneratedValue
+//     * @ORM\Column(type="integer")
+//     */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $action;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $rsdp;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="integer", nullable=true)
+//     */
     private $tpx;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $asset;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $balise;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="integer", nullable=true)
+//     */
     private $position;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="otherApps")
-     */
+//    /**
+//     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="otherApps")
+//     */
     private $survey;
 
     public function getId(): ?int

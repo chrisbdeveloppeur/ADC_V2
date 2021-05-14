@@ -8,146 +8,146 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\DateType;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=SurveyRepository::class)
- */
+///**
+// * @ORM\Entity(repositoryClass=SurveyRepository::class)
+// */
 class Survey
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+//    /**
+//     * @ORM\Id
+//     * @ORM\GeneratedValue
+//     * @ORM\Column(type="integer")
+//     */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $service;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $resolve_method;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $type;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $user_cmdb_dif;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $cas_taskt;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $cas_inct;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $cas;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="text", nullable=true)
+//     */
     private $commentaire;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+//    /**
+//     * @ORM\Column(type="datetime")
+//     */
     private $timestamp;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="text", nullable=true)
+//     */
     private $final_string;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $hashed_string;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="datetime", nullable=true)
+//     */
     private $date_string;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $from_inct;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $type_inter;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Asset::class, mappedBy="survey")
-     */
+//    /**
+//     * @ORM\OneToMany(targetEntity=Asset::class, mappedBy="survey")
+//     */
     private $assets;
 
-    /**
-     * @ORM\OneToMany(targetEntity=OtherAsset::class, mappedBy="survey")
-     */
+//    /**
+//     * @ORM\OneToMany(targetEntity=OtherAsset::class, mappedBy="survey")
+//     */
     private $other_assets;
 
-    /**
-     * @ORM\OneToMany(targetEntity=App::class, mappedBy="survey")
-     */
+//    /**
+//     * @ORM\OneToMany(targetEntity=App::class, mappedBy="survey")
+//     */
     private $apps;
 
-    /**
-     * @ORM\OneToMany(targetEntity=OtherApp::class, mappedBy="survey")
-     */
+//    /**
+//     * @ORM\OneToMany(targetEntity=OtherApp::class, mappedBy="survey")
+//     */
     private $other_apps;
 
-    /**
-     * @ORM\OneToMany(targetEntity=OtherAction::class, mappedBy="survey")
-     */
+//    /**
+//     * @ORM\OneToMany(targetEntity=OtherAction::class, mappedBy="survey")
+//     */
     private $other_actions;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Phone::class, mappedBy="survey")
-     */
+//    /**
+//     * @ORM\OneToMany(targetEntity=Phone::class, mappedBy="survey")
+//     */
     private $phones;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Cmdb::class, mappedBy="survey")
-     */
+//    /**
+//     * @ORM\OneToMany(targetEntity=Cmdb::class, mappedBy="survey")
+//     */
     private $cmdbs;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Rdv::class, mappedBy="survey")
-     */
+//    /**
+//     * @ORM\OneToMany(targetEntity=Rdv::class, mappedBy="survey")
+//     */
     private $rdvs;
 
-    /**
-     * @ORM\Column(type="array", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="array", nullable=true)
+//     */
     private $chemin = [];
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="boolean", nullable=true)
+//     */
     private $canceled;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $rsdp;
 
 

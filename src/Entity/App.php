@@ -5,56 +5,56 @@ namespace App\Entity;
 use App\Repository\AppRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=AppRepository::class)
- */
+///**
+// * @ORM\Entity(repositoryClass=AppRepository::class)
+// */
 class App
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+//    /**
+//     * @ORM\Id
+//     * @ORM\GeneratedValue
+//     * @ORM\Column(type="integer")
+//     */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $action;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $rsdp;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="integer", nullable=true)
+//     */
     private $tpx;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="apps")
-     */
+//    /**
+//     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="apps")
+//     */
     private $survey;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="integer", nullable=true)
+//     */
     private $position;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $asset;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $balise;
 
     public function getId(): ?int

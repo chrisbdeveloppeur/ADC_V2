@@ -6,66 +6,66 @@ namespace App\Entity;
 use App\Repository\OtherAssetRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=OtherAssetRepository::class)
- */
+///**
+// * @ORM\Entity(repositoryClass=OtherAssetRepository::class)
+// */
 class OtherAsset
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+//    /**
+//     * @ORM\Id
+//     * @ORM\GeneratedValue
+//     * @ORM\Column(type="integer")
+//     */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $type;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $as;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $ae;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="other_assets")
-     */
+//    /**
+//     * @ORM\ManyToOne(targetEntity=Survey::class, inversedBy="other_assets")
+//     */
     private $survey;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="integer", nullable=true)
+//     */
     private $position;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $action;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", nullable=true)
+//     */
     private $rsdp;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="integer", nullable=true)
+//     */
     private $tpx;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+//    /**
+//     * @ORM\Column(type="string", length=255, nullable=true)
+//     */
     private $balise;
 
     public function __construct()
