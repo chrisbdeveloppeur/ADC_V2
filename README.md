@@ -32,7 +32,7 @@ _La Framework **Bulma** à été utiliser pour le rendu des templates._
  `yarn encore dev`<br>
  `symfony server:start`<br>
 ###### _Vous avez aussi la possibiliter de lancer directement le script présent dans le dossier ADC_V2 :_
-`start.sh`
+`.\start.sh`
 
 ###### Ouverture de l'app via une page web (après que le serveur symfony soit lancé)' :
  `symfony open:local`
