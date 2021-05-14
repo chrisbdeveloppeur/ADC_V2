@@ -11,3 +11,10 @@ Se rendre à la racine du dossier "arbre_de_cloture_v2" (cmd, git bash ou encore
  - composer install
  - yarn install
 
+composer install = installation des dépendences
+yarn install = installation du moteur de style (front-end)
+
+
+
+
+
