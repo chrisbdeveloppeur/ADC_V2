@@ -4,7 +4,9 @@ Code source de l'application web Arbre de clôture V2
 ## Prérequis :
 ###### Configuration minimal requis
  **- Symfony 1.1.5**
- <br> 
+ <br>
+ **- Git 2.31.1**
+ <br>
  **- Yarn 1.22.1**
  <br>
  **- Node.js 12.14.1**
@@ -50,8 +52,14 @@ _La Framework **Bulma** à été utiliser pour le rendu des templates._
  - ###### symfony open:local = ouvre l'outil via une page web
  - ###### APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear = Vide le cache de symfony (corrige certains problèmes)
 
+#### Liens des telechargements utiles :
+- **Git** : https://git-scm.com/downloads
+- **Symfony** : https://symfony.com/download
+- **Node.js** : https://nodejs.org/en/
+- **Yarn** : https://classic.yarnpkg.com/en/docs/install#windows-stable _(Dans "Alternatives")_
+
 #### Liens vers les documentations utiles :
-- **GIT** : https://git-scm.com/docs
+- **Git** : https://git-scm.com/docs
 - **Symfony** : https://symfony.com/doc/current/index.html
 - **Composer** : https://getcomposer.org/doc/
 - **Twig** : https://twig.symfony.com/doc/3.x/
