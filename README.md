@@ -11,7 +11,7 @@ Code source de l'application web Arbre de clôture V2
 
  
 ## Procédure d'installation :
-_Toutes les commandes ont été executées via un invite de commande de type **git bash**._
+#### < ! > Toutes les commandes ont été executées via un invite de commande de type **git bash** < ! >
 
 #### Se rendre à la racine du dossier "ADC_V2" exécuter les commandes suivante :
  `composer install`
