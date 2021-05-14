@@ -41,26 +41,6 @@
 
     {{ include('includes/nav/nav_breadcrumbs.html.twig') }}
 
-    {% if app.user %}
-    <div class="navbar-end has-text-centered">
-        <div class="navbar-item">
-            <div class="tags has-addons is-justify-content-center">
-                    <span class="tag is-white is-medium ">
-                        {{ app.user.username }}
-                    </span>
-                    <a href="{{ path('app_logout') }}" class="tag button is-danger is-medium ">
-                        <span>
-                            Déconnexion
-                        </span>
-                        <span class="icon">
-                            <i class="fas fa-door-open"></i>
-                        </span>
-                    </a>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-
 </nav>
 
 {{ include('includes/flash_message.html.twig') }}
