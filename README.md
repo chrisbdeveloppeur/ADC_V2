@@ -7,10 +7,10 @@ Code source de l'application web Arbre de clôture V2
  **- Yarn 1.22.1**
  <br>
  **- Node.js 12.14.1**
-  
+ <hr>
 
  
-## Procédure d'installation :
+## Procédure d'installation / lancement :
 #### < ! > Toutes les commandes ont été executées via un invite de commande de type **git bash** < ! >
 
 #### Se rendre à la racine du dossier "ADC_V2" exécuter les commandes suivante :
@@ -20,11 +20,14 @@ Code source de l'application web Arbre de clôture V2
 
 #### Lancement du serveur (Symfony) :
  `yarn encore dev`<br>
- `symfony server:start`
+ `symfony server:start`<br>
+##### _Vous avez aussi la possibiliter de lancer directement le script :_
+`start.sh`
 
 #### Ouverture de l'app via une page web :
  `symfony open:local`
 
+<hr>
 
 ## Annexes :
 #### Commandes :
