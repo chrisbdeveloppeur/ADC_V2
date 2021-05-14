@@ -2,6 +2,7 @@
 Code source de l'application web Arbre de clôture V2
 
 ## Prérequis :
+###### Configuration minimal requis
  **- Symfony 1.1.5**
  <br> 
  **- Yarn 1.22.1**
