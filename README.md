@@ -3,13 +3,13 @@ Code source de l'application web Arbre de clôture V2
 
 ## Prérequis :
 ###### Configuration minimal requis
- **- Symfony 1.1.5**
- <br>
  **- Git 2.31.1**
  <br>
- **- Yarn 1.22.1**
+ **- Symfony 1.1.5**
  <br>
  **- Node.js 12.14.1**
+ <br>
+ **- Yarn 1.22.1**
 
 #### Liens des telechargements utiles :
 - **Git** : https://git-scm.com/downloads
