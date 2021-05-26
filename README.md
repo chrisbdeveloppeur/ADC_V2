@@ -2,7 +2,7 @@
 Code source de l'application web Arbre de clôture V2
 
 ## Prérequis :
-###### Configuration minimal requis
+###### Configuration minimal requise
  **- PHP 7.4**
  <br>
  **- Git 2.31.1**
