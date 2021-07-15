@@ -1,15 +1,15 @@
 <div class="is-flex mt-3 is-justify-content-space-between is-align-items-center">
 
-    <div class="control has-text-left">
-        <a href="{{ survey.chemin[survey.chemin|length - 2] }}" class="button is-info is-small" title="Etape précédente">
-            <span class="icon">
-                <i class="fas fa-chevron-left"></i>
-            </span>
-            <span>
-                Précédent
-            </span>
-        </a>
-    </div>
+{#    <div class="control has-text-left">#}
+{#        <a href="{{ survey.chemin[survey.chemin|length - 2] }}" class="button is-info is-small" title="Etape précédente">#}
+{#            <span class="icon">#}
+{#                <i class="fas fa-chevron-left"></i>#}
+{#            </span>#}
+{#            <span>#}
+{#                Précédent#}
+{#            </span>#}
+{#        </a>#}
+{#    </div>#}
 
     <a class="button is-info" id="copy-btn" onclick="CopyToClipboard('final-string-form')" title="Copier le code">
         <i class="fas fa-clone"></i>

@@ -37,7 +37,6 @@ class FormsController extends AbstractController
      */
     public function assetForm(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
-//        dd($request);
         $form = $this->createForm(GlobalFormType::class);
         $assetForm = $this->createForm(AssetType::class);
         $survey =  $surveySessionController->checkSurveySession();
@@ -50,7 +49,9 @@ class FormsController extends AbstractController
         for ($i=0; $i<=count($survey->getAssets()); $i++ ){
             $number = $i;
         }
-        if ( $assetForm->isSubmitted() && $number<=10 ){
+
+//        Définition du nombre maximum de balise pouvant être ajoutées :
+        if ( $assetForm->isSubmitted() && $number <= 15 ){
 
             if ($assetForm->get('action')->getData()){
                 $newAsset = new Asset();
@@ -65,15 +66,6 @@ class FormsController extends AbstractController
                 }
                 $newAsset->setRsdp($assetForm->get('rsdp')->getData());
                 $newAsset->setTpx($assetForm->get('tpx')->getData());
-//                if ($newAsset->getAe()==null){
-//                    $newAsset->setAe('XX');
-//                }
-//                if ($newAsset->getAs()==null){
-//                    $newAsset->setAs('XX');
-//                }
-//                if ($newAsset->getType()==null){
-//                    $newAsset->setType('XX');
-//                }
                 $survey->addAsset($newAsset);
                 $action = $newAsset->getAction();
                 $type = $newAsset->getType();
@@ -154,7 +146,8 @@ class FormsController extends AbstractController
             $number = $i;
         }
 
-        if ($otherAssetForm->isSubmitted() && $number<=10){
+        //        Définition du nombre maximum de balise "Autre asset" pouvant être ajoutées :
+        if ($otherAssetForm->isSubmitted() && $number <= 15){
 
             if ($otherAssetForm->get('action')->getData()){
                 $newAsset = new OtherAsset();
@@ -270,7 +263,8 @@ class FormsController extends AbstractController
             $number = $i;
         }
 
-        if ($otherActionForm->isSubmitted() && $number<=10){
+        //        Définition du nombre maximum de balise "Autre matériel" pouvant être ajoutées :
+        if ($otherActionForm->isSubmitted() && $number <= 15){
 
             if ($otherActionForm->get('action')->getData()){
                 $newAsset = new OtherAction();
@@ -368,8 +362,8 @@ class FormsController extends AbstractController
             $number = $i;
         }
 
-//
-        if ($appForm->isSubmitted() && $number<=10){
+//        Définition du nombre maximum de balise "logiciel" pouvant être ajoutées :
+        if ($appForm->isSubmitted() && $number <= 15){
 
             if ($appForm->get('action')->getData()){
                 $app = new App();
@@ -467,8 +461,8 @@ class FormsController extends AbstractController
             $number = $i;
         }
 
-//
-        if ($otherAppForm->isSubmitted() && $number<=10){
+//        Définition du nombre maximum de balise "Autre logiciel" pouvant être ajoutées :
+        if ($otherAppForm->isSubmitted() && $number <= 15){
 
             if ($otherAppForm->get('action')->getData()){
                 $otherApp = new OtherApp();
@@ -558,8 +552,8 @@ class FormsController extends AbstractController
             $number = $i;
         }
 
-//
-        if ($phoneForm->isSubmitted() && $number<=10){
+//        Définition du nombre maximum de balise "telephonie" pouvant être ajoutées :
+        if ($phoneForm->isSubmitted() && $number <= 15){
 
             if ($phoneForm->get('action')->getData()){
                 $phone = new Phone();
@@ -648,8 +642,8 @@ class FormsController extends AbstractController
         for ($i=0; $i<=count($survey->getCmdbs()); $i++ ){
             $number = $i;
         }
-//
-        if ($cmdbForm->isSubmitted() && $number<=10){
+//        Définition du nombre maximum de balise "CMDB" pouvant être ajoutées :
+        if ($cmdbForm->isSubmitted() && $number <= 15){
 
             if ($cmdbForm->get('action')->getData()){
                 $cmdb = new Cmdb();
@@ -745,12 +739,15 @@ class FormsController extends AbstractController
             if ( count($rdv) >= 1 ){
                 $survey->getRdvs()->clear();
             }
-            if ($reponse == 'oui'){
+            if ($reponse == 'OUI'){
                 $rdv = new Rdv();
                 $rdv->setBalise($balise);
                 $survey->addRdv($rdv);
+            }else{
+                $rdv = new Rdv();
+                $rdv->setBalise("RDV_NON");
+                $survey->addRdv($rdv);
             }
-
             return $this->redirectToRoute("commentaire");
         }
 

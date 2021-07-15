@@ -24,8 +24,8 @@ class OtherActionType extends AbstractType
                         'Visite préventive d\'une salle de réunion' => 'VER_SAL',
                         'Masterisation d\'un poste  + ajout CMDB' => 'MAS_CMD',
                         'Masterisation d\'un poste SANS ajout CMDB' => 'SPP_MAS_NOC',
-                        'Petit matériel : cartouches imprimantes, piles de périphériques sans fil, souris / claviers / station d\'accueil' => 'INS_PRT',
-                        'Imprimantes individuelles' => 'INS_PMA',
+//                        'Petit matériel : cartouches imprimantes, piles de périphériques sans fil, souris / claviers / station d\'accueil' => 'INS_PRT',
+//                        'Imprimantes individuelles' => 'INS_PMA',
                         'Blanchiment de matériel' => 'STK_TRF',
                         'Intervention sur matériel autonome' => 'MAT_AUT',
                     ]

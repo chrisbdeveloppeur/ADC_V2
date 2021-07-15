@@ -16,7 +16,7 @@
         gtag('config', 'G-JYW6JP7JKB');
     </script>
     <meta name="author" content="Christian BOUNGOU | chrisBdev">
-    <title>{% block title %}Arbre de clôture v1.9{% endblock %}</title>
+    <title>{% block title %}Arbre de clôture v2.01{% endblock %}</title>
     <meta name="description" content="{% block description %}scc-tool.com contient l'outil dit 'Arbre de clôture' pour les services de proximités (SDP) de l'entreprise SCC présents sur les comptes client SAFRAN{% endblock %}">
     <meta name="keywords" content="{% block keyswords %}Arbre de clôture, SCC, SAFRAN, SNOW, Service Now, SDP, Support informatique, SDS, SAE, SLS, scc-tool{% endblock %}">
     <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
@@ -141,7 +141,7 @@
                 axios.post(url,formData).then(function (response) {
                     let datas = response.data;
 
-                    if (datas.position <= 10){
+                    if (datas.position <= 14){
                         let container = document.querySelector('#asset-tags-grouped');
 
                         container.innerHTML += "<div class=\"control\">\n" +
@@ -239,7 +239,7 @@
                         });
 
                         autoFilledAssetsFields();
-
+                        maxBalises();
                     }
 
                 });
@@ -251,6 +251,7 @@
                 if (assetTag.parentNode) {
                     assetTag.parentNode.removeChild(assetTag);
                 }
+                maxBalises();
                 event.preventDefault();
 
                 const url = this.href;
@@ -306,7 +307,20 @@
                 if (typeof updateValue !== 'undefined'){
                     updateValue();
                 }
+                maxBalises();
             } ;
+
+            function maxBalises(){
+                let baliseGroup = document.getElementById('asset-tags-grouped');
+                let addBtn = document.getElementById('add-btn-form');
+                if (baliseGroup !== null && addBtn !== null) {
+                    if (baliseGroup.childElementCount >= 15){
+                        addBtn.setAttribute('disabled', true)
+                    }else {
+                        addBtn.removeAttribute('disabled')
+                    }
+                }
+            }
 
             autoFilledAssetsFields();
 
@@ -377,6 +391,31 @@
             
         </script>
         {#        FIN          #}
+
+
+
+{#    OPEN POP-UP FOR CONFIRM SURVEY AND GENERATE FINAL-STRING    #}
+        <script>
+            let popupBtn = document.querySelectorAll('.btn-for-display-popup');
+            popupBtn.forEach(function (element) {
+                element.addEventListener('click', function () {
+                    let modal = element.parentElement.previousElementSibling;
+                    let modal2 = element.previousElementSibling;
+                    if (modal){
+                        modal.style.display = 'flex';
+                    }
+                    if (modal2){
+                        modal2.style.display = 'flex';
+                    }
+                });
+            });
+
+            function closeModal(element) {
+                element.parentElement.style.display = 'none';
+            }
+        </script>
+{#    FIN    #}
+
 
     {% endblock %}
 </body>

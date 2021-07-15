@@ -1,0 +1,2 @@
+#!/bin/sh
+rsync -avz ./ -e "ssh -p 5022"  scctcrvc@world-328.fr.planethoster.net:~/public_html/scctool --include=public/build --include=public/bundles --include=public/.htaccess --include=vendor --exclude-from=.gitignore --exclude=".*" --exclude="public/images"
