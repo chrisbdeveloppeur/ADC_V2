@@ -50,7 +50,9 @@ class FormsController extends AbstractController
         for ($i=0; $i<=count($survey->getAssets()); $i++ ){
             $number = $i;
         }
-        if ( $assetForm->isSubmitted() && $number<=10 ){
+
+//        Définition du nombre maximum de balise pouvant être ajoutées :
+        if ( $assetForm->isSubmitted() && $number <= 15 ){
 
             if ($assetForm->get('action')->getData()){
                 $newAsset = new Asset();
@@ -65,15 +67,6 @@ class FormsController extends AbstractController
                 }
                 $newAsset->setRsdp($assetForm->get('rsdp')->getData());
                 $newAsset->setTpx($assetForm->get('tpx')->getData());
-//                if ($newAsset->getAe()==null){
-//                    $newAsset->setAe('XX');
-//                }
-//                if ($newAsset->getAs()==null){
-//                    $newAsset->setAs('XX');
-//                }
-//                if ($newAsset->getType()==null){
-//                    $newAsset->setType('XX');
-//                }
                 $survey->addAsset($newAsset);
                 $action = $newAsset->getAction();
                 $type = $newAsset->getType();
