@@ -33,8 +33,9 @@ class FinalStringController extends AbstractController
         $phones = $survey->getPhones();
         $cmdbs = $survey->getCmdbs();
         $rsdp = $survey->getRsdp();
-        $rdv = $survey->getRdvs();
-        $rdv = $survey->getRdvs()[0]->getBalise();
+        if ($survey->getRdvs()[0]){
+            $rdv = $survey->getRdvs()[0]->getBalise();
+        }
 
         $finalString .= $this->miseEnFormBalise($assets);
         $finalString .= $this->miseEnFormBalise($otherActions);
@@ -43,9 +44,13 @@ class FinalStringController extends AbstractController
         $finalString .= $this->miseEnFormBalise($otherApps);
         $finalString .= $this->miseEnFormBalise($phones);
         $finalString .= $this->miseEnFormBalise($cmdbs);
-        if ($rsdp == 'OUI' || $rsdp == 'NON'){
+        if (isset($rdv)){
             $finalString .= "[" . $rdv . "] ";
         }
+        if ($rsdp == 'OUI' || $rsdp == 'NON'){
+            $finalString .= "[RSDP_" . $rsdp . "] ";
+        }
+
         $stringToHash = $finalString;
 
         $finalString = strtoupper($finalString);
@@ -76,7 +81,8 @@ class FinalStringController extends AbstractController
         $finalString .= "[" . strtoupper($survey->getHashedString()) . "] ";
 
         //                  Récupération, et intégration dans la chaine, de la "balise INC ou DEM"
-        if ($survey->getType() != 'N/A'){
+//        dd($survey->getType());
+        if ( $survey->getType() != 'N/A' &&  $survey->getType() != null ){
             $finalString .= "[".$survey->getType()."] ";
         }
 

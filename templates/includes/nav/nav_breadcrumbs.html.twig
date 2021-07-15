@@ -1,6 +1,6 @@
 
     {% if survey is defined %}
-        {% if (survey.chemin is not empty) and (survey.chemin|length > 1) %}
+        {% if (survey.chemin is not empty) and (survey.chemin|length > 1) and (app.request.get('_route') != 'final_string') %}
             <div class="is-flex is-align-items-center px-4 py-4">
                 <nav class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
                     <ul>

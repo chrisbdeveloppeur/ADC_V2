@@ -13,9 +13,17 @@
 
     <div class="control has-text-right">
         <button type="submit" class="button is-info is-small add-btn-form" title="Etape suivante">
-            <span>
-                Suivant
-            </span>
+
+                {% if app.request.get('_route') == 'commentaire' %}
+                    <span class="has-text-weight-bold">
+                        Générer la chaine de balises
+                    </span>
+                {% else %}
+                    <span>
+                        Suivant
+                    </span>
+                {% endif %}
+
             <span class="icon">
                 <i class="fas fa-chevron-right"></i>
             </span>
