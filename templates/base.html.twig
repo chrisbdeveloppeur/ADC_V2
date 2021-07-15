@@ -392,6 +392,31 @@
         </script>
         {#        FIN          #}
 
+
+
+{#    OPEN POP-UP FOR CONFIRM SURVEY AND GENERATE FINAL-STRING    #}
+        <script>
+            let popupBtn = document.querySelectorAll('.btn-for-display-popup');
+            popupBtn.forEach(function (element) {
+                element.addEventListener('click', function () {
+                    let modal = element.parentElement.previousElementSibling;
+                    let modal2 = element.previousElementSibling;
+                    if (modal){
+                        modal.style.display = 'flex';
+                    }
+                    if (modal2){
+                        modal2.style.display = 'flex';
+                    }
+                });
+            });
+
+            function closeModal(element) {
+                element.parentElement.style.display = 'none';
+            }
+        </script>
+{#    FIN    #}
+
+
     {% endblock %}
 </body>
 </html>
