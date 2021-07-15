@@ -16,7 +16,7 @@ class FinalStringController extends AbstractController
      */
     public function description(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController): Response
     {
-        $version = 2;
+        $version = 2.01;
         $survey =  $surveySessionController->checkSurveySession();
         if ($survey == null){
             $this->addFlash('danger', 'Votre session à expiré !');
@@ -48,18 +48,20 @@ class FinalStringController extends AbstractController
 
         $finalString = strtoupper($finalString);
 
+        //      intégration et mise en forme de la balise commentaire si il a eu lieu
         if ($survey->getCommentaire()){
             $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "] ";
         }
 
-        //                  SI ANNULEE
+        //      intégration et mise en forme de la balise ANNULE si l'annulation a eu lieu
         if ($survey->getCanceled() == true){
             $finalString = "[ANNULE] ";
         }
 
+        //   saut à la ligne dans la chaine de charactère
         $finalString .= "\r\n";
 
-        //                  Balise version ADC
+        //                  Balise version ADC qui apparait dans la chaine de balise
         $finalString .= '[ARBRE_DE_CLOTURE_V.' . $version . "] " ;
 
         //                  Horodatage
@@ -67,31 +69,38 @@ class FinalStringController extends AbstractController
         $horodatage = "[" . $survey->getTimeStamp()->format('d/m/Y - H:i') . "] ";
         $finalString .= $horodatage;
 
-        //         Hashage (crc32) de la chaine final
+        //         Hashage/Cryptage crc32 de la chaine balises final
         $survey->setHashedString($stringToHash);
         $finalString .= "[" . strtoupper($survey->getHashedString()) . "] ";
 
-        //                  Balise du INC ou DEM
-        $finalString .= "[".$survey->getType()."] ";
+        //                  Récupération, et intégration dans la chaine, de la balise du INC ou DEM
+        if ($survey->getType() != 'N/A'){
+            $finalString .= "[".$survey->getType()."] ";
+        }
 
-        //                  Balise USER_CMDB_DIF
-
-        if ($survey->getUserCmdbDif() == 'OUI' || 'NON'){
+        //                  Récupération, et intégration dans la chaine, de la balise USER_CMDB_DIF
+//        if ($survey->getUserCmdbDif() == 'OUI' || 'NON'){
+        if ($survey->getUserCmdbDif() != null){
             $finalString .= "[USER_CMDB_DIF_".$survey->getUserCmdbDif()."] ";
         }
 
-        //                  Balise de la méthode intervention
-        $finalString .= "[".$survey->getResolveMethod()."] ";
+        //                  Récupération, et intégration dans la chaine, de la balise méthode intervention (PMAD/GUICHET/PLATEAU etc...)
+        if ($survey->getResolveMethod() != null){
+            $finalString .= "[".$survey->getResolveMethod()."] ";
+        }
 
-        //                  Balise du service concerné (HD/SDP)
+        //                  Récupération, et intégration dans la chaine, de la balise du service concerné (HD/SDP)
         $finalString .= "[".$survey->getService()."] ";
 
-//                      MISE EN CORELATION FUSEAU HORAIRE                   //
-//        $survey->setTimeStamp(new \DateTime('', new \DateTimeZone('Europe/Paris') ) );
+        /*      A GARDER
+            //                      MISE EN CORELATION FUSEAU HORAIRE                   //
+            $survey->setTimeStamp(new \DateTime('', new \DateTimeZone('Europe/Paris') ) );
 
-//                         SUPPRESSION DES CHAINES VIDE                     //
-//        $text = preg_replace('/\s\s+/', ' ', $finalString);
+            //                       SUPPRESSION DES CHAINES VIDE                     //
+            $text = preg_replace('/\s\s+/', ' ', $finalString);
+        */
 
+        //                  attribution de l'ensemble des balises dans la valeur final du formulaire -> correspond tout simplement a la chaine de balises final
         $survey->setFinalString($finalString);
 
         $cheminController->setChemins($request);

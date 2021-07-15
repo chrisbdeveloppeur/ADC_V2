@@ -87,14 +87,7 @@
 
             {{ include('includes/nav/nav_for_only_one.html.twig') }}
 
-            <div class="control is-hidden nav-for-multiple">
-                <button type="submit" class="button is-info is-small add-btn-form" id="add-btn-form">
-                    <span>Ajouter</span>
-                    <span class="icon">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                </button>
-            </div>
+            {{ include('includes/nav/add_multiple.html.twig') }}
 
             {{ form_end(phone_form) }}
 
