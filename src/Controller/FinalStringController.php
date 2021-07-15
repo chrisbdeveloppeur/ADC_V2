@@ -33,6 +33,8 @@ class FinalStringController extends AbstractController
         $phones = $survey->getPhones();
         $cmdbs = $survey->getCmdbs();
         $rsdp = $survey->getRsdp();
+        $rdv = $survey->getRdvs();
+        $rdv = $survey->getRdvs()[0]->getBalise();
 
         $finalString .= $this->miseEnFormBalise($assets);
         $finalString .= $this->miseEnFormBalise($otherActions);
@@ -42,7 +44,7 @@ class FinalStringController extends AbstractController
         $finalString .= $this->miseEnFormBalise($phones);
         $finalString .= $this->miseEnFormBalise($cmdbs);
         if ($rsdp == 'OUI' || $rsdp == 'NON'){
-            $finalString .= "[RSDP_" . $rsdp . "] ";
+            $finalString .= "[" . $rdv . "] ";
         }
         $stringToHash = $finalString;
 
@@ -53,15 +55,15 @@ class FinalStringController extends AbstractController
             $finalString .= "[COMMENTAIRE_TECHNICIEN_" . $survey->getService() . " : " . $survey->getCommentaire() . "] ";
         }
 
-        //      intégration et mise en forme de la balise ANNULE si l'annulation a eu lieu
+        //      intégration et mise en forme de la "balise ANNULE" si l'annulation a eu lieu
         if ($survey->getCanceled() == true){
             $finalString = "[ANNULE] ";
         }
 
-        //   saut à la ligne dans la chaine de charactère
+        //      saut à la ligne dans la chaine de charactère
         $finalString .= "\r\n";
 
-        //                  Balise version ADC qui apparait dans la chaine de balise
+        //                  Balise "version ADC" qui apparait dans la chaine de balise
         $finalString .= '[ARBRE_DE_CLOTURE_V.' . $version . "] " ;
 
         //                  Horodatage
@@ -73,12 +75,12 @@ class FinalStringController extends AbstractController
         $survey->setHashedString($stringToHash);
         $finalString .= "[" . strtoupper($survey->getHashedString()) . "] ";
 
-        //                  Récupération, et intégration dans la chaine, de la balise du INC ou DEM
+        //                  Récupération, et intégration dans la chaine, de la "balise INC ou DEM"
         if ($survey->getType() != 'N/A'){
             $finalString .= "[".$survey->getType()."] ";
         }
 
-        //                  Récupération, et intégration dans la chaine, de la balise USER_CMDB_DIF
+        //                  Récupération, et intégration dans la chaine, de la "balise USER_CMDB_DIF"
 //        if ($survey->getUserCmdbDif() == 'OUI' || 'NON'){
         if ($survey->getUserCmdbDif() != null){
             $finalString .= "[USER_CMDB_DIF_".$survey->getUserCmdbDif()."] ";

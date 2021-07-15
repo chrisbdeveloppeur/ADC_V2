@@ -34,6 +34,7 @@ class OtherAppType extends AbstractType
                         'Création de compte MFT' => 'SFW_MFT',
                         'Compte Unix' => 'SFW_UNX',
                         'Compte SAP' => 'SFW_SAP',
+                        'Traitement d\'un incident de sécurité' => 'SFW_SEC',
                     ]
                 ]
 

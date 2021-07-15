@@ -739,12 +739,15 @@ class FormsController extends AbstractController
             if ( count($rdv) >= 1 ){
                 $survey->getRdvs()->clear();
             }
-            if ($reponse == 'oui'){
+            if ($reponse == 'OUI'){
                 $rdv = new Rdv();
                 $rdv->setBalise($balise);
                 $survey->addRdv($rdv);
+            }else{
+                $rdv = new Rdv();
+                $rdv->setBalise("RDV_NON");
+                $survey->addRdv($rdv);
             }
-
             return $this->redirectToRoute("commentaire");
         }
 

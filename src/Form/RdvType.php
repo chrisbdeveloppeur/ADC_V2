@@ -62,9 +62,10 @@ class RdvType extends AbstractType
                         'placeholder' => false,
                         'expanded' => true,
                         'choices' => [
-                            'Fait à distance' => 'XX',
+                            'Non' => 'NON',
+                            'Oui' => 'OUI',
                         ],
-                        'data' => 'XX',
+                        'data' => 'NON',
                     ]
                 );
 
