@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\PersistentCollection;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+/*
+ * FinalStringController.php contient la logique pour l'edition de la chaine de balises final.
+ * Elle récupère, traite et met en forme l'ensemble des données comprises dans l'entité Survey.
+*/
 
 class FinalStringController extends AbstractController
 {
@@ -18,10 +22,10 @@ class FinalStringController extends AbstractController
     {
         $version = 2.01;
         $survey =  $surveySessionController->checkSurveySession();
-        if ($survey == null){
-            $this->addFlash('danger', 'Votre session à expiré !');
-            return $this->redirectToRoute('home');
-        }
+//        if ($survey == null){
+//            $this->addFlash('danger', 'Votre session à expiré !');
+//            return $this->redirectToRoute('home');
+//        }
 
         $finalString = '';
 

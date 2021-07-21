@@ -7,6 +7,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
+/*
+ * CheminController.php contient la logique permettant de récupérer le chemin de résolution établie par l'utilisateur de l'outil.
+ * Ce chemin est traité et les différentes données sont récupérer pour les afficher sur les templates twig "nav_breadcrumbs.html.twig" ou encore "nav_indicator.html.twig"
+ * */
+
 class CheminController extends AbstractController
 {
 

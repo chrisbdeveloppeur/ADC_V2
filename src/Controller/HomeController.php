@@ -18,12 +18,13 @@ use Symfony\Component\Routing\Annotation\Route;
  * @package App\Controller
  */
 /*
- * Le HomeController.php contient la logique des 3 premieère questions de l'arbre de clôture v2
+ * Le HomeController.php contient la logique des premières questions de l'arbre de clôture v2. Ce sont les questions plaçant le contexte de la demande ou l'incident.
  * A chaque validation d'un formulaire (lorsque l'on valide une question), l'entité Survey.php est mise à jour. Elle contient toutes les données que l'utilisateur ajoutera au fur et à mesure.
  *
  * La route home : page d'accueil avec le choix du service SDP ou HD, ce controller sert à définir la variable "service" de l'entité Survey
- * La route methode : sert à définir la variable "resolve_method" de l'entité Survey, correspondant à la méthode d'intervention, exemples = PMAD ou Plateau (Cette route sautée si service HD selectionné au préalable)
- * La route tasktorinct : sert à définir si l'on est dans le cas d'une demande ou d'un incident. (Cette route sautée si service HD selectionné au préalable)
+ * La route methode : sert à définir la variable "resolve_method" de l'entité Survey, correspondant à la méthode d'intervention, exemples = PMAD ou Plateau
+ * La route tasktorinct : sert à définir la variable "type" de l'entité Survey. Si l'on est dans le cas d'une demande = DEM ou d'un incident = INC  (Cette route sautée si service HD selectionné au préalable)
+ * La route user_cmdb_dif : sert à définir la variable "user_cmdb_dif" de l'entité Survey. : /!\ ATTENTION : la valeur NON signifie que l'utilisateur de la DEM/INC ne correspond pas !
  *
  * */
 class HomeController extends AbstractController
@@ -61,10 +62,10 @@ class HomeController extends AbstractController
     {
         $survey =  $surveySessionController->checkSurveySession();
         $survey->setResolveMethod(null);
-        if ($survey == null){
-            $this->addFlash('danger', 'Votre session à expiré !');
-            return $this->redirectToRoute('home');
-        }
+//        if ($survey == null){
+//            $this->addFlash('danger', 'Votre session à expiré !');
+//            return $this->redirectToRoute('home');
+//        }
 
         $form = $this->createForm(ResolveMethodType::class);
         $form->handleRequest($request);
@@ -97,10 +98,10 @@ class HomeController extends AbstractController
     public function tasktOrInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
         $survey =  $surveySessionController->checkSurveySession();
-        if ($survey == null){
-            $this->addFlash('danger', 'Votre session à expiré !');
-            return $this->redirectToRoute('home');
-        }
+//        if ($survey == null){
+//            $this->addFlash('danger', 'Votre session à expiré !');
+//            return $this->redirectToRoute('home');
+//        }
 
         $survey->setType(null);
         $form = $this->createForm(TypeFormType::class);
@@ -128,10 +129,10 @@ class HomeController extends AbstractController
     public function userCmdbDif(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
         $survey =  $surveySessionController->checkSurveySession();
-        if ($survey == null){
-            $this->addFlash('danger', 'Votre session à expiré !');
-            return $this->redirectToRoute('home');
-        }
+//        if ($survey == null){
+//            $this->addFlash('danger', 'Votre session à expiré !');
+//            return $this->redirectToRoute('home');
+//        }
 
         $form = $this->createForm(UserCmdbDifType::class);
         $form->handleRequest($request);

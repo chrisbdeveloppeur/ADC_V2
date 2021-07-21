@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
+/*
+ * TasktController.php contient la logique pour le cheminement qui suit la selection de la branche demande (type = DEM)
+*/
 /**
  * @Route("/DEM", name="taskt_")
  */
@@ -22,10 +24,10 @@ class TasktController extends AbstractController
     {
 
         $survey =  $surveySessionController->checkSurveySession();
-        if ($survey == null){
-            $this->addFlash('danger', 'Votre session à expiré !');
-            return $this->redirectToRoute('home');
-        }
+//        if ($survey == null){
+//            $this->addFlash('danger', 'Votre session à expiré !');
+//            return $this->redirectToRoute('home');
+//        }
 
         $survey->setCasInct(null);
         $type = $survey->getType();
