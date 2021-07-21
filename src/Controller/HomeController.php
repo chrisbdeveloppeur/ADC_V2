@@ -19,7 +19,12 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 /*
  * Le HomeController.php contient la logique des 3 premieère questions de l'arbre de clôture v2
- * La route home
+ * A chaque validation d'un formulaire (lorsque l'on valide une question), l'entité Survey.php est mise à jour. Elle contient toutes les données que l'utilisateur ajoutera au fur et à mesure.
+ *
+ * La route home : page d'accueil avec le choix du service SDP ou HD, ce controller sert à définir la variable "service" de l'entité Survey
+ * La route methode : sert à définir la variable "resolve_method" de l'entité Survey, correspondant à la méthode d'intervention, exemples = PMAD ou Plateau (Cette route sautée si service HD selectionné au préalable)
+ * La route tasktorinct : sert à définir si l'on est dans le cas d'une demande ou d'un incident. (Cette route sautée si service HD selectionné au préalable)
+ *
  * */
 class HomeController extends AbstractController
 {
@@ -104,17 +109,6 @@ class HomeController extends AbstractController
             $reponse = $form->get('type')->getData();
             $survey->setType($reponse);
             return $this->redirectToRoute('user_cmdb_dif');
-//            if ($reponse == 'DEM'){
-//                return $this->redirectToRoute('taskt_home', [
-//                ]);
-//            }elseif ($reponse == 'INC'){
-//                if ($survey->getResolveMethod() == 'PMAD'){
-//                    return $this->redirectToRoute('rdv');
-//                }else{
-//                    return $this->redirectToRoute('inct_home', [
-//                    ]);
-//                }
-//            }
         }
 
         $cheminController->setChemins($request);
