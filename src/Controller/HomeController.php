@@ -17,7 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class HomeController
  * @package App\Controller
  */
-
+/*
+ * Le HomeController.php contient la logique des 3 premieère questions de l'arbre de clôture v2
+ * La route home
+ * */
 class HomeController extends AbstractController
 {
     /**
