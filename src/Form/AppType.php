@@ -16,7 +16,6 @@ class AppType extends AbstractType
     {
         $builder
             ->add('action', ChoiceType::class, [
-//                'label' => false,
                     'required' => false,
                     'placeholder' => 'Selectionner...',
                     'choices' => [
@@ -28,12 +27,10 @@ class AppType extends AbstractType
 
             )
             ->add('asset', TextType::class,[
-//                    'label' => false,
                     'required' => false,
                 ]
             )
             ->add('rsdp', ChoiceType::class,[
-//                'label' => false,
                     'required' => false,
                     'placeholder' => false,
                     'expanded' => true,
@@ -46,12 +43,10 @@ class AppType extends AbstractType
                 ]
             )
             ->add('tpx', IntegerType::class,[
-//                'label' => false,
                     'required' => false,
                 ]
             )
             ->add('multiple', CheckboxType::class,[
-//                'label' => false,
                     'required' => false,
                 ]
             )

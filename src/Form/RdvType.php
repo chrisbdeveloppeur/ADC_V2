@@ -57,7 +57,6 @@ class RdvType extends AbstractType
                 )
 
                 ->add('rsdp', ChoiceType::class,[
-//                'label' => false,
                         'required' => false,
                         'placeholder' => false,
                         'expanded' => true,
@@ -100,7 +99,6 @@ class RdvType extends AbstractType
                 )
 
                 ->add('rsdp', ChoiceType::class,[
-//                'label' => false,
                         'required' => false,
                         'placeholder' => false,
                         'expanded' => true,
