@@ -7,7 +7,7 @@ Code source de l'application web Arbre de clôture V2
 **- Taille du message proposant l'annulation d'une DEM / INC augmentée en `normal size`.**<br>
 **- Suppression du champs de saisi `Asset / Hostname` dans le formulaire `Softs / Applications` de la branche fourniture de matériel.**<br>
 **- Le retour en arrière est rendu impossible lorsque la chaine de balises finale est générée.**<br>
-**- Nombre maximal de balises fixé à `15`.**<br>
+**- Nombre maximal de balises est fixé à `15`.**<br>
 **- Suppression des items `petits matériels` et `imprimantes` dans la branche `autres actions matériel`.**<br>
 **- Ajout de l'item `Traitement d'un incident de sécurité` générant une balise `SFW_SEC` dans le formulaire `autres actions logiciel et accès`.**<br>
 **- Le boutton `Annulée` est à présent dès la question N°2.**<br>
