@@ -16,7 +16,6 @@ class SurveySessionController extends AbstractController
     public function checkSurveySession()
     {
         $survey = $this->get('session')->get('survey');
-//        dd($survey);
         if ($survey == null){
             $this->addFlash('danger', 'Votre session à expiré !');
             return $this->redirectToRoute('home');

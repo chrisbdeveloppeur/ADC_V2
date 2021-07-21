@@ -22,10 +22,10 @@ class FinalStringController extends AbstractController
     {
         $version = 2.01;
         $survey =  $surveySessionController->checkSurveySession();
-//        if ($survey == null){
-//            $this->addFlash('danger', 'Votre session à expiré !');
-//            return $this->redirectToRoute('home');
-//        }
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $finalString = '';
 

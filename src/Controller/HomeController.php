@@ -62,10 +62,10 @@ class HomeController extends AbstractController
     {
         $survey =  $surveySessionController->checkSurveySession();
         $survey->setResolveMethod(null);
-//        if ($survey == null){
-//            $this->addFlash('danger', 'Votre session à expiré !');
-//            return $this->redirectToRoute('home');
-//        }
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $form = $this->createForm(ResolveMethodType::class);
         $form->handleRequest($request);
@@ -98,10 +98,10 @@ class HomeController extends AbstractController
     public function tasktOrInct(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
         $survey =  $surveySessionController->checkSurveySession();
-//        if ($survey == null){
-//            $this->addFlash('danger', 'Votre session à expiré !');
-//            return $this->redirectToRoute('home');
-//        }
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $survey->setType(null);
         $form = $this->createForm(TypeFormType::class);
@@ -129,10 +129,10 @@ class HomeController extends AbstractController
     public function userCmdbDif(Request $request, CheminController $cheminController, SurveySessionController $surveySessionController)
     {
         $survey =  $surveySessionController->checkSurveySession();
-//        if ($survey == null){
-//            $this->addFlash('danger', 'Votre session à expiré !');
-//            return $this->redirectToRoute('home');
-//        }
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $form = $this->createForm(UserCmdbDifType::class);
         $form->handleRequest($request);

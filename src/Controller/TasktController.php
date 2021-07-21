@@ -25,10 +25,10 @@ class TasktController extends AbstractController
     {
 
         $survey = $surveySessionController->checkSurveySession();
-//        if ($survey == null){
-//            $this->addFlash('danger', 'Votre session à expiré !');
-//            return $this->redirectToRoute('home');
-//        }
+        if ($survey == null){
+            $this->addFlash('danger', 'Votre session à expiré !');
+            return $this->redirectToRoute('home');
+        }
 
         $survey->setCasInct(null);
         $type = $survey->getType();
