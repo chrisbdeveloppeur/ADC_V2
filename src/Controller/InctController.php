@@ -8,6 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/*
+ * InctController.php contient la logique pour le cheminement qui suit la selection de la branche incident (type = INC)
+*/
 
 /**
  * @Route("/INC", name="inct_")

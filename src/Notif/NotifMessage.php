@@ -6,6 +6,11 @@ namespace App\Notif;
 use App\Entity\User;
 use Twig\Environment;
 
+/*
+ * Sert à envoyé un mail de confirmation pour la création d'un compte.
+ * /!\ Cette objet n'est pas utilisé pour la version Prod SCC. /!\
+*/
+
 class NotifMessage
 {
 

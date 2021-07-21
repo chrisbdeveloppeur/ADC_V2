@@ -25,9 +25,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-///**
-// * @Route("/form", name="")
-// */
+/*
+ * FormsController.php contient l'ensemble des logiques pour les formulaires de détails.
+ *
+*/
 
 class FormsController extends AbstractController
 {
