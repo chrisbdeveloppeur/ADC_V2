@@ -51,21 +51,23 @@
                 </p>
             </div>
 
-            <div class="is-hidden dynamic-field mb-4" id="assets-field">
 
-                <div class="is-flex is-justify-content-space-around">
-                    <label class="label">Veuillez indiquer le nom de l'Asset concerné</label>
+                <div class="{% if survey.castaskt != 1 %}is-hidden{% else %}hidden-forced{% endif %} dynamic-field mb-4" id="assets-field">
+
+                    <div class="is-flex is-justify-content-space-around">
+                        <label class="label">Veuillez indiquer le nom de l'Asset concerné</label>
+                    </div>
+
+                    <div class="field has-addons has-addons-centered">
+                        <p class="control is-expanded">
+                            {{ form_widget(app_form.asset, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Hostname'}}) }}
+                        </p>
+                    </div>
+
+                    {{ include('includes/unknow_hostname.html.twig') }}
+
                 </div>
 
-                <div class="field has-addons has-addons-centered">
-                    <p class="control is-expanded">
-                        {{ form_widget(app_form.asset, {'disabled':'true', 'attr': {'class':'input has-text-centered', 'placeholder': 'Hostname'}}) }}
-                    </p>
-                </div>
-
-                {{ include('includes/unknow_hostname.html.twig') }}
-
-            </div>
 
 
             <div class="is-hidden hidden-forced dynamic-field mb-4" id="rsdp-field">
@@ -152,7 +154,9 @@
                 if (element.value){
                     removeAttributes(app_asset, 'disabled');
                     removeAttributes(fieldRsdp.querySelector('input'), 'required');
-                    addAttributes(app_asset, 'required', true);
+                    if (!fieldAssets.classList.contains('hidden-forced')){
+                        addAttributes(app_asset, 'required', true);
+                    }
                     makeVisible(fieldAssets);
                     makeVisible(fieldTpx);
                     addAttributes(fieldTpx.querySelector('.tpx'), 'required', true);
