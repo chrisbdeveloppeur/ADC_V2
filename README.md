@@ -1,6 +1,15 @@
 # ADC_V2
 Code source de l'application web Arbre de clôture V2
 
+## MAJ 2.01 :
+*- Ajout & mise à jour de commentaires*<br>
+*- Modification de certaines phrases*<br>
+*- Taille du message proposant l'annulation d'une DEM / INC*<br>
+*- Suppression du champs de saisi `Asset / Hostname` dans le formulaire `Softs / Applications` de la branche fourniture de matériel*<br>
+*- Le retour en arrière est rendu impossible lorsque la chaine de balises finale est générée*<br>
+*- Nombre maximal de balises fixé à `15`*<br>
+*- Suppression des items `petits matériels` et `imprimantes` dans la branche `autres actions matériel`*<br>
+
 ## Prérequis :
 ###### Configuration minimal requise
  **- PHP 7.4**
