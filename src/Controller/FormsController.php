@@ -32,7 +32,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FormsController extends AbstractController
 {
-//////////////////////////////  ASSET FORM  //////////////////////////////
+//////////////////////////////  ROUTE (LOGIQUE) POUR ASSET  //////////////////////////////
     /**
      * @Route("/ASSET", name="asset")
      */
@@ -126,7 +126,7 @@ class FormsController extends AbstractController
 
 
 
-//////////////////////////////  OTHER_ASSET FORM  //////////////////////////////
+//////////////////////////////  ROUTE (LOGIQUE) POUR AUTRE ASSET (AUTRE PERIPHERIQUE)  //////////////////////////////
     /**
      * @Route("/ASSET-2", name="other_asset")
      */
@@ -163,15 +163,6 @@ class FormsController extends AbstractController
                 }
                 $newAsset->setRsdp($otherAssetForm->get('rsdp')->getData());
                 $newAsset->setTpx($otherAssetForm->get('tpx')->getData());
-//                if ($newAsset->getAe()==null){
-//                    $newAsset->setAe('XX');
-//                }
-//                if ($newAsset->getAs()==null){
-//                    $newAsset->setAs('XX');
-//                }
-//                if ($newAsset->getType()==null){
-//                    $newAsset->setType('XX');
-//                }
                 $survey->addOtherAsset($newAsset);
 
                 $action = $newAsset->getAction();
@@ -243,7 +234,7 @@ class FormsController extends AbstractController
 
 
 
-//////////////////////////////  OTHER_ACTION FORM  //////////////////////////////
+//////////////////////////////  ROUTE (LOGIQUE) POUR AUTRE ACTIONS  //////////////////////////////
     /**
      * @Route("/AUTRE-ACTION-MATERIEL", name="other_action")
      */
@@ -275,9 +266,6 @@ class FormsController extends AbstractController
                 $newAsset->setAction($otherActionForm->get('action')->getData());
                 $newAsset->setRsdp($otherActionForm->get('rsdp')->getData());
                 $newAsset->setTpx($otherActionForm->get('tpx')->getData());
-//                if ($newAsset->getAsset()==null){
-//                    $newAsset->setAsset('XX');
-//                }
                 $survey->addOtherAction($newAsset);
 
                 $action = $newAsset->getAction();
@@ -344,7 +332,7 @@ class FormsController extends AbstractController
 
 
 
-//////////////////////////////  APP FORM  //////////////////////////////
+//////////////////////////////  ROUTE (LOGIQUE) POUR APPLICATIONS/LOGICIELS  //////////////////////////////
     /**
      * @Route("/LOGICIEL", name="app")
      */
@@ -374,9 +362,6 @@ class FormsController extends AbstractController
                 $app->setAction($appForm->get('action')->getData());
                 $app->setRsdp($appForm->get('rsdp')->getData());
                 $app->setTpx($appForm->get('tpx')->getData());
-//                if ($app->getAsset()==null){
-//                    $app->setAsset('XX');
-//                }
                 $survey->addApp($app);
 
                 $action = $app->getAction();
@@ -443,7 +428,7 @@ class FormsController extends AbstractController
 
 
 
-//////////////////////////////  OTHER APP FORM  //////////////////////////////
+//////////////////////////////  ROUTE (LOGIQUE) POUR AUTRE APPLICATIONS/LOGICIELS  //////////////////////////////
     /**
      * @Route("/LOGICIEL-2", name="other_app")
      */
@@ -473,9 +458,6 @@ class FormsController extends AbstractController
                 $otherApp->setAction($otherAppForm->get('action')->getData());
                 $otherApp->setRsdp($otherAppForm->get('rsdp')->getData());
                 $otherApp->setTpx($otherAppForm->get('tpx')->getData());
-//                if ($otherApp->getAsset()==null){
-//                    $otherApp->setAsset('XX');
-//                }
                 $survey->addOtherApp($otherApp);
 
                 $action = $otherApp->getAction();
@@ -534,7 +516,7 @@ class FormsController extends AbstractController
 
 
 
-//////////////////////////////  PHONE FORM  //////////////////////////////
+//////////////////////////////  ROUTE (LOGIQUE) POUR TELEPHONIE  //////////////////////////////
     /**
      * @Route("/TELEPHONIE", name="phone")
      */
@@ -625,7 +607,7 @@ class FormsController extends AbstractController
 
 
 
-//////////////////////////////  CMDB FORM  //////////////////////////////
+//////////////////////////////  ROUTE (LOGIQUE) POUR CMDB  //////////////////////////////
     /**
      * @Route("/CMDB", name="cmdb")
      */
@@ -657,9 +639,6 @@ class FormsController extends AbstractController
                 $cmdb->setTpx($cmdbForm->get('tpx')->getData());
                 $action = $cmdb->getAction();
                 $cmdb->setBalise($action);
-//                if ($cmdb->getAsset()==null){
-//                    $cmdb->setAsset('XX');
-//                }
                 $survey->addCmdb($cmdb);
 
                 $asset = $cmdb->getAsset();
@@ -716,7 +695,7 @@ class FormsController extends AbstractController
 
 
 
-
+//////////////////////////////  ROUTE (LOGIQUE) POUR RDV  //////////////////////////////
     /**
      * @Route("/RDV", name="rdv")
      */
@@ -785,7 +764,7 @@ class FormsController extends AbstractController
 
 
 
-
+//////////////////////////////  ROUTE (LOGIQUE) POUR COMMENTAIRE  //////////////////////////////
     /**
      * @Route("/COMMENTAIRE", name="commentaire")
      */
@@ -816,11 +795,11 @@ class FormsController extends AbstractController
 
 
 
-
+//////////////////////////////  ROUTE (LOGIQUE) POUR DEM/INC ANNULEE  //////////////////////////////
     /**
      * @Route("/ANULEE", name="canceled")
      */
-    public function canceled(Request $request, SurveySessionController $surveySessionController): Response
+    public function canceled(SurveySessionController $surveySessionController): Response
     {
         $survey =  $surveySessionController->checkSurveySession();
         if ($survey == null){
@@ -830,7 +809,6 @@ class FormsController extends AbstractController
 
         $survey->setCanceled(true);
 
-//        $cheminController->setChemins($request);
         return $this->redirectToRoute('final_string');
     }
 
