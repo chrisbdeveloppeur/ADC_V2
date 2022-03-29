@@ -18,18 +18,17 @@ Code source de l'application web Arbre de clôture V2
   - `[RDV NON RESPECTE SCC]` : SCC n'était pas présent au RDV (sans avoir prévenu)
   - `[RDV ANNULE SDP]` : Le Rendez-vous a été annulé par SCC 
   
-## Environnement :
-###### Outils utilisés pour le développment
+## Prérequis :
+###### Configuration minimal requise
  **- PHP 7.4**
+ <br>
+ **- Git 2.31.1**
  <br>
  **- Symfony 1.1.5**
  <br>
  **- Node.js 12.14.1**
  <br>
  **- Yarn 1.22.1**
- <br>
- **- Git 2.31.1**
-
 
 #### Liens des telechargements utiles :
 - **Git** : https://git-scm.com/downloads
